@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
+		F70F127E179F2D8B00DBB74F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F70F127C179F2D8B00DBB74F /* InfoPlist.strings */; };
+		F70F1280179F2D8B00DBB74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F127F179F2D8B00DBB74F /* main.m */; };
+		F70F1284179F2D8B00DBB74F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F70F1282179F2D8B00DBB74F /* Credits.rtf */; };
+		F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */; };
+		F70F128A179F2D8B00DBB74F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70F1288179F2D8B00DBB74F /* MainMenu.xib */; };
+		F70F1292179F2D8C00DBB74F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */; };
+		F70F1293179F2D8C00DBB74F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
+		F70F129B179F2D8C00DBB74F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F70F1299179F2D8C00DBB74F /* InfoPlist.strings */; };
+		F70F129E179F2D8C00DBB74F /* TwIRCkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F129D179F2D8C00DBB74F /* TwIRCkTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F70F1294179F2D8C00DBB74F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F70F1268179F2D8B00DBB74F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F70F126F179F2D8B00DBB74F;
+			remoteInfo = TwIRCk;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F70F1270179F2D8B00DBB74F /* TwIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70F1273179F2D8B00DBB74F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F70F1276179F2D8B00DBB74F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F70F1277179F2D8B00DBB74F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F70F1278179F2D8B00DBB74F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F70F127B179F2D8B00DBB74F /* TwIRCk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwIRCk-Info.plist"; sourceTree = "<group>"; };
+		F70F127D179F2D8B00DBB74F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F70F127F179F2D8B00DBB74F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F70F1281179F2D8B00DBB74F /* TwIRCk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TwIRCk-Prefix.pch"; sourceTree = "<group>"; };
+		F70F1283179F2D8B00DBB74F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGAppDelegate.h; sourceTree = "<group>"; };
+		F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLGAppDelegate.m; sourceTree = "<group>"; };
+		F70F1289179F2D8B00DBB74F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F70F1290179F2D8C00DBB74F /* TwIRCkTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwIRCkTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F70F1298179F2D8C00DBB74F /* TwIRCkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwIRCkTests-Info.plist"; sourceTree = "<group>"; };
+		F70F129A179F2D8C00DBB74F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F70F129C179F2D8C00DBB74F /* TwIRCkTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwIRCkTests.h; sourceTree = "<group>"; };
+		F70F129D179F2D8C00DBB74F /* TwIRCkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwIRCkTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F70F126D179F2D8B00DBB74F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F70F128C179F2D8C00DBB74F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70F1292179F2D8C00DBB74F /* SenTestingKit.framework in Frameworks */,
+				F70F1293179F2D8C00DBB74F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F70F1267179F2D8B00DBB74F = {
+			isa = PBXGroup;
+			children = (
+				F70F1279179F2D8B00DBB74F /* TwIRCk */,
+				F70F1296179F2D8C00DBB74F /* TwIRCkTests */,
+				F70F1272179F2D8B00DBB74F /* Frameworks */,
+				F70F1271179F2D8B00DBB74F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F70F1271179F2D8B00DBB74F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F70F1270179F2D8B00DBB74F /* TwIRCk.app */,
+				F70F1290179F2D8C00DBB74F /* TwIRCkTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F70F1272179F2D8B00DBB74F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F70F1273179F2D8B00DBB74F /* Cocoa.framework */,
+				F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */,
+				F70F1275179F2D8B00DBB74F /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F70F1275179F2D8B00DBB74F /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F70F1276179F2D8B00DBB74F /* AppKit.framework */,
+				F70F1277179F2D8B00DBB74F /* CoreData.framework */,
+				F70F1278179F2D8B00DBB74F /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
+			isa = PBXGroup;
+			children = (
+				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
+				F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */,
+				F70F1288179F2D8B00DBB74F /* MainMenu.xib */,
+				F70F127A179F2D8B00DBB74F /* Supporting Files */,
+			);
+			path = TwIRCk;
+			sourceTree = "<group>";
+		};
+		F70F127A179F2D8B00DBB74F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F70F127B179F2D8B00DBB74F /* TwIRCk-Info.plist */,
+				F70F127C179F2D8B00DBB74F /* InfoPlist.strings */,
+				F70F127F179F2D8B00DBB74F /* main.m */,
+				F70F1281179F2D8B00DBB74F /* TwIRCk-Prefix.pch */,
+				F70F1282179F2D8B00DBB74F /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F70F1296179F2D8C00DBB74F /* TwIRCkTests */ = {
+			isa = PBXGroup;
+			children = (
+				F70F129C179F2D8C00DBB74F /* TwIRCkTests.h */,
+				F70F129D179F2D8C00DBB74F /* TwIRCkTests.m */,
+				F70F1297179F2D8C00DBB74F /* Supporting Files */,
+			);
+			path = TwIRCkTests;
+			sourceTree = "<group>";
+		};
+		F70F1297179F2D8C00DBB74F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F70F1298179F2D8C00DBB74F /* TwIRCkTests-Info.plist */,
+				F70F1299179F2D8C00DBB74F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F70F126F179F2D8B00DBB74F /* TwIRCk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F70F12A1179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCk" */;
+			buildPhases = (
+				F70F126C179F2D8B00DBB74F /* Sources */,
+				F70F126D179F2D8B00DBB74F /* Frameworks */,
+				F70F126E179F2D8B00DBB74F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TwIRCk;
+			productName = TwIRCk;
+			productReference = F70F1270179F2D8B00DBB74F /* TwIRCk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F70F128F179F2D8C00DBB74F /* TwIRCkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F70F12A4179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCkTests" */;
+			buildPhases = (
+				F70F128B179F2D8C00DBB74F /* Sources */,
+				F70F128C179F2D8C00DBB74F /* Frameworks */,
+				F70F128D179F2D8C00DBB74F /* Resources */,
+				F70F128E179F2D8C00DBB74F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F70F1295179F2D8C00DBB74F /* PBXTargetDependency */,
+			);
+			name = TwIRCkTests;
+			productName = TwIRCkTests;
+			productReference = F70F1290179F2D8C00DBB74F /* TwIRCkTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F70F1268179F2D8B00DBB74F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GLG;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "General Linear Group";
+			};
+			buildConfigurationList = F70F126B179F2D8B00DBB74F /* Build configuration list for PBXProject "TwIRCk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F70F1267179F2D8B00DBB74F;
+			productRefGroup = F70F1271179F2D8B00DBB74F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F70F126F179F2D8B00DBB74F /* TwIRCk */,
+				F70F128F179F2D8C00DBB74F /* TwIRCkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F70F126E179F2D8B00DBB74F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70F127E179F2D8B00DBB74F /* InfoPlist.strings in Resources */,
+				F70F1284179F2D8B00DBB74F /* Credits.rtf in Resources */,
+				F70F128A179F2D8B00DBB74F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F70F128D179F2D8C00DBB74F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70F129B179F2D8C00DBB74F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F70F128E179F2D8C00DBB74F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F70F126C179F2D8B00DBB74F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70F1280179F2D8B00DBB74F /* main.m in Sources */,
+				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F70F128B179F2D8C00DBB74F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70F129E179F2D8C00DBB74F /* TwIRCkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F70F1295179F2D8C00DBB74F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F70F126F179F2D8B00DBB74F /* TwIRCk */;
+			targetProxy = F70F1294179F2D8C00DBB74F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F70F127C179F2D8B00DBB74F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F70F127D179F2D8B00DBB74F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F70F1282179F2D8B00DBB74F /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F70F1283179F2D8B00DBB74F /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F70F1288179F2D8B00DBB74F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F70F1289179F2D8B00DBB74F /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F70F1299179F2D8C00DBB74F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F70F129A179F2D8C00DBB74F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F70F129F179F2D8C00DBB74F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F70F12A0179F2D8C00DBB74F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F70F12A2179F2D8C00DBB74F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				INFOPLIST_FILE = "TwIRCk/TwIRCk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F70F12A3179F2D8C00DBB74F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				INFOPLIST_FILE = "TwIRCk/TwIRCk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F70F12A5179F2D8C00DBB74F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TwIRCk.app/Contents/MacOS/TwIRCk";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				INFOPLIST_FILE = "TwIRCkTests/TwIRCkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F70F12A6179F2D8C00DBB74F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TwIRCk.app/Contents/MacOS/TwIRCk";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				INFOPLIST_FILE = "TwIRCkTests/TwIRCkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F70F126B179F2D8B00DBB74F /* Build configuration list for PBXProject "TwIRCk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F70F129F179F2D8C00DBB74F /* Debug */,
+				F70F12A0179F2D8C00DBB74F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F70F12A1179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F70F12A2179F2D8C00DBB74F /* Debug */,
+				F70F12A3179F2D8C00DBB74F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F70F12A4179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F70F12A5179F2D8C00DBB74F /* Debug */,
+				F70F12A6179F2D8C00DBB74F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F70F1268179F2D8B00DBB74F /* Project object */;
+}
