@@ -61,6 +61,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *) aNotification {
     NSView *contentView = [[self window] contentView];
+    responseLookup = [[GLGResponseCodes alloc] init];
 
     id hostname = [self createTextFieldWithIdentifier:@"hostname" superView:contentView];
     id hostnameLabel = [self createLabelWithIdentifier:@"hostname" superView:contentView];

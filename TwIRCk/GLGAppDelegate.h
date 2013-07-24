@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "GLGResponseCodes.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate>
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
+    GLGResponseCodes *responseLookup;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 

@@ -17,6 +17,10 @@
 		F70F1293179F2D8C00DBB74F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
 		F70F129B179F2D8C00DBB74F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F70F1299179F2D8C00DBB74F /* InfoPlist.strings */; };
 		F70F129E179F2D8C00DBB74F /* TwIRCkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F129D179F2D8C00DBB74F /* TwIRCkTests.m */; };
+		F70F12AA179F4E7F00DBB74F /* GLGResponseCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12A9179F4E7F00DBB74F /* GLGResponseCodes.m */; };
+		F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12AC179F4F0000DBB74F /* GLGReplyMessage.m */; };
+		F70F12B1179F53EE00DBB74F /* GLGErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B0179F53EE00DBB74F /* GLGErrorMessage.m */; };
+		F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B3179F540400DBB74F /* GLGMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,14 @@
 		F70F129A179F2D8C00DBB74F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F70F129C179F2D8C00DBB74F /* TwIRCkTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwIRCkTests.h; sourceTree = "<group>"; };
 		F70F129D179F2D8C00DBB74F /* TwIRCkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwIRCkTests.m; sourceTree = "<group>"; };
+		F70F12A8179F4E7F00DBB74F /* GLGResponseCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGResponseCodes.h; sourceTree = "<group>"; };
+		F70F12A9179F4E7F00DBB74F /* GLGResponseCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGResponseCodes.m; sourceTree = "<group>"; };
+		F70F12AB179F4F0000DBB74F /* GLGReplyMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGReplyMessage.h; sourceTree = "<group>"; };
+		F70F12AC179F4F0000DBB74F /* GLGReplyMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGReplyMessage.m; sourceTree = "<group>"; };
+		F70F12AF179F53EE00DBB74F /* GLGErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGErrorMessage.h; sourceTree = "<group>"; };
+		F70F12B0179F53EE00DBB74F /* GLGErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGErrorMessage.m; sourceTree = "<group>"; };
+		F70F12B2179F540400DBB74F /* GLGMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGMessage.h; sourceTree = "<group>"; };
+		F70F12B3179F540400DBB74F /* GLGMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +126,7 @@
 		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
 			isa = PBXGroup;
 			children = (
+				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
 				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
 				F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */,
 				F70F1288179F2D8B00DBB74F /* MainMenu.xib */,
@@ -151,6 +164,21 @@
 				F70F1299179F2D8C00DBB74F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F70F12AE179F53DA00DBB74F /* ResponseCodes */ = {
+			isa = PBXGroup;
+			children = (
+				F70F12A8179F4E7F00DBB74F /* GLGResponseCodes.h */,
+				F70F12A9179F4E7F00DBB74F /* GLGResponseCodes.m */,
+				F70F12AB179F4F0000DBB74F /* GLGReplyMessage.h */,
+				F70F12AC179F4F0000DBB74F /* GLGReplyMessage.m */,
+				F70F12AF179F53EE00DBB74F /* GLGErrorMessage.h */,
+				F70F12B0179F53EE00DBB74F /* GLGErrorMessage.m */,
+				F70F12B2179F540400DBB74F /* GLGMessage.h */,
+				F70F12B3179F540400DBB74F /* GLGMessage.m */,
+			);
+			name = ResponseCodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +292,10 @@
 			files = (
 				F70F1280179F2D8B00DBB74F /* main.m in Sources */,
 				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
+				F70F12AA179F4E7F00DBB74F /* GLGResponseCodes.m in Sources */,
+				F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */,
+				F70F12B1179F53EE00DBB74F /* GLGErrorMessage.m in Sources */,
+				F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
