@@ -8,8 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 #import "GLGResponseCodes.h"
+#import "GLGReadDelegate.h"
+#import "GLGWriteDelegate.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSStreamDelegate> {
+    NSTextField *hostname;
+    NSTextField *port;
+    NSTextField *username;
+    NSSecureTextField *password;
+    NSTextField *channels;
+
+    NSInputStream *inputStream;
+    NSOutputStream *outputStream;
+
+    GLGReadDelegate *reader;
+    GLGWriteDelegate *writer;
     GLGResponseCodes *responseLookup;
 }
 

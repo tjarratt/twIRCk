@@ -21,6 +21,8 @@
 		F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12AC179F4F0000DBB74F /* GLGReplyMessage.m */; };
 		F70F12B1179F53EE00DBB74F /* GLGErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B0179F53EE00DBB74F /* GLGErrorMessage.m */; };
 		F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B3179F540400DBB74F /* GLGMessage.m */; };
+		F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */; };
+		F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		F70F12B0179F53EE00DBB74F /* GLGErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGErrorMessage.m; sourceTree = "<group>"; };
 		F70F12B2179F540400DBB74F /* GLGMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGMessage.h; sourceTree = "<group>"; };
 		F70F12B3179F540400DBB74F /* GLGMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGMessage.m; sourceTree = "<group>"; };
+		F70F12B517A0AAD900DBB74F /* GLGReadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGReadDelegate.h; sourceTree = "<group>"; };
+		F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGReadDelegate.m; sourceTree = "<group>"; };
+		F70F12B817A0AAF300DBB74F /* GLGWriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGWriteDelegate.h; sourceTree = "<group>"; };
+		F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGWriteDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,10 @@
 				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
 				F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */,
 				F70F1288179F2D8B00DBB74F /* MainMenu.xib */,
+				F70F12B517A0AAD900DBB74F /* GLGReadDelegate.h */,
+				F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */,
+				F70F12B817A0AAF300DBB74F /* GLGWriteDelegate.h */,
+				F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */,
 				F70F127A179F2D8B00DBB74F /* Supporting Files */,
 			);
 			path = TwIRCk;
@@ -296,6 +306,8 @@
 				F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */,
 				F70F12B1179F53EE00DBB74F /* GLGErrorMessage.m in Sources */,
 				F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */,
+				F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */,
+				F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
