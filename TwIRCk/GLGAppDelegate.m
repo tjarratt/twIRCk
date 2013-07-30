@@ -142,19 +142,21 @@
         remoteHost = @"chat.freenode.net";
     }
 
-    NSURL *remoteURL = [NSURL URLWithString:remoteHost];
-    if (!remoteURL) {
-        // oops: display some validation
-        NSLog(@"Not a valid hostname!");
-        return;
-    }
+    NSLog(@"connecting to %@ on port %d", remoteHost, remotePort);
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)[remoteURL host], remotePort, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)remoteHost, remotePort, &readStream, &writeStream);
+
+    if(!CFWriteStreamOpen(writeStream)) {
+        // validation, or maybe not connected?
+        NSLog(@"big trouble in little IRC client");
+        return;
+    }
 
     inputStream = (__bridge_transfer NSInputStream *) readStream;
     reader = [[GLGReadDelegate alloc] init];
+    [reader setDelegate:self];
     [inputStream setDelegate:reader];
 
     outputStream = (__bridge_transfer NSOutputStream *) writeStream;
@@ -171,7 +173,18 @@
     [inputStream open];
     [outputStream open];
 
-    // set some initial things like "oh hey, send the pass, nick and username to the server on a queue
+    NSString *user = [username stringValue];
+    NSString *pass = [password stringValue];
+
+    if ([user length] > 0 && [pass length] > 0) {
+        [writer addCommand:[@"PASS " stringByAppendingString:[password stringValue]]];
+        [writer addCommand:[@"NICK " stringByAppendingString:user]];
+        [writer addCommand:[NSString stringWithFormat:@"USER %@ 8 * %@", user, user]];
+    }
+}
+
+- (void) receivedString:(NSString *) str {
+
 }
 
 @end

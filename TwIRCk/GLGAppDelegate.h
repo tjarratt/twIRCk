@@ -10,8 +10,9 @@
 #import "GLGResponseCodes.h"
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
+#import <CFNetwork/CFSocketStream.h> 
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSStreamDelegate> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, GLGReaderDelegate> {
     NSTextField *hostname;
     NSTextField *port;
     NSTextField *username;
@@ -27,5 +28,7 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
+
+- (void) receivedString:(NSString *) str;
 
 @end

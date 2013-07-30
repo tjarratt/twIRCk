@@ -8,5 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GLGWriteDelegate : NSObject <NSStreamDelegate>
+@interface GLGWriteDelegate : NSObject <NSStreamDelegate> {
+    NSMutableArray *commands;
+}
+
+- (void) addCommand:(NSString *) command;
+
 @end

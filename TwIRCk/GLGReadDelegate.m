@@ -8,19 +8,16 @@
 
 #import "GLGReadDelegate.h"
 @implementation GLGReadDelegate
-- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent) eventCode {
-    NSLog(@"reader stream delegate");
 
+@synthesize delegate;
+
+- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent) eventCode {
     switch (eventCode) {
         case NSStreamEventHasSpaceAvailable:
-            NSLog(@"has space available");
             break;
         case NSStreamEventOpenCompleted:
-            NSLog(@"open completed!");
             break;
         case NSStreamEventHasBytesAvailable:
-            NSLog(@"bytes available");
-
             {
                 NSNumber *bytesRead = @0;
                 NSMutableData *data = [NSMutableData alloc];
@@ -31,18 +28,28 @@
                 if (length) {
                     [data appendBytes:(const void *)buffer length:length];
                     bytesRead = [NSNumber numberWithInteger:[bytesRead intValue] + length ];
+                    NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+
+                    if (delegate) {
+                        NSString *str = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                        [delegate receivedString:str];
+                    }
+
                 }
                 else {
-                    NSLog(@"no buffer, nothing to read!");
+                    NSLog(@"reader: no buffer, nothing to read!");
                 }
             }
 
             break;
         case NSStreamEventEndEncountered:
-            NSLog(@"event end encountered");
+            NSLog(@"reader: event end encountered");
             break;
         case NSStreamEventErrorOccurred:
-            NSLog(@"event error occurred");
+            {
+                NSError *error = [stream streamError];
+                NSLog(@"read errr: %ld ... %@", [error code], [error localizedDescription]);
+            }
             break;
         case NSStreamEventNone:
             NSLog(@"event none?");

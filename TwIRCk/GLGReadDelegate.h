@@ -8,5 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol GLGReaderDelegate;
+
 @interface GLGReadDelegate : NSObject <NSStreamDelegate>
+@property id <GLGReaderDelegate> delegate;
+@end
+
+#pragma mark - reader delegate
+@protocol GLGReaderDelegate
+
+@required
+- (void) receivedString:(NSString *) string;
+
 @end

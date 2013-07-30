@@ -135,7 +135,6 @@
 				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
 				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
 				F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */,
-				F70F1288179F2D8B00DBB74F /* MainMenu.xib */,
 				F70F12B517A0AAD900DBB74F /* GLGReadDelegate.h */,
 				F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */,
 				F70F12B817A0AAF300DBB74F /* GLGWriteDelegate.h */,
@@ -148,6 +147,7 @@
 		F70F127A179F2D8B00DBB74F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F70F1288179F2D8B00DBB74F /* MainMenu.xib */,
 				F70F127B179F2D8B00DBB74F /* TwIRCk-Info.plist */,
 				F70F127C179F2D8B00DBB74F /* InfoPlist.strings */,
 				F70F127F179F2D8B00DBB74F /* main.m */,
