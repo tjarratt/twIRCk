@@ -23,6 +23,8 @@
 		F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B3179F540400DBB74F /* GLGMessage.m */; };
 		F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */; };
 		F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
+		F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D017A9962200DBB74F /* GLGNewServer.m */; };
+		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,10 @@
 		F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGReadDelegate.m; sourceTree = "<group>"; };
 		F70F12B817A0AAF300DBB74F /* GLGWriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGWriteDelegate.h; sourceTree = "<group>"; };
 		F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGWriteDelegate.m; sourceTree = "<group>"; };
+		F70F12CF17A9962200DBB74F /* GLGNewServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGNewServer.h; sourceTree = "<group>"; };
+		F70F12D017A9962200DBB74F /* GLGNewServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGNewServer.m; sourceTree = "<group>"; };
+		F70F12D217A9980800DBB74F /* GLGChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatView.h; sourceTree = "<group>"; };
+		F70F12D317A9980800DBB74F /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
+				F70F12CD17A9960700DBB74F /* Views */,
 				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
 				F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */,
 				F70F12B517A0AAD900DBB74F /* GLGReadDelegate.h */,
@@ -189,6 +196,17 @@
 				F70F12B3179F540400DBB74F /* GLGMessage.m */,
 			);
 			name = ResponseCodes;
+			sourceTree = "<group>";
+		};
+		F70F12CD17A9960700DBB74F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F70F12CF17A9962200DBB74F /* GLGNewServer.h */,
+				F70F12D017A9962200DBB74F /* GLGNewServer.m */,
+				F70F12D217A9980800DBB74F /* GLGChatView.h */,
+				F70F12D317A9980800DBB74F /* GLGChatView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +326,8 @@
 				F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */,
 				F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */,
 				F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */,
+				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
+				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +517,7 @@
 				F70F12A3179F2D8C00DBB74F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F70F12A4179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCkTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +526,7 @@
 				F70F12A6179F2D8C00DBB74F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
