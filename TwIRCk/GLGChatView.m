@@ -10,9 +10,22 @@
 
 @implementation GLGChatView
 
+@synthesize connectView;
+
 - (id) initWithWindow:(NSWindow *) _window {
     if (self = [super init]) {
         window = _window;
+        NSView *content = [window contentView];
+        NSRect frame = [content frame];
+        [self setFrame:frame];
+
+        input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, 50)];
+        [self addSubview:input];
+        [input setTarget:self];
+        [input setAction:@selector(didSubmitText)];
+
+        chatlog = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 50, frame.size.width, frame.size.height - 50)];
+        [self addSubview:chatlog];
     }
     
     return self;
@@ -42,6 +55,7 @@
 
     outputStream = (__bridge_transfer NSOutputStream *) writeStream;
     writer = [[GLGWriteDelegate alloc] init];
+    [writer setWriteStream:outputStream];
     [outputStream setDelegate:writer];
 
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -61,8 +75,22 @@
     }
 }
 
+- (void) didConnectToHost:(NSString *) host {
+    // should actually have this in preferences or something
+    [connectView shouldClose];
+}
+
 - (void) receivedString:(NSString *) str {
+    str = [@"\n" stringByAppendingString:str];
+    NSString *log = [chatlog stringValue];
+    [chatlog setStringValue:[log stringByAppendingString:str]];
+}
+
+- (void) didSubmitText {
+    [writer addCommand:[input stringValue]];
+    [self receivedString:[input stringValue]];
     
+    [input setStringValue:@""];
 }
 
 @end

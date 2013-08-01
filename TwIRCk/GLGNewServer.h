@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GLGChatView.h"
 
-@interface GLGNewServer : NSView {
+@interface GLGNewServer : NSView <GLGConnectionView> {
     NSTextField *hostname;
     NSTextField *port;
     NSTextField *username;

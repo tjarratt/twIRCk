@@ -139,6 +139,9 @@
         [newWindow makeKeyAndOrderFront:NSApp];
 
         chatView = [[GLGChatView alloc] initWithWindow:newWindow];
+        [chatView setConnectView:self];
+
+        [[newWindow contentView] addSubview:chatView];
     }
 
     NSString *remoteHost = [hostname stringValue];
@@ -155,7 +158,6 @@
         remoteHost = @"chat.freenode.net";
     }
 
-    NSLog(@"connecting to %@ on port %d", remoteHost, remotePort);
     [chatView connectToServer:remoteHost onPort:remotePort withUsername:[username stringValue] withPassword:[password stringValue] useSSL:useSSL];
 }
 

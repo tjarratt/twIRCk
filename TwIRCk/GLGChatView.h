@@ -10,6 +10,8 @@
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
 
+@protocol GLGConnectionView;
+
 @interface GLGChatView : NSView <GLGReaderDelegate> {
     NSWindow *window;
 
@@ -18,7 +20,12 @@
 
     GLGReadDelegate *reader;
     GLGWriteDelegate *writer;
+
+    NSTextField *input;
+    NSTextField *chatlog;
 }
+
+@property id <GLGConnectionView> connectView;
 
 - (id) initWithWindow:(NSWindow *) _window;
 - (void) connectToServer: (NSString *) hostname
@@ -26,4 +33,11 @@
             withUsername:(NSString *) username
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL;
+@end
+
+@protocol GLGConnectionView <NSObject>
+
+@required
+- (void) shouldClose;
+
 @end

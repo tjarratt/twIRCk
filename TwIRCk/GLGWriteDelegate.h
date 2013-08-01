@@ -12,6 +12,9 @@
     NSMutableArray *commands;
 }
 
+@property BOOL canWrite;
+@property (retain) NSStream *writeStream;
+
 - (void) addCommand:(NSString *) command;
 
 @end

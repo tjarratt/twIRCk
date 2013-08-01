@@ -28,13 +28,11 @@
                 if (length) {
                     [data appendBytes:(const void *)buffer length:length];
                     bytesRead = [NSNumber numberWithInteger:[bytesRead intValue] + length ];
-                    NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
 
                     if (delegate) {
-                        NSString *str = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                         [delegate receivedString:str];
                     }
-
                 }
                 else {
                     NSLog(@"reader: no buffer, nothing to read!");
