@@ -103,6 +103,9 @@
     [field setFont:[NSFont systemFontOfSize:11.0]];
     [field setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
     [field setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [field setTarget:self];
+    [field setAction:@selector(connectToService)];
+
     [superView addSubview:field];
 
     return field;
@@ -118,6 +121,9 @@
     [field setFont:[NSFont systemFontOfSize:11.0]];
     [field setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
     [field setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [field setTarget:self];
+    [field setAction:@selector(connectToService)];
+
     [superView addSubview:field];
 
     return field;
