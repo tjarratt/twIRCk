@@ -19,5 +19,6 @@
 
 @required
 - (void) receivedString:(NSString *) string;
+- (void) didConnectToHost:(NSString *) hostname;
 
 @end

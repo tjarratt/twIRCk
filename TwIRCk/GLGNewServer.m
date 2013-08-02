@@ -168,7 +168,7 @@
 }
 
 - (void) shouldClose {
-    NSLog(@"should close the new connection window");
+    [[self window] close];
 }
 
 @end

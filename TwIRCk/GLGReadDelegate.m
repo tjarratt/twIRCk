@@ -16,6 +16,9 @@
         case NSStreamEventHasSpaceAvailable:
             break;
         case NSStreamEventOpenCompleted:
+            if (delegate) {
+                [delegate didConnectToHost:@"dummyValue"];
+            }
             break;
         case NSStreamEventHasBytesAvailable:
             {
