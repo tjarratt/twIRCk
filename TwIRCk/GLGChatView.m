@@ -76,14 +76,14 @@
 }
 
 - (void) didConnectToHost:(NSString *) host {
-    // should actually have this in preferences or something
     [connectView shouldClose];
 }
 
-- (void) receivedString:(NSString *) str {
-    str = [@"\n" stringByAppendingString:str];
-    NSString *log = [chatlog stringValue];
-    [chatlog setStringValue:[log stringByAppendingString:str]];
+- (void) receivedString:(NSString *) string {
+    [chatlog setEditable:YES];
+//    [chatlog insertText:[@"\n" stringByAppendingString:string]];
+    [chatlog insertText:string];
+    [chatlog setEditable:NO];
 }
 
 - (void) didSubmitText {

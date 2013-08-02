@@ -21,8 +21,9 @@
     GLGReadDelegate *reader;
     GLGWriteDelegate *writer;
 
+    NSScrollView *scrollview;
     NSTextField *input;
-    NSTextField *chatlog;
+    NSTextView *chatlog;
 }
 
 @property id <GLGConnectionView> connectView;
