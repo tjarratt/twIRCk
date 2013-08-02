@@ -23,14 +23,11 @@
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent) eventCode {
     switch (eventCode) {
         case NSStreamEventHasSpaceAvailable:
-            NSLog(@"writer has space available");
             {
                 if ([commands count] > 0) {
-                    NSLog(@"writing next command in stream");
                     [self writeNextCommandInQueue:stream];
                 }
                 else {
-                    NSLog(@"setting can write as there are no commands to write");
                     [self setCanWrite:YES];
                 }
             }
@@ -44,10 +41,9 @@
             NSLog(@"write: event end encountered");
             break;
         case NSStreamEventErrorOccurred:
-            NSLog(@"write: event error occurred");
             {
                 NSError *err = [stream streamError];
-                NSLog(@"error: %ld ... %@", (long)[err code], [err localizedDescription]);
+                NSLog(@"write error: %ld ... %@", (long)[err code], [err localizedDescription]);
             }
             break;
         case NSStreamEventNone:
@@ -60,8 +56,6 @@
     NSString *command = [commands objectAtIndex:0];
     NSData *data = [[command stringByAppendingString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding];
     unsigned long length = [data length];
-
-    NSLog(@"writing command: %@", command);
 
     uint8_t *readBytes = (uint8_t *) [data bytes];
     uint8_t buffer[length];
