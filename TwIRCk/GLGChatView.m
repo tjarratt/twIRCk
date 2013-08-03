@@ -19,15 +19,37 @@
         NSRect frame = [content frame];
         [self setFrame:frame];
 
+        NSRect chatRect = NSMakeRect(0, 50, frame.size.width, frame.size.height - 50);
+        scrollview = [[NSScrollView alloc] initWithFrame:chatRect];
+        NSSize contentSize = [scrollview contentSize];
+
+        [scrollview setBorderType:NSNoBorder];
+        [scrollview setHasVerticalScroller:YES];
+        [scrollview setHasHorizontalScroller:NO];
+        [scrollview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+        [scrollview setScrollsDynamically:YES];
+
         input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, 50)];
-        [self addSubview:input];
         [input setTarget:self];
         [input setAction:@selector(didSubmitText)];
 
-        chatlog = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 50, frame.size.width, frame.size.height - 50)];
-        [self addSubview:chatlog];
+        chatlog = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
+        [chatlog setMinSize:NSMakeSize(0, contentSize.height)];
+        [chatlog setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+        [chatlog setVerticallyResizable:YES];
+        [chatlog setHorizontallyResizable:NO];
+        [chatlog setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+        [[chatlog textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
+        [[chatlog textContainer] setWidthTracksTextView:YES];
+
+        [scrollview setDocumentView:chatlog];
+        [window makeFirstResponder:input];
+        [window makeKeyAndOrderFront:nil];
+
+        [self addSubview:input];
+        [self addSubview:scrollview];
     }
-    
+
     return self;
 }
 
@@ -81,7 +103,6 @@
 
 - (void) receivedString:(NSString *) string {
     [chatlog setEditable:YES];
-//    [chatlog insertText:[@"\n" stringByAppendingString:string]];
     [chatlog insertText:string];
     [chatlog setEditable:NO];
 }
@@ -89,7 +110,6 @@
 - (void) didSubmitText {
     [writer addCommand:[input stringValue]];
     [self receivedString:[input stringValue]];
-    
     [input setStringValue:@""];
 }
 
