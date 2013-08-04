@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
+#import "GLGChatTextField.h"
 
 @protocol GLGConnectionView;
 
@@ -22,7 +23,7 @@
     GLGWriteDelegate *writer;
 
     NSScrollView *scrollview;
-    NSTextField *input;
+    GLGChatTextField *input;
     NSTextView *chatlog;
 }
 

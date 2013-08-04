@@ -25,6 +25,7 @@
 		F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
 		F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D017A9962200DBB74F /* GLGNewServer.m */; };
 		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
+		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		F70F12D017A9962200DBB74F /* GLGNewServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGNewServer.m; sourceTree = "<group>"; };
 		F70F12D217A9980800DBB74F /* GLGChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatView.h; sourceTree = "<group>"; };
 		F70F12D317A9980800DBB74F /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatView.m; sourceTree = "<group>"; };
+		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
+		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 				F70F12D017A9962200DBB74F /* GLGNewServer.m */,
 				F70F12D217A9980800DBB74F /* GLGChatView.h */,
 				F70F12D317A9980800DBB74F /* GLGChatView.m */,
+				F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */,
+				F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */,
 				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
 				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
+				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

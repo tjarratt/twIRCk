@@ -29,7 +29,7 @@
         [scrollview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [scrollview setScrollsDynamically:YES];
 
-        input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, 50)];
+        input = [[GLGChatTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, 50)];
         [input setTarget:self];
         [input setAction:@selector(didSubmitText)];
 
@@ -108,9 +108,12 @@
 }
 
 - (void) didSubmitText {
+    NSString *string = [input stringValue];
+    if ([string isEqualToString:@""]) { return; }
+
     [writer addCommand:[input stringValue]];
     [self receivedString:[[input stringValue] stringByAppendingString:@"\n"]];
-    [input setStringValue:@""];
+    [input clearTextField];
 }
 
 @end
