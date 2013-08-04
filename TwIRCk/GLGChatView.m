@@ -109,7 +109,7 @@
 
 - (void) didSubmitText {
     [writer addCommand:[input stringValue]];
-    [self receivedString:[input stringValue]];
+    [self receivedString:[[input stringValue] stringByAppendingString:@"\n"]];
     [input setStringValue:@""];
 }
 
