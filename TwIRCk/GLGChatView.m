@@ -48,6 +48,8 @@
 
         [self addSubview:input];
         [self addSubview:scrollview];
+
+        currentChannel = nil;
     }
 
     return self;
@@ -103,6 +105,7 @@
 
 - (void) receivedString:(NSString *) string {
     [chatlog setEditable:YES];
+    [chatlog setSelectedRange:NSMakeRange([[chatlog textStorage] length], 0)];
     [chatlog insertText:string];
     [chatlog setEditable:NO];
 }
@@ -111,8 +114,55 @@
     NSString *string = [input stringValue];
     if ([string isEqualToString:@""]) { return; }
 
-    [writer addCommand:[input stringValue]];
-    [self receivedString:[[input stringValue] stringByAppendingString:@"\n"]];
+    NSString *message;
+    NSString *command;
+    if ([[string substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"] ) {
+        NSUInteger length = [string length];
+        NSString *substring = [string substringWithRange:NSMakeRange(1, length - 1)];
+        NSArray *parts = [substring componentsSeparatedByString:@" "];
+        command = [[parts objectAtIndex:0] lowercaseString];
+
+        if ([command isEqualToString:@"join"]) {
+            NSString *channel = [[parts objectAtIndex:1] lowercaseString];
+            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
+            parts = [parts objectsAtIndexes:indices];
+            NSString *remainder = [parts componentsJoinedByString:@" "];
+            message = [NSString stringWithFormat:@"JOIN #%@ %@", channel, remainder];
+
+            currentChannel = [@"#" stringByAppendingString:channel];
+        }
+        else if ([command isEqualToString:@"part"]) {
+            NSString *channel = [[parts objectAtIndex:1] lowercaseString];
+            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
+            parts = [parts objectsAtIndexes:indices];
+            NSString *remainder = [parts componentsJoinedByString:@" "];
+            message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
+
+            currentChannel = nil;
+        }
+        else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
+            NSString *whom = [parts objectAtIndex:1];
+            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
+            parts = [parts objectsAtIndexes:indices];
+            NSString *remainder = [parts componentsJoinedByString:@" "];
+            message = [NSString stringWithFormat:@"PRIVMSG %@ :%@", whom, remainder];
+        }
+        else if ([command isEqualToString:@"who"]) {
+            // TODO : emit a message for each of the names listed
+            NSString *whom = [parts objectAtIndex:1];
+            message = [@"WHO " stringByAppendingString:whom];
+        }
+    }
+    else if (currentChannel) {
+        message = [NSString stringWithFormat:@"PRIVMSG %@ :%@", currentChannel, string];
+    }
+    else {
+        message = string;
+    }
+
+
+    [writer addCommand:message];
+    [self receivedString:[string stringByAppendingString:@"\n"]];
     [input clearTextField];
 }
 

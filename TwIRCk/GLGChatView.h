@@ -25,6 +25,8 @@
     NSScrollView *scrollview;
     GLGChatTextField *input;
     NSTextView *chatlog;
+
+    NSString *currentChannel;
 }
 
 @property id <GLGConnectionView> connectView;
