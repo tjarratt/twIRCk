@@ -37,6 +37,12 @@
             withUsername:(NSString *) username
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL;
+- (void) connectToServer: (NSString *) hostname
+                  onPort:(UInt32) port
+            withUsername:(NSString *) username
+            withPassword:(NSString *) password
+                  useSSL:(BOOL) useSSL
+            withChannels:(NSArray *) channels;
 @end
 
 @protocol GLGConnectionView <NSObject>

@@ -164,7 +164,22 @@
         remoteHost = @"chat.freenode.net";
     }
 
-    [chatView connectToServer:remoteHost onPort:remotePort withUsername:[username stringValue] withPassword:[password stringValue] useSSL:useSSL];
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSMutableCharacterSet *delimiters = [NSMutableCharacterSet characterSetWithCharactersInString:@","];
+    [delimiters formUnionWithCharacterSet:whitespace];
+
+    NSArray *chans = [[channels stringValue] componentsSeparatedByString:@", "];
+    [chans enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
+        chan = [chan stringByTrimmingCharactersInSet:whitespace];
+    }];
+
+    [chatView connectToServer:remoteHost
+                       onPort:remotePort
+                 withUsername:[username stringValue]
+                 withPassword:[password stringValue]
+                       useSSL:useSSL
+                     withChannels:chans
+     ];
 }
 
 - (void) shouldClose {

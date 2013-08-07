@@ -99,6 +99,22 @@
     }
 }
 
+- (void) connectToServer: (NSString *) hostname
+                  onPort:(UInt32) port
+            withUsername:(NSString *) username
+            withPassword:(NSString *) password
+                  useSSL:(BOOL) useSSL
+            withChannels:(NSArray *) channels {
+    [self connectToServer:hostname onPort:port withUsername:username withPassword:password useSSL:useSSL];
+    [channels enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
+        [self joinChannel:chan];
+    }];
+}
+
+- (void) joinChannel:(NSString *) channel {
+    [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
+}
+
 - (void) didConnectToHost:(NSString *) host {
     [connectView shouldClose];
 }
