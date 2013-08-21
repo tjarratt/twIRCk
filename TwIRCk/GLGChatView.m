@@ -68,7 +68,7 @@
 
     if(!CFWriteStreamOpen(writeStream)) {
         // validation, or maybe not connected?
-        NSLog(@"big trouble in little IRC client");
+        NSLog(NSLocalizedString(@"big trouble in little IRC client", @"writeStreamFailure"));
         return;
     }
 

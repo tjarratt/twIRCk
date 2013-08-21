@@ -13,28 +13,28 @@
 - (id) initWithSuperView:(NSView *) superview {
     if (self = [super init]) {
         hostname = [self createTextFieldWithIdentifier:@"hostname" superView:superview];
-        id hostnameLabel = [self createLabelWithIdentifier:@"hostname" superView:superview];
-        [[hostname cell] setPlaceholderString:@"chat.freenode.net"];
+        id hostnameLabel = [self createLabelWithIdentifier:@"hostname" localizedTag:@"hostnameLabel" superView:superview];
+        [[hostname cell] setPlaceholderString:NSLocalizedString(@"chat.freenode.net", @"defaultHostValue")];
 
         port = [self createTextFieldWithIdentifier:@"port" superView:superview];
-        id portLabel = [self createLabelWithIdentifier:@"port" superView:superview];
-        [[port cell] setPlaceholderString:@"6697"];
+        id portLabel = [self createLabelWithIdentifier:@"port" localizedTag:@"portLabel" superView:superview];
+        [[port cell] setPlaceholderString:NSLocalizedString(@"6697", @"defaultPortValue")];
 
         username = [self createTextFieldWithIdentifier:@"username" superView:superview];
-        id usernameLabel = [self createLabelWithIdentifier:@"username" superView:superview];
-        [[username cell] setPlaceholderString:@"(optional)"];
+        id usernameLabel = [self createLabelWithIdentifier:@"username" localizedTag:@"usernameLabel" superView:superview];
+        [[username cell] setPlaceholderString:NSLocalizedString(@"(optional)", @"optionalValue")];
 
         password = [self createSecureTextFieldWithIdentifier:@"password" superView:superview];
-        id passwordLabel = [self createLabelWithIdentifier:@"password" superView:superview];
+        id passwordLabel = [self createLabelWithIdentifier:@"password" localizedTag:@"passwordLabel" superView:superview];
         [[password cell] setPlaceholderString:@"foobar"];
 
         channels = [self createTextFieldWithIdentifier:@"channels" superView:superview];
-        id channelsLabel = [self createLabelWithIdentifier:@"channels" superView:superview];
-        [[channels cell] setPlaceholderString:@"eg: 'techendo, nodejs, twerk, #freenode' (optional)"];
+        id channelsLabel = [self createLabelWithIdentifier:@"channels" localizedTag:@"channelsLabel" superView:superview];
+        [[channels cell] setPlaceholderString:NSLocalizedString(@"eg: 'techendo, nodejs, twerk, #freenode' (optional)", @"defaultChannelValue")];
 
         NSButton *connect = [[NSButton alloc] init];
         [connect setIdentifier:@"connect"];
-        [connect setTitle:@"Connect"];
+        [connect setTitle:NSLocalizedString(@"Connect", @"connectButtonLabel")];
         [connect setTarget:self];
         [connect setAction:@selector(connectToService)];
         [connect setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
@@ -74,7 +74,7 @@
     return self;
 }
 
-- (NSTextField *) createLabelWithIdentifier:(NSString *) identifier superView:(NSView *) superView {
+- (NSTextField *) createLabelWithIdentifier:(NSString *) identifier localizedTag:(NSString *) localeTag superView:(NSView *) superView {
     NSTextField *label = [[NSTextField alloc] init];
     [label setIdentifier:[identifier stringByAppendingString:@"-label"]];
     [[label cell] setControlSize:NSSmallControlSize];
@@ -85,7 +85,7 @@
     [label setFont:[NSFont systemFontOfSize:11.0]];
     [label setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
     [label setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [label setStringValue:[identifier capitalizedString]];
+    [label setStringValue:NSLocalizedString([identifier capitalizedString], localeTag)];
     [label setBackgroundColor:[NSColor clearColor]];
     [superView addSubview:label];
 
