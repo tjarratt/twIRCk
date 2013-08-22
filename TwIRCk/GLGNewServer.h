@@ -15,6 +15,7 @@
     NSTextField *username;
     NSSecureTextField *password;
     NSTextField *channels;
+    NSButton *ssl;
 
     GLGChatView *chatView;
 }

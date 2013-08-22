@@ -20,6 +20,10 @@
         id portLabel = [self createLabelWithIdentifier:@"port" localizedTag:@"portLabel" superView:superview];
         [[port cell] setPlaceholderString:NSLocalizedString(@"6697", @"defaultPortValue")];
 
+        ssl = [self createCheckboxWithIdentifier:@"ssl" superView:superview];
+        id sslLabel = [self createLabelWithIdentifier:@"ssl" localizedTag:@"sslLabel" superView:superview];
+        [sslLabel setStringValue:NSLocalizedString(@"Use SSL", "uses-SSL-Label")];
+
         username = [self createTextFieldWithIdentifier:@"username" superView:superview];
         id usernameLabel = [self createLabelWithIdentifier:@"username" localizedTag:@"usernameLabel" superView:superview];
         [[username cell] setPlaceholderString:NSLocalizedString(@"(optional)", @"optionalValue")];
@@ -41,37 +45,51 @@
         [connect setTranslatesAutoresizingMaskIntoConstraints:NO];
         [superview addSubview:connect];
 
-        NSDictionary *views = NSDictionaryOfVariableBindings(hostname, hostnameLabel, port, portLabel,
+        NSDictionary *views = NSDictionaryOfVariableBindings(hostname, hostnameLabel, port, portLabel, ssl, sslLabel,
                                                              username, usernameLabel, password, passwordLabel,
                                                              channels, channelsLabel, connect
                                                              );
 
         [[self window] makeFirstResponder:hostname];
         [hostname setNextKeyView:port];
-        [port setNextKeyView:username];
+        [port setNextKeyView:ssl];
+        [ssl setNextKeyView:username];
         [username setNextKeyView:password];
         [password setNextKeyView:channels];
-        [channels setNextKeyView:hostname];
+        [channels setNextKeyView:connect];
+        [connect setNextKeyView:hostname];
 
         /*
-         View layout
-         */
-
+         View layout, the AutoLayout Secret Sauce™
+        */
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[hostnameLabel]-[hostname(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[portLabel]-[port(>=50)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[sslLabel]-[ssl(>=20)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[usernameLabel]-[username(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[passwordLabel]-[password(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[channelsLabel]-[channels(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=80)-[connect]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
 
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[hostname]-[port]-(>=30,<=80)-[username]-[password]-[channels]-[connect]-(>=20)-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
+        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[hostname]-[port]-[ssl]-(>=30,<=80)-[username]-[password]-[channels]-[connect]-(>=20)-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
         
-        for (NSView *view in @[hostname, port, username, password, channels]) {
+        for (NSView *view in @[hostname, port, ssl, username, password, channels]) {
             [view setContentHuggingPriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
         }
     }
     
     return self;
+}
+
+- (NSButton *) createCheckboxWithIdentifier:(NSString *) identifier superView:superview {
+    NSButton *checkbox = [[NSButton alloc] init];
+    [checkbox setButtonType:NSSwitchButton];
+    [checkbox setIdentifier:identifier];
+    [checkbox setTitle:@""];
+    [checkbox setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
+    [checkbox setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [superview addSubview:checkbox];
+
+    return checkbox;
 }
 
 - (NSTextField *) createLabelWithIdentifier:(NSString *) identifier localizedTag:(NSString *) localeTag superView:(NSView *) superView {
@@ -152,11 +170,11 @@
 
     NSString *remoteHost = [hostname stringValue];
     UInt32 remotePort = [port intValue];
-    BOOL useSSL = NO;
+    BOOL useSSL = ([ssl state] == NSOnState || remotePort == 6697) ? YES : NO;
 
     if (remotePort == 0) {
         remotePort = 6697;
-        useSSL = YES;
+        useSSL |= YES;
     }
 
     // what I think I'd like to do is actually prevent this action until all of the validations return TRUE
