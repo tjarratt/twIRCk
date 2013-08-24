@@ -21,6 +21,7 @@
         [[port cell] setPlaceholderString:NSLocalizedString(@"6697", @"defaultPortValue")];
 
         ssl = [self createCheckboxWithIdentifier:@"ssl" superView:superview];
+        [ssl setState:NSOnState];
         id sslLabel = [self createLabelWithIdentifier:@"ssl" localizedTag:@"sslLabel" superView:superview];
         [sslLabel setStringValue:NSLocalizedString(@"Use SSL", "uses-SSL-Label")];
 
@@ -70,7 +71,7 @@
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[channelsLabel]-[channels(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=80)-[connect]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
 
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[hostname]-[port]-[ssl]-(>=30,<=80)-[username]-[password]-[channels]-[connect]-(>=20)-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
+        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[hostname]-[port]-[ssl]-(>=30,<=50)-[username]-[password]-[channels]-[connect]-(>=20)-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
         
         for (NSView *view in @[hostname, port, ssl, username, password, channels]) {
             [view setContentHuggingPriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
