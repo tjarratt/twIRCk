@@ -23,4 +23,8 @@
     [contentView addSubview:newServerView];
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
+}
+
 @end
