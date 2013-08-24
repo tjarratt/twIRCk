@@ -14,9 +14,7 @@
     responseLookup = [[GLGResponseCodes alloc] init];
 
     NSSize minSize = NSMakeSize(400, 80);
-    NSSize maxSize = NSMakeSize(500, 300);
     [[self window] setMinSize:minSize];
-    [[self window] setMaxSize:maxSize];
 
     NSView *contentView = [[self window] contentView];
     GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
