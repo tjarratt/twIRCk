@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F704C07017C9182900CE279D /* GLGServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F704C06F17C9182900CE279D /* GLGServer.m */; };
 		F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
 		F70F127E179F2D8B00DBB74F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F70F127C179F2D8B00DBB74F /* InfoPlist.strings */; };
 		F70F1280179F2D8B00DBB74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F127F179F2D8B00DBB74F /* main.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F704C06E17C9182900CE279D /* GLGServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGServer.h; sourceTree = "<group>"; };
+		F704C06F17C9182900CE279D /* GLGServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGServer.m; sourceTree = "<group>"; };
 		F70F1270179F2D8B00DBB74F /* TwIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F70F1273179F2D8B00DBB74F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F70F1276179F2D8B00DBB74F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -99,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F704C06D17C9181600CE279D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F704C06E17C9182900CE279D /* GLGServer.h */,
+				F704C06F17C9182900CE279D /* GLGServer.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		F70F1267179F2D8B00DBB74F = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +153,7 @@
 		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
 			isa = PBXGroup;
 			children = (
+				F704C06D17C9181600CE279D /* Models */,
 				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
 				F70F12CD17A9960700DBB74F /* Views */,
 				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
@@ -334,6 +347,7 @@
 				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
 				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
 				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
+				F704C07017C9182900CE279D /* GLGServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
