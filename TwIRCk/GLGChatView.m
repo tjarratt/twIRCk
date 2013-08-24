@@ -12,9 +12,9 @@
 
 @synthesize connectView;
 
-- (id) initWithWindow:(NSWindow *) _window {
+- (id) initWithWindow:(NSWindow *) theWindow {
     if (self = [super init]) {
-        window = _window;
+        window = theWindow;
         NSView *content = [window contentView];
         NSRect frame = [content frame];
         [self setFrame:frame];
