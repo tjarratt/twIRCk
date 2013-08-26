@@ -19,7 +19,10 @@
         NSRect frame = [content frame];
         [self setFrame:frame];
 
-        NSRect chatRect = NSMakeRect(0, 50, frame.size.width, frame.size.height - 50);
+        tabView = [[NSTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - 30, frame.size.width, 30)];
+        [self addSubview:tabView];
+
+        NSRect chatRect = NSMakeRect(0, 50, frame.size.width, frame.size.height - 80);
         scrollview = [[NSScrollView alloc] initWithFrame:chatRect];
         NSSize contentSize = [scrollview contentSize];
 
@@ -97,6 +100,10 @@
         [writer addCommand:[@"NICK " stringByAppendingString:username]];
         [writer addCommand:[NSString stringWithFormat:@"USER %@ 8 * %@", username, username]];
     }
+
+    NSTabViewItem *servername = [[NSTabViewItem alloc] initWithIdentifier:hostname];
+    [servername setLabel:hostname];
+    [tabView addTabViewItem:servername];
 }
 
 - (void) connectToServer: (NSString *) hostname

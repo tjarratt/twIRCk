@@ -25,6 +25,7 @@
     NSScrollView *scrollview;
     GLGChatTextField *input;
     NSTextView *chatlog;
+    NSTabView *tabView;
 
     NSString *currentChannel;
 }
