@@ -175,6 +175,9 @@
             NSString *whom = [parts objectAtIndex:1];
             message = [@"WHO " stringByAppendingString:whom];
         }
+        else {
+            message = string;
+        }
     }
     else if (currentChannel) {
         message = [NSString stringWithFormat:@"PRIVMSG %@ :%@", currentChannel, string];
