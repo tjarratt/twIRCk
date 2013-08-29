@@ -120,6 +120,9 @@
 
 - (void) joinChannel:(NSString *) channel {
     [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
+    NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:channel];
+    [item setLabel:channel];
+    [tabView addTabViewItem:item];
 }
 
 - (void) didConnectToHost:(NSString *) host {
@@ -153,6 +156,7 @@
             message = [NSString stringWithFormat:@"JOIN #%@ %@", channel, remainder];
 
             currentChannel = [@"#" stringByAppendingString:channel];
+            [self joinChannel:channel];
         }
         else if ([command isEqualToString:@"part"]) {
             NSString *channel = [[parts objectAtIndex:1] lowercaseString];
