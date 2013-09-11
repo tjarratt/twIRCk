@@ -139,6 +139,19 @@
     }
 }
 
+- (IBAction) openNewServerWindow:(id) sender {
+    NSRect windowRect = NSMakeRect(0, 0, 800, 600);
+    NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+
+    NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    NSView *contentView = [newWindow contentView];
+    GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
+
+    [newWindow makeKeyAndOrderFront:NSApp];
+
+    [contentView addSubview:newServerView];
+}
+
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *) sender {
     if (!_managedObjectContext) {
         return NSTerminateNow;
@@ -180,6 +193,10 @@
     }
 
     return NSTerminateNow;
+}
+
+- (IBAction) quit:(id) sender {
+    [NSApp terminate:self];
 }
 
 @end

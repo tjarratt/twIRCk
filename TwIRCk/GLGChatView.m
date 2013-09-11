@@ -179,6 +179,12 @@
             NSString *whom = [parts objectAtIndex:1];
             message = [@"WHO " stringByAppendingString:whom];
         }
+        else if ([command isEqualToString:@"me"]) {
+            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
+            parts = [parts objectsAtIndexes:indices];
+            NSString *remainder = [parts componentsJoinedByString:@" "];
+            message = [@"ACTION " stringByAppendingString:remainder];
+        }
         else {
             message = string;
         }
