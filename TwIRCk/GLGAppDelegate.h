@@ -13,6 +13,7 @@
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;
+    NSMutableArray *newServerWindows;
 }
 
 @property (assign) IBOutlet NSWindow *window;

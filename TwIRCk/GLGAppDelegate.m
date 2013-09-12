@@ -24,6 +24,8 @@
     NSView *contentView = [[self window] contentView];
     GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
     [contentView addSubview:newServerView];
+
+    newServerWindows = [[NSMutableArray alloc] initWithCapacity:10];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
@@ -143,13 +145,13 @@
     NSRect windowRect = NSMakeRect(0, 0, 800, 600);
     NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
 
-    NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    __strong NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
     NSView *contentView = [newWindow contentView];
     GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
+    [contentView addSubview:newServerView];
 
     [newWindow makeKeyAndOrderFront:NSApp];
-
-    [contentView addSubview:newServerView];
+    [newServerWindows addObject:newWindow];
 }
 
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *) sender {
