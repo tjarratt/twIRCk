@@ -58,12 +58,12 @@
     return self;
 }
 
+#pragma mark - connection methods
 - (void) connectToServer: (NSString *) hostname
                   onPort:(UInt32) port
             withUsername:(NSString *) username
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL {
-
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
@@ -118,13 +118,7 @@
     }];
 }
 
-- (void) joinChannel:(NSString *) channel {
-    [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
-    NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:channel];
-    [item setLabel:channel];
-    [tabView addTabViewItem:item];
-}
-
+#pragma mark - notifications
 - (void) didConnectToHost:(NSString *) host {
     [connectView shouldClose];
 }
@@ -200,6 +194,14 @@
     [writer addCommand:message];
     [self receivedString:[string stringByAppendingString:@"\n"]];
     [input clearTextField];
+}
+
+#pragma mark - IBAction
+- (void) joinChannel:(NSString *) channel {
+    [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
+    NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:channel];
+    [item setLabel:channel];
+    [tabView addTabViewItem:item];
 }
 
 @end

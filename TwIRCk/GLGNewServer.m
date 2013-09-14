@@ -81,6 +81,7 @@
     return self;
 }
 
+#pragma mark - View Helpers
 - (NSButton *) createCheckboxWithIdentifier:(NSString *) identifier superView:superview {
     NSButton *checkbox = [[NSButton alloc] init];
     [checkbox setButtonType:NSSwitchButton];
