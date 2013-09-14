@@ -18,6 +18,11 @@
 - (void) applicationDidFinishLaunching:(NSNotification *) aNotification {
     responseLookup = [[GLGResponseCodes alloc] init];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowClosing:)
+                                                 name:NSWindowWillCloseNotification
+                                               object:nil];
+
     NSSize minSize = NSMakeSize(400, 80);
     [[self window] setMinSize:minSize];
 
@@ -25,7 +30,12 @@
     GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
     [contentView addSubview:newServerView];
 
-    newServerWindows = [[NSMutableArray alloc] initWithCapacity:10];
+    serverWindowIsVisible = NO;
+    self.windowController = [[NSWindowController alloc] initWithWindow:[self window]];
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
@@ -128,32 +138,6 @@
     return [[self managedObjectContext] undoManager];
 }
 
-// Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
-- (IBAction) saveAction:(id) sender {
-    NSError *error = nil;
-
-    if (![[self managedObjectContext] commitEditing]) {
-        NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
-    }
-
-    if (![[self managedObjectContext] save:&error]) {
-        [[NSApplication sharedApplication] presentError:error];
-    }
-}
-
-- (IBAction) openNewServerWindow:(id) sender {
-    NSRect windowRect = NSMakeRect(0, 0, 800, 600);
-    NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
-
-    __strong NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
-    NSView *contentView = [newWindow contentView];
-    GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
-    [contentView addSubview:newServerView];
-
-    [newWindow makeKeyAndOrderFront:NSApp];
-    [newServerWindows addObject:newWindow];
-}
-
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *) sender {
     if (!_managedObjectContext) {
         return NSTerminateNow;
@@ -193,8 +177,46 @@
             return NSTerminateCancel;
         }
     }
-
+    
     return NSTerminateNow;
+}
+
+#pragma mark - Notifications
+- (void) windowClosing:(NSNotification *) aNotification {
+    serverWindowIsVisible = NO;
+}
+
+#pragma mark - IBActions
+// Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
+- (IBAction) saveAction:(id) sender {
+    NSError *error = nil;
+
+    if (![[self managedObjectContext] commitEditing]) {
+        NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
+    }
+
+    if (![[self managedObjectContext] save:&error]) {
+        [[NSApplication sharedApplication] presentError:error];
+    }
+}
+
+- (IBAction) openNewServerWindow:(id) sender {
+    if (serverWindowIsVisible) {
+        return;
+    }
+
+    NSRect windowRect = NSMakeRect(0, 0, 800, 600);
+    NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+
+    __strong NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    NSView *contentView = [newWindow contentView];
+    GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
+    [contentView addSubview:newServerView];
+
+    [newWindow makeKeyAndOrderFront:NSApp];
+
+    [[self windowController] setWindow:newWindow];
+    serverWindowIsVisible = YES;
 }
 
 - (IBAction) quit:(id) sender {

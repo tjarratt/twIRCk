@@ -13,10 +13,11 @@
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;
-    NSMutableArray *newServerWindows;
+    BOOL serverWindowIsVisible;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (strong, nonatomic) NSWindowController * windowController;
 
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
