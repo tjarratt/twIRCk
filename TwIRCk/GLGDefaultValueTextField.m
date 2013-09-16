@@ -33,4 +33,9 @@
     }
 }
 
+- (int) intValue {
+    NSString *value = [self stringValue];
+    return [value intValue];
+}
+
 @end
