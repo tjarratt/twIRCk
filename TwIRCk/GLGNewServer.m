@@ -206,6 +206,9 @@
         chan = [chan stringByTrimmingCharactersInSet:whitespace];
     }];
 
+    NSMutableArray *mutableChannels = [chans mutableCopy];
+    [mutableChannels removeObject:@""];
+
     // xxx remove the empty channels from this list
 
     [chatView connectToServer:remoteHost
@@ -213,7 +216,7 @@
                  withUsername:usernameValue
                  withPassword:[password stringValue]
                        useSSL:useSSL
-                     withChannels:chans
+                     withChannels:mutableChannels
      ];
 }
 
