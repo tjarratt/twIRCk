@@ -13,12 +13,12 @@
 - (id) initWithSuperView:(NSView *) superview {
     if (self = [super init]) {
         hostname = [self createTextFieldWithIdentifier:@"hostname" superView:superview];
+        [hostname setDefaultValue:@"chat.freenode.net"];
         id hostnameLabel = [self createLabelWithIdentifier:@"hostname" localizedTag:@"hostnameLabel" superView:superview];
-        [[hostname cell] setPlaceholderString:NSLocalizedString(@"chat.freenode.net", @"defaultHostValue")];
 
         port = [self createTextFieldWithIdentifier:@"port" superView:superview];
+        [port setDefaultValue:@"6697"];
         id portLabel = [self createLabelWithIdentifier:@"port" localizedTag:@"portLabel" superView:superview];
-        [[port cell] setPlaceholderString:NSLocalizedString(@"6697", @"defaultPortValue")];
 
         ssl = [self createCheckboxWithIdentifier:@"ssl" superView:superview];
         [ssl setState:NSOnState];
@@ -26,16 +26,20 @@
         [sslLabel setStringValue:NSLocalizedString(@"Use SSL", "uses-SSL-Label")];
 
         username = [self createTextFieldWithIdentifier:@"username" superView:superview];
+        CGFloat scale = (CGFloat) arc4random() / 0x100000000;
+        int randomValue = 10000 * scale;
+        [username setDefaultValue:[NSString stringWithFormat:@"twirck-user-%d", randomValue]];
+
         id usernameLabel = [self createLabelWithIdentifier:@"username" localizedTag:@"usernameLabel" superView:superview];
         [[username cell] setPlaceholderString:NSLocalizedString(@"(optional)", @"optionalValue")];
 
         password = [self createSecureTextFieldWithIdentifier:@"password" superView:superview];
         id passwordLabel = [self createLabelWithIdentifier:@"password" localizedTag:@"passwordLabel" superView:superview];
-        [[password cell] setPlaceholderString:@"foobar"];
 
         channels = [self createTextFieldWithIdentifier:@"channels" superView:superview];
+        [channels setDefaultValue:@"techendo, nodejs, twerk, #åfreenode"];
         id channelsLabel = [self createLabelWithIdentifier:@"channels" localizedTag:@"channelsLabel" superView:superview];
-        [[channels cell] setPlaceholderString:NSLocalizedString(@"eg: 'techendo, nodejs, twerk, #freenode' (optional)", @"defaultChannelValue")];
+        [[channels cell] setPlaceholderString:@"techendo, nodejs, twirck, frenode (optional)"];
 
         NSButton *connect = [[NSButton alloc] init];
         [connect setIdentifier:@"connect"];
@@ -112,8 +116,8 @@
     return label;
 }
 
-- (NSTextField *) createTextFieldWithIdentifier:(NSString *) identifier superView:(NSView *) superView {
-    NSTextField *field = [[NSTextField alloc] init];
+- (GLGDefaultValueTextField *) createTextFieldWithIdentifier:(NSString *) identifier superView:(NSView *) superView {
+    GLGDefaultValueTextField *field = [[GLGDefaultValueTextField alloc] init];
     [field setIdentifier:identifier];
     [[field cell] setControlSize:NSSmallControlSize];
     [field setBordered:YES];
@@ -183,20 +187,6 @@
     if (useSSL) { [ssl setState:NSOnState]; }
     else { [ssl setState:NSOffState]; }
 
-    // what I think I'd like to do is actually prevent this action until all of the validations return TRUE
-    if ([remoteHost isEqualToString:@""]) {
-        remoteHost = @"chat.freenode.net";
-        [hostname setStringValue:remoteHost];
-    }
-
-    NSString *usernameValue = [username stringValue];
-
-    if ([usernameValue length] == 0) {
-        CGFloat scale = (CGFloat) arc4random() / 0x100000000;
-        int randomValue = 10000 * scale;
-        usernameValue = [NSString stringWithFormat:@"twirck-%d", randomValue];
-    }
-
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSMutableCharacterSet *delimiters = [NSMutableCharacterSet characterSetWithCharactersInString:@","];
     [delimiters formUnionWithCharacterSet:whitespace];
@@ -211,7 +201,7 @@
 
     [chatView connectToServer:remoteHost
                        onPort:remotePort
-                 withUsername:usernameValue
+                 withUsername:[username stringValue]
                  withPassword:[password stringValue]
                        useSSL:useSSL
                      withChannels:mutableChannels

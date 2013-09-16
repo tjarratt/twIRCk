@@ -26,6 +26,7 @@
 		F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D017A9962200DBB74F /* GLGNewServer.m */; };
 		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
+		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */; };
 		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
@@ -91,6 +92,8 @@
 		F70F12D317A9980800DBB74F /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatView.m; sourceTree = "<group>"; };
 		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
+		F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGDefaultValueTextField.h; sourceTree = "<group>"; };
+		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
 		F786C8EF17E68B54004F64DF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
 		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
@@ -171,7 +174,8 @@
 		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
 			isa = PBXGroup;
 			children = (
-				F786C93417E6ADEB004F64DF /* protocols */,
+				F76AA97317E789A300D5B0D0 /* DefaultValueControls */,
+				F786C93417E6ADEB004F64DF /* Protocols */,
 				F704C06D17C9181600CE279D /* Models */,
 				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
 				F70F12CD17A9960700DBB74F /* Views */,
@@ -246,12 +250,21 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		F786C93417E6ADEB004F64DF /* protocols */ = {
+		F76AA97317E789A300D5B0D0 /* DefaultValueControls */ = {
+			isa = PBXGroup;
+			children = (
+				F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */,
+				F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */,
+			);
+			name = DefaultValueControls;
+			sourceTree = "<group>";
+		};
+		F786C93417E6ADEB004F64DF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				F786C93517E6AE01004F64DF /* GLGConnectionView.h */,
 			);
-			name = protocols;
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +390,7 @@
 				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
 				F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */,
 				F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */,
+				F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
