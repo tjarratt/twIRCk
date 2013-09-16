@@ -209,8 +209,6 @@
     NSMutableArray *mutableChannels = [chans mutableCopy];
     [mutableChannels removeObject:@""];
 
-    // xxx remove the empty channels from this list
-
     [chatView connectToServer:remoteHost
                        onPort:remotePort
                  withUsername:usernameValue
