@@ -27,6 +27,7 @@
 		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
 		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
+		F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97817E7967B00D5B0D0 /* IRCChannel.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */; };
 		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
@@ -94,6 +95,8 @@
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
 		F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGDefaultValueTextField.h; sourceTree = "<group>"; };
 		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
+		F76AA97717E7967B00D5B0D0 /* IRCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCChannel.h; sourceTree = "<group>"; };
+		F76AA97817E7967B00D5B0D0 /* IRCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCChannel.m; sourceTree = "<group>"; };
 		F786C8EF17E68B54004F64DF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
 		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */,
 				F7F29FAC17E67E8B00032FF5 /* IRCServer.h */,
 				F7F29FAD17E67E8B00032FF5 /* IRCServer.m */,
+				F76AA97717E7967B00D5B0D0 /* IRCChannel.h */,
+				F76AA97817E7967B00D5B0D0 /* IRCChannel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */,
 				F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */,
 				F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */,
+				F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
