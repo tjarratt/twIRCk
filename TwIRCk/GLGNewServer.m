@@ -189,6 +189,14 @@
         [hostname setStringValue:remoteHost];
     }
 
+    NSString *usernameValue = [username stringValue];
+
+    if ([usernameValue length] == 0) {
+        CGFloat scale = (CGFloat) arc4random() / 0x100000000;
+        int randomValue = 10000 * scale;
+        usernameValue = [NSString stringWithFormat:@"twirck-%d", randomValue];
+    }
+
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSMutableCharacterSet *delimiters = [NSMutableCharacterSet characterSetWithCharactersInString:@","];
     [delimiters formUnionWithCharacterSet:whitespace];
@@ -202,7 +210,7 @@
 
     [chatView connectToServer:remoteHost
                        onPort:remotePort
-                 withUsername:[username stringValue]
+                 withUsername:usernameValue
                  withPassword:[password stringValue]
                        useSSL:useSSL
                      withChannels:chans
