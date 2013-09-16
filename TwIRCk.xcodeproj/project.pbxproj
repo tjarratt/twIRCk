@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F704C07017C9182900CE279D /* GLGServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F704C06F17C9182900CE279D /* GLGServer.m */; };
 		F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
 		F70F127E179F2D8B00DBB74F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F70F127C179F2D8B00DBB74F /* InfoPlist.strings */; };
 		F70F1280179F2D8B00DBB74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F127F179F2D8B00DBB74F /* main.m */; };
@@ -27,7 +26,22 @@
 		F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D017A9962200DBB74F /* GLGNewServer.m */; };
 		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
+		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
+		F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */; };
+		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		F786C8E917E686C8004F64DF /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.model.coredataversion;
+			fileType = wrapper.xcdatamodel;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# momc\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		F70F1294179F2D8C00DBB74F /* PBXContainerItemProxy */ = {
@@ -40,8 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F704C06E17C9182900CE279D /* GLGServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGServer.h; sourceTree = "<group>"; };
-		F704C06F17C9182900CE279D /* GLGServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGServer.m; sourceTree = "<group>"; };
 		F70F1270179F2D8B00DBB74F /* TwIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F70F1273179F2D8B00DBB74F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F70F1276179F2D8B00DBB74F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -79,6 +91,10 @@
 		F70F12D317A9980800DBB74F /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatView.m; sourceTree = "<group>"; };
 		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
+		F786C8EF17E68B54004F64DF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
+		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
+		F7F29FAD17E67E8B00032FF5 /* IRCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */,
 				F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,8 +122,9 @@
 		F704C06D17C9181600CE279D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F704C06E17C9182900CE279D /* GLGServer.h */,
-				F704C06F17C9182900CE279D /* GLGServer.m */,
+				F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */,
+				F7F29FAC17E67E8B00032FF5 /* IRCServer.h */,
+				F7F29FAD17E67E8B00032FF5 /* IRCServer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -153,6 +171,7 @@
 		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
 			isa = PBXGroup;
 			children = (
+				F786C93417E6ADEB004F64DF /* protocols */,
 				F704C06D17C9181600CE279D /* Models */,
 				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
 				F70F12CD17A9960700DBB74F /* Views */,
@@ -227,6 +246,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		F786C93417E6ADEB004F64DF /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F786C93517E6AE01004F64DF /* GLGConnectionView.h */,
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +266,7 @@
 				F70F126E179F2D8B00DBB74F /* Resources */,
 			);
 			buildRules = (
+				F786C8E917E686C8004F64DF /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -347,7 +375,8 @@
 				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
 				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
 				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
-				F704C07017C9182900CE279D /* GLGServer.m in Sources */,
+				F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */,
+				F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +578,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F786C8EF17E68B54004F64DF /* Model.xcdatamodel */,
+			);
+			currentVersion = F786C8EF17E68B54004F64DF /* Model.xcdatamodel */;
+			name = TwIRCk.xcdatamodeld;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F70F1268179F2D8B00DBB74F /* Project object */;
 }

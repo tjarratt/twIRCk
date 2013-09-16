@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "GLGChatView.h"
+#import "GLGConnectionView.h"
+
+@class GLGChatView;
 
 @interface GLGNewServer : NSView <GLGConnectionView> {
     NSTextField *hostname;
@@ -16,6 +19,7 @@
     NSSecureTextField *password;
     NSTextField *channels;
     NSButton *ssl;
+    BOOL useSSL;
 
     GLGChatView *chatView;
 }

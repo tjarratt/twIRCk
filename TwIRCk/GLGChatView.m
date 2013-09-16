@@ -70,9 +70,8 @@
     CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef) hostname, port, &readStream, &writeStream);
 
     if(!CFWriteStreamOpen(writeStream)) {
-        // validation, or maybe not connected?
-        NSLog(NSLocalizedString(@"big trouble in little IRC client", @"writeStreamFailure"));
-        return;
+        // failed validation, or maybe not connected to the internet
+        return NSLog(NSLocalizedString(@"big trouble in little IRC client", @"writeStreamFailure"));
     }
 
     inputStream = (__bridge_transfer NSInputStream *) readStream;
@@ -95,7 +94,7 @@
     [inputStream open];
     [outputStream open];
 
-    if ([username length] > 0 && [password length] > 0) {
+    if ([username length] > 0) {
         [writer addCommand:[@"PASS " stringByAppendingString:password]];
         [writer addCommand:[@"NICK " stringByAppendingString:username]];
         [writer addCommand:[NSString stringWithFormat:@"USER %@ 8 * %@", username, username]];
@@ -112,10 +111,19 @@
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL
             withChannels:(NSArray *) channels {
+    // delegates to simpler method, then calls joinChannel for each chan
     [self connectToServer:hostname onPort:port withUsername:username withPassword:password useSSL:useSSL];
     [channels enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
         [self joinChannel:chan];
     }];
+}
+
+- (void) connectToServer:(IRCServer *) server {
+    [self connectToServer:server.hostname
+                   onPort:[server.port intValue]
+             withUsername:server.username
+             withPassword:server.password
+                   useSSL:server.useSSL];
 }
 
 #pragma mark - notifications

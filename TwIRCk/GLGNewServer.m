@@ -172,16 +172,21 @@
 
     NSString *remoteHost = [hostname stringValue];
     UInt32 remotePort = [port intValue];
-    BOOL useSSL = ([ssl state] == NSOnState || remotePort == 6697) ? YES : NO;
+    useSSL = ([ssl state] == NSOnState || remotePort == 6697) ? YES : NO;
 
     if (remotePort == 0) {
         remotePort = 6697;
         useSSL |= YES;
     }
 
+    [port setIntValue:remotePort];
+    if (useSSL) { [ssl setState:NSOnState]; }
+    else { [ssl setState:NSOffState]; }
+
     // what I think I'd like to do is actually prevent this action until all of the validations return TRUE
     if ([remoteHost isEqualToString:@""]) {
         remoteHost = @"chat.freenode.net";
+        [hostname setStringValue:remoteHost];
     }
 
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -192,6 +197,8 @@
     [chans enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
         chan = [chan stringByTrimmingCharactersInSet:whitespace];
     }];
+
+    // xxx remove the empty channels from this list
 
     [chatView connectToServer:remoteHost
                        onPort:remotePort
@@ -204,6 +211,15 @@
 
 - (void) shouldClose {
     [[self window] close];
+
+    GLGAppDelegate *appDelegate = (GLGAppDelegate *) [[NSApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    IRCServer *server = [NSEntityDescription insertNewObjectForEntityForName:@"IRCServer" inManagedObjectContext:context];
+    [server setHostname:[hostname stringValue]];
+    [server setPort:[NSNumber numberWithLong:[port integerValue]]];
+    [server setUsername:[username stringValue]];
+    [server setPassword:[password stringValue]];
+    [server setUseSSL:useSSL];
 }
 
 @end

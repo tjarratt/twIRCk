@@ -10,8 +10,11 @@
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
 #import "GLGChatTextField.h"
+#import "GLGAppDelegate.h"
+#import "GLGConnectionView.h"
+#import "IRCServer.h"
 
-@protocol GLGConnectionView;
+@class GLGAppDelegate;
 
 @interface GLGChatView : NSView <GLGReaderDelegate> {
     NSWindow *window;
@@ -44,11 +47,6 @@
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL
             withChannels:(NSArray *) channels;
+- (void) connectToServer:(IRCServer *) server;
 @end
 
-@protocol GLGConnectionView <NSObject>
-
-@required
-- (void) shouldClose;
-
-@end

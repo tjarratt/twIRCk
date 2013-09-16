@@ -23,15 +23,49 @@
                                                  name:NSWindowWillCloseNotification
                                                object:nil];
 
-    NSSize minSize = NSMakeSize(400, 80);
-    [[self window] setMinSize:minSize];
-
-    NSView *contentView = [[self window] contentView];
-    GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
-    [contentView addSubview:newServerView];
-
-    serverWindowIsVisible = NO;
     self.windowController = [[NSWindowController alloc] initWithWindow:[self window]];
+
+    // initialize any servers we might have, try to connect to them
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"IRCServer" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:description];
+
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+
+    if ([fetchedObjects count] > 0) {
+        serverWindowIsVisible = NO;
+
+        // defaults for chat window size
+        NSSize size = NSMakeSize(800, 600);
+        CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
+        CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
+
+        NSPoint origin = NSMakePoint((size.width - screenwidth) / 2, (size.height - screenheight) / 2);
+
+        NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+        NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
+
+        [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
+            IRCServer *server = (IRCServer *)obj;
+
+            NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+            GLGChatView *chatView = [[GLGChatView alloc] initWithWindow:window];
+
+            [chatView connectToServer:server];
+            [window.contentView addSubview:chatView];
+        }];
+    }
+    else {
+        serverWindowIsVisible = YES;
+        NSSize minSize = NSMakeSize(400, 80);
+        [[self window] setMinSize:minSize];
+
+        NSView *contentView = [[self window] contentView];
+        GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
+        [contentView addSubview:newServerView];
+    }
 }
 
 - (void) dealloc {
@@ -49,18 +83,16 @@
     return [appSupportURL URLByAppendingPathComponent:@"GLG.TwIRCk"];
 }
 
-// Creates if necessary and returns the managed object model for the application.
 - (NSManagedObjectModel *) managedObjectModel {
     if (_managedObjectModel) {
         return _managedObjectModel;
     }
 
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TwIRCk" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
 
-// Returns the persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.)
 - (NSPersistentStoreCoordinator *) persistentStoreCoordinator {
     if (_persistentStoreCoordinator) {
         return _persistentStoreCoordinator;
@@ -112,7 +144,6 @@
     return _persistentStoreCoordinator;
 }
 
-// Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
 - (NSManagedObjectContext *) managedObjectContext {
     if (_managedObjectContext) {
         return _managedObjectContext;
@@ -133,7 +164,6 @@
     return _managedObjectContext;
 }
 
-// Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
 - (NSUndoManager *) windowWillReturnUndoManager:(NSWindow *) window {
     return [[self managedObjectContext] undoManager];
 }
@@ -187,7 +217,6 @@
 }
 
 #pragma mark - IBActions
-// Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
 - (IBAction) saveAction:(id) sender {
     NSError *error = nil;
 

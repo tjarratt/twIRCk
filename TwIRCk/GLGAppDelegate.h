@@ -10,6 +10,7 @@
 #import "GLGResponseCodes.h"
 #import "GLGNewServer.h"
 #import <CFNetwork/CFSocketStream.h> 
+#import "IRCServer.h"
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;
