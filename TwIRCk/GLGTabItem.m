@@ -29,7 +29,8 @@
         [self setStringValue:theLabel];
 
         // setup mouse events
-        [self addTrackingRect:frame owner:self userData:nil assumeInside:YES];
+        NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
+        [self addTrackingRect:trackingRect owner:self userData:nil assumeInside:YES];
     }
     
     return self;
