@@ -13,6 +13,7 @@
 #import "GLGAppDelegate.h"
 #import "GLGConnectionView.h"
 #import "IRCServer.h"
+#import "GLGTabView.h"
 
 @class GLGAppDelegate;
 
@@ -28,7 +29,7 @@
     NSScrollView *scrollview;
     GLGChatTextField *input;
     NSTextView *chatlog;
-    NSTabView *tabView;
+    GLGTabView *tabView;
 
     NSString *currentChannel;
 }

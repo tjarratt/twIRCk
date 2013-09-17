@@ -19,7 +19,7 @@
         NSRect frame = [content frame];
         [self setFrame:frame];
 
-        tabView = [[NSTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - 30, frame.size.width, 30)];
+        tabView = [[GLGTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - 30, frame.size.width, 30)];
         [self addSubview:tabView];
 
         NSRect chatRect = NSMakeRect(0, 50, frame.size.width, frame.size.height - 80);
@@ -100,9 +100,7 @@
         [writer addCommand:[NSString stringWithFormat:@"USER %@ 8 * %@", username, username]];
     }
 
-    NSTabViewItem *servername = [[NSTabViewItem alloc] initWithIdentifier:hostname];
-    [servername setLabel:hostname];
-    [tabView addTabViewItem:servername];
+    [tabView addItem:hostname];
 }
 
 - (void) connectToServer: (NSString *) hostname
@@ -198,7 +196,6 @@
         message = string;
     }
 
-
     [writer addCommand:message];
     [self receivedString:[string stringByAppendingString:@"\n"]];
     [input clearTextField];
@@ -207,9 +204,7 @@
 #pragma mark - IBAction
 - (void) joinChannel:(NSString *) channel {
     [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
-    NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:channel];
-    [item setLabel:channel];
-    [tabView addTabViewItem:item];
+    [tabView addItem:channel];
 }
 
 @end
