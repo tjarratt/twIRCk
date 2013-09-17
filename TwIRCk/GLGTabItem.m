@@ -35,6 +35,11 @@
     return self;
 }
 
+- (void) mouseUp:(NSEvent *) theEvent {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"tab_selected" object:self];
+}
+
+#pragma mark - Drawing
 - (void) drawRect:(NSRect) dirtyRect {
     [NSGraphicsContext saveGraphicsState];
 
