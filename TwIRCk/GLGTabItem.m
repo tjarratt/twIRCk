@@ -12,6 +12,7 @@
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) theLabel {
     if (self = [super initWithFrame:frame]) {
+        [self setHover:NO];
         [self setSelected:NO];
 
         [self setIdentifier:[theLabel stringByAppendingString:@"-tab-item"]];
@@ -26,11 +27,26 @@
         [self setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self setStringValue:theLabel];
+
+        // setup mouse events
+        [self addTrackingRect:frame owner:self userData:nil assumeInside:YES];
     }
     
     return self;
 }
 
+#pragma mark - Mouse Events
+- (void) mouseEntered:(NSEvent *) theEvent {
+    [self setHover:YES];
+    [self setNeedsDisplay:YES];
+}
+
+- (void) mouseExited:(NSEvent *) theEvent {
+    [self setHover:NO];
+    [self setNeedsDisplay:YES];
+}
+
+#pragma mark - Drawing
 - (void) drawRect:(NSRect) dirtyRect {
     [NSGraphicsContext saveGraphicsState];
 
@@ -45,6 +61,12 @@
 
     if ([self selected]) {
         NSColor *start = [NSColor colorWithCalibratedWhite:0.9 alpha:1.0];
+        NSColor *end = [NSColor colorWithCalibratedWhite:0.8 alpha:1.0];
+        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
+        [gradient drawInRect:dirtyRect angle:270];
+    }
+    else if ([self hover]) {
+        NSColor *start = [NSColor colorWithCalibratedWhite:0.85 alpha:1.0];
         NSColor *end = [NSColor colorWithCalibratedWhite:0.8 alpha:1.0];
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
         [gradient drawInRect:dirtyRect angle:270];
