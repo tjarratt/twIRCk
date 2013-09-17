@@ -26,8 +26,12 @@
         [self setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self setStringValue:theLabel];
+
+        // setup mouse events
+        NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
+        [self addTrackingRect:trackingRect owner:self userData:nil assumeInside:YES];
     }
-    
+
     return self;
 }
 
