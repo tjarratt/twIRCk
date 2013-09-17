@@ -20,7 +20,9 @@ const CGFloat tab_padding = -15;
 
         [@[@"testing", @"foobar", @"techendo", @"freenode", @"twerk"] enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
             [self addItem:chan];
-        }];    }
+        }];
+        [[tabs objectAtIndex:0] setSelected:YES];
+    }
 
     return self;
 }
@@ -40,8 +42,10 @@ const CGFloat tab_padding = -15;
 - (void) drawRect:(NSRect) dirtyRect {
     [super drawRect:dirtyRect];
 
-    [[NSColor purpleColor] set];
-    NSRectFill(dirtyRect);
+    NSColor *startingColor = [NSColor colorWithCalibratedWhite:0.8 alpha:1.0];
+    NSColor *endingColor = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
+    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:startingColor endingColor:endingColor];
+    [gradient drawInRect:dirtyRect angle:270];
 }
 
 @end

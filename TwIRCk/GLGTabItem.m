@@ -16,7 +16,7 @@
 
         [self setIdentifier:[theLabel stringByAppendingString:@"-tab-item"]];
         [[self cell] setControlSize:NSSmallControlSize];
-        [self setBackgroundColor:[NSColor grayColor]];
+        [self setBackgroundColor:[NSColor clearColor]];
         [self setAlignment:NSCenterTextAlignment];
         [self setBordered:NO];
         [self setBezeled:NO];
@@ -32,7 +32,6 @@
 }
 
 - (void) drawRect:(NSRect) dirtyRect {
-
     [NSGraphicsContext saveGraphicsState];
 
     NSBezierPath *path = [NSBezierPath bezierPath];
@@ -44,10 +43,21 @@
     [path stroke];
     [path setClip];
 
-    [[NSColor grayColor] set];
-    NSRectFill(self.bounds);
+    if ([self selected]) {
+        NSColor *start = [NSColor colorWithCalibratedWhite:0.9 alpha:1.0];
+        NSColor *end = [NSColor colorWithCalibratedWhite:0.8 alpha:1.0];
+        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
+        [gradient drawInRect:dirtyRect angle:270];
+    }
+    else {
+        NSColor *start = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
+        NSColor *end = [NSColor colorWithCalibratedWhite:0.5 alpha:1.0];
+        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
+        [gradient drawInRect:dirtyRect angle:270];
+    }
 
     [super drawRect:dirtyRect];
+
     [NSGraphicsContext restoreGraphicsState];
 }
 
