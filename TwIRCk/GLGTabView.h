@@ -12,8 +12,11 @@
 @interface GLGTabView : NSView {
     NSMutableArray *tabs;
     GLGTabItem *test_tab;
+    NSUInteger selected_tab_index;
 }
 
 - (void) addItem:(NSString *) title;
+- (void) tabForward;
+- (void) tabBackward;
 
 @end

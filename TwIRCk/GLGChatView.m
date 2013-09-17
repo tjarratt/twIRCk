@@ -207,4 +207,21 @@
     [tabView addItem:channel];
 }
 
+#pragma mark - NSResponder methods
+- (void) keyUp:(NSEvent *) theEvent {
+    unsigned short keycode = [theEvent keyCode];
+    NSUInteger flags = [theEvent modifierFlags];
+
+    if (!(flags & NSControlKeyMask) || keycode != 48) {
+        return;
+    }
+
+    if (flags & NSShiftKeyMask) {
+        [tabView tabBackward];
+    }
+    else {
+        [tabView tabForward];
+    }
+}
+
 @end

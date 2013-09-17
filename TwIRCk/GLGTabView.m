@@ -21,7 +21,9 @@ const CGFloat tab_padding = -15;
         [@[@"testing", @"foobar", @"techendo", @"freenode", @"twerk"] enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
             [self addItem:chan];
         }];
-        [[tabs objectAtIndex:0] setSelected:YES];
+
+        selected_tab_index = 0;
+        [[tabs objectAtIndex:selected_tab_index] setSelected:YES];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"tab_selected" object:nil];
@@ -35,12 +37,14 @@ const CGFloat tab_padding = -15;
 
 #pragma mark - tab notifications 
 - (void) handleTabSelection:(NSNotification *) notification {
+    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
+
+    selected_tab_index = [tabs indexOfObject:the_tab];
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
         [tab setSelected:NO];
         [tab setNeedsDisplay:YES];
     }];
 
-    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
     [the_tab setSelected:YES];
 }
 
@@ -55,6 +59,41 @@ const CGFloat tab_padding = -15;
     GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
     [self addSubview:item];
     [tabs addObject:item];
+}
+
+#pragma mark - moving between tabs
+- (void) tabForward {
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        [tab setSelected:NO];
+        [tab setNeedsDisplay:YES];
+    }];
+
+    ++selected_tab_index;
+    if (selected_tab_index == [tabs count]) {
+        selected_tab_index = 0;
+    }
+
+    GLGTabItem *the_tab = [tabs objectAtIndex:selected_tab_index];
+    [the_tab setSelected:YES];
+    [the_tab setNeedsDisplay:YES];
+}
+
+- (void) tabBackward {
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        [tab setSelected:NO];
+        [tab setNeedsDisplay:YES];
+    }];
+
+    if (selected_tab_index == 0) {
+        selected_tab_index = [tabs count] - 1;
+    }
+    else {
+        --selected_tab_index;
+    }
+
+    GLGTabItem *the_tab = [tabs objectAtIndex:selected_tab_index];
+    [the_tab setSelected:YES];
+    [the_tab setNeedsDisplay:YES];
 }
 
 #pragma mark - drawing code

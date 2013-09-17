@@ -66,7 +66,7 @@ const int capacity = 50;
 }
 
 # pragma mark - history control
-- (BOOL)control:(NSControl *)control textView:(NSTextView *) textView
+- (BOOL) control:(NSControl *) control textView:(NSTextView *) textView
 doCommandBySelector:(SEL) commandSelector {
     if (commandSelector == @selector(scrollPageUp:) || commandSelector == @selector(scrollPageDown:)) {
         SEL action = [self historyActionForEvent:[NSApp currentEvent]];
