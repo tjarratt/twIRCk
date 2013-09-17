@@ -28,8 +28,10 @@
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
 		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
 		F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97817E7967B00D5B0D0 /* IRCChannel.m */; };
+		F76AA97D17E798E000D5B0D0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */; };
+		F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
-		F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */; };
+		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
 		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
 /* End PBXBuildFile section */
 
@@ -97,8 +99,12 @@
 		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
 		F76AA97717E7967B00D5B0D0 /* IRCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCChannel.h; sourceTree = "<group>"; };
 		F76AA97817E7967B00D5B0D0 /* IRCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCChannel.m; sourceTree = "<group>"; };
-		F786C8EF17E68B54004F64DF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F76AA97C17E798E000D5B0D0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F76AA97E17E79B0E00D5B0D0 /* GLGTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabView.h; sourceTree = "<group>"; };
+		F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabView.m; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
+		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
+		F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabItem.m; sourceTree = "<group>"; };
 		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
 		F7F29FAD17E67E8B00032FF5 /* IRCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,7 +134,7 @@
 		F704C06D17C9181600CE279D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */,
+				F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */,
 				F7F29FAC17E67E8B00032FF5 /* IRCServer.h */,
 				F7F29FAD17E67E8B00032FF5 /* IRCServer.m */,
 				F76AA97717E7967B00D5B0D0 /* IRCChannel.h */,
@@ -245,12 +251,10 @@
 		F70F12CD17A9960700DBB74F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F7E9A8AC17E79BBF000AD4BB /* Chat */,
+				F7E9A8AB17E79BB6000AD4BB /* Tabs */,
 				F70F12CF17A9962200DBB74F /* GLGNewServer.h */,
 				F70F12D017A9962200DBB74F /* GLGNewServer.m */,
-				F70F12D217A9980800DBB74F /* GLGChatView.h */,
-				F70F12D317A9980800DBB74F /* GLGChatView.m */,
-				F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */,
-				F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -270,6 +274,28 @@
 				F786C93517E6AE01004F64DF /* GLGConnectionView.h */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		F7E9A8AB17E79BB6000AD4BB /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				F76AA97E17E79B0E00D5B0D0 /* GLGTabView.h */,
+				F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */,
+				F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */,
+				F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
+		F7E9A8AC17E79BBF000AD4BB /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F70F12D217A9980800DBB74F /* GLGChatView.h */,
+				F70F12D317A9980800DBB74F /* GLGChatView.m */,
+				F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */,
+				F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */,
+			);
+			name = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,9 +420,11 @@
 				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
 				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
 				F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */,
-				F786C8F017E68B54004F64DF /* TwIRCk.xcdatamodeld in Sources */,
 				F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */,
 				F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */,
+				F76AA97D17E798E000D5B0D0 /* Model.xcdatamodeld in Sources */,
+				F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */,
+				F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,13 +628,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F786C8EE17E68B54004F64DF /* TwIRCk.xcdatamodeld */ = {
+		F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F786C8EF17E68B54004F64DF /* Model.xcdatamodel */,
+				F76AA97C17E798E000D5B0D0 /* Model.xcdatamodel */,
 			);
-			currentVersion = F786C8EF17E68B54004F64DF /* Model.xcdatamodel */;
-			name = TwIRCk.xcdatamodeld;
+			currentVersion = F76AA97C17E798E000D5B0D0 /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
