@@ -24,9 +24,27 @@ const CGFloat tab_padding = -15;
         [[tabs objectAtIndex:0] setSelected:YES];
     }
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"tab_selected" object:nil];
+
     return self;
 }
 
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - tab notifications 
+- (void) handleTabSelection:(NSNotification *) notification {
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        [tab setSelected:NO];
+        [tab setNeedsDisplay:YES];
+    }];
+
+    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
+    [the_tab setSelected:YES];
+}
+
+#pragma mark - adding / removing tabs
 - (void) addItem:(NSString *) title {
     CGFloat count = [tabs count];
     CGFloat width = width_of_tab;
@@ -39,6 +57,7 @@ const CGFloat tab_padding = -15;
     [tabs addObject:item];
 }
 
+#pragma mark - drawing code
 - (void) drawRect:(NSRect) dirtyRect {
     [super drawRect:dirtyRect];
 
