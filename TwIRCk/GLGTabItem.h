@@ -11,6 +11,7 @@
 @interface GLGTabItem : NSTextField
 
 @property BOOL selected;
+@property BOOL hover;
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) label;
 

@@ -13,6 +13,7 @@
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) theLabel {
     if (self = [super initWithFrame:frame]) {
         [self setSelected:NO];
+        [self setHover:NO];
 
         [self setIdentifier:[theLabel stringByAppendingString:@"-tab-item"]];
         [[self cell] setControlSize:NSSmallControlSize];
@@ -35,6 +36,17 @@
     return self;
 }
 
+#pragma mark - Mouse Events
+- (void) mouseEntered:(NSEvent *) theEvent {
+    [self setHover:YES];
+    [self setNeedsDisplay:YES];
+}
+
+- (void) mouseExited:(NSEvent *) theEvent {
+    [self setHover:NO];
+    [self setNeedsDisplay:YES];
+}
+
 - (void) mouseUp:(NSEvent *) theEvent {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"tab_selected" object:self];
 }
@@ -55,6 +67,12 @@
     if ([self selected]) {
         NSColor *start = [NSColor colorWithCalibratedWhite:0.9 alpha:1.0];
         NSColor *end = [NSColor colorWithCalibratedWhite:0.8 alpha:1.0];
+        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
+        [gradient drawInRect:dirtyRect angle:270];
+    }
+    else if ([self hover]) {
+        NSColor *start = [NSColor colorWithCalibratedWhite:0.7 alpha:1.0];
+        NSColor *end = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
         [gradient drawInRect:dirtyRect angle:270];
     }
