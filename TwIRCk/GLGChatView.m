@@ -128,6 +128,13 @@
     }
 
     [tabView addItem:hostname];
+    NSTextView *newLog = [self newChatlog];
+    [chatlogs setValue:newLog forKey:hostname];
+
+    if ([tabView count] == 1) {
+        currentChannel = hostname;
+        [scrollview setDocumentView:newLog];
+    }
 }
 
 - (void) connectToServer: (NSString *) hostname
@@ -156,9 +163,43 @@
     [connectView shouldClose];
 }
 
+- (void) receivedString:(NSString *) string inChannel:(NSString *) channel {
+    NSTextView *log = [chatlogs objectForKey:channel];
+    assert( log != nil );
+
+    [log setEditable:YES];
+    [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
+    [log insertText:string];
+    [log setEditable:NO];
+}
+
 - (void) receivedString:(NSString *) string {
-    // xxx: need to check which log this should actually go in
-    NSTextView *log = [self currentChatlogTextView];
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z.-]+) ([a-z0-9]+) \*(.+)" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+
+    if ([matches count] == 0) {
+        return NSLog(@"looks like we got a boo boo: %@", string);
+    }
+
+    NSTextCheckingResult *channelMatch = [matches objectAtIndex:0];
+    NSString *theChannel = [string substringWithRange:[channelMatch rangeAtIndex:1]];
+    NSString *theType = [string substringWithRange:[channelMatch rangeAtIndex:2]];
+    NSString *theMessage = [string substringWithRange:[channelMatch rangeAtIndex:3]];
+
+    // xxx: temporary workaround for freenode chat name
+    // I'd like for this to be passed to *some class* as the real hostname or value for the channel
+    // and then ChatView wouldn't know about a server until it was actually active
+    NSArray *components = [theChannel componentsSeparatedByString:@"."];
+    if (components.count == 3) {
+        NSString *second = [components objectAtIndex:1];
+        NSString *third = [components objectAtIndex:2];
+        if ([second isEqualToString:@"freenode"] && [third isEqualToString:@"net"]) {
+            theChannel = @"chat.freenode.net";
+        }
+    }
+
+    NSTextView *log = [chatlogs objectForKey:theChannel];
     [log setEditable:YES];
     [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
     [log insertText:string];
@@ -226,7 +267,7 @@
     }
 
     [writer addCommand:message];
-    [self receivedString:[string stringByAppendingString:@"\n"]];
+    [self receivedString:[string stringByAppendingString:@"\n"] inChannel:currentChannel];
     [input clearTextField];
 }
 

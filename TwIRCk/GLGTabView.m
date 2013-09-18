@@ -29,6 +29,10 @@ const CGFloat tab_padding = -15;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (NSUInteger) count {
+    return [tabs count];
+}
+
 #pragma mark - tab notifications 
 - (void) handleTabSelection:(NSNotification *) notification {
     GLGTabItem *the_tab = (GLGTabItem *)[notification object];

@@ -15,6 +15,7 @@
     NSUInteger selected_tab_index;
 }
 
+- (NSUInteger) count;
 - (void) addItem:(NSString *) title;
 - (void) tabForward;
 - (void) tabBackward;
