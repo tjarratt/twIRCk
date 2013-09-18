@@ -36,6 +36,7 @@
 
     if ([fetchedObjects count] > 0) {
         serverWindowIsVisible = NO;
+        [self.window close];
 
         // defaults for chat window size
         NSSize size = NSMakeSize(800, 600);
@@ -43,7 +44,6 @@
         CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
 
         NSPoint origin = NSMakePoint((size.width - screenwidth) / 2, (size.height - screenheight) / 2);
-
         NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
         NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
