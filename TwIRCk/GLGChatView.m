@@ -314,9 +314,15 @@
             messageToDisplay = [NSString stringWithFormat:@"<%@> %@", currentNick, remainder];
         }
         else if ([command isEqualToString:@"who"]) {
-            NSString *whom = [parts objectAtIndex:1];
-            message = [@"WHO " stringByAppendingString:whom];
-            messageToDisplay = [NSString stringWithFormat:@"/who %@", whom];
+            if ([parts count] < 2) {
+                message = @"";
+                messageToDisplay = @"/who\nWHO: not enough parameters\nusage: /who {channel}";
+            }
+            else {
+                NSString *whom = [parts objectAtIndex:1];
+                message = [@"WHO " stringByAppendingString:whom];
+                messageToDisplay = [NSString stringWithFormat:@"/who %@", whom];
+            }
         }
         else if ([command isEqualToString:@"me"]) {
             NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
