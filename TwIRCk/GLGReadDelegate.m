@@ -11,6 +11,14 @@
 
 @synthesize delegate;
 
+- (id) init {
+    if (self = [super init]) {
+        previousBuffer = nil;
+    }
+
+    return self;
+}
+
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent) eventCode {
     switch (eventCode) {
         case NSStreamEventHasSpaceAvailable:
@@ -28,17 +36,35 @@
                 NSInteger length = 0;
                 length = [(NSInputStream *)stream read:buffer maxLength:1024];
 
-                if (length) {
-                    [data appendBytes:(const void *)buffer length:length];
-                    bytesRead = [NSNumber numberWithInteger:[bytesRead intValue] + length ];
-
-                    if (delegate) {
-                        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                        [delegate receivedString:str];
-                    }
-                }
-                else {
+                if (!length) {
                     NSLog(@"reader: no buffer, nothing to read!");
+                    return;
+                }
+
+                [data appendBytes:(const void *)buffer length:length];
+                bytesRead = [NSNumber numberWithInteger:[bytesRead intValue] + length ];
+
+                if (delegate) {
+                    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    if (previousBuffer != nil) {
+                        str = [previousBuffer stringByAppendingString:str];
+                        previousBuffer = nil;
+                    }
+
+                    NSMutableArray *components = [[str componentsSeparatedByString:@"\n"] mutableCopy];
+
+                    // if the last character is not \n, pull it apart and store it in previousBuffer
+                    unichar lastChar = [str characterAtIndex:(str.length - 1)];
+                    if (lastChar != 10) {
+                        previousBuffer = [components objectAtIndex:(components.count - 1)];
+                        [components removeObjectAtIndex:(components.count -1)];
+                    }
+
+                    [components enumerateObjectsUsingBlock:^(NSString * string, NSUInteger index, BOOL *stop) {
+                        if ([string length] > 0) {
+                            [delegate receivedString:string];
+                        }
+                    }];
                 }
             }
 

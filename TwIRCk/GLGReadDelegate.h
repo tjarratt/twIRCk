@@ -10,7 +10,10 @@
 
 @protocol GLGReaderDelegate;
 
-@interface GLGReadDelegate : NSObject <NSStreamDelegate>
+@interface GLGReadDelegate : NSObject <NSStreamDelegate> {
+    NSString *previousBuffer;
+}
+
 @property id <GLGReaderDelegate> delegate;
 @end
 
