@@ -18,10 +18,6 @@ const CGFloat tab_padding = -15;
     if (self = [super initWithFrame:frame]) {
         selected_tab_index = 0;
         tabs = [[NSMutableArray alloc] initWithCapacity:10];
-
-        [@[@"testing", @"foobar", @"techendo", @"freenode", @"twerk"] enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-            [self addItem:chan];
-        }];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"tab_selected" object:nil];
@@ -44,6 +40,8 @@ const CGFloat tab_padding = -15;
     }];
 
     [the_tab setSelected:YES];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 
 #pragma mark - adding / removing tabs
@@ -82,6 +80,8 @@ const CGFloat tab_padding = -15;
     GLGTabItem *the_tab = [tabs objectAtIndex:selected_tab_index];
     [the_tab setSelected:YES];
     [the_tab setNeedsDisplay:YES];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 
 - (void) tabBackward {
@@ -100,6 +100,8 @@ const CGFloat tab_padding = -15;
     GLGTabItem *the_tab = [tabs objectAtIndex:selected_tab_index];
     [the_tab setSelected:YES];
     [the_tab setNeedsDisplay:YES];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 
 #pragma mark - drawing code

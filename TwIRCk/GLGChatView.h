@@ -28,10 +28,10 @@
 
     NSScrollView *scrollview;
     GLGChatTextField *input;
-    NSTextView *chatlog;
-    GLGTabView *tabView;
 
+    GLGTabView *tabView;
     NSString *currentChannel;
+    NSMutableDictionary *chatlogs;
 }
 
 @property id <GLGConnectionView> connectView;

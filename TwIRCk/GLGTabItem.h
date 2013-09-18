@@ -10,6 +10,7 @@
 
 @interface GLGTabItem : NSTextField
 
+@property NSString *name;
 @property BOOL selected;
 @property BOOL hover;
 

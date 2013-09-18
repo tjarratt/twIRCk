@@ -24,7 +24,6 @@
 
         NSRect chatRect = NSMakeRect(0, 50, frame.size.width, frame.size.height - 80);
         scrollview = [[NSScrollView alloc] initWithFrame:chatRect];
-        NSSize contentSize = [scrollview contentSize];
 
         [scrollview setBorderType:NSNoBorder];
         [scrollview setHasVerticalScroller:YES];
@@ -36,16 +35,8 @@
         [input setTarget:self];
         [input setAction:@selector(didSubmitText)];
 
-        chatlog = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
-        [chatlog setMinSize:NSMakeSize(0, contentSize.height)];
-        [chatlog setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
-        [chatlog setVerticallyResizable:YES];
-        [chatlog setHorizontallyResizable:NO];
-        [chatlog setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-        [[chatlog textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
-        [[chatlog textContainer] setWidthTracksTextView:YES];
+        chatlogs = [[NSMutableDictionary alloc] init];
 
-        [scrollview setDocumentView:chatlog];
         [window makeFirstResponder:input];
         [window makeKeyAndOrderFront:nil];
 
@@ -53,9 +44,45 @@
         [self addSubview:scrollview];
 
         currentChannel = nil;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"did_switch_tabs" object:nil];
     }
 
     return self;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - handling chat logs
+- (NSTextView *) newChatlog {
+    NSSize contentSize = [scrollview contentSize];
+    NSTextView *textview = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
+    [textview setMinSize:NSMakeSize(0, contentSize.height)];
+    [textview setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+    [textview setVerticallyResizable:YES];
+    [textview setHorizontallyResizable:NO];
+    [textview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+    [[textview textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
+    [[textview textContainer] setWidthTracksTextView:YES];
+
+    return textview;
+}
+
+- (NSTextView *) currentChatlogTextView {
+    return [chatlogs objectForKey:currentChannel];
+}
+
+#pragma mark - NSNotificationCenter actions
+- (void) handleTabSelection:(NSNotification *) notification {
+    NSString *newChannel = [notification object];
+    NSTextView *chat = [chatlogs objectForKey:newChannel];
+
+    assert( chat != nil );
+
+    currentChannel = newChannel;
+    [scrollview setDocumentView:chat];
 }
 
 #pragma mark - connection methods
@@ -130,10 +157,12 @@
 }
 
 - (void) receivedString:(NSString *) string {
-    [chatlog setEditable:YES];
-    [chatlog setSelectedRange:NSMakeRange([[chatlog textStorage] length], 0)];
-    [chatlog insertText:string];
-    [chatlog setEditable:NO];
+    // xxx: need to check which log this should actually go in
+    NSTextView *log = [self currentChatlogTextView];
+    [log setEditable:YES];
+    [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
+    [log insertText:string];
+    [log setEditable:NO];
 }
 
 - (void) didSubmitText {
@@ -155,7 +184,7 @@
             NSString *remainder = [parts componentsJoinedByString:@" "];
             message = [NSString stringWithFormat:@"JOIN #%@ %@", channel, remainder];
 
-            currentChannel = [@"#" stringByAppendingString:channel];
+            currentChannel = channel;
             [self joinChannel:channel];
         }
         else if ([command isEqualToString:@"part"]) {
@@ -190,7 +219,7 @@
         }
     }
     else if (currentChannel) {
-        message = [NSString stringWithFormat:@"PRIVMSG %@ :%@", currentChannel, string];
+        message = [NSString stringWithFormat:@"PRIVMSG %@ :#%@", currentChannel, string];
     }
     else {
         message = string;
@@ -205,6 +234,11 @@
 - (void) joinChannel:(NSString *) channel {
     [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
     [tabView addItem:channel];
+
+    NSTextView *newLog = [self newChatlog];
+    [chatlogs setValue:newLog forKey:channel];
+    currentChannel = channel;
+    [scrollview setDocumentView:newLog];
 }
 
 #pragma mark - NSResponder methods

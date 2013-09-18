@@ -12,6 +12,7 @@
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) theLabel {
     if (self = [super initWithFrame:frame]) {
+        [self setName:theLabel];
         [self setSelected:NO];
         [self setHover:NO];
 
