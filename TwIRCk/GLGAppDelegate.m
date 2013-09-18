@@ -34,22 +34,7 @@
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
 
-    if (YES) {
-        // for testing, create a chatview with some text inside of it, and then we'll add a tab view to its top
-        NSSize size = NSMakeSize(800, 600);
-        CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
-        CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
-
-        NSPoint origin = NSMakePoint((size.width - screenwidth) / 2, (size.height - screenheight) / 2);
-
-        NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
-        NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
-
-        NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
-        GLGChatView *chatView = [[GLGChatView alloc] initWithWindow:window];
-        [[window contentView] addSubview:chatView];
-    }
-    else if ([fetchedObjects count] > 0) {
+    if ([fetchedObjects count] > 0) {
         serverWindowIsVisible = NO;
 
         // defaults for chat window size
