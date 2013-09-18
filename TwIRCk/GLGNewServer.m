@@ -206,19 +206,19 @@
                        useSSL:useSSL
                      withChannels:mutableChannels
      ];
-}
-
-- (void) shouldClose {
-    [[self window] close];
 
     GLGManagedObjectContext *contextManager = [[GLGManagedObjectContext alloc] init];
     NSManagedObjectContext *context = [contextManager managedObjectContext];
     IRCServer *server = [NSEntityDescription insertNewObjectForEntityForName:@"IRCServer" inManagedObjectContext:context];
-    [server setHostname:[hostname stringValue]];
-    [server setPort:[NSNumber numberWithLong:[port integerValue]]];
+    [server setHostname:remoteHost];
+    [server setPort:[NSNumber numberWithInt:remotePort]];
     [server setUsername:[username stringValue]];
     [server setPassword:[password stringValue]];
     [server setUseSSL:useSSL];
+}
+
+- (void) shouldClose {
+    [[self window] close];
 }
 
 @end
