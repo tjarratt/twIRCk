@@ -16,14 +16,12 @@ const CGFloat tab_padding = -15;
 
 - (id) initWithFrame:(NSRect) frame {
     if (self = [super initWithFrame:frame]) {
+        selected_tab_index = 0;
         tabs = [[NSMutableArray alloc] initWithCapacity:10];
 
         [@[@"testing", @"foobar", @"techendo", @"freenode", @"twerk"] enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
             [self addItem:chan];
         }];
-
-        selected_tab_index = 0;
-        [[tabs objectAtIndex:selected_tab_index] setSelected:YES];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"tab_selected" object:nil];
@@ -56,9 +54,17 @@ const CGFloat tab_padding = -15;
     CGFloat x_offset = a_width * count;
     NSRect tab_frame = NSMakeRect(x_offset, 0, width, height_of_tab);
 
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        [tab setSelected:NO];
+        [tab setNeedsDisplay:YES];
+    }];
+
     GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
+    [item setSelected:YES];
     [self addSubview:item];
     [tabs addObject:item];
+
+    selected_tab_index = [tabs count] - 1;
 }
 
 #pragma mark - moving between tabs
