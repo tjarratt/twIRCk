@@ -296,8 +296,11 @@
     }
 
     [writer addCommand:message];
-    [self receivedString:[string stringByAppendingString:@"\n"] inChannel:currentChannel];
     [input clearTextField];
+
+    if (currentChannel != nil) {
+        [self receivedString:[string stringByAppendingString:@"\n"] inChannel:currentChannel];
+    }
 }
 
 #pragma mark - IBAction
