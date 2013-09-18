@@ -72,14 +72,14 @@
         [gradient drawInRect:dirtyRect angle:270];
     }
     else if ([self hover]) {
-        NSColor *start = [NSColor colorWithCalibratedWhite:0.7 alpha:1.0];
-        NSColor *end = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
+        NSColor *start = [NSColor colorWithCalibratedWhite:0.75 alpha:1.0];
+        NSColor *end = [NSColor colorWithCalibratedWhite:0.7 alpha:1.0];
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
         [gradient drawInRect:dirtyRect angle:270];
     }
     else {
-        NSColor *start = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
-        NSColor *end = [NSColor colorWithCalibratedWhite:0.5 alpha:1.0];
+        NSColor *start = [NSColor colorWithCalibratedWhite:0.68 alpha:1.0];
+        NSColor *end = [NSColor colorWithCalibratedWhite:0.65 alpha:1.0];
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:start endingColor:end];
         [gradient drawInRect:dirtyRect angle:270];
     }
