@@ -10,6 +10,7 @@
 #import "GLGChatView.h"
 #import "GLGConnectionView.h"
 #import "GLGDefaultValueTextField.h"
+#import "GLGManagedObjectContext.h"
 
 @class GLGChatView;
 

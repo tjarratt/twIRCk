@@ -7,21 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <CFNetwork/CFSocketStream.h> 
+#import "GLGManagedObjectContext.h"
 #import "GLGResponseCodes.h"
 #import "GLGNewServer.h"
-#import <CFNetwork/CFSocketStream.h> 
 #import "IRCServer.h"
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;
+    GLGManagedObjectContext *contextManager;
     BOOL serverWindowIsVisible;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) NSWindowController * windowController;
-
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

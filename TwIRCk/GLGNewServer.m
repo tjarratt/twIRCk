@@ -211,8 +211,8 @@
 - (void) shouldClose {
     [[self window] close];
 
-    GLGAppDelegate *appDelegate = (GLGAppDelegate *) [[NSApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    GLGManagedObjectContext *contextManager = [[GLGManagedObjectContext alloc] init];
+    NSManagedObjectContext *context = [contextManager managedObjectContext];
     IRCServer *server = [NSEntityDescription insertNewObjectForEntityForName:@"IRCServer" inManagedObjectContext:context];
     [server setHostname:[hostname stringValue]];
     [server setPort:[NSNumber numberWithLong:[port integerValue]]];

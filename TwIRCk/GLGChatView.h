@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "GLGAppDelegate.h"
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
 #import "GLGChatTextField.h"
@@ -15,8 +14,6 @@
 #import "GLGResponseCodes.h"
 #import "GLGTabView.h"
 #import "IRCServer.h"
-
-@class GLGAppDelegate;
 
 @interface GLGChatView : NSView <GLGReaderDelegate> {
     GLGResponseCodes *responseTable;
