@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "IRCChannel.h"
 
 @interface IRCServer : NSManagedObject
 
+@property (nonatomic, retain) NSArray * channels;
 @property (nonatomic, retain) NSString * hostname;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSNumber * port;

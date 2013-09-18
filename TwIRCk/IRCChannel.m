@@ -12,5 +12,6 @@
 @implementation IRCChannel
 
 @dynamic name;
+@dynamic server;
 
 @end

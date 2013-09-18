@@ -8,7 +8,6 @@
 
 #import "IRCServer.h"
 
-
 @implementation IRCServer
 
 @dynamic hostname;
@@ -16,5 +15,6 @@
 @dynamic port;
 @dynamic username;
 @dynamic useSSL;
+@dynamic channels;
 
 @end

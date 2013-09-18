@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class IRCServer;
 
 @interface IRCChannel : NSManagedObject
 
+@property (nonatomic, retain) IRCServer * server;
 @property (nonatomic, retain) NSString * name;
 
 @end
