@@ -158,6 +158,35 @@
                    useSSL:server.useSSL];
 }
 
+#pragma mark - needs to be refactored out of this class
+- (BOOL) handledPing:(NSString *) maybePing {
+    NSError *error;
+    NSRegularExpression *pingRegex = [NSRegularExpression regularExpressionWithPattern:@"^PING :([a-zA-Z.-]+)" options:NSRegularExpressionCaseInsensitive error:&error];
+    if (error) {
+        NSLog(@"error creating ping regex: %@", [error localizedDescription]);
+        NSLog(@"failure reason: %@", [error localizedFailureReason]);
+        return NO;
+    }
+
+    NSArray *matches = [pingRegex matchesInString:maybePing options:0 range:NSMakeRange(0, maybePing.length)];
+    if ([matches count] == 0) {
+        return NO;
+    }
+
+    NSTextCheckingResult *result = [matches objectAtIndex:0];
+    if ([result numberOfRanges] <= 1) {
+        return NO;
+    }
+
+    NSString *hostname = [maybePing substringWithRange:[result rangeAtIndex:1]];
+    if ([hostname length] > 0) {
+        [writer addCommand:[@"PONG " stringByAppendingString:hostname]];
+        return YES;
+    }
+
+    return NO;
+}
+
 #pragma mark - notifications
 - (void) didConnectToHost:(NSString *) host {
     [connectView shouldClose];
@@ -174,8 +203,12 @@
 }
 
 - (void) receivedString:(NSString *) string {
+    if ([self handledPing:string]) {
+        return NSLog(@"pong");
+    }
+
     NSError *error;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z.-]+) ([a-z0-9]+) \*(.+)" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z.-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
 
     if ([matches count] == 0) {
@@ -199,11 +232,7 @@
         }
     }
 
-    NSTextView *log = [chatlogs objectForKey:theChannel];
-    [log setEditable:YES];
-    [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
-    [log insertText:string];
-    [log setEditable:NO];
+    [self receivedString:string inChannel:theChannel];
 }
 
 - (void) didSubmitText {
