@@ -92,6 +92,8 @@
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL {
 
+    currentNick = username;
+
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
     CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef) hostname, port, &readStream, &writeStream);
@@ -204,11 +206,11 @@
 
 - (void) receivedString:(NSString *) string {
     if ([self handledPing:string]) {
-        return NSLog(@"pong");
+        return;
     }
 
     NSError *error;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z.-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z0-9!~@:.-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
 
     if ([matches count] == 0) {
@@ -216,22 +218,56 @@
     }
 
     NSTextCheckingResult *channelMatch = [matches objectAtIndex:0];
-    NSString *theChannel = [string substringWithRange:[channelMatch rangeAtIndex:1]];
+    NSString *theSender = [string substringWithRange:[channelMatch rangeAtIndex:1]];
     NSString *theType = [string substringWithRange:[channelMatch rangeAtIndex:2]];
     NSString *theMessage = [string substringWithRange:[channelMatch rangeAtIndex:3]];
 
     // xxx: temporary workaround for freenode chat name
     // I'd like for this to be passed to *some class* as the real hostname or value for the channel
     // and then ChatView wouldn't know about a server until it was actually active
-    NSArray *components = [theChannel componentsSeparatedByString:@"."];
+    NSArray *components = [theSender componentsSeparatedByString:@"."];
     if (components.count == 3) {
         NSString *second = [components objectAtIndex:1];
         NSString *third = [components objectAtIndex:2];
         if ([second isEqualToString:@"freenode"] && [third isEqualToString:@"net"]) {
-            theChannel = @"chat.freenode.net";
+            theSender = @"chat.freenode.net";
         }
     }
 
+    NSString *theChannel;
+    if ([theType isEqualToString:@"JOIN"]) {
+        NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
+        NSString *shortName = [nameComponents objectAtIndex:0];
+        NSString *fullName = theSender;
+        theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        string = [NSString stringWithFormat:@"%@ (%@) has joined channel #%@\n", shortName, fullName, theChannel];
+    }
+    else if ([theType isEqualToString:@"PART"]) {
+        NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
+        NSString *shortName = [nameComponents objectAtIndex:0];
+        NSString *fullName = theSender;
+        theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        string = [NSString stringWithFormat:@"%@ (%@) has quit channel #%@\n", shortName, fullName, theChannel];
+    }
+    else if ([theType isEqualToString:@"PRIVMSG"]) {
+        NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
+        NSString *whom = [nameComponents objectAtIndex:0];
+
+        NSRange firstSpace = [theMessage rangeOfString:@" "];
+        theChannel = [[theMessage substringWithRange:NSMakeRange(0, firstSpace.location)] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        theMessage = [theMessage substringWithRange:NSMakeRange(firstSpace.location + 2, theMessage.length - (firstSpace.location + 2))];
+        string = [NSString stringWithFormat:@"<%@> %@\n", whom, theMessage];
+    }
+    else {
+        theChannel = theSender;
+        id maybeChannel = [chatlogs objectForKey:theSender];
+        if (maybeChannel == nil) {
+            NSLog(@"no channel for %@", theSender);
+            NSLog(@"full message {{%@}}", string);
+            return;
+        }
+    }
+    
     [self receivedString:string inChannel:theChannel];
 }
 
@@ -241,6 +277,7 @@
 
     NSString *message;
     NSString *command;
+    NSString *messageToDisplay;
     if ([[string substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"] ) {
         NSUInteger length = [string length];
         NSString *substring = [string substringWithRange:NSMakeRange(1, length - 1)];
@@ -253,9 +290,10 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
             message = [NSString stringWithFormat:@"JOIN #%@ %@", channel, remainder];
+            messageToDisplay = [NSString stringWithFormat:@"/join %@, %@", channel, remainder];
 
-            currentChannel = channel;
             [self joinChannel:channel];
+            currentChannel = channel;
         }
         else if ([command isEqualToString:@"part"]) {
             NSString *channel = [[parts objectAtIndex:1] lowercaseString];
@@ -263,6 +301,7 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
             message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
+            messageToDisplay = [NSString stringWithFormat:@"/part %@ %@", channel, remainder];
 
             currentChannel = nil;
         }
@@ -272,26 +311,32 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
             message = [NSString stringWithFormat:@"PRIVMSG %@ :%@", whom, remainder];
+            messageToDisplay = [NSString stringWithFormat:@"<%@> %@", currentNick, remainder];
         }
         else if ([command isEqualToString:@"who"]) {
-            // TODO : emit a message for each of the names listed
             NSString *whom = [parts objectAtIndex:1];
             message = [@"WHO " stringByAppendingString:whom];
+            messageToDisplay = [NSString stringWithFormat:@"/who %@", whom];
         }
         else if ([command isEqualToString:@"me"]) {
             NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
             message = [@"ACTION " stringByAppendingString:remainder];
+            messageToDisplay = [NSString stringWithFormat:@"/me %@", remainder];
         }
         else {
+            NSLog(@"unknown command");
             message = string;
+            messageToDisplay = string;
         }
     }
     else if (currentChannel) {
-        message = [NSString stringWithFormat:@"PRIVMSG %@ :#%@", currentChannel, string];
+        message = [NSString stringWithFormat:@"PRIVMSG #%@ :%@", currentChannel, string];
+        messageToDisplay = [NSString stringWithFormat:@"<%@> %@", currentNick, string];
     }
     else {
+        NSLog(@"message sent with no receiving channel");
         message = string;
     }
 
@@ -299,7 +344,7 @@
     [input clearTextField];
 
     if (currentChannel != nil) {
-        [self receivedString:[string stringByAppendingString:@"\n"] inChannel:currentChannel];
+        [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel];
     }
 }
 

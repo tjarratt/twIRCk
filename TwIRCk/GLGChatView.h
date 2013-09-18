@@ -32,6 +32,7 @@
     GLGChatTextField *input;
 
     GLGTabView *tabView;
+    NSString *currentNick;
     NSString *currentChannel;
     NSMutableDictionary *chatlogs;
 }
