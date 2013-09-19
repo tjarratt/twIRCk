@@ -30,6 +30,7 @@
                   useSSL:(BOOL) useSSL {
 
     currentNick = username;
+    hostname = theHostname;
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
