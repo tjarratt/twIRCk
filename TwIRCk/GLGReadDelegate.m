@@ -48,6 +48,10 @@
                     if (previousBuffer == nil ) {
                         NSLog(@"ANOTHER interesting edge case! got message %@", str);
                     }
+                    if (str == nil) {
+                        NSLog(@"decoded string is nil. Attempting to decode again as ASCII");
+                        str = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                    }
                     str = [previousBuffer stringByAppendingString:str];
                     previousBuffer = @"";
 
