@@ -187,6 +187,11 @@ const CGFloat inputHeight = 50;
     [log setEditable:NO];
 }
 
+- (void) didPartChannel:(NSString *) channel {
+    // close the tab, remove it from our chatlogs
+    [chatlogs removeObjectForKey:channel];
+}
+
 #pragma mark - NSResponder methods
 - (void) keyUp:(NSEvent *) theEvent {
     unsigned short keycode = [theEvent keyCode];
