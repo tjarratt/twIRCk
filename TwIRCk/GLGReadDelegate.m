@@ -13,7 +13,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        previousBuffer = nil;
+        previousBuffer = @"";
     }
 
     return self;
@@ -46,10 +46,8 @@
 
                 if (delegate) {
                     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    if (previousBuffer != nil) {
-                        str = [previousBuffer stringByAppendingString:str];
-                        previousBuffer = nil;
-                    }
+                    str = [previousBuffer stringByAppendingString:str];
+                    previousBuffer = @"";
 
                     NSMutableArray *components = [[str componentsSeparatedByString:@"\n"] mutableCopy];
 
