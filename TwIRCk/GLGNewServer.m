@@ -197,12 +197,13 @@
     [context save:&error];
 
     if (error) {
-        NSLog(@"oh no, couldn't save?");
+        // need to show this as a validation error *somehow*
+        NSLog(@"error saving servers and channels");
         NSLog(@"%@", [error localizedDescription]);
-        NSLog(@"%@", [error userInfo]);
-        return;
+        return NSLog(@"%@", [error userInfo]);
     }
 
+    // xxx should probably ask the app delegate if we have a chatview
     if (!chatView) {
         NSSize size = NSMakeSize(800, 600);
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
