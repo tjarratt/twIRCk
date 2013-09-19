@@ -163,14 +163,25 @@
     [delegate receivedString:string inChannel:theChannel fromHost:hostname];
 }
 
-- (void) didConnectToHost:(NSString *) hostname {
+- (void) didConnectToHost {
     NSLog(@"should do all of the important work now that we're connected");
+
+    // xxx: should wait until we get the real hostname for this server
+    [delegate connectedToServer:hostname withInternalName:hostname];
+    [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
+        [delegate joinChannel:chan onServer:hostname];
+    }];
 }
 
 - (void) joinChannel:(NSString *) channel {
     [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
     [delegate joinChannel:channel onServer:hostname];
+}
 
+- (void) streamDidClose {
+    NSLog(@"closing streams. Should start exponential backoff reconnect attempts");
+    [inputStream close];
+    [outputStream close];
 }
 
 #pragma mark - Response Parsing (needs to be refactored out of this class)

@@ -25,7 +25,7 @@
             break;
         case NSStreamEventOpenCompleted:
             if (delegate) {
-                [delegate didConnectToHost:@"dummyValue"];
+                [delegate didConnectToHost];
             }
             break;
         case NSStreamEventHasBytesAvailable:
@@ -69,15 +69,16 @@
             break;
         case NSStreamEventEndEncountered:
             NSLog(@"reader: event end encountered");
+            [delegate streamDidClose];
             break;
         case NSStreamEventErrorOccurred:
             {
                 NSError *error = [stream streamError];
                 NSLog(@"read errr: %ld ... %@", [error code], [error localizedDescription]);
+                [delegate streamDidClose];
             }
             break;
         case NSStreamEventNone:
-            NSLog(@"event none?");
             break;
     }
 }
