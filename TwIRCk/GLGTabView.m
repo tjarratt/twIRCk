@@ -44,6 +44,7 @@ const CGFloat tab_padding = -15;
     }];
 
     [the_tab setSelected:YES];
+    [self setNeedsDisplay:YES];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
@@ -66,6 +67,7 @@ const CGFloat tab_padding = -15;
     [self addSubview:item];
     [tabs addObject:item];
 
+    [self setNeedsDisplay:YES];
     selected_tab_index = [tabs count] - 1;
 }
 
@@ -85,6 +87,7 @@ const CGFloat tab_padding = -15;
     [the_tab setSelected:YES];
     [the_tab setNeedsDisplay:YES];
 
+    [self setNeedsDisplay:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 
@@ -105,6 +108,7 @@ const CGFloat tab_padding = -15;
     [the_tab setSelected:YES];
     [the_tab setNeedsDisplay:YES];
 
+    [self setNeedsDisplay:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 

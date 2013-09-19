@@ -41,14 +41,17 @@
 - (void) mouseEntered:(NSEvent *) theEvent {
     [self setHover:YES];
     [self setNeedsDisplay:YES];
+    [[self superview] setNeedsDisplay:YES];
 }
 
 - (void) mouseExited:(NSEvent *) theEvent {
     [self setHover:NO];
     [self setNeedsDisplay:YES];
+    [[self superview] setNeedsDisplay:YES];
 }
 
 - (void) mouseUp:(NSEvent *) theEvent {
+    [[self superview] setNeedsDisplay:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"tab_selected" object:self];
 }
 
