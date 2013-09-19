@@ -28,6 +28,7 @@
         [self setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self setStringValue:theLabel];
+        [self setWantsLayer:YES];
 
         // setup mouse events
         NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
@@ -58,13 +59,30 @@
 #pragma mark - Drawing
 - (void) drawRect:(NSRect) dirtyRect {
     [NSGraphicsContext saveGraphicsState];
+    [[NSGraphicsContext currentContext] setShouldAntialias:YES];
 
+    // setup path just below the edge of the view
     NSBezierPath *path = [NSBezierPath bezierPath];
-    [path moveToPoint:NSMakePoint(0, self.bounds.size.height)];
-    [path lineToPoint:NSMakePoint(15, 1)];
+    [path moveToPoint:NSMakePoint(0, self.bounds.size.height + 3)];
+
+    // curve to an initial point
+    NSPoint curveToPoint = NSMakePoint(5, self.bounds.size.height - 2);
+    [path curveToPoint:curveToPoint controlPoint1:curveToPoint controlPoint2:curveToPoint];
+
+    // draw the remaining left edge of the trapezoidal shape
+    [path lineToPoint:NSMakePoint(15, 1)]; // leave 1 pixel for the border (view is not flipped)
+
+    // draw the top
     [path lineToPoint:NSMakePoint(self.bounds.size.width - 15, 1)];
-    [path lineToPoint:NSMakePoint(self.bounds.size.width, self.bounds.size.height)];
+
+    // draw the first part of the right trapezoidal edge
+    [path lineToPoint:NSMakePoint(self.bounds.size.width - 5, self.bounds.size.height - 2)];
+
+    curveToPoint = NSMakePoint(self.bounds.size.width, self.bounds.size.height + 3);
+    [path curveToPoint:curveToPoint controlPoint1:curveToPoint controlPoint2:curveToPoint];
+
     [path setLineWidth:1];
+    [[NSColor colorWithCalibratedRed:0.4 green:0.4 blue:0.4 alpha:1.0] set];
     [path stroke];
     [path setClip];
 

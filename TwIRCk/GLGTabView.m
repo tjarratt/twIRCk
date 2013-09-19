@@ -18,6 +18,7 @@ const CGFloat tab_padding = -15;
     if (self = [super initWithFrame:frame]) {
         selected_tab_index = 0;
         tabs = [[NSMutableArray alloc] initWithCapacity:10];
+        [self setWantsLayer:YES];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"tab_selected" object:nil];
