@@ -144,7 +144,11 @@
                fromHost:(NSString *)host
 {
     NSTextView *log = [chatlogs objectForKey:channel];
-    assert( log != nil );
+    if (log == nil) {
+        [tabView addItem:channel selected:NO];
+        log = [self newChatlog];
+        [chatlogs setValue:log forKey:channel];
+     }
 
     [log setEditable:YES];
     [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];

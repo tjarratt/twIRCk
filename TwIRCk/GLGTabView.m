@@ -51,24 +51,33 @@ const CGFloat tab_padding = -15;
 
 #pragma mark - adding / removing tabs
 - (void) addItem:(NSString *) title {
+    [self addItem:title selected:NO];
+}
+
+- (void) addItem:(NSString *) title selected:(BOOL) isSelected {
     CGFloat count = [tabs count];
     CGFloat width = width_of_tab;
     CGFloat a_width = width + tab_padding;
     CGFloat x_offset = a_width * count;
     NSRect tab_frame = NSMakeRect(x_offset, 0, width, height_of_tab);
 
-    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
-        [tab setSelected:NO];
-        [tab setNeedsDisplay:YES];
-    }];
-
     GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
-    [item setSelected:YES];
     [self addSubview:item];
+    [self setNeedsDisplay:YES];
     [tabs addObject:item];
 
-    [self setNeedsDisplay:YES];
-    selected_tab_index = [tabs count] - 1;
+    if (isSelected) {
+        [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+            [tab setSelected:NO];
+            [tab setNeedsDisplay:YES];
+        }];
+        [item setSelected:YES];
+        selected_tab_index = [tabs count] - 1;
+    }
+    else if ([tabs count] == 1) {
+        [item setSelected:YES];
+        selected_tab_index = 0;
+    }
 }
 
 #pragma mark - moving between tabs
