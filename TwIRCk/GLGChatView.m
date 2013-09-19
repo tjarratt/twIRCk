@@ -67,6 +67,7 @@
     [textview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [[textview textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
     [[textview textContainer] setWidthTracksTextView:YES];
+    [textview setEditable:NO];
 
     return textview;
 }
