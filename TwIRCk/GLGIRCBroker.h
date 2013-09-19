@@ -25,6 +25,8 @@
     NSString *currentNick;
     NSString *currentChannel;
 
+    NSArray *channelsToJoin;
+
     id <GLGBrokerDelegate> delegate;
 }
 
@@ -46,6 +48,6 @@
             withChannels:(NSArray *) channels;
 
 - (void) receivedString:(NSString *) string;
-- (void) didConnectToHost:(NSString *) hostname;
+- (void) didConnectToHost;
 - (NSString *) didSubmitText:(NSString *) string;
 @end

@@ -66,9 +66,6 @@
         [writer addCommand:[@"NICK " stringByAppendingString:username]];
         [writer addCommand:[NSString stringWithFormat:@"USER %@ 8 * %@", username, username]];
     }
-
-    // xxx: should wait until we get the real hostname for this server
-    [delegate connectedToServer:theHostname withInternalName:theHostname];
 }
 
 - (void) connectToServer: (NSString *) theHostname
@@ -80,11 +77,7 @@
 {
 
     [self connectToServer:theHostname onPort:port withUsername:username withPassword:password useSSL:useSSL];
-    [channels enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-        // xxx we should wait until connected to join these channels
-        // and also probably use the internal hostname
-        [delegate joinChannel:chan onServer:theHostname];
-    }];
+    channelsToJoin = channels;
 }
 
 - (void) connectToServer:(IRCServer *) server {
