@@ -45,6 +45,9 @@
 
                 if (delegate) {
                     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    if (previousBuffer == nil ) {
+                        NSLog(@"ANOTHER interesting edge case! got message %@", str);
+                    }
                     str = [previousBuffer stringByAppendingString:str];
                     previousBuffer = @"";
 
