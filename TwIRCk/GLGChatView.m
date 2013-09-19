@@ -89,12 +89,19 @@ const CGFloat inputHeight = 50;
     [[textview textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
     [[textview textContainer] setWidthTracksTextView:YES];
     [textview setEditable:NO];
+    [textview setSelectable:NO];
+    [textview setRichText:YES];
+    [textview setDelegate:self];
 
     return textview;
 }
 
 - (NSTextView *) currentChatlogTextView {
     return [chatlogs objectForKey:currentChannel];
+}
+
+- (void) textView:(NSTextView *)textView clickedOnCell:(id<NSTextAttachmentCell>)cell inRect:(NSRect)cellFrame {
+    [window makeFirstResponder:input];
 }
 
 #pragma mark - NSNotificationCenter actions
@@ -189,9 +196,11 @@ const CGFloat inputHeight = 50;
 
     if (flags & NSShiftKeyMask) {
         [tabView tabBackward];
+        [window makeFirstResponder:input];
     }
     else {
         [tabView tabForward];
+        [window makeFirstResponder:input];
     }
 }
 
