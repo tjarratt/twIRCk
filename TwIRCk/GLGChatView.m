@@ -18,6 +18,7 @@ const CGFloat inputHeight = 50;
 - (id) initWithWindow:(NSWindow *) theWindow {
     if (self = [super init]) {
         window = theWindow;
+        [window setMinSize:NSMakeSize(300, 200)];
         NSView *content = [window contentView];
         NSRect frame = [content frame];
         [self setFrame:frame];
