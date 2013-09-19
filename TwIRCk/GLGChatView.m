@@ -8,6 +8,9 @@
 
 #import "GLGChatView.h"
 
+const CGFloat tabHeight = 30;
+const CGFloat inputHeight = 50;
+
 @implementation GLGChatView
 
 @synthesize connectView;
@@ -19,32 +22,30 @@
         NSRect frame = [content frame];
         [self setFrame:frame];
 
-        tabView = [[GLGTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - 30, frame.size.width, 30)];
+        tabView = [[GLGTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - tabHeight, frame.size.width, tabHeight)];
         [self addSubview:tabView];
 
-        NSRect chatRect = NSMakeRect(0, 50, frame.size.width, frame.size.height - 80);
+        NSRect chatRect = NSMakeRect(0, inputHeight, frame.size.width, frame.size.height - 80);
         scrollview = [[NSScrollView alloc] initWithFrame:chatRect];
-
         [scrollview setBorderType:NSNoBorder];
         [scrollview setHasVerticalScroller:YES];
         [scrollview setHasHorizontalScroller:NO];
         [scrollview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [scrollview setScrollsDynamically:YES];
+        [self addSubview:scrollview];
 
-        input = [[GLGChatTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, 50)];
+        input = [[GLGChatTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, inputHeight)];
         [input setTarget:self];
         [input setAction:@selector(didSubmitText)];
-
-        chatlogs = [[NSMutableDictionary alloc] init];
+        [self addSubview:input];
 
         [window makeFirstResponder:input];
         [window makeKeyAndOrderFront:nil];
+        [window setDelegate:self];
 
-        [self addSubview:input];
-        [self addSubview:scrollview];
-
-        brokers = [[NSMutableArray alloc] init];
         currentChannel = nil;
+        brokers = [[NSMutableArray alloc] init];
+        chatlogs = [[NSMutableDictionary alloc] init];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"did_switch_tabs" object:nil];
     }
@@ -54,6 +55,26 @@
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - NSWindow delegate methods
+- (void) windowDidResize:(NSNotification *) notification {
+    NSWindow *theWindow = [notification object];
+    NSRect frame = [[theWindow contentView] frame];
+    [self setFrame:frame];
+
+    NSRect tabFrame = NSMakeRect(0, frame.size.height - tabHeight, frame.size.width, tabHeight);
+    [tabView setFrame:tabFrame];
+
+    NSRect scrollFrame = NSMakeRect(0, inputHeight, frame.size.width, frame.size.height - 80);
+    [scrollview setFrame:scrollFrame];
+
+    NSRect inputFrame = NSMakeRect(0, 0, frame.size.width, inputHeight);
+    [input setFrame:inputFrame];
+
+    [chatlogs enumerateKeysAndObjectsUsingBlock:^(id key, GLGChatTextField *obj, BOOL *stop) {
+        [obj setFrame:scrollFrame];
+    }];
 }
 
 #pragma mark - handling chat logs

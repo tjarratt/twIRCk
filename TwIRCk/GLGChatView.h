@@ -14,7 +14,7 @@
 #import "GLGTabView.h"
 #import "IRCServer.h"
 
-@interface GLGChatView : NSView <GLGBrokerDelegate> {
+@interface GLGChatView : NSView <GLGBrokerDelegate, NSWindowDelegate> {
     GLGResponseCodes *responseTable;
     NSWindow *window;
 

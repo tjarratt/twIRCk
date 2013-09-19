@@ -33,6 +33,18 @@ const CGFloat tab_padding = -15;
     return [tabs count];
 }
 
+- (void) setFrame:(NSRect) frameRect {
+    [super setFrame:frameRect];
+    [self setNeedsDisplay:YES];
+
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        CGFloat x_offset = (width_of_tab + tab_padding) * index;
+        NSRect frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
+        [tab setFrame:frame];
+        [tab setNeedsDisplay:YES];
+    }];
+}
+
 #pragma mark - tab notifications 
 - (void) handleTabSelection:(NSNotification *) notification {
     GLGTabItem *the_tab = (GLGTabItem *)[notification object];
@@ -56,10 +68,9 @@ const CGFloat tab_padding = -15;
 
 - (void) addItem:(NSString *) title selected:(BOOL) isSelected {
     CGFloat count = [tabs count];
-    CGFloat width = width_of_tab;
-    CGFloat a_width = width + tab_padding;
+    CGFloat a_width = width_of_tab + tab_padding;
     CGFloat x_offset = a_width * count;
-    NSRect tab_frame = NSMakeRect(x_offset, 0, width, height_of_tab);
+    NSRect tab_frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
 
     GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
     [self addSubview:item];

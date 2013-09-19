@@ -29,6 +29,11 @@ const int capacity = 50;
     return self;
 }
 
+- (void) setFrame:(NSRect) frameRect {
+    [super setFrame:frameRect];
+    [textfield setFrame:frameRect];
+}
+
 - (NSString *) currentText {
     return [history objectAtIndex:currentTextPointer];
 }
