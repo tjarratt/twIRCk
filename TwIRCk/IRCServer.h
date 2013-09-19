@@ -12,7 +12,7 @@
 
 @interface IRCServer : NSManagedObject
 
-@property (nonatomic, retain) NSArray * channels;
+@property (nonatomic, retain) NSSet * channels;
 @property (nonatomic, retain) NSString * hostname;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSNumber * port;

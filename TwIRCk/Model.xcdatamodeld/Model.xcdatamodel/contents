@@ -2,18 +2,18 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A584" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="IRCChannel" representedClassName="IRCChannel" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="server" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IRCServer" inverseName="channels" inverseEntity="IRCServer" syncable="YES"/>
+        <relationship name="server" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IRCServer" inverseName="channels" inverseEntity="IRCServer" syncable="YES"/>
     </entity>
     <entity name="IRCServer" representedClassName="IRCServer" syncable="YES">
-        <attribute name="hostname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="port" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="useSSL" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="channels" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IRCChannel" inverseName="server" inverseEntity="IRCChannel" syncable="YES"/>
+        <attribute name="hostname" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="port" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <attribute name="useSSL" attributeType="Boolean" syncable="YES"/>
+        <relationship name="channels" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="IRCChannel" inverseName="server" inverseEntity="IRCChannel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="IRCChannel" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="IRCChannel" positionX="160" positionY="192" width="128" height="73"/>
         <element name="IRCServer" positionX="-171" positionY="72" width="128" height="133"/>
     </elements>
 </model>
