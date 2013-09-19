@@ -45,7 +45,6 @@
 
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             IRCServer *server = (IRCServer *)obj;
-            NSLog(@"server %@ has %lu channels", server.hostname, server.channels.count);
 
             NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
             GLGChatView *chatView = [[GLGChatView alloc] initWithWindow:window];

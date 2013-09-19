@@ -155,33 +155,9 @@
 
 #pragma mark - IBActions
 - (void) connectToService {
-    if (!chatView) {
-        NSSize size = NSMakeSize(800, 600);
-        CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
-        CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
-
-        NSPoint origin = NSMakePoint((size.width - screenwidth) / 2, (size.height - screenheight) / 2);
-
-        NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
-        NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
-        NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:frame
-                               styleMask:style backing:NSBackingStoreBuffered defer:NO];
-        [newWindow makeKeyAndOrderFront:NSApp];
-
-        chatView = [[GLGChatView alloc] initWithWindow:newWindow];
-        [chatView setConnectView:self];
-
-        [[newWindow contentView] addSubview:chatView];
-    }
-
     NSString *remoteHost = [hostname stringValue];
     UInt32 remotePort = [port intValue];
     useSSL = ([ssl state] == NSOnState || remotePort == 6697) ? YES : NO;
-
-    if (remotePort == 0) {
-        remotePort = 6697;
-        useSSL |= YES;
-    }
 
     [port setIntValue:remotePort];
     if (useSSL) { [ssl setState:NSOnState]; }
@@ -199,22 +175,60 @@
     NSMutableArray *mutableChannels = [chans mutableCopy];
     [mutableChannels removeObject:@""];
 
-    [chatView connectToServer:remoteHost
-                       onPort:remotePort
-                 withUsername:[username stringValue]
-                 withPassword:[password stringValue]
-                       useSSL:useSSL
-                     withChannels:mutableChannels
-     ];
-
     GLGManagedObjectContext *contextManager = [[GLGManagedObjectContext alloc] init];
     NSManagedObjectContext *context = [contextManager managedObjectContext];
-    IRCServer *server = [NSEntityDescription insertNewObjectForEntityForName:@"IRCServer" inManagedObjectContext:context];
+
+    __block IRCServer *server = [NSEntityDescription insertNewObjectForEntityForName:@"IRCServer" inManagedObjectContext:context];
     [server setHostname:remoteHost];
     [server setPort:[NSNumber numberWithInt:remotePort]];
     [server setUsername:[username stringValue]];
     [server setPassword:[password stringValue]];
     [server setUseSSL:useSSL];
+
+    NSMutableSet *channelModels = [[NSMutableSet alloc] init];
+    for (int i = 0; i < [mutableChannels count]; ++i) {
+        IRCChannel *channel = [NSEntityDescription insertNewObjectForEntityForName:@"IRCChannel" inManagedObjectContext:context];
+        [channel setName:[mutableChannels objectAtIndex:i]];
+        [channel setServer:server];
+        [channelModels addObject:channel];
+    }
+
+    NSError *error;
+    [context save:&error];
+
+    if (error) {
+        NSLog(@"oh no, couldn't save?");
+        NSLog(@"%@", [error localizedDescription]);
+        NSLog(@"%@", [error userInfo]);
+        return;
+    }
+
+    if (!chatView) {
+        NSSize size = NSMakeSize(800, 600);
+        CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
+        CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
+
+        NSPoint origin = NSMakePoint((size.width - screenwidth) / 2, (size.height - screenheight) / 2);
+
+        NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+        NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
+        NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:frame
+                                                          styleMask:style backing:NSBackingStoreBuffered defer:NO];
+        [newWindow makeKeyAndOrderFront:NSApp];
+
+        chatView = [[GLGChatView alloc] initWithWindow:newWindow];
+        [chatView setConnectView:self];
+
+        [[newWindow contentView] addSubview:chatView];
+    }
+    
+    [chatView connectToServer:remoteHost
+                       onPort:remotePort
+                 withUsername:[username stringValue]
+                 withPassword:[password stringValue]
+                       useSSL:useSSL
+                 withChannels:mutableChannels
+     ];
 }
 
 - (void) shouldClose {
