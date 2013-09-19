@@ -161,10 +161,12 @@ const CGFloat inputHeight = 50;
 - (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser {
     NSTextView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:channel];
-    currentChannel = channel;
-
     [tabView addItem:channel selected:initiatedByUser];
-    [scrollview setDocumentView:newLog];
+
+    if (initiatedByUser) {
+        currentChannel = channel;
+        [scrollview setDocumentView:newLog];
+    }
 }
 
 - (void) receivedString:(NSString *)string

@@ -157,8 +157,6 @@
 }
 
 - (void) didConnectToHost {
-    NSLog(@"should do all of the important work now that we're connected");
-
     // xxx: should wait until we get the real hostname for this server
     [delegate connectedToServer:hostname withInternalName:hostname];
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
