@@ -221,14 +221,8 @@
 
         [[newWindow contentView] addSubview:chatView];
     }
-    
-    [chatView connectToServer:remoteHost
-                       onPort:remotePort
-                 withUsername:[username stringValue]
-                 withPassword:[password stringValue]
-                       useSSL:useSSL
-                 withChannels:mutableChannels
-     ];
+
+    [chatView connectToServer:server];
 }
 
 - (void) shouldClose {

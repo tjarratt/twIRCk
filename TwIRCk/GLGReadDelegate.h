@@ -7,21 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol GLGReaderDelegate;
+#import "GLGStreamReaderDelegate.h"
 
 @interface GLGReadDelegate : NSObject <NSStreamDelegate> {
     NSString *previousBuffer;
 }
 
-@property id <GLGReaderDelegate> delegate;
-@end
-
-#pragma mark - reader delegate
-@protocol GLGReaderDelegate
-
-@required
-- (void) receivedString:(NSString *) string;
-- (void) didConnectToHost:(NSString *) hostname;
-
+@property id <GLGStreamReaderDelegate> delegate;
 @end

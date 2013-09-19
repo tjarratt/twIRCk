@@ -7,23 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "GLGReadDelegate.h"
-#import "GLGWriteDelegate.h"
 #import "GLGChatTextField.h"
 #import "GLGConnectionView.h"
 #import "GLGResponseCodes.h"
+#import "GLGIRCBroker.h"
 #import "GLGTabView.h"
 #import "IRCServer.h"
 
-@interface GLGChatView : NSView <GLGReaderDelegate> {
+@interface GLGChatView : NSView <GLGBrokerDelegate> {
     GLGResponseCodes *responseTable;
     NSWindow *window;
 
-    NSInputStream *inputStream;
-    NSOutputStream *outputStream;
-
-    GLGReadDelegate *reader;
-    GLGWriteDelegate *writer;
+    NSMutableArray *brokers;
 
     NSScrollView *scrollview;
     GLGChatTextField *input;
@@ -37,17 +32,6 @@
 @property id <GLGConnectionView> connectView;
 
 - (id) initWithWindow:(NSWindow *) _window;
-- (void) connectToServer: (NSString *) hostname
-                  onPort:(UInt32) port
-            withUsername:(NSString *) username
-            withPassword:(NSString *) password
-                  useSSL:(BOOL) useSSL;
-- (void) connectToServer: (NSString *) hostname
-                  onPort:(UInt32) port
-            withUsername:(NSString *) username
-            withPassword:(NSString *) password
-                  useSSL:(BOOL) useSSL
-            withChannels:(NSArray *) channels;
 - (void) connectToServer:(IRCServer *) server;
 @end
 
