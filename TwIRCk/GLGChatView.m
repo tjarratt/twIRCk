@@ -153,11 +153,17 @@
 }
 
 - (void) connectToServer:(IRCServer *) server {
+    NSMutableArray *theChannels = [[NSMutableArray alloc] init];
+    [[server.channels allObjects] enumerateObjectsUsingBlock:^(IRCChannel *chan, NSUInteger index, BOOL *stop) {
+        [theChannels addObject:[chan name]];
+    }];
+
     [self connectToServer:server.hostname
                    onPort:[server.port intValue]
              withUsername:server.username
              withPassword:server.password
-                   useSSL:server.useSSL];
+                   useSSL:server.useSSL
+             withChannels:theChannels];
 }
 
 #pragma mark - needs to be refactored out of this class
