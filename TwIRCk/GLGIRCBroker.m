@@ -160,6 +160,7 @@
     // xxx: should wait until we get the real hostname for this server
     [delegate connectedToServer:hostname withInternalName:hostname];
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
+        [writer addCommand:[@"JOIN #" stringByAppendingString:chan]];
         [delegate joinChannel:chan onServer:hostname userInitiated:NO];
     }];
 }
