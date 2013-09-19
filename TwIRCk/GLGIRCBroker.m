@@ -162,13 +162,13 @@
     // xxx: should wait until we get the real hostname for this server
     [delegate connectedToServer:hostname withInternalName:hostname];
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-        [delegate joinChannel:chan onServer:hostname];
+        [delegate joinChannel:chan onServer:hostname userInitiated:NO];
     }];
 }
 
 - (void) joinChannel:(NSString *) channel {
     [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
-    [delegate joinChannel:channel onServer:hostname];
+    [delegate joinChannel:channel onServer:hostname userInitiated:YES];
 }
 
 - (void) streamDidClose {

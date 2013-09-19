@@ -134,13 +134,11 @@ const CGFloat inputHeight = 50;
 - (void) didSubmitText {
     NSString *string = [input stringValue];
     if ([string isEqualToString:@""]) { return; }
-
-    // need to send this text to the "active" broker
     NSString *messageToDisplay = [[self activeBroker] didSubmitText:string];
 
-    [input clearTextField];
-    assert( currentChannel != nil );
+    assert( currentChannel != nil ); // nb : probably a good idea to let the tabview tell us what the current chan is
 
+    [input clearTextField];
     NSString *activeHost = [[self activeBroker] hostname];
     [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel fromHost:activeHost];
 }
@@ -159,12 +157,12 @@ const CGFloat inputHeight = 50;
     }
 }
 
-- (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname {
-    [tabView addItem:channel];
-
+- (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser {
     NSTextView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:channel];
     currentChannel = channel;
+
+    [tabView addItem:channel selected:initiatedByUser];
     [scrollview setDocumentView:newLog];
 }
 
