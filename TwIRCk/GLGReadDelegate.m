@@ -37,8 +37,7 @@
                 length = [(NSInputStream *)stream read:buffer maxLength:1024];
 
                 if (!length) {
-                    NSLog(@"reader: no buffer, nothing to read!");
-                    return;
+                    return NSLog(@"reader: no buffer, nothing to read!");
                 }
 
                 [data appendBytes:(const void *)buffer length:length];
@@ -55,6 +54,10 @@
                     unichar lastChar = [str characterAtIndex:(str.length - 1)];
                     if (lastChar != 10) {
                         previousBuffer = [components objectAtIndex:(components.count - 1)];
+                        if (previousBuffer == nil ) {
+                            NSLog(@"interesting edge case! got message %@", str);
+                            NSLog(@"with %lu components, last char was %d and previous buffer was set to 'last component': %@", [components count], lastChar, [components objectAtIndex:(components.count - 1)]);
+                        }
                         [components removeObjectAtIndex:(components.count -1)];
                     }
 
