@@ -177,7 +177,7 @@
 }
 
 #pragma mark - Response Parsing (needs to be refactored out of this class)
-- (NSString *) didSubmitText:(NSString *)string {
+- (NSString *) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
 
     NSString *message;
     NSString *command;
@@ -197,7 +197,6 @@
             messageToDisplay = [NSString stringWithFormat:@"/join %@, %@", channel, remainder];
 
             [self joinChannel:channel];
-            currentChannel = channel;
         }
         else if ([command isEqualToString:@"part"]) {
             NSString *channel = [[parts objectAtIndex:1] lowercaseString];
@@ -207,7 +206,7 @@
             message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
             messageToDisplay = [NSString stringWithFormat:@"/part %@ %@", channel, remainder];
 
-            currentChannel = nil;
+            [delegate didPartChannel:channel];
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
             NSString *whom = [parts objectAtIndex:1];
@@ -241,8 +240,8 @@
             messageToDisplay = string;
         }
     }
-    else if (currentChannel) {
-        message = [NSString stringWithFormat:@"PRIVMSG #%@ :%@", currentChannel, string];
+    else if (channel) {
+        message = [NSString stringWithFormat:@"PRIVMSG #%@ :%@", channel, string];
         messageToDisplay = [NSString stringWithFormat:@"<%@> %@", currentNick, string];
     }
     else {

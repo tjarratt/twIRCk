@@ -135,9 +135,10 @@ const CGFloat inputHeight = 50;
 - (void) didSubmitText {
     NSString *string = [input stringValue];
     if ([string isEqualToString:@""]) { return; }
-    NSString *messageToDisplay = [[self activeBroker] didSubmitText:string];
 
     assert( currentChannel != nil ); // nb : probably a good idea to let the tabview tell us what the current chan is
+
+    NSString *messageToDisplay = [[self activeBroker] didSubmitText:string inChannel:currentChannel];
 
     [input clearTextField];
     NSString *activeHost = [[self activeBroker] hostname];

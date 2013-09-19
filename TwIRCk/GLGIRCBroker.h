@@ -23,7 +23,6 @@
 
     NSString *hostname;
     NSString *currentNick;
-    NSString *currentChannel;
 
     NSArray *channelsToJoin;
 
@@ -49,5 +48,5 @@
 
 - (void) receivedString:(NSString *) string;
 - (void) didConnectToHost;
-- (NSString *) didSubmitText:(NSString *) string;
+- (NSString *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
 @end
