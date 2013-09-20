@@ -149,6 +149,8 @@ const CGFloat inputHeight = 50;
 - (void) connectedToServer:(NSString *)hostname
           withInternalName:(NSString *)internalName
 {
+    [self didConnectToHost:hostname];
+
     [tabView addItem:hostname];
     NSTextView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:hostname];
