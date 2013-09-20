@@ -39,6 +39,10 @@ const CGFloat tab_padding = -15;
     [super setFrame:frameRect];
     [self setNeedsDisplay:YES];
 
+    [self positionSubviews];
+}
+
+- (void) positionSubviews {
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
         CGFloat x_offset = (width_of_tab + tab_padding) * index;
         NSRect frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
@@ -74,8 +78,12 @@ const CGFloat tab_padding = -15;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removed_last_tab" object:nil];
     }
 
+
     if (index == selected_tab_index) {
-        --selected_tab_index;
+        if (selected_tab_index > 0) {
+            --selected_tab_index;
+        }
+
         [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
             [tab setNeedsDisplay:YES];
 
@@ -89,8 +97,12 @@ const CGFloat tab_padding = -15;
         }];
     }
 
-    // check if we need to change selected tab index
-    // check if we need to close
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        CGFloat x_offset = (width_of_tab + tab_padding) * index;
+        NSRect frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
+        [tab setFrame:frame];
+        [tab setNeedsDisplay:YES];
+    }];
 }
 
 #pragma mark - adding / removing tabs
