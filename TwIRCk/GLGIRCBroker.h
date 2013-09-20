@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GLGManagedObjectContext.h"
 #import "GLGBrokerDelegate.h" 
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
@@ -17,6 +18,8 @@
 @interface GLGIRCBroker : NSObject <GLGStreamReaderDelegate> {
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
+
+    IRCServer *server;
     
     GLGReadDelegate *reader;
     GLGWriteDelegate *writer;

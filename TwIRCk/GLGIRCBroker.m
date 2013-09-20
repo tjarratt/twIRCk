@@ -80,7 +80,9 @@
     channelsToJoin = channels;
 }
 
-- (void) connectToServer:(IRCServer *) server {
+- (void) connectToServer:(IRCServer *) theServer {
+    server = theServer;
+
     NSMutableArray *theChannels = [[NSMutableArray alloc] init];
     [[server.channels allObjects] enumerateObjectsUsingBlock:^(IRCChannel *chan, NSUInteger index, BOOL *stop) {
         [theChannels addObject:[chan name]];
@@ -165,9 +167,22 @@
     }];
 }
 
-- (void) joinChannel:(NSString *) channel {
-    [writer addCommand:[@"JOIN #" stringByAppendingString:channel]];
-    [delegate joinChannel:channel onServer:hostname userInitiated:YES];
+- (void) joinChannel:(NSString *) channelName {
+    [writer addCommand:[@"JOIN #" stringByAppendingString:channelName]];
+    [delegate joinChannel:channelName onServer:hostname userInitiated:YES];
+
+    NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
+
+    IRCChannel *channel = [NSEntityDescription insertNewObjectForEntityForName:@"IRCChannel" inManagedObjectContext:context];
+    [channel setName:channelName];
+    [channel setServer:server];
+
+    NSError *error;
+    [context save:&error];
+
+    if (error) {
+        NSLog(@"Couldn't save channel %@", channelName);
+    }
 }
 
 - (void) streamDidClose {
