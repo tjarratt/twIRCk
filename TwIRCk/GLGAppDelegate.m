@@ -47,7 +47,7 @@
             IRCServer *server = (IRCServer *)obj;
 
             NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
-            GLGChatView *chatView = [[GLGChatView alloc] initWithWindow:window];
+            chatView = [[GLGChatView alloc] initWithWindow:window];
 
             [chatView connectToServer:server];
             [window.contentView addSubview:chatView];
@@ -159,6 +159,12 @@
 
 - (IBAction) quit:(id) sender {
     [NSApp terminate:self];
+}
+
+- (IBAction)closeActiveWindow:(id)sender {
+    if (chatView) {
+        [chatView closeActiveTabOrWindow];
+    }
 }
 
 @end

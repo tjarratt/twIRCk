@@ -222,4 +222,14 @@ const CGFloat inputHeight = 50;
     }
 }
 
+#pragma mark - IBActions
+- (void) closeActiveTabOrWindow {
+    if ([tabView count] == 1) {
+        [[self window] close];
+    }
+    else {
+        [tabView removeTabNamed:currentChannel];
+    }
+}
+
 @end
