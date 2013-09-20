@@ -21,4 +21,6 @@
 - (void) tabForward;
 - (void) tabBackward;
 
+- (void) removeTabNamed:(NSString *) name;
+
 @end

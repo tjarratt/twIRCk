@@ -185,6 +185,21 @@
     }
 }
 
+- (void) partChannel:(NSString *) channelName {
+    __block NSString *name = channelName;
+    [delegate willPartChannel:channelName];
+
+    NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
+    [[server channels] enumerateObjectsUsingBlock:^(IRCChannel *channel, BOOL *stop) {
+        if ([[channel name] isEqualToString:name]) {
+            NSError *error;
+            [context deleteObject:channel];
+            [context save:&error];
+            // *stop = YES; // wat
+        }
+    }];
+}
+
 - (void) streamDidClose {
     NSLog(@"closing streams. Should start exponential backoff reconnect attempts");
     [inputStream close];
@@ -219,9 +234,9 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
             message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
-            messageToDisplay = [NSString stringWithFormat:@"/part %@ %@", channel, remainder];
+            messageToDisplay = @"";
 
-            [delegate didPartChannel:channel];
+            [self partChannel:channel];
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
             NSString *whom = [parts objectAtIndex:1];

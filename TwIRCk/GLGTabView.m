@@ -67,9 +67,16 @@ const CGFloat tab_padding = -15;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 
-- (void) handleTabClosure:(NSNotification *) notification {
-    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
+- (void) removeTabNamed:(NSString *) name {
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        if ([[tab name] isEqualToString:name]) {
+            [self removeTab:tab];
+            *stop = YES;
+        }
+    }];
+}
 
+- (void) removeTab:(GLGTabItem *) the_tab {
     NSUInteger index = [tabs indexOfObject:the_tab];
     [the_tab removeFromSuperview];
     [tabs removeObjectAtIndex:index];
@@ -103,6 +110,11 @@ const CGFloat tab_padding = -15;
         [tab setFrame:frame];
         [tab setNeedsDisplay:YES];
     }];
+}
+
+- (void) handleTabClosure:(NSNotification *) notification {
+    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
+    [self removeTab:the_tab];
 }
 
 #pragma mark - adding / removing tabs

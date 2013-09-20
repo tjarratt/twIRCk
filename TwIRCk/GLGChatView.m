@@ -187,6 +187,10 @@ const CGFloat inputHeight = 50;
     [log setEditable:NO];
 }
 
+- (void) willPartChannel:(NSString *) channel {
+    [tabView removeTabNamed:channel];
+}
+
 - (void) didPartChannel:(NSString *) channel {
     // close the tab, remove it from our chatlogs
     [chatlogs removeObjectForKey:channel];
