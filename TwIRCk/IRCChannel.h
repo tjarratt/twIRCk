@@ -15,5 +15,6 @@
 
 @property (nonatomic, retain) IRCServer * server;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic) BOOL autojoin;
 
 @end

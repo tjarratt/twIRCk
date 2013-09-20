@@ -13,5 +13,6 @@
 
 @dynamic name;
 @dynamic server;
+@dynamic autojoin;
 
 @end

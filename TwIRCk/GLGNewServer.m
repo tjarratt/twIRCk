@@ -189,6 +189,7 @@
         IRCChannel *channel = [NSEntityDescription insertNewObjectForEntityForName:@"IRCChannel" inManagedObjectContext:context];
         [channel setName:[mutableChannels objectAtIndex:i]];
         [channel setServer:server];
+        [channel setAutojoin:YES];
         [channelModels addObject:channel];
     }
 
