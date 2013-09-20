@@ -10,7 +10,7 @@
 
 @protocol GLGBrokerDelegate <NSObject>
 @required
--(void) connectedToServer:(NSString *)hostname withInternalName:(NSString *)internalName;
+-(void) connectedToServer:(NSString *)hostname;
 -(void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser;
 -(void) receivedString:(NSString *) string inChannel:(NSString *) channel fromHost:(NSString *) host;
 -(void) didPartChannel:(NSString *) channel;

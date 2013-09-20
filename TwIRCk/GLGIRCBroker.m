@@ -14,6 +14,7 @@
     if (self = [super init]) {
         delegate = aDelegate;
         reconnectAttempts = 0;
+        hasReadHostname = NO;
     }
 
     return self;
@@ -99,6 +100,10 @@
 
 #pragma mark StreamReader Delegate methods
 - (void) receivedString:(NSString *) string {
+    if (!hasReadHostname) {
+        [self readActualHostname:string];
+    }
+
     if ([self handledPing:string]) {
         return;
     }
@@ -116,16 +121,10 @@
     NSString *theType = [string substringWithRange:[channelMatch rangeAtIndex:2]];
     NSString *theMessage = [string substringWithRange:[channelMatch rangeAtIndex:3]];
 
-    // xxx: temporary workaround for freenode chat name
-    // I'd like for this to be passed to *some class* as the real hostname or value for the channel
-    // and then ChatView wouldn't know about a server until it was actually active
-    NSArray *components = [theSender componentsSeparatedByString:@"."];
-    if (components.count == 3) {
-        NSString *second = [components objectAtIndex:1];
-        NSString *third = [components objectAtIndex:2];
-        if ([second isEqualToString:@"freenode"] && [third isEqualToString:@"net"]) {
-            theSender = @"chat.freenode.net";
-        }
+    // when you connect to some servers eg: chat.freenode.net, your requests will actually
+    // be handled by what is effectively a mirror, or a shard eg: hitchcock.
+    if ([theSender isEqualToString:internalHostname]) {
+        theSender = hostname;
     }
 
     NSString *theChannel;
@@ -159,11 +158,24 @@
     [delegate receivedString:string inChannel:theChannel fromHost:hostname];
 }
 
+- (void) readActualHostname:(NSString *) message {
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z0-9!~`/@:.-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:message options:0 range:NSMakeRange(0, [message length])];
+
+    if ([matches count] == 0) {
+        return NSLog(@"SNAP. Could not read internal hostname from message : %@", message);
+    }
+
+    NSTextCheckingResult *channelMatch = [matches objectAtIndex:0];
+
+    hasReadHostname = YES;
+    internalHostname = [message substringWithRange:[channelMatch rangeAtIndex:1]];
+}
+
 - (void) didConnectToHost {
     reconnectAttempts = 0;
-
-    // xxx: should wait until we get the real hostname for this server
-    [delegate connectedToServer:hostname withInternalName:hostname];
+    [delegate connectedToServer:hostname];
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
         [writer addCommand:[@"JOIN #" stringByAppendingString:chan]];
         [delegate joinChannel:chan onServer:hostname userInitiated:NO];
@@ -207,6 +219,11 @@
 - (void) streamDidClose {
     [inputStream close];
     [outputStream close];
+    hasReadHostname = NO;
+    // at this point, we MIGHT need to close our tabs because
+    // they might "belong" to the wrong hostname, right?
+    // maybe the broker should know what the internal name is, and the
+    // chatview and tabs will only know about the hostname the user entered?
 
     NSUInteger waitInterval = pow(2, reconnectAttempts);
     ++reconnectAttempts;

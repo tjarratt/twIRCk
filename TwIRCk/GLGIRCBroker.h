@@ -27,9 +27,12 @@
     NSString *hostname;
     NSString *currentNick;
 
+    NSString *internalHostname;
+
     NSArray *channelsToJoin;
     NSTimer *reconnectTimer;
     NSUInteger reconnectAttempts;
+    BOOL hasReadHostname;
 
     id <GLGBrokerDelegate> delegate;
 }

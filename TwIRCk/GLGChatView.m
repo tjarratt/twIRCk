@@ -149,9 +149,7 @@ const CGFloat inputHeight = 50;
 }
 
 #pragma mark - IRC Broker Delegate methods
-- (void) connectedToServer:(NSString *)hostname
-          withInternalName:(NSString *)internalName
-{
+- (void) connectedToServer:(NSString *)hostname {
     [self didConnectToHost:hostname];
 
     [tabView addItem:hostname forOwner:hostname];
