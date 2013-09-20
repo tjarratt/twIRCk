@@ -39,7 +39,7 @@
 
     if(!CFWriteStreamOpen(writeStream)) {
         // failed validation, or maybe not connected to the internet
-        return NSLog(NSLocalizedString(@"big trouble in little IRC client", @"writeStreamFailure"));
+        return NSLog(@"big trouble in little IRC client. Could not open write stream to %@ on port %d", theHostname, port);
     }
 
     inputStream = (__bridge_transfer NSInputStream *) readStream;
@@ -278,7 +278,7 @@
             messageToDisplay = [NSString stringWithFormat:@"/me %@", remainder];
         }
         else {
-            NSLog(@"unknown command");
+            NSLog(@"unknown command: %@", command);
             message = string;
             messageToDisplay = string;
         }
