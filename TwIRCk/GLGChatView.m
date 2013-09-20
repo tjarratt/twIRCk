@@ -154,7 +154,7 @@ const CGFloat inputHeight = 50;
 {
     [self didConnectToHost:hostname];
 
-    [tabView addItem:hostname];
+    [tabView addItem:hostname forOwner:hostname];
     NSTextView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:hostname];
 
@@ -167,7 +167,7 @@ const CGFloat inputHeight = 50;
 - (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser {
     NSTextView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:channel];
-    [tabView addItem:channel selected:initiatedByUser];
+    [tabView addItem:channel selected:initiatedByUser forOwner:hostname];
 
     if (initiatedByUser) {
         currentChannel = channel;
@@ -181,7 +181,7 @@ const CGFloat inputHeight = 50;
 {
     NSTextView *log = [chatlogs objectForKey:channel];
     if (log == nil) {
-        [tabView addItem:channel selected:NO];
+        [tabView addItem:channel selected:NO forOwner:host];
         log = [self newChatlog];
         [chatlogs setValue:log forKey:channel];
      }
@@ -190,6 +190,10 @@ const CGFloat inputHeight = 50;
     [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
     [log insertText:string];
     [log setEditable:NO];
+
+    NSDictionary *dict = @{@"channel" : channel, @"server" : host};
+    NSString *notificationName = [@"message_received_" stringByAppendingString:channel];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dict];
 }
 
 - (void) willPartChannel:(NSString *) channel {

@@ -16,8 +16,8 @@
 }
 
 - (NSUInteger) count;
-- (void) addItem:(NSString *) title;
-- (void) addItem:(NSString *) title selected:(BOOL) isSelected;
+- (void) addItem:(NSString *) title forOwner:(NSString *) theOwner;
+- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(NSString *) theOwner;
 - (void) tabForward;
 - (void) tabBackward;
 

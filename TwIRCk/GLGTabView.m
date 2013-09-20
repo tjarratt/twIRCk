@@ -118,17 +118,18 @@ const CGFloat tab_padding = -15;
 }
 
 #pragma mark - adding / removing tabs
-- (void) addItem:(NSString *) title {
-    [self addItem:title selected:NO];
+- (void) addItem:(NSString *) title forOwner:(NSString *) theOwner {
+    [self addItem:title selected:NO forOwner:theOwner];
 }
 
-- (void) addItem:(NSString *) title selected:(BOOL) isSelected {
+- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(NSString *) theOwner {
     CGFloat count = [tabs count];
     CGFloat a_width = width_of_tab + tab_padding;
     CGFloat x_offset = a_width * count;
     NSRect tab_frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
 
     GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
+    [item setOwner:theOwner];
     [self addSubview:item];
     [self setNeedsDisplay:YES];
     [tabs addObject:item];

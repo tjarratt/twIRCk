@@ -24,6 +24,7 @@
 }
 
 @property NSString *name;
+@property NSString *owner;
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) label;
 - (void)setSelected:(BOOL)flag;

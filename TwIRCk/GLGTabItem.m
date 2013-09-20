@@ -62,13 +62,34 @@
         trackingAreaSelected = [[NSTrackingArea alloc] initWithRect:trackingRectSelected options:opts owner:self userInfo:nil];
 
         [self addTrackingArea:trackingArea];
+        NSString *notification_name = [@"message_received_" stringByAppendingString:theLabel];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabMessageReceived:) name:notification_name object:nil];
     }
 
     return self;
 }
 
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (BOOL) isFlipped {
     return YES;
+}
+
+#pragma mark - NSNotifications
+- (void) tabMessageReceived:(NSNotification *) notification {
+    NSDictionary *dict = [notification userInfo];
+    BOOL matchingChannel = [[dict objectForKey:@"channel"] isEqualToString:[self name]];
+    BOOL matchingHostname = [[dict objectForKey:@"server"] isEqualToString:[self owner]];
+
+    if (matchingChannel && matchingHostname && !_selected) {
+        NSRange boldRange = NSMakeRange(0, self.name.length);
+        NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:11]};
+        NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];
+        [value setAttributes:labelAttrs range:boldRange];
+        [textfield setAttributedStringValue:value];
+    }
 }
 
 #pragma mark - accessors
@@ -78,6 +99,14 @@
 
 - (void) setSelected:(BOOL)selected {
     _selected = selected;
+
+    if (_selected) {
+        NSRange range = NSMakeRange(0, self.name.length);
+        NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont systemFontOfSize:11]};
+        NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];
+        [value setAttributes:labelAttrs range:range];
+        [textfield setAttributedStringValue:value];
+    }
 }
 
 - (BOOL) hover {
