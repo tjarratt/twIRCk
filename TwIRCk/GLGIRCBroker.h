@@ -28,6 +28,7 @@
     NSString *currentNick;
 
     NSArray *channelsToJoin;
+    NSTimer *reconnectTimer;
     NSUInteger reconnectAttempts;
 
     id <GLGBrokerDelegate> delegate;
