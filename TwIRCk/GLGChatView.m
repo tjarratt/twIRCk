@@ -114,6 +114,9 @@ const CGFloat inputHeight = 50;
 
     currentChannel = newChannel;
     [scrollview setDocumentView:chat];
+    NSPoint newOrigin = NSMakePoint(0, NSMaxY([[scrollview documentView] frame]) -
+                                    [[scrollview contentView] bounds].size.height);
+    [[scrollview documentView] scrollPoint:newOrigin];
 }
 
 #pragma mark - connection methods
