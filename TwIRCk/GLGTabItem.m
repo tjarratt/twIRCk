@@ -12,30 +12,89 @@
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) theLabel {
     if (self = [super initWithFrame:frame]) {
+        selectedRect = NSMakeRect(10, 8, frame.size.width - 35, frame.size.height);
+        unselectedRect = NSMakeRect(10, 8, frame.size.width - 20, frame.size.height);
+        textfield = [[NSTextField alloc] initWithFrame:unselectedRect];
+
+        NSRect imageFrame = NSMakeRect(frame.size.width - 30, 6, 15, 15);
+        imageView = [[NSImageView alloc] initWithFrame:imageFrame];
+        [self addSubview:imageView];
+        [imageView setTarget:self];
+        [imageView setAction:@selector(closeButtonClicked:)];
+
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *imagePath = [bundle pathForImageResource:@"close_no_rollover"];
+        closeButton = [[NSImage alloc] initWithContentsOfFile:imagePath];
+
+        imagePath = [bundle pathForImageResource:@"close_rollover"];
+        closeButtonSelected = [[NSImage alloc] initWithContentsOfFile:imagePath];
+
         [self setName:theLabel];
         [self setSelected:NO];
         [self setHover:NO];
 
-        [self setIdentifier:[theLabel stringByAppendingString:@"-tab-item"]];
-        [[self cell] setControlSize:NSSmallControlSize];
-        [self setBackgroundColor:[NSColor clearColor]];
-        [self setAlignment:NSCenterTextAlignment];
-        [self setBordered:NO];
-        [self setBezeled:NO];
-        [self setSelectable:NO];
-        [self setEditable:NO];
-        [self setFont:[NSFont systemFontOfSize:11.0]];
-        [self setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
-        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self setStringValue:theLabel];
-        [self setWantsLayer:YES];
+        [textfield setIdentifier:[theLabel stringByAppendingString:@"-tab-item"]];
+        [[textfield cell] setControlSize:NSSmallControlSize];
+        [textfield setBackgroundColor:[NSColor clearColor]];
+        [textfield setAlignment:NSLeftTextAlignment];
+        [textfield setBordered:NO];
+        [textfield setBezeled:NO];
+        [textfield setSelectable:NO];
+        [textfield setEditable:NO];
+        [textfield setFont:[NSFont systemFontOfSize:11.0]];
+        [textfield setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
+        [textfield setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [textfield setStringValue:theLabel];
+        [textfield setWantsLayer:YES];
+        [self addSubview:textfield];
 
         // setup mouse events
         NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
-        [self addTrackingRect:trackingRect owner:self userData:nil assumeInside:YES];
+        NSRect trackingRectSelected = NSMakeRect(0, 0, frame.size.width - 20, frame.size.height);
+
+        // toggle tracking rects when hovering
+        // or we could just check to see if you were clicking on the freaking
+        // imageview when we handle mouse up / mouse down ourselves
+
+        NSTrackingAreaOptions opts = NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow | NSTrackingInVisibleRect;
+        
+        trackingArea = [[NSTrackingArea alloc] initWithRect:trackingRect options:opts owner:self userInfo:nil];
+        trackingAreaSelected = [[NSTrackingArea alloc] initWithRect:trackingRectSelected options:opts owner:self userInfo:nil];
+
+        [self addTrackingArea:trackingArea];
     }
 
     return self;
+}
+
+- (BOOL) isFlipped {
+    return YES;
+}
+
+#pragma mark - accessors
+- (BOOL) selected {
+    return _selected;
+}
+
+- (void) setSelected:(BOOL)selected {
+    _selected = selected;
+}
+
+- (BOOL) hover {
+    return _hover;
+}
+
+- (void) setHover:(BOOL)flag {
+    _hover = flag;
+
+    if (_hover) {
+        [imageView setImage:closeButton];
+        [textfield setFrame:selectedRect];
+    }
+    else {
+        [imageView setImage:nil];
+        [textfield setFrame:unselectedRect];
+    }
 }
 
 #pragma mark - Mouse Events
@@ -52,8 +111,20 @@
 }
 
 - (void) mouseUp:(NSEvent *) theEvent {
-    [[self superview] setNeedsDisplay:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"tab_selected" object:self];
+    NSPoint windowPoint = [theEvent locationInWindow];
+    NSPoint localPoint = [self convertPoint:windowPoint fromView:nil];
+
+    if (NSPointInRect(localPoint, imageView.frame)) {
+        [self closeButtonClicked:theEvent];
+    }
+    else {
+        [[self superview] setNeedsDisplay:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"tab_selected" object:self];
+    }
+}
+
+- (void) closeButtonClicked:(NSEvent *) event {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"tab_closed" object:self];
 }
 
 #pragma mark - Drawing

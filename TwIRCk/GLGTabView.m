@@ -22,6 +22,7 @@ const CGFloat tab_padding = -15;
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"tab_selected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabClosure:) name:@"tab_closed" object:nil];
 
     return self;
 }
@@ -60,6 +61,36 @@ const CGFloat tab_padding = -15;
     [self setNeedsDisplay:YES];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
+}
+
+- (void) handleTabClosure:(NSNotification *) notification {
+    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
+
+    NSUInteger index = [tabs indexOfObject:the_tab];
+    [the_tab removeFromSuperview];
+    [tabs removeObjectAtIndex:index];
+
+    if ([tabs count] == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removed_last_tab" object:nil];
+    }
+
+    if (index == selected_tab_index) {
+        --selected_tab_index;
+        [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+            [tab setNeedsDisplay:YES];
+
+            if (index == selected_tab_index) {
+                [tab setSelected:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[tab name]];
+            }
+            else {
+                [tab setSelected:NO];
+            }
+        }];
+    }
+
+    // check if we need to change selected tab index
+    // check if we need to close
 }
 
 #pragma mark - adding / removing tabs

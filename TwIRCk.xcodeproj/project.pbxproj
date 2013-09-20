@@ -33,6 +33,8 @@
 		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
+		F7DBE3EE17EBBE05007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3ED17EBBE05007832C7 /* close_no_rollover.tif */; };
+		F7DBE3F017EBC4DC007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3EF17EBC4DC007832C7 /* close_rollover.tif */; };
 		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
 		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
 /* End PBXBuildFile section */
@@ -111,6 +113,8 @@
 		F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
+		F7DBE3ED17EBBE05007832C7 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_no_rollover.tif; path = ../../../close_no_rollover.tif; sourceTree = "<group>"; };
+		F7DBE3EF17EBC4DC007832C7 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_rollover.tif; path = ../../../close_rollover.tif; sourceTree = "<group>"; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
 		F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabItem.m; sourceTree = "<group>"; };
 		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				F70F127F179F2D8B00DBB74F /* main.m */,
 				F70F1281179F2D8B00DBB74F /* TwIRCk-Prefix.pch */,
 				F70F1282179F2D8B00DBB74F /* Credits.rtf */,
+				F7DBE3EF17EBC4DC007832C7 /* close_rollover.tif */,
+				F7DBE3ED17EBBE05007832C7 /* close_no_rollover.tif */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -388,6 +394,8 @@
 				F70F127E179F2D8B00DBB74F /* InfoPlist.strings in Resources */,
 				F70F1284179F2D8B00DBB74F /* Credits.rtf in Resources */,
 				F70F128A179F2D8B00DBB74F /* MainMenu.xib in Resources */,
+				F7DBE3EE17EBBE05007832C7 /* close_no_rollover.tif in Resources */,
+				F7DBE3F017EBC4DC007832C7 /* close_rollover.tif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

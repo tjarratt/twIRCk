@@ -8,12 +8,25 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GLGTabItem : NSTextField
+@interface GLGTabItem : NSView {
+    NSTextField *textfield;
+    NSImageView *imageView;
+    NSImage *closeButton;
+    NSImage *closeButtonSelected;
+
+    BOOL _selected;
+    BOOL _hover;
+
+    NSRect selectedRect;
+    NSRect unselectedRect;
+    NSTrackingArea *trackingArea;
+    NSTrackingArea *trackingAreaSelected;
+}
 
 @property NSString *name;
-@property BOOL selected;
-@property BOOL hover;
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) label;
+- (void)setSelected:(BOOL)flag;
+- (void)setHover:(BOOL)flag;
 
 @end
