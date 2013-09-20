@@ -261,14 +261,22 @@
             [self joinChannel:channel];
         }
         else if ([command isEqualToString:@"part"]) {
-            NSString *channel = [[parts objectAtIndex:1] lowercaseString];
-            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-            parts = [parts objectsAtIndexes:indices];
-            NSString *remainder = [parts componentsJoinedByString:@" "];
-            message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
-            messageToDisplay = @"";
+            NSString *theChannel;
+            if ([parts count] < 2 && channel) {
+                theChannel = channel;
+                message = [NSString stringWithFormat:@"PART #%@ BBL. I gotta go twirck it elsewhere.", channel];
+                messageToDisplay = @"";
+            }
+            else {
+                theChannel = [[parts objectAtIndex:1] lowercaseString];
+                NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
+                parts = [parts objectsAtIndexes:indices];
+                NSString *remainder = [parts componentsJoinedByString:@" "];
+                message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
+                messageToDisplay = @"";
+            }
 
-            [self partChannel:channel];
+            [self partChannel:theChannel];
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
             NSString *whom = [parts objectAtIndex:1];
