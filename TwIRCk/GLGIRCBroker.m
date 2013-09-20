@@ -13,6 +13,7 @@
 - (id) initWithDelegate:(id <GLGBrokerDelegate>) aDelegate {
     if (self = [super init]) {
         delegate = aDelegate;
+        reconnectAttempts = 0;
     }
 
     return self;
@@ -159,6 +160,8 @@
 }
 
 - (void) didConnectToHost {
+    reconnectAttempts = 0;
+
     // xxx: should wait until we get the real hostname for this server
     [delegate connectedToServer:hostname withInternalName:hostname];
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
@@ -205,6 +208,15 @@
     NSLog(@"closing streams. Should start exponential backoff reconnect attempts");
     [inputStream close];
     [outputStream close];
+
+    NSUInteger waitInterval = pow(2, reconnectAttempts);
+    ++reconnectAttempts;
+    waitInterval = MIN(waitInterval, 60);
+    NSTimer *timer = [NSTimer timerWithTimeInterval:waitInterval target:self selector:@selector(attemptReconnect) userInfo:nil repeats:NO];
+}
+
+- (void) attemptReconnect {
+    NSLog(@"attempt to reconnect");
 }
 
 #pragma mark - Response Parsing (needs to be refactored out of this class)
