@@ -74,11 +74,7 @@
 
 #pragma mark - CoreData support
 - (NSManagedObjectContext *) managedObjectContext {
-    if (contextManager == nil) {
-        contextManager = [[GLGManagedObjectContext alloc] init];
-    }
-
-    return [contextManager managedObjectContext];
+    return [GLGManagedObjectContext managedObjectContext];
 }
 
 - (NSUndoManager *) windowWillReturnUndoManager:(NSWindow *) window {
@@ -86,10 +82,6 @@
 }
 
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *) sender {
-    if (contextManager == nil) {
-        return NSTerminateNow;
-    }
-
     if (![[self managedObjectContext] commitEditing]) {
         NSLog(@"%@:%@ unable to commit editing to terminate", [self class], NSStringFromSelector(_cmd));
         return NSTerminateCancel;

@@ -15,7 +15,6 @@
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;
-    GLGManagedObjectContext *contextManager;
     BOOL serverWindowIsVisible;
 }
 

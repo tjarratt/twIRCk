@@ -175,8 +175,7 @@
     NSMutableArray *mutableChannels = [chans mutableCopy];
     [mutableChannels removeObject:@""];
 
-    GLGManagedObjectContext *contextManager = [[GLGManagedObjectContext alloc] init];
-    NSManagedObjectContext *context = [contextManager managedObjectContext];
+    NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
 
     __block IRCServer *server = [NSEntityDescription insertNewObjectForEntityForName:@"IRCServer" inManagedObjectContext:context];
     [server setHostname:remoteHost];
