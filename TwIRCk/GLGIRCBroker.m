@@ -291,6 +291,17 @@
             message = [@"ACTION " stringByAppendingString:remainder];
             messageToDisplay = [NSString stringWithFormat:@"/me %@", remainder];
         }
+        else if ([command isEqualToString:@"nick"]) {
+            currentNick = [parts objectAtIndex:1];
+            [server setUsername:currentNick];
+            message = [@"NICK " stringByAppendingString:currentNick];
+            messageToDisplay = [NSString stringWithFormat:@"/nick %@", currentNick];
+        }
+        else if ([command isEqualToString:@"pass"]) {
+            [server setPassword:[parts objectAtIndex:1]];
+            message = [@"PASS " stringByAppendingString:server.password];
+            messageToDisplay = [NSString stringWithFormat:@"/pass %@", server.password];
+        }
         else {
             NSLog(@"unknown command: %@", command);
             message = string;
