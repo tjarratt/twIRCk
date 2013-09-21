@@ -34,12 +34,13 @@
         [[username cell] setPlaceholderString:NSLocalizedString(@"(optional)", @"optionalValue")];
 
         password = [self createSecureTextFieldWithIdentifier:@"password" superView:superview];
+        [[password cell] setPlaceholderString:@"***"];
         id passwordLabel = [self createLabelWithIdentifier:@"password" localizedTag:@"passwordLabel" superView:superview];
 
         channels = [self createTextFieldWithIdentifier:@"channels" superView:superview];
         [channels setDefaultValue:@"techendo, twirck, freenode"];
         id channelsLabel = [self createLabelWithIdentifier:@"channels" localizedTag:@"channelsLabel" superView:superview];
-        [[channels cell] setPlaceholderString:@"techendo, nodejs, twirck, freenode (optional)"];
+        [[channels cell] setPlaceholderString:@"techendo, twirck, freenode (optional)"];
 
         NSButton *connect = [[NSButton alloc] init];
         [connect setIdentifier:@"connect"];
