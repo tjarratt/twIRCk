@@ -163,13 +163,18 @@ const CGFloat inputHeight = 50;
 }
 
 - (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser {
-    NSTextView *newLog = [self newChatlog];
-    [chatlogs setValue:newLog forKey:channel];
-    [tabView addItem:channel selected:initiatedByUser forOwner:hostname];
+    // check if we need to create a new one
+    NSTextView *theChatLog = [chatlogs objectForKey:channel];
+    if (theChatLog == nil) {
+        theChatLog = [self newChatlog];
+        [chatlogs setValue:theChatLog forKey:channel];
+        [tabView addItem:channel selected:initiatedByUser forOwner:hostname];
+    }
 
     if (initiatedByUser) {
         currentChannel = channel;
-        [scrollview setDocumentView:newLog];
+        [scrollview setDocumentView:theChatLog];
+        [tabView setSelectedChannelNamed:channel];
     }
 }
 

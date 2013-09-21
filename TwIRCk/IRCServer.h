@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "IRCChannel.h"
+#import "GLGManagedObjectContext.h"
 
 @interface IRCServer : NSManagedObject
 
@@ -18,5 +19,8 @@
 @property (nonatomic, retain) NSNumber * port;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic) BOOL useSSL;
+
+- (BOOL) hasChannel:(NSString *) channelName;
+- (void) addChannelNamed:(NSString *) channelName;
 
 @end

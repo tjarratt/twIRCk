@@ -185,20 +185,7 @@
 - (void) joinChannel:(NSString *) channelName {
     [writer addCommand:[@"JOIN #" stringByAppendingString:channelName]];
     [delegate joinChannel:channelName onServer:hostname userInitiated:YES];
-
-    NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
-
-    IRCChannel *channel = [NSEntityDescription insertNewObjectForEntityForName:@"IRCChannel" inManagedObjectContext:context];
-    [channel setName:channelName];
-    [channel setServer:server];
-    [channel setAutojoin:YES];
-
-    NSError *error;
-    [context save:&error];
-
-    if (error) {
-        NSLog(@"Couldn't save channel %@", channelName);
-    }
+    [server addChannelNamed:channelName];
 }
 
 - (void) partChannel:(NSString *) channelName {
@@ -211,7 +198,7 @@
             NSError *error;
             [context deleteObject:channel];
             [context save:&error];
-            // *stop = YES; // wat
+             stop = YES; // wat
         }
     }];
 }

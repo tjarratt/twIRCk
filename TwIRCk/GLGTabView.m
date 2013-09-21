@@ -67,6 +67,23 @@ const CGFloat tab_padding = -15;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
 }
 
+- (void) setSelectedChannelNamed:(NSString *) name {
+    [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+        [tab setNeedsDisplay:YES];
+
+        if ([[tab name] isEqualToString:name]) {
+            [tab setSelected:YES];
+            selected_tab_index = index;
+        }
+        else {
+            [tab setSelected:NO];
+        }
+    }];
+
+    [self setNeedsDisplay:YES];
+
+}
+
 - (void) removeTabNamed:(NSString *) name {
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
         if ([[tab name] isEqualToString:name]) {

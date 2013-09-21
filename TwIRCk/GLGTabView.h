@@ -22,5 +22,6 @@
 - (void) tabBackward;
 
 - (void) removeTabNamed:(NSString *) name;
+- (void) setSelectedChannelNamed:(NSString *) name;
 
 @end
