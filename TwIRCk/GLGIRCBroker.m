@@ -264,7 +264,7 @@
             NSString *theChannel;
             if ([parts count] < 2 && channel) {
                 theChannel = channel;
-                message = [NSString stringWithFormat:@"PART #%@ BBL. I gotta go twirck it elsewhere.", channel];
+                message = [NSString stringWithFormat:@"PART #%@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channel];
                 messageToDisplay = @"";
             }
             else {
