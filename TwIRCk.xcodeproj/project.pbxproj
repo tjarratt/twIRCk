@@ -321,9 +321,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F70F126F179F2D8B00DBB74F /* TwIRCk */ = {
+		F70F126F179F2D8B00DBB74F /* twIRCk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F70F12A1179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCk" */;
+			buildConfigurationList = F70F12A1179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "twIRCk" */;
 			buildPhases = (
 				F70F126C179F2D8B00DBB74F /* Sources */,
 				F70F126D179F2D8B00DBB74F /* Frameworks */,
@@ -334,7 +334,7 @@
 			);
 			dependencies = (
 			);
-			name = TwIRCk;
+			name = twIRCk;
 			productName = TwIRCk;
 			productReference = F70F1270179F2D8B00DBB74F /* TwIRCk.app */;
 			productType = "com.apple.product-type.application";
@@ -380,7 +380,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F70F126F179F2D8B00DBB74F /* TwIRCk */,
+				F70F126F179F2D8B00DBB74F /* twIRCk */,
 				F70F128F179F2D8C00DBB74F /* TwIRCkTests */,
 			);
 		};
@@ -465,7 +465,7 @@
 /* Begin PBXTargetDependency section */
 		F70F1295179F2D8C00DBB74F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F70F126F179F2D8B00DBB74F /* TwIRCk */;
+			target = F70F126F179F2D8B00DBB74F /* twIRCk */;
 			targetProxy = F70F1294179F2D8C00DBB74F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -631,7 +631,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F70F12A1179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "TwIRCk" */ = {
+		F70F12A1179F2D8C00DBB74F /* Build configuration list for PBXNativeTarget "twIRCk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F70F12A2179F2D8C00DBB74F /* Debug */,
