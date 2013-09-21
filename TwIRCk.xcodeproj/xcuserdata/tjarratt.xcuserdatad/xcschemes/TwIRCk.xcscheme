@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F70F126F179F2D8B00DBB74F"
-               BuildableName = "TwIRCk.app"
+               BuildableName = "twIRCk.app"
                BlueprintName = "twIRCk"
                ReferencedContainer = "container:TwIRCk.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F70F126F179F2D8B00DBB74F"
-            BuildableName = "TwIRCk.app"
+            BuildableName = "twIRCk.app"
             BlueprintName = "twIRCk"
             ReferencedContainer = "container:TwIRCk.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F70F126F179F2D8B00DBB74F"
-            BuildableName = "TwIRCk.app"
+            BuildableName = "twIRCk.app"
             BlueprintName = "twIRCk"
             ReferencedContainer = "container:TwIRCk.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F70F126F179F2D8B00DBB74F"
-            BuildableName = "TwIRCk.app"
+            BuildableName = "twIRCk.app"
             BlueprintName = "twIRCk"
             ReferencedContainer = "container:TwIRCk.xcodeproj">
          </BuildableReference>

@@ -20,6 +20,7 @@
                                                object:nil];
 
     self.windowController = [[NSWindowController alloc] initWithWindow:[self window]];
+    [[self window] setTitle:@"twIRCk"];
 
     // initialize any servers we might have, try to connect to them
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -50,7 +51,8 @@
             chatView = [[GLGChatView alloc] initWithWindow:window];
 
             [chatView connectToServer:server];
-            [window.contentView addSubview:chatView];
+            [[window contentView] addSubview:chatView];
+            [window setTitle:@"twIRCk"];
         }];
     }
     else {
