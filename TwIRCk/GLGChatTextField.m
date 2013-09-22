@@ -20,7 +20,6 @@ const int capacity = 50;
             [history insertObject:@"" atIndex:i];
         }
 
-
         textfield = [[NSTextField alloc] initWithFrame:frame];
         [textfield setDelegate:self];
         [[textfield cell] setPlaceholderString:NSLocalizedString(@"Send a message...", @"input placeholder message")];
