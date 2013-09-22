@@ -104,8 +104,9 @@ const CGFloat tab_padding = -15;
 
 
     if (index == selected_tab_index) {
-        if (selected_tab_index > 0) {
-            --selected_tab_index;
+        ++selected_tab_index;
+        if (selected_tab_index >= [tabs count]) {
+            selected_tab_index = [tabs count] - 1;
         }
 
         [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
