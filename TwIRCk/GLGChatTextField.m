@@ -23,7 +23,9 @@ const int capacity = 50;
 
         textfield = [[NSTextField alloc] initWithFrame:frame];
         [textfield setDelegate:self];
+        [[textfield cell] setPlaceholderString:NSLocalizedString(@"Send a message...", @"input placeholder message")];
         [self addSubview:textfield];
+
     }
 
     return self;
