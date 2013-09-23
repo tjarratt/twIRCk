@@ -37,6 +37,8 @@
     id <GLGBrokerDelegate> delegate;
 }
 
+@property NSMutableDictionary *channelOccupants;
+
 - (id) initWithDelegate:(id <GLGBrokerDelegate>) aDelegate;
 
 - (NSString *) hostname;

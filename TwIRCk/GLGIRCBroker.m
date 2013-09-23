@@ -15,6 +15,7 @@
         delegate = aDelegate;
         reconnectAttempts = 0;
         hasReadHostname = NO;
+        [self setChannelOccupants:[[NSMutableDictionary alloc] init]];
     }
 
     return self;
@@ -88,6 +89,9 @@
     NSMutableArray *theChannels = [[NSMutableArray alloc] init];
     [[server.channels allObjects] enumerateObjectsUsingBlock:^(IRCChannel *chan, NSUInteger index, BOOL *stop) {
         [theChannels addObject:[chan name]];
+
+        NSMutableArray *occupants = [[NSMutableArray alloc] init];
+        [[self channelOccupants] setValue:occupants forKey:[chan name]];
     }];
 
     [self connectToServer:server.hostname
@@ -134,6 +138,11 @@
         NSString *fullName = theSender;
         theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
         string = [NSString stringWithFormat:@"%@ (%@) has joined channel #%@\n", shortName, fullName, theChannel];
+
+        NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
+        [occupants addObject:shortName];
+        [self.channelOccupants setValue:occupants forKey:theChannel];
+        NSLog(@"%@ joined a channel, there are now %lu occupants in %@ -- (%@)", shortName, [occupants count], theChannel, [occupants componentsJoinedByString:@", "]);
     }
     else if ([theType isEqualToString:@"PART"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -141,6 +150,15 @@
         NSString *fullName = theSender;
         theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
         string = [NSString stringWithFormat:@"%@ (%@) has quit channel #%@\n", shortName, fullName, theChannel];
+
+        NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
+        [occupants removeObject:shortName];
+        [self.channelOccupants setValue:occupants forKey:theChannel];
+
+        NSLog(@"%@ left channel %@, there are now %lu occupants -- (%@)", shortName, theChannel, occupants.count, [occupants componentsJoinedByString:@", "]);
+
+        // nb: this doesn't go in the right channel AT ALL
+        // grrrrrr
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -186,19 +204,25 @@
     [writer addCommand:[@"JOIN #" stringByAppendingString:channelName]];
     [delegate joinChannel:channelName onServer:hostname userInitiated:YES];
     [server addChannelNamed:channelName];
+
+    NSMutableArray *occupants = [self.channelOccupants valueForKey:channelName];
+    if (occupants == nil) {
+        occupants = [[NSMutableArray alloc] init];
+        [self.channelOccupants setValue:occupants forKey:channelName];
+    }
 }
 
 - (void) partChannel:(NSString *) channelName {
-    __block NSString *name = channelName;
     [delegate willPartChannel:channelName];
 
+    __block NSString *name = channelName;
     NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
     [[server channels] enumerateObjectsUsingBlock:^(IRCChannel *channel, BOOL *stop) {
         if ([[channel name] isEqualToString:name]) {
             NSError *error;
             [context deleteObject:channel];
             [context save:&error];
-             stop = YES; // wat
+             stop = YES;
         }
     }];
 }
