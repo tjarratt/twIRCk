@@ -62,7 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F70F1270179F2D8B00DBB74F /* TwIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70F1270179F2D8B00DBB74F /* twIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F70F1273179F2D8B00DBB74F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F70F1276179F2D8B00DBB74F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F70F1277179F2D8B00DBB74F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -113,6 +113,7 @@
 		F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
+		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
 		F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_no_rollover.tif; sourceTree = "<group>"; };
 		F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_rollover.tif; sourceTree = "<group>"; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
@@ -160,6 +161,7 @@
 		F70F1267179F2D8B00DBB74F = {
 			isa = PBXGroup;
 			children = (
+				F7C5FF4617F0229C005B522B /* twIRCk.entitlements */,
 				F70F1279179F2D8B00DBB74F /* TwIRCk */,
 				F70F1296179F2D8C00DBB74F /* TwIRCkTests */,
 				F70F1272179F2D8B00DBB74F /* Frameworks */,
@@ -170,7 +172,7 @@
 		F70F1271179F2D8B00DBB74F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F70F1270179F2D8B00DBB74F /* TwIRCk.app */,
+				F70F1270179F2D8B00DBB74F /* twIRCk.app */,
 				F70F1290179F2D8C00DBB74F /* TwIRCkTests.octest */,
 			);
 			name = Products;
@@ -336,7 +338,7 @@
 			);
 			name = twIRCk;
 			productName = TwIRCk;
-			productReference = F70F1270179F2D8B00DBB74F /* TwIRCk.app */;
+			productReference = F70F1270179F2D8B00DBB74F /* twIRCk.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F70F128F179F2D8C00DBB74F /* TwIRCkTests */ = {
@@ -568,6 +570,8 @@
 		F70F12A2179F2D8C00DBB74F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = twIRCk/twIRCk.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
@@ -580,6 +584,8 @@
 		F70F12A3179F2D8C00DBB74F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = twIRCk/twIRCk.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
