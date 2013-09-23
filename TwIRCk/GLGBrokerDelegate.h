@@ -15,4 +15,5 @@
 -(void) receivedString:(NSString *) string inChannel:(NSString *) channel fromHost:(NSString *) host;
 -(void) didPartChannel:(NSString *) channel;
 -(void) willPartChannel:(NSString *) channel;
+-(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel;
 @end

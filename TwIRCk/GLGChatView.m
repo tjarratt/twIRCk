@@ -23,22 +23,28 @@ const CGFloat inputHeight = 50;
         NSRect frame = [content frame];
         [self setFrame:frame];
 
+        input = [[GLGChatTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, inputHeight)];
+        [input setTarget:self];
+        [input setAction:@selector(didSubmitText)];
+        [self addSubview:input];
+
         tabView = [[GLGTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - tabHeight, frame.size.width, tabHeight)];
+        [tabView setNextKeyView:input];
         [self addSubview:tabView];
 
-        NSRect chatRect = NSMakeRect(0, inputHeight, frame.size.width, frame.size.height - 80);
+        NSRect chatRect = NSMakeRect(0, inputHeight, frame.size.width - 150, frame.size.height - 80);
         scrollview = [[NSScrollView alloc] initWithFrame:chatRect];
         [scrollview setBorderType:NSNoBorder];
         [scrollview setHasVerticalScroller:YES];
         [scrollview setHasHorizontalScroller:NO];
         [scrollview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [scrollview setScrollsDynamically:YES];
+        [scrollview setNextKeyView:input];
         [self addSubview:scrollview];
 
-        input = [[GLGChatTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, inputHeight)];
-        [input setTarget:self];
-        [input setAction:@selector(didSubmitText)];
-        [self addSubview:input];
+        NSRect channelRect = NSMakeRect(frame.size.width - 150, inputHeight, 150, frame.size.height - 80);
+        sidebar = [[GLGChannelSidebar alloc] initWithFrame:channelRect];
+        [self addSubview:sidebar];
 
         [window makeFirstResponder:input];
         [window makeKeyAndOrderFront:nil];
@@ -67,8 +73,11 @@ const CGFloat inputHeight = 50;
     NSRect tabFrame = NSMakeRect(0, frame.size.height - tabHeight, frame.size.width, tabHeight);
     [tabView setFrame:tabFrame];
 
-    NSRect scrollFrame = NSMakeRect(0, inputHeight, frame.size.width, frame.size.height - 80);
+    NSRect scrollFrame = NSMakeRect(0, inputHeight, frame.size.width - 150, frame.size.height - 80);
     [scrollview setFrame:scrollFrame];
+
+    NSRect sidebarFrame = NSMakeRect(frame.size.width - 150, inputHeight, 150, frame.size.height - 80);
+    [sidebar setFrame:sidebarFrame];
 
     NSRect inputFrame = NSMakeRect(0, 0, frame.size.width, inputHeight);
     [input setFrame:inputFrame];
@@ -117,6 +126,9 @@ const CGFloat inputHeight = 50;
     NSPoint newOrigin = NSMakePoint(0, NSMaxY([[scrollview documentView] frame]) -
                                     [[scrollview contentView] bounds].size.height);
     [[scrollview documentView] scrollPoint:newOrigin];
+
+    NSArray *occupants = [[self activeBroker] occupantsInChannel:currentChannel];
+    [self updateOccupants:occupants forChannel:currentChannel];
 }
 
 #pragma mark - connection methods
@@ -175,6 +187,9 @@ const CGFloat inputHeight = 50;
         currentChannel = channel;
         [scrollview setDocumentView:theChatLog];
         [tabView setSelectedChannelNamed:channel];
+
+        NSArray *occupants = [[self activeBroker] occupantsInChannel:currentChannel];
+        [self updateOccupants:occupants forChannel:currentChannel];
     }
 }
 
@@ -204,8 +219,13 @@ const CGFloat inputHeight = 50;
 }
 
 - (void) didPartChannel:(NSString *) channel {
-    // close the tab, remove it from our chatlogs
     [chatlogs removeObjectForKey:channel];
+}
+
+-(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel {
+    if ([channel isEqualToString:currentChannel]) {
+        [sidebar showChannelOccupants:occupants];
+    }
 }
 
 #pragma mark - NSResponder methods

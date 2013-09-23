@@ -132,7 +132,35 @@
     }
 
     NSString *theChannel;
-    if ([theType isEqualToString:@"JOIN"]) {
+    if ([theType isEqualToString:@"353"]) {
+        // read the channel and all of the occupants
+        NSError *error;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(.*) :" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSArray *matches = [regex matchesInString:theMessage options:0 range:NSMakeRange(0, theMessage.length)];
+
+        if ([matches count] == 0) {
+            return NSLog(@"could not parse occupants for channel in message : %@", theMessage);
+        }
+
+        NSTextCheckingResult *result = [matches objectAtIndex:0];
+        NSRange channelRange = [result rangeAtIndex:1];
+        theChannel = [theMessage substringWithRange:channelRange];
+
+        NSUInteger start = channelRange.location + channelRange.length + 2;
+        NSUInteger remaining = theMessage.length - start;
+        NSString *nameString = [theMessage substringWithRange:NSMakeRange(start, remaining)];
+        NSArray *names = [nameString componentsSeparatedByString:@" "];
+
+        NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
+        if (occupants == nil) {
+            occupants = [[NSMutableArray alloc] init];
+        }
+
+        [occupants addObjectsFromArray:names];
+        [self.channelOccupants setValue:occupants forKey:theChannel];
+        [delegate updateOccupants:occupants forChannel:theChannel];
+    }
+    else if ([theType isEqualToString:@"JOIN"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
         NSString *shortName = [nameComponents objectAtIndex:0];
         NSString *fullName = theSender;
@@ -142,6 +170,7 @@
         NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
         [occupants addObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
+        [delegate updateOccupants:occupants forChannel:theChannel];
         NSLog(@"%@ joined a channel, there are now %lu occupants in %@ -- (%@)", shortName, [occupants count], theChannel, [occupants componentsJoinedByString:@", "]);
     }
     else if ([theType isEqualToString:@"PART"]) {
@@ -154,10 +183,10 @@
         NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
         [occupants removeObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
-
+        [delegate updateOccupants:occupants forChannel:theChannel];
         NSLog(@"%@ left channel %@, there are now %lu occupants -- (%@)", shortName, theChannel, occupants.count, [occupants componentsJoinedByString:@", "]);
 
-        // nb: this doesn't go in the right channel AT ALL
+        // xxx: this doesn't go in the right channel AT ALL
         // grrrrrr
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
@@ -372,6 +401,10 @@
     }
 
     return NO;
+}
+
+- (NSArray *) occupantsInChannel:(NSString *) channel {
+    return [[self channelOccupants] valueForKey:channel];
 }
 
 @end

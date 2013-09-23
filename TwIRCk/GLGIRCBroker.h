@@ -59,4 +59,5 @@
 - (void) receivedString:(NSString *) string;
 - (void) didConnectToHost;
 - (NSString *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
+- (NSArray *) occupantsInChannel:(NSString *) channel;
 @end

@@ -12,6 +12,7 @@
 #import "GLGResponseCodes.h"
 #import "GLGIRCBroker.h"
 #import "GLGTabView.h"
+#import "GLGChannelSidebar.h"
 #import "IRCServer.h"
 
 @interface GLGChatView : NSView <GLGBrokerDelegate, NSWindowDelegate, NSTextViewDelegate> {
@@ -20,6 +21,7 @@
 
     NSMutableArray *brokers;
 
+    GLGChannelSidebar *sidebar;
     NSScrollView *scrollview;
     GLGChatTextField *input;
 
