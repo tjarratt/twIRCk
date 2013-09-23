@@ -33,6 +33,7 @@
 		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
+		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
 		F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */; };
 		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
@@ -114,6 +115,7 @@
 		F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
 		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
+		F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = twIRCk.iconset; sourceTree = "<group>"; };
 		F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_no_rollover.tif; sourceTree = "<group>"; };
 		F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_rollover.tif; sourceTree = "<group>"; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		F70F127A179F2D8B00DBB74F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */,
 				F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */,
 				F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */,
 				F70F1288179F2D8B00DBB74F /* MainMenu.xib */,
@@ -398,6 +401,7 @@
 				F70F128A179F2D8B00DBB74F /* MainMenu.xib in Resources */,
 				F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */,
 				F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */,
+				F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
