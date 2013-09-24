@@ -290,8 +290,6 @@
 				F7E9A8AB17E79BB6000AD4BB /* Tabs */,
 				F70F12CF17A9962200DBB74F /* GLGNewServer.h */,
 				F70F12D017A9962200DBB74F /* GLGNewServer.m */,
-				F7C5FF6C17F12155005B522B /* GLGChatLogView.h */,
-				F7C5FF6D17F12155005B522B /* GLGChatLogView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -347,6 +345,8 @@
 				F70F12D317A9980800DBB74F /* GLGChatView.m */,
 				F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */,
 				F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */,
+				F7C5FF6C17F12155005B522B /* GLGChatLogView.h */,
+				F7C5FF6D17F12155005B522B /* GLGChatLogView.m */,
 			);
 			name = Chat;
 			sourceTree = "<group>";

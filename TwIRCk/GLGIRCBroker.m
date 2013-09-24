@@ -156,9 +156,18 @@
             occupants = [[NSMutableArray alloc] init];
         }
 
+        string = @"";
         [occupants addObjectsFromArray:names];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
+    }
+    else if ([theType isEqualToString:@"366"]) {
+        string = @""; // end of /NAMES list
+        theChannel = theSender;
+    }
+    else if ([theType isEqualToString:@"NICK"]) {
+        // change username for theSender to theMessage
+        // at this point it would be nice to actually keep the entire username around, right?
     }
     else if ([theType isEqualToString:@"JOIN"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
