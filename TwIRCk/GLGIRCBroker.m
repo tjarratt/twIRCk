@@ -413,9 +413,13 @@
         }
     }
     else {
-        // xxx need to find out if channel is a channel or a person
-        // because that blocks private messaging
-        [ircMessage setRaw:[NSString stringWithFormat:@"PRIVMSG #%@ :%@", channel, string]];
+        // xxx would be better if we didn't have to look this up every time
+        NSSet *currentChannels = [server channels];
+        if ([currentChannels containsObject:channel]) {
+            channel = [@"#" stringByAppendingString:channel];
+        }
+
+        [ircMessage setRaw:[NSString stringWithFormat:@"PRIVMSG %@ :%@", channel, string]];
         [ircMessage setMessage:[NSString stringWithFormat:@"<%@> %@", currentNick, string]];
     }
 
