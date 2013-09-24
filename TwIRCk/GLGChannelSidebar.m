@@ -59,6 +59,7 @@
         ++i;
     }];
 
+    [scrollView setNeedsDisplay:YES];
     [[scrollView documentView] scrollPoint:NSMakePoint(0, fullHeight)];
 }
 
