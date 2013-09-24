@@ -240,6 +240,7 @@
 - (void) didConnectToHost {
     reconnectAttempts = 0;
     [delegate connectedToServer:hostname];
+    
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
         [writer addCommand:[@"JOIN #" stringByAppendingString:chan]];
         [delegate joinChannel:chan onServer:hostname userInitiated:NO];

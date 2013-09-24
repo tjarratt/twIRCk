@@ -166,10 +166,13 @@ const CGFloat inputHeight = 50;
 - (void) connectedToServer:(NSString *)hostname {
     [self didConnectToHost:hostname];
 
+    if ([chatlogs objectForKey:hostname] != nil) {
+        return;
+    }
+    
     [tabView addItem:hostname forOwner:hostname];
     GLGChatLogView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:hostname];
-
     if ([tabView count] == 1) {
         currentChannel = hostname;
         [scrollview setDocumentView:newLog];
