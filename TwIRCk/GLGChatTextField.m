@@ -20,7 +20,8 @@ const int capacity = 50;
             [history insertObject:@"" atIndex:i];
         }
 
-        textfield = [[NSTextField alloc] initWithFrame:frame];
+        NSRect innerFrame = NSMakeRect(frame.origin.x + 12, frame.origin.y + 12, frame.size.width - 24, frame.size.height - 24);
+        textfield = [[NSTextField alloc] initWithFrame:innerFrame];
         [textfield setDelegate:self];
         [[textfield cell] setPlaceholderString:NSLocalizedString(@"Send a message...", @"input placeholder message")];
         [self addSubview:textfield];
@@ -30,9 +31,10 @@ const int capacity = 50;
     return self;
 }
 
-- (void) setFrame:(NSRect) frameRect {
-    [super setFrame:frameRect];
-    [textfield setFrame:frameRect];
+- (void) setFrame:(NSRect) frame {
+    [super setFrame:frame];
+    NSRect innerFrame = NSMakeRect(frame.origin.x + 12, frame.origin.y + 12, frame.size.width - 24, frame.size.height - 24);
+    [textfield setFrame:innerFrame];
 }
 
 - (NSString *) currentText {
