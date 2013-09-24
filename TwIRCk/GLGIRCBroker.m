@@ -203,14 +203,15 @@
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
         NSString *shortName = [nameComponents objectAtIndex:0];
         NSString *fullName = theSender;
-        theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
+
+        NSArray *partComponents = [theMessage componentsSeparatedByString:@" "];
+        theChannel = [[partComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"#" withString:@""];
         string = [NSString stringWithFormat:@"%@ (%@) has quit channel #%@\n", shortName, fullName, theChannel];
 
         NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
         [occupants removeObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
-        // xxx: this doesn't go in the right channel AT ALL grrrrrr
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
