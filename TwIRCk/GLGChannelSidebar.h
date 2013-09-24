@@ -8,10 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "GLGChannelContent.h"
+#import "GLGGradientSidebar.h"
 
 @interface GLGChannelSidebar : NSView {
     GLGChannelContent *innerView;
-    NSScrollView *scrollView;
+    GLGGradientSidebar *scrollView;
 }
 
 - (void) showChannelOccupants:(NSArray *) occupants;

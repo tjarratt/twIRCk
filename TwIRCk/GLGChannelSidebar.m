@@ -12,13 +12,14 @@
 
 - (id)initWithFrame:(NSRect) frame {
     if (self = [super initWithFrame:frame]) {
-        scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, frame.size.height)];
+        scrollView = [[GLGGradientSidebar alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, frame.size.height)];
         [scrollView setBorderType:NSNoBorder];
         [scrollView setHasVerticalScroller:YES];
         [scrollView setHasHorizontalScroller:NO];
         [scrollView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [scrollView setScrollsDynamically:YES];
         [scrollView setWantsLayer:YES];
+        [scrollView setBackgroundColor:[NSColor clearColor]];
          [self addSubview:scrollView];
 
         innerView = [[GLGChannelContent alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, frame.size.height)];
