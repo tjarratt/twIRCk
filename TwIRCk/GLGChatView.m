@@ -159,7 +159,10 @@ const CGFloat inputHeight = 50;
     NSString *string = [input stringValue];
     if ([string isEqualToString:@""]) { return; }
 
-    assert( currentChannel != nil ); // nb : probably a good idea to let the tabview tell us what the current chan is
+    if (currentChannel == nil) {
+        NSLog(@"currentChannel is nil. Probably not connected");
+        return [self receivedString:@"Error: not in any channel. Probably still waiting for connection" inChannel:@"error" fromHost:[[self activeBroker] hostname]];
+    }
 
     GLGIRCMessage *msg = [[self activeBroker] didSubmitText:string inChannel:currentChannel];
     NSString *messageToDisplay = [msg message];
