@@ -100,6 +100,7 @@ const CGFloat inputHeight = 50;
     [[textview textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
     [[textview textContainer] setWidthTracksTextView:YES];
     [textview setEditable:NO];
+    [textview setSelectable:YES];
     [textview setRichText:YES];
     [textview setNextKeyView:input];
 
@@ -253,6 +254,28 @@ const CGFloat inputHeight = 50;
     }
     else {
         [tabView removeTabNamed:currentChannel];
+    }
+}
+
+- (IBAction) copy:(id) sender {
+    GLGChatLogView *chat = [self currentChatlogTextView];
+    NSArray *selectedRanges = [chat selectedRanges];
+    if ([selectedRanges count] == 0) {
+        return;
+    }
+
+    NSMutableArray *selections = [[NSMutableArray alloc] init];
+    [selectedRanges enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
+        NSRange range = [obj rangeValue];
+        NSString *selection = [[chat string] substringWithRange:range];
+        [selections addObject:selection];
+    }];
+
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    [pasteboard clearContents];
+    
+    if (![pasteboard writeObjects:selections]) {
+        NSLog(@"error: could not copy to pasteboard");
     }
 }
 
