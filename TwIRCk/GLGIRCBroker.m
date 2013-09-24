@@ -266,7 +266,7 @@
             NSError *error;
             [context deleteObject:channel];
             [context save:&error];
-             stop = YES;
+            // *stop = YES;
         }
     }];
 }

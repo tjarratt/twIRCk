@@ -22,7 +22,7 @@
     [[self channels] enumerateObjectsUsingBlock:^(IRCChannel *chan, BOOL *stop) {
         if ([[chan name] isEqualToString:channelName]) {
             hasChannel = YES;
-            stop = YES;
+//            *stop = YES;
         }
     }];
 
