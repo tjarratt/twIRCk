@@ -37,6 +37,7 @@
 		F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */; };
 		F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6717F0E073005B522B /* GLGChannelContent.m */; };
 		F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */; };
+		F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6D17F12155005B522B /* GLGChatLogView.m */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
 		F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */; };
 		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
@@ -125,6 +126,8 @@
 		F7C5FF6717F0E073005B522B /* GLGChannelContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChannelContent.m; sourceTree = "<group>"; };
 		F7C5FF6917F1155C005B522B /* GLGGradientSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGGradientSidebar.h; sourceTree = "<group>"; };
 		F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGGradientSidebar.m; sourceTree = "<group>"; };
+		F7C5FF6C17F12155005B522B /* GLGChatLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatLogView.h; sourceTree = "<group>"; };
+		F7C5FF6D17F12155005B522B /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatLogView.m; sourceTree = "<group>"; };
 		F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_no_rollover.tif; sourceTree = "<group>"; };
 		F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_rollover.tif; sourceTree = "<group>"; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				F7E9A8AB17E79BB6000AD4BB /* Tabs */,
 				F70F12CF17A9962200DBB74F /* GLGNewServer.h */,
 				F70F12D017A9962200DBB74F /* GLGNewServer.m */,
+				F7C5FF6C17F12155005B522B /* GLGChatLogView.h */,
+				F7C5FF6D17F12155005B522B /* GLGChatLogView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */,
 				F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */,
 				F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */,
+				F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

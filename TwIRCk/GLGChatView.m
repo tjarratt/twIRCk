@@ -89,9 +89,9 @@ const CGFloat inputHeight = 50;
 }
 
 #pragma mark - handling chat logs
-- (NSTextView *) newChatlog {
+- (GLGChatLogView *) newChatlog {
     NSSize contentSize = [scrollview contentSize];
-    NSTextView *textview = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
+    GLGChatLogView *textview = [[GLGChatLogView alloc] initWithFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
     [textview setMinSize:NSMakeSize(0, contentSize.height)];
     [textview setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     [textview setVerticallyResizable:YES];
@@ -100,20 +100,16 @@ const CGFloat inputHeight = 50;
     [[textview textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
     [[textview textContainer] setWidthTracksTextView:YES];
     [textview setEditable:NO];
-    [textview setSelectable:NO];
     [textview setRichText:YES];
-    [textview setDelegate:self];
+    [textview setNextKeyView:input];
 
     return textview;
 }
 
-- (NSTextView *) currentChatlogTextView {
+- (GLGChatLogView *) currentChatlogTextView {
     return [chatlogs objectForKey:currentChannel];
 }
 
-- (void) textView:(NSTextView *)textView clickedOnCell:(id<NSTextAttachmentCell>)cell inRect:(NSRect)cellFrame {
-    [window makeFirstResponder:input];
-}
 
 #pragma mark - NSNotificationCenter actions
 - (void) close:(NSNotification *) notification {
@@ -122,7 +118,7 @@ const CGFloat inputHeight = 50;
 
 - (void) handleTabSelection:(NSNotification *) notification {
     NSString *newChannel = [notification object];
-    NSTextView *chat = [chatlogs objectForKey:newChannel];
+    GLGChatLogView *chat = [chatlogs objectForKey:newChannel];
 
     assert( chat != nil );
 
@@ -170,7 +166,7 @@ const CGFloat inputHeight = 50;
     [self didConnectToHost:hostname];
 
     [tabView addItem:hostname forOwner:hostname];
-    NSTextView *newLog = [self newChatlog];
+    GLGChatLogView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:hostname];
 
     if ([tabView count] == 1) {
@@ -181,7 +177,7 @@ const CGFloat inputHeight = 50;
 
 - (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser {
     // check if we need to create a new one
-    NSTextView *theChatLog = [chatlogs objectForKey:channel];
+    GLGChatLogView *theChatLog = [chatlogs objectForKey:channel];
     if (theChatLog == nil) {
         theChatLog = [self newChatlog];
         [chatlogs setValue:theChatLog forKey:channel];
@@ -202,7 +198,7 @@ const CGFloat inputHeight = 50;
               inChannel:(NSString *)channel
                fromHost:(NSString *)host
 {
-    NSTextView *log = [chatlogs objectForKey:channel];
+    GLGChatLogView *log = [chatlogs objectForKey:channel];
     if (log == nil) {
         [tabView addItem:channel selected:NO forOwner:host];
         log = [self newChatlog];
@@ -244,11 +240,9 @@ const CGFloat inputHeight = 50;
 
     if (flags & NSShiftKeyMask) {
         [tabView tabBackward];
-        [window makeFirstResponder:input];
     }
     else {
         [tabView tabForward];
-        [window makeFirstResponder:input];
     }
 }
 
