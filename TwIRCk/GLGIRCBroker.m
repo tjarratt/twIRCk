@@ -407,15 +407,11 @@
             [ircMessage setMessage:string];
         }
     }
-    else if (channel) {
+    else {
+        // xxx need to find out if channel is a channel or a person
+        // because that blocks private messaging
         [ircMessage setRaw:[NSString stringWithFormat:@"PRIVMSG #%@ :%@", channel, string]];
         [ircMessage setMessage:[NSString stringWithFormat:@"<%@> %@", currentNick, string]];
-    }
-    else {
-        NSLog(@"message sent with no receiving channel");
-        [ircMessage setMessage:string];
-        [ircMessage setRaw:string];
-        [ircMessage setTarget:channel];
     }
 
     [writer addCommand:[ircMessage raw]];
