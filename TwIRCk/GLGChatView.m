@@ -26,6 +26,7 @@ const CGFloat inputHeight = 50;
         input = [[GLGChatTextField alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, inputHeight)];
         [input setTarget:self];
         [input setAction:@selector(didSubmitText)];
+        [input setNextKeyView:self];
         [self addSubview:input];
 
         tabView = [[GLGTabView alloc] initWithFrame:NSMakeRect(0, frame.size.height - tabHeight, frame.size.width, tabHeight)];
@@ -100,7 +101,6 @@ const CGFloat inputHeight = 50;
     [[textview textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
     [[textview textContainer] setWidthTracksTextView:YES];
     [textview setEditable:NO];
-    [textview setSelectable:YES];
     [textview setRichText:YES];
     [textview setNextKeyView:input];
 
