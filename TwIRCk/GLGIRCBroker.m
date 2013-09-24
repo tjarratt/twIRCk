@@ -340,7 +340,7 @@
             NSString *remainder = [parts componentsJoinedByString:@" "];
 
             [ircMessage setRaw:[NSString stringWithFormat:@"JOIN #%@ %@", channel, remainder]];
-            [ircMessage setMessage:[NSString stringWithFormat:@"/join %@, %@", channel, remainder]];
+            [ircMessage setMessage:[NSString stringWithFormat:@"/join %@ %@", channel, remainder]];
             [ircMessage setTarget:channel];
 
             [self joinChannel:channel];
