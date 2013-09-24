@@ -415,8 +415,7 @@
     }
     else {
         // xxx would be better if we didn't have to look this up every time
-        NSSet *currentChannels = [server channels];
-        if ([currentChannels containsObject:channel]) {
+        if ([server hasChannel:channel]) {
             channel = [@"#" stringByAppendingString:channel];
         }
 
