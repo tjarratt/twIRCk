@@ -171,7 +171,6 @@
         [occupants addObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
-        NSLog(@"%@ joined a channel, there are now %lu occupants in %@ -- (%@)", shortName, [occupants count], theChannel, [occupants componentsJoinedByString:@", "]);
     }
     else if ([theType isEqualToString:@"PART"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -184,10 +183,7 @@
         [occupants removeObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
-        NSLog(@"%@ left channel %@, there are now %lu occupants -- (%@)", shortName, theChannel, occupants.count, [occupants componentsJoinedByString:@", "]);
-
-        // xxx: this doesn't go in the right channel AT ALL
-        // grrrrrr
+        // xxx: this doesn't go in the right channel AT ALL grrrrrr
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];

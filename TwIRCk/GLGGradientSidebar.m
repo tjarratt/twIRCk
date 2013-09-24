@@ -11,7 +11,6 @@
 @implementation GLGGradientSidebar
 
 - (void)drawRect:(NSRect) dirtyRect {
-    NSLog(@"drawing a dirty scrollview rect");
     [super drawRect:dirtyRect];
 
     NSColor *startingColor = [NSColor colorWithDeviceRed:0.8 green:0.8 blue:0.85 alpha:1.0];

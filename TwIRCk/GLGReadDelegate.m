@@ -45,9 +45,6 @@
 
                 if (delegate) {
                     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    if (previousBuffer == nil ) {
-                        NSLog(@"ANOTHER interesting edge case! got message %@", str);
-                    }
                     if (str == nil) {
                         NSLog(@"decoded string is nil. Attempting to decode again as ASCII");
                         str = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
@@ -61,10 +58,6 @@
                     unichar lastChar = [str characterAtIndex:(str.length - 1)];
                     if (lastChar != 10) {
                         previousBuffer = [components objectAtIndex:(components.count - 1)];
-                        if (previousBuffer == nil ) {
-                            NSLog(@"interesting edge case! got message %@", str);
-                            NSLog(@"with %lu components, last char was %d and previous buffer was set to 'last component': %@", [components count], lastChar, [components objectAtIndex:(components.count - 1)]);
-                        }
                         [components removeObjectAtIndex:(components.count -1)];
                     }
 
