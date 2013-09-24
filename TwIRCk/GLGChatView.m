@@ -253,7 +253,9 @@ const CGFloat inputHeight = 50;
         [[self window] close];
     }
     else {
-        [tabView removeTabNamed:currentChannel];
+        NSString *channel = currentChannel;
+        [tabView removeTabNamed:channel];
+        [[self activeBroker] partChannel:channel];
     }
 }
 

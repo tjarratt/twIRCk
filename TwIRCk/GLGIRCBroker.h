@@ -57,7 +57,7 @@
             withChannels:(NSArray *) channels;
 
 - (void) receivedString:(NSString *) string;
-- (void) didConnectToHost;
+- (void) partChannel:(NSString *) channelName;
 - (NSString *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
 - (NSArray *) occupantsInChannel:(NSString *) channel;
 @end

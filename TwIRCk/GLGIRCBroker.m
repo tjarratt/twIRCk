@@ -259,18 +259,33 @@
 }
 
 - (void) partChannel:(NSString *) channelName {
-    [delegate willPartChannel:channelName];
-
     __block NSString *name = channelName;
     NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
+
+    NSMutableSet *channels = [[server channels] mutableCopy];
+
+    __block IRCChannel *theChannel;
     [[server channels] enumerateObjectsUsingBlock:^(IRCChannel *channel, BOOL *stop) {
         if ([[channel name] isEqualToString:name]) {
-            NSError *error;
-            [context deleteObject:channel];
-            [context save:&error];
+            theChannel = channel;
             // *stop = YES;
         }
     }];
+
+    if (theChannel) {
+        [channels removeObject:theChannel];
+        [server setChannels:[channels copy]];
+
+        NSError *error;
+        [context deleteObject:theChannel];
+        [context save:&error];
+
+        [delegate didPartChannel:channelName];
+    }
+    else {
+        NSLog(@"couldn't find a channel named %@ belonging to server %@, oh no!", channelName, server.hostname);
+    }
+
 }
 
 - (void) streamDidClose {
@@ -333,6 +348,7 @@
                 messageToDisplay = @"";
             }
 
+            [delegate willPartChannel:theChannel];
             [self partChannel:theChannel];
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
