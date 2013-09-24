@@ -58,6 +58,8 @@
         [innerView addSubview:label];
         ++i;
     }];
+
+    [[scrollView documentView] scrollPoint:NSMakePoint(0, fullHeight)];
 }
 
 @end
