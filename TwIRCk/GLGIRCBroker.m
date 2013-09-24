@@ -153,13 +153,18 @@
         NSString *nameString = [theMessage substringWithRange:NSMakeRange(start, remaining)];
         NSArray *names = [nameString componentsSeparatedByString:@" "];
 
+        NSMutableArray *cleanedNames = [[NSMutableArray alloc] init];
+        [names enumerateObjectsUsingBlock:^(NSString *occupant, NSUInteger index, BOOL *stop) {
+            [cleanedNames addObject:[occupant stringByReplacingOccurrencesOfString:@"@" withString:@""]];
+        }];
+
         NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
         if (occupants == nil) {
             occupants = [[NSMutableArray alloc] init];
         }
 
         string = @"";
-        [occupants addObjectsFromArray:names];
+        [occupants addObjectsFromArray:cleanedNames];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
     }
