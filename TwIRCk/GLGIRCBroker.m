@@ -220,6 +220,11 @@
         theChannel = [[theMessage substringWithRange:NSMakeRange(0, firstSpace.location)] stringByReplacingOccurrencesOfString:@"#" withString:@""];
         theMessage = [theMessage substringWithRange:NSMakeRange(firstSpace.location + 2, theMessage.length - (firstSpace.location + 2))];
         string = [NSString stringWithFormat:@"<%@> %@\n", whom, theMessage];
+
+        // private message to use from another user
+        if ([theChannel isEqualToString:currentNick]) {
+            theChannel = whom;
+        }
     }
     else {
         theChannel = theSender;
