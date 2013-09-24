@@ -40,6 +40,7 @@
 		F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6D17F12155005B522B /* GLGChatLogView.m */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
 		F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */; };
+		F7E5E77817F2320F00A85FFB /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
 		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,8 @@
 		F7C5FF6D17F12155005B522B /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatLogView.m; sourceTree = "<group>"; };
 		F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_no_rollover.tif; sourceTree = "<group>"; };
 		F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_rollover.tif; sourceTree = "<group>"; };
+		F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCMessage.h; sourceTree = "<group>"; };
+		F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGIRCMessage.m; sourceTree = "<group>"; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
 		F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabItem.m; sourceTree = "<group>"; };
 		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */,
 				F7819BA417EB6A48004DB741 /* GLGIRCBroker.h */,
 				F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */,
+				F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */,
+				F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */,
 				F70F127A179F2D8B00DBB74F /* Supporting Files */,
 			);
 			path = TwIRCk;
@@ -487,6 +492,7 @@
 				F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */,
 				F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */,
 				F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */,
+				F7E5E77817F2320F00A85FFB /* GLGIRCMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

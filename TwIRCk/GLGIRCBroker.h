@@ -12,6 +12,7 @@
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
 #import "IRCServer.h"
+#import "GLGIRCMessage.h"
 
 @protocol GLGBrokerDelegate;
 
@@ -58,6 +59,6 @@
 
 - (void) receivedString:(NSString *) string;
 - (void) partChannel:(NSString *) channelName;
-- (NSString *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
+- (GLGIRCMessage *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
 - (NSArray *) occupantsInChannel:(NSString *) channel;
 @end

@@ -161,10 +161,17 @@ const CGFloat inputHeight = 50;
 
     assert( currentChannel != nil ); // nb : probably a good idea to let the tabview tell us what the current chan is
 
-    NSString *messageToDisplay = [[self activeBroker] didSubmitText:string inChannel:currentChannel];
+    GLGIRCMessage *msg = [[self activeBroker] didSubmitText:string inChannel:currentChannel];
+    NSString *messageToDisplay = [msg message];
+    NSString *channelToDisplay = [msg target];
+    NSString *activeHost = [[self activeBroker] hostname];
+
+    if (currentChannel != channelToDisplay) {
+        [self joinChannel:channelToDisplay onServer:activeHost userInitiated:YES];
+        currentChannel = channelToDisplay;
+    }
 
     [input clearTextField];
-    NSString *activeHost = [[self activeBroker] hostname];
     [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel fromHost:activeHost];
 }
 
