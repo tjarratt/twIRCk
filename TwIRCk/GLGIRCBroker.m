@@ -161,9 +161,19 @@
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
     }
-    else if ([theType isEqualToString:@"366"]) {
-        string = @""; // end of /NAMES list
+    else if ([theType isEqualToString:@"366"] || [theType isEqualToString:@"376"]) {
+        string = @""; // "end of /NAMES list" or "end of MOTD"
         theChannel = theSender;
+    }
+    else if ([theType isEqualToString:@"NOTICE"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [string rangeOfString:@":"].location;
+        string = [[theMessage substringFromIndex:startIndex + 3] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"372"]) {
+        theChannel = theSender;
+        NSUInteger indexOfMessageStart = [string rangeOfString:@":-"].location;
+        string = [[string substringFromIndex:indexOfMessageStart + 2] stringByAppendingString:@"\n"];
     }
     else if ([theType isEqualToString:@"NICK"]) {
         // change username for theSender to theMessage
