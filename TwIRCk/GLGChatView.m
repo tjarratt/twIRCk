@@ -55,6 +55,7 @@ const CGFloat inputHeight = 50;
         chatlogs = [[NSMutableDictionary alloc] init];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"did_switch_tabs" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close:) name:@"removed_last_tab" object:nil];
     }
 
     return self;
@@ -115,6 +116,10 @@ const CGFloat inputHeight = 50;
 }
 
 #pragma mark - NSNotificationCenter actions
+- (void) close:(NSNotification *) notification {
+    [[self window] close];
+}
+
 - (void) handleTabSelection:(NSNotification *) notification {
     NSString *newChannel = [notification object];
     NSTextView *chat = [chatlogs objectForKey:newChannel];
