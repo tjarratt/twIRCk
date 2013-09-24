@@ -57,6 +57,7 @@ const CGFloat inputHeight = 50;
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTabSelection:) name:@"did_switch_tabs" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close:) name:@"removed_last_tab" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabCloseButtonClicked:) name:@"chatview_closed_tab" object:nil];
     }
 
     return self;
@@ -115,6 +116,11 @@ const CGFloat inputHeight = 50;
 #pragma mark - NSNotificationCenter actions
 - (void) close:(NSNotification *) notification {
     [[self window] close];
+}
+
+- (void) tabCloseButtonClicked:(NSNotification *) notification {
+    NSString *name = [notification object];
+    [self closedTabNamed:name];
 }
 
 - (void) handleTabSelection:(NSNotification *) notification {
@@ -250,6 +256,12 @@ const CGFloat inputHeight = 50;
     }
 }
 
+- (void) closedTabNamed:(NSString *) channel {
+    [tabView removeTabNamed:channel];
+    [[self activeBroker] partChannel:channel];
+    [chatlogs removeObjectForKey:channel];
+}
+
 #pragma mark - IBActions
 - (void) closeActiveTabOrWindow {
     if ([tabView count] == 1) {
@@ -257,8 +269,7 @@ const CGFloat inputHeight = 50;
     }
     else {
         NSString *channel = currentChannel;
-        [tabView removeTabNamed:channel];
-        [[self activeBroker] partChannel:channel];
+        [self closedTabNamed:channel];
     }
 }
 

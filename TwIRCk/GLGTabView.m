@@ -98,10 +98,11 @@ const CGFloat tab_padding = -15;
     [the_tab removeFromSuperview];
     [tabs removeObjectAtIndex:index];
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"chatview_closed_tab" object:[the_tab name]];
+
     if ([tabs count] == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removed_last_tab" object:nil];
     }
-
 
     if (index == selected_tab_index) {
         if (selected_tab_index >= [tabs count]) {
