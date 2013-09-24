@@ -180,6 +180,7 @@
     else if ([theType isEqualToString:@"NICK"]) {
         // change username for theSender to theMessage
         // at this point it would be nice to actually keep the entire username around, right?
+        theChannel = hostname;
     }
     else if ([theType isEqualToString:@"JOIN"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -280,8 +281,6 @@
         NSError *error;
         [context deleteObject:theChannel];
         [context save:&error];
-
-        [delegate didPartChannel:channelName];
     }
     else {
         NSLog(@"couldn't find a channel named %@ belonging to server %@, oh no!", channelName, server.hostname);
@@ -337,8 +336,9 @@
             NSString *theChannel;
             if ([parts count] < 2 && channel) {
                 theChannel = channel;
+                NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
                 message = [NSString stringWithFormat:@"PART #%@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channel];
-                messageToDisplay = @"";
+                messageToDisplay = [NSString stringWithFormat:@"/part %@ %@", channel, defaultMessage];
             }
             else {
                 theChannel = [[parts objectAtIndex:1] lowercaseString];
@@ -346,10 +346,9 @@
                 parts = [parts objectsAtIndexes:indices];
                 NSString *remainder = [parts componentsJoinedByString:@" "];
                 message = [NSString stringWithFormat:@"PART #%@ %@", channel, remainder];
-                messageToDisplay = @"";
+                messageToDisplay = [NSString stringWithFormat:@"/part %@ %@", channel, remainder];
             }
-
-            [delegate willPartChannel:theChannel];
+            
             [self partChannel:theChannel];
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
