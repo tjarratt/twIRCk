@@ -37,5 +37,6 @@
 - (id) initWithWindow:(NSWindow *) _window;
 - (void) connectToServer:(IRCServer *) server;
 - (void) closeActiveTabOrWindow;
+- (IBAction) copy:(id) sender;
 @end
 

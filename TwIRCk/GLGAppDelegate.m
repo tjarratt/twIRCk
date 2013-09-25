@@ -163,10 +163,14 @@
     [NSApp terminate:self];
 }
 
-- (IBAction)closeActiveWindow:(id)sender {
+- (IBAction) closeActiveWindow:(id)sender {
     if (chatView) {
         [chatView closeActiveTabOrWindow];
     }
+}
+
+- (IBAction) copy:(id) sender {
+    [chatView copy:sender];
 }
 
 @end
