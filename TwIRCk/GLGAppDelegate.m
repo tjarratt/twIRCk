@@ -48,10 +48,10 @@
             IRCServer *server = (IRCServer *)obj;
 
             NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
-            chatView = [[GLGChatView alloc] initWithWindow:window];
+            self.chatView = [[GLGChatView alloc] initWithWindow:window];
 
-            [chatView connectToServer:server];
-            [[window contentView] addSubview:chatView];
+            [self.chatView connectToServer:server];
+            [[window contentView] addSubview:self.chatView];
             [window setTitle:@"twIRCk"];
         }];
     }
@@ -164,13 +164,13 @@
 }
 
 - (IBAction) closeActiveWindow:(id)sender {
-    if (chatView) {
-        [chatView closeActiveTabOrWindow];
+    if (_chatView) {
+        [_chatView closeActiveTabOrWindow];
     }
 }
 
 - (IBAction) copy:(id) sender {
-    [chatView copy:sender];
+    [_chatView copy:sender];
 }
 
 @end

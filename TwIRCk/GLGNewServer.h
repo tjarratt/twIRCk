@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 #import "GLGChatView.h"
 #import "GLGConnectionView.h"
 #import "GLGDefaultValueTextField.h"
 #import "GLGManagedObjectContext.h"
+#import "GLGAppDelegate.h"
 
 @class GLGChatView;
 

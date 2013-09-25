@@ -240,6 +240,9 @@
     }
 
     [chatView connectToServer:server];
+
+    GLGAppDelegate *delegate = [NSApp delegate];
+    [delegate setChatView:chatView];
 }
 
 - (void) shouldClose {

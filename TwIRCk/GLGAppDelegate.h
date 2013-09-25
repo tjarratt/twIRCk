@@ -16,12 +16,13 @@
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
-    GLGChatView *chatView;
 }
 
+@property (retain) GLGChatView *chatView;
 @property (assign) IBOutlet NSWindow *window;
 @property (strong, nonatomic) NSWindowController * windowController;
 
 - (IBAction)closeActiveWindow:(id)sender;
+- (IBAction)copy:(id)sender;
 
 @end
