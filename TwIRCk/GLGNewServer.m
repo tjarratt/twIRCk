@@ -160,6 +160,21 @@
     UInt32 remotePort = [port intValue];
     useSSL = ([ssl state] == NSOnState || remotePort == 6697) ? YES : NO;
 
+    SCNetworkConnectionFlags flags = 0;
+    const char *hostName = [remoteHost cStringUsingEncoding:NSASCIIStringEncoding];
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithName(NULL, hostName);
+    BOOL ok = SCNetworkReachabilityGetFlags(target, &flags);
+    if (!ok || flags == 0) {
+        NSString *failure = NSLocalizedString(@"Could not connect to server. Ensure your hostname is correct and that you are connected to the internet.", @"failureConnectToHostOnPort");
+
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:failure forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"GLG_TWIRC_ERR" code:200 userInfo:dict];
+
+        [[NSApplication sharedApplication] presentError:error];
+        return NSLog(@"big trouble in little IRC client. Could not open write stream to %@ on port %d", remoteHost, remotePort);
+    }
+
     [port setIntValue:remotePort];
     if (useSSL) { [ssl setState:NSOnState]; }
     else { [ssl setState:NSOffState]; }
