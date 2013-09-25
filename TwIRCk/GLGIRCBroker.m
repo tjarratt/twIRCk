@@ -208,11 +208,18 @@
         theChannel = [partComponents objectAtIndex:0];
         string = [NSString stringWithFormat:@"%@ (%@) has quit channel %@\n", shortName, fullName, theChannel];
 
-        [self userLeftChannel:theChannel withNick:shortName];
-        NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
-        [occupants removeObject:shortName];
-        [self.channelOccupants setValue:occupants forKey:theChannel];
-        [delegate updateOccupants:occupants forChannel:theChannel];
+        // xxx it would be ideal if we could still show this IFF the tab is open
+        if ([shortName isEqualToString:currentNick]) {
+            string = @"";
+            theChannel = server.hostname;
+        }
+        else {
+            [self userLeftChannel:theChannel withNick:shortName];
+            NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
+            [occupants removeObject:shortName];
+            [self.channelOccupants setValue:occupants forKey:theChannel];
+            [delegate updateOccupants:occupants forChannel:theChannel];
+        }
     }
     else if ([theType isEqualToString:@"QUIT"]) {
         NSString *nick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
