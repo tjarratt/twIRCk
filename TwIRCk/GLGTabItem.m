@@ -12,8 +12,8 @@
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) theLabel {
     if (self = [super initWithFrame:frame]) {
-        selectedRect = NSMakeRect(10, 8, frame.size.width - 35, frame.size.height);
-        unselectedRect = NSMakeRect(10, 8, frame.size.width - 20, frame.size.height);
+        selectedRect = NSMakeRect(13, 8, frame.size.width - 38, frame.size.height);
+        unselectedRect = NSMakeRect(13, 8, frame.size.width - 23, frame.size.height);
         textfield = [[NSTextField alloc] initWithFrame:unselectedRect];
 
         NSRect imageFrame = NSMakeRect(frame.size.width - 30, 6, 15, 15);
