@@ -217,7 +217,7 @@
     else if ([theType isEqualToString:@"QUIT"]) {
         NSString *nick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
         theChannel = server.hostname;
-        string = [NSString stringWithFormat:@"%@ has quit %@", nick, theMessage];
+        string = [NSString stringWithFormat:@"%@ has quit %@\n", nick, theMessage];
 
         [self removeNickFromAllChannels:nick];
     }
