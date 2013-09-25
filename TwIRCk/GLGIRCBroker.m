@@ -183,9 +183,12 @@
         string = [[string substringFromIndex:indexOfMessageStart + 2] stringByAppendingString:@"\n"];
     }
     else if ([theType isEqualToString:@"NICK"]) {
-        // change username for theSender to theMessage
-        // at this point it would be nice to actually keep the entire username around, right?
         theChannel = hostname;
+        NSString *newNick = [theMessage substringWithRange:NSMakeRange(1, theMessage.length - 1)];
+        NSString *oldNick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
+        string = [NSString stringWithFormat:@"%@ has changed their nick to %@\n", oldNick, newNick];
+
+        [self nickChangedFrom:oldNick to:newNick];
     }
     else if ([theType isEqualToString:@"JOIN"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -194,10 +197,7 @@
         theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
         string = [NSString stringWithFormat:@"%@ (%@) has joined channel #%@\n", shortName, fullName, theChannel];
 
-        NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
-        [occupants addObject:shortName];
-        [self.channelOccupants setValue:occupants forKey:theChannel];
-        [delegate updateOccupants:occupants forChannel:theChannel];
+        [self userJoinedChannel:(NSString *)theChannel withNick:(NSString *)shortName];
     }
     else if ([theType isEqualToString:@"PART"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -208,6 +208,7 @@
         theChannel = [[partComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"#" withString:@""];
         string = [NSString stringWithFormat:@"%@ (%@) has quit channel #%@\n", shortName, fullName, theChannel];
 
+        [self userLeftChannel:theChannel withNick:shortName];
         NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
         [occupants removeObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
@@ -463,8 +464,43 @@
     return NO;
 }
 
+#pragma mark - channel occupants methods
 - (NSArray *) occupantsInChannel:(NSString *) channel {
     return [[self channelOccupants] valueForKey:channel];
+}
+
+- (void) nickChangedFrom:(NSString *) oldNick to:(NSString *) newNick {
+    [[self channelOccupants] enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *occupants, BOOL *stop) {
+        if ([occupants containsObject:oldNick]) {
+            NSMutableArray *newOccupants = [occupants mutableCopy];
+            [newOccupants removeObject:oldNick];
+            [newOccupants addObject:newNick];
+
+            [[self channelOccupants] setValue:newOccupants forKey:key];
+        }
+    }];
+}
+
+- (void) userJoinedChannel:(NSString *) channel withNick:(NSString *) nick {
+    NSMutableArray *occupants = [[self.channelOccupants valueForKey:channel] mutableCopy];
+    if ([occupants containsObject:nick]) {
+        return;
+    }
+
+    [occupants addObject:nick];
+    [self.channelOccupants setValue:occupants forKey:channel];
+    [delegate updateOccupants:occupants forChannel:channel];
+}
+
+- (void) userLeftChannel:channel withNick:nick {
+    NSMutableArray *occupants = [[self.channelOccupants valueForKey:channel] mutableCopy];
+    if (![occupants containsObject:nick]) {
+        return;
+    }
+
+    [occupants removeObject:nick];
+    [self.channelOccupants setValue:occupants forKey:channel];
+    [delegate updateOccupants:occupants forChannel:channel];
 }
 
 @end
