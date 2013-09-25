@@ -271,7 +271,7 @@
     }
 }
 
-- (void) partChannel:(NSString *) channelName {
+- (void) partChannel:(NSString *) channelName userInitiated:(BOOL) byUser {
     __block NSString *name = channelName;
     NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
 
@@ -297,6 +297,13 @@
         NSLog(@"couldn't find a channel named %@ belonging to server %@, oh no!", channelName, server.hostname);
     }
 
+    if (byUser) {
+        [writer addCommand:[NSString stringWithFormat:@"PART #%@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channelName]];
+    }
+}
+
+- (void) partChannel:(NSString *) channelName {
+    [self partChannel:channelName userInitiated:NO];
 }
 
 - (void) streamDidClose {

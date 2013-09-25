@@ -59,6 +59,7 @@
 
 - (void) receivedString:(NSString *) string;
 - (void) partChannel:(NSString *) channelName;
+- (void) partChannel:(NSString *) channelName userInitiated:(BOOL) byUser;
 - (GLGIRCMessage *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
 - (NSArray *) occupantsInChannel:(NSString *) channel;
 @end

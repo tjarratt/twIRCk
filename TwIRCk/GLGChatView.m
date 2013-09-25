@@ -268,7 +268,7 @@ const CGFloat inputHeight = 50;
 
 - (void) closedTabNamed:(NSString *) channel {
     [tabView removeTabNamed:channel];
-    [[self activeBroker] partChannel:channel];
+    [[self activeBroker] partChannel:channel userInitiated:YES];
     [chatlogs removeObjectForKey:channel];
 }
 
