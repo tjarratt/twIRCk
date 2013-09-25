@@ -219,7 +219,8 @@
         return NSLog(@"%@", [error userInfo]);
     }
 
-    // xxx should probably ask the app delegate if we have a chatview
+    GLGAppDelegate *delegate = [NSApp delegate];
+    GLGChatView *chatView = [delegate chatView];
     if (!chatView) {
         NSSize size = NSMakeSize(800, 600);
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
@@ -235,14 +236,12 @@
 
         chatView = [[GLGChatView alloc] initWithWindow:newWindow];
         [chatView setConnectView:self];
+        [delegate setChatView:chatView];
 
         [[newWindow contentView] addSubview:chatView];
     }
 
     [chatView connectToServer:server];
-
-    GLGAppDelegate *delegate = [NSApp delegate];
-    [delegate setChatView:chatView];
 }
 
 - (void) shouldClose {

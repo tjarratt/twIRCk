@@ -24,8 +24,6 @@
     GLGDefaultValueTextField *channels;
     NSButton *ssl;
     BOOL useSSL;
-
-    GLGChatView *chatView;
 }
 
 - (id) initWithSuperView:(NSView*) superview;
