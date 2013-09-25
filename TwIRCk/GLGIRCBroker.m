@@ -112,7 +112,7 @@
         return;
     }
 
-    NSLog(string);
+    NSLog(@"%@", string);
 
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z0-9!~`_/|@:\\[\.\-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -213,6 +213,13 @@
         [occupants removeObject:shortName];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
+    }
+    else if ([theType isEqualToString:@"QUIT"]) {
+        NSString *nick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
+        theChannel = server.hostname;
+        string = [NSString stringWithFormat:@"%@ has quit %@", nick, theMessage];
+
+        [self removeNickFromAllChannels:nick];
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -501,6 +508,12 @@
     [occupants removeObject:nick];
     [self.channelOccupants setValue:occupants forKey:channel];
     [delegate updateOccupants:occupants forChannel:channel];
+}
+
+- (void) removeNickFromAllChannels:(NSString *) nick {
+    [[self channelOccupants] enumerateKeysAndObjectsUsingBlock:^(NSString *channel, NSArray *occupants, BOOL *stop) {
+        [self userLeftChannel:channel withNick:nick];
+    }];
 }
 
 @end
