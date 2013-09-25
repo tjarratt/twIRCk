@@ -41,6 +41,10 @@
     [channel setServer:self];
     [channel setAutojoin:YES];
 
+    NSMutableSet *myChannels = [[self channels] mutableCopy];
+    [myChannels addObject:channel];
+    [self setChannels:myChannels];
+
     NSError *error;
     [context save:&error];
 
