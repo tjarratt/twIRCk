@@ -119,23 +119,34 @@ const CGFloat inputHeight = 50;
 }
 
 - (void) tabCloseButtonClicked:(NSNotification *) notification {
-    NSString *name = [notification object];
-    [self closedTabNamed:name];
+    NSDictionary *obj = [notification object];
+    NSString *hostname = [obj valueForKey:@"owner"];
+
+    __block GLGIRCBroker *theBroker;
+    [brokers enumerateObjectsUsingBlock:^(GLGIRCBroker *b, NSUInteger index, BOOL *stop) {
+        if ([b.hostname isEqualToString:hostname]) {
+            theBroker = b;
+            *stop = YES;
+        }
+    }];
+
+    [self closedTabNamed:[obj valueForKey:@"name"] forBroker:theBroker];
 }
 
 - (void) handleTabSelection:(NSNotification *) notification {
-    NSString *newChannel = [notification object];
+    NSString *newChannel = [[notification object] name];
     GLGChatLogView *chat = [chatlogs objectForKey:newChannel];
 
     assert( chat != nil );
 
+    currentBroker = [[notification object] owner];
     currentChannel = newChannel;
     [scrollview setDocumentView:chat];
     NSPoint newOrigin = NSMakePoint(0, NSMaxY([[scrollview documentView] frame]) -
                                     [[scrollview contentView] bounds].size.height);
     [[scrollview documentView] scrollPoint:newOrigin];
 
-    NSArray *occupants = [[self activeBroker] occupantsInChannel:currentChannel];
+    NSArray *occupants = [currentBroker occupantsInChannel:currentChannel];
     [self updateOccupants:occupants forChannel:currentChannel];
 }
 
@@ -144,6 +155,10 @@ const CGFloat inputHeight = 50;
     GLGIRCBroker *broker = [[GLGIRCBroker alloc] initWithDelegate:self];
     [broker connectToServer:server];
     [brokers addObject:broker];
+
+    if ([brokers count] == 1) {
+        currentBroker = broker;
+    }
 }
 
 #pragma mark - notifications
@@ -151,65 +166,68 @@ const CGFloat inputHeight = 50;
     [connectView shouldClose];
 }
 
-- (GLGIRCBroker *) activeBroker {
-    return [brokers objectAtIndex:0];
-}
-
 - (void) didSubmitText {
     NSString *string = [input stringValue];
     if ([string isEqualToString:@""]) { return; }
 
-    if (currentChannel == nil) {
+    if (currentChannel == nil || currentBroker == nil) {
         NSLog(@"currentChannel is nil. Probably not connected");
-        return [self receivedString:@"Error: not in any channel. Probably still waiting for connection" inChannel:@"error" fromHost:[[self activeBroker] hostname]];
+        return [self receivedString:@"Error: not in any channel. Probably still waiting for connection" inChannel:@"error" fromHost:[currentBroker hostname] fromBroker:nil];
     }
 
-    GLGIRCMessage *msg = [[self activeBroker] didSubmitText:string inChannel:currentChannel];
+    GLGIRCMessage *msg = [currentBroker didSubmitText:string inChannel:currentChannel];
     NSString *messageToDisplay = [msg message];
     NSString *channelToDisplay = [msg target];
-    NSString *activeHost = [[self activeBroker] hostname];
+    NSString *activeHost = [currentBroker hostname];
 
     if (currentChannel != channelToDisplay) {
-        [self joinChannel:channelToDisplay onServer:activeHost userInitiated:YES];
+        [self joinChannel:channelToDisplay onServer:activeHost userInitiated:YES fromBroker:currentBroker];
+
+        // currentBroke stays the same before this was channel
+        // is actually on the same server on the same broker
         currentChannel = channelToDisplay;
     }
 
     [input clearTextField];
-    [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel fromHost:activeHost];
+    [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel fromHost:activeHost fromBroker:currentBroker];
 }
 
 #pragma mark - IRC Broker Delegate methods
-- (void) connectedToServer:(NSString *)hostname {
+- (void) connectedToServer:(NSString *)hostname fromBroker:(GLGIRCBroker *) broker {
     [self didConnectToHost:hostname];
 
     if ([chatlogs objectForKey:hostname] != nil) {
         return;
     }
     
-    [tabView addItem:hostname forOwner:hostname];
+    [tabView addItem:hostname forOwner:broker];
     GLGChatLogView *newLog = [self newChatlog];
     [chatlogs setValue:newLog forKey:hostname];
     if ([tabView count] == 1) {
+        currentBroker = broker;
         currentChannel = hostname;
         [scrollview setDocumentView:newLog];
     }
 }
 
-- (void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser {
-    // check if we need to create a new one
+- (void) joinChannel:(NSString *) channel
+            onServer:(NSString *) hostname
+       userInitiated:(BOOL)initiatedByUser
+          fromBroker:(GLGIRCBroker *) broker {
     GLGChatLogView *theChatLog = [chatlogs objectForKey:channel];
     if (theChatLog == nil) {
         theChatLog = [self newChatlog];
         [chatlogs setValue:theChatLog forKey:channel];
-        [tabView addItem:channel selected:initiatedByUser forOwner:hostname];
+        [tabView addItem:channel selected:initiatedByUser forOwner:broker];
     }
 
     if (initiatedByUser) {
+        currentBroker = broker;
         currentChannel = channel;
         [scrollview setDocumentView:theChatLog];
         [tabView setSelectedChannelNamed:channel];
 
-        NSArray *occupants = [[self activeBroker] occupantsInChannel:currentChannel];
+        NSArray *occupants = [currentBroker occupantsInChannel:currentChannel];
         [self updateOccupants:occupants forChannel:currentChannel];
     }
 }
@@ -217,10 +235,11 @@ const CGFloat inputHeight = 50;
 - (void) receivedString:(NSString *)string
               inChannel:(NSString *)channel
                fromHost:(NSString *)host
+             fromBroker:(GLGIRCBroker *)broker
 {
     GLGChatLogView *log = [chatlogs objectForKey:channel];
     if (log == nil) {
-        [tabView addItem:channel selected:NO forOwner:host];
+        [tabView addItem:channel selected:NO forOwner:broker];
         log = [self newChatlog];
         [chatlogs setValue:log forKey:channel];
      }
@@ -230,13 +249,9 @@ const CGFloat inputHeight = 50;
     [log insertText:string];
     [log setEditable:NO];
 
-    NSDictionary *dict = @{@"channel" : channel, @"server" : host};
+    NSDictionary *dict = @{@"name" : channel, @"owner" : broker};
     NSString *notificationName = [@"message_received_" stringByAppendingString:channel];
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dict];
-}
-
-- (void) willPartChannel:(NSString *) channel {
-    [tabView removeTabNamed:channel];
 }
 
 - (void) didPartChannel:(NSString *) channel {
@@ -266,9 +281,9 @@ const CGFloat inputHeight = 50;
     }
 }
 
-- (void) closedTabNamed:(NSString *) channel {
-    [tabView removeTabNamed:channel];
-    [[self activeBroker] partChannel:channel userInitiated:YES];
+- (void) closedTabNamed:(NSString *) channel forBroker:(GLGIRCBroker *) broker {
+    [tabView removeTabNamed:channel fromOwner:broker];
+    [currentBroker partChannel:channel userInitiated:YES];
     [chatlogs removeObjectForKey:channel];
 }
 
@@ -279,7 +294,7 @@ const CGFloat inputHeight = 50;
     }
     else {
         NSString *channel = currentChannel;
-        [self closedTabNamed:channel];
+        [self closedTabNamed:channel forBroker:currentBroker];
     }
 }
 

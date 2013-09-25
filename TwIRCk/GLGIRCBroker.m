@@ -246,7 +246,7 @@
         theChannel = theSender;
     }
 
-    [delegate receivedString:string inChannel:theChannel fromHost:hostname];
+    [delegate receivedString:string inChannel:theChannel fromHost:hostname fromBroker:self];
 }
 
 - (void) readActualHostname:(NSString *) message {
@@ -266,17 +266,17 @@
 
 - (void) didConnectToHost {
     reconnectAttempts = 0;
-    [delegate connectedToServer:hostname];
+    [delegate connectedToServer:hostname fromBroker:self];
     
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
         [writer addCommand:[@"JOIN " stringByAppendingString:chan]];
-        [delegate joinChannel:chan onServer:hostname userInitiated:NO];
+        [delegate joinChannel:chan onServer:hostname userInitiated:NO fromBroker:self];
     }];
 }
 
 - (void) joinChannel:(NSString *) channelName {
     [writer addCommand:[@"JOIN " stringByAppendingString:channelName]];
-    [delegate joinChannel:channelName onServer:hostname userInitiated:YES];
+    [delegate joinChannel:channelName onServer:hostname userInitiated:YES fromBroker:self];
     [server addChannelNamed:channelName];
 
     NSMutableArray *occupants = [self.channelOccupants valueForKey:channelName];

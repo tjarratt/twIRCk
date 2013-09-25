@@ -80,10 +80,10 @@
 #pragma mark - NSNotifications
 - (void) tabMessageReceived:(NSNotification *) notification {
     NSDictionary *dict = [notification userInfo];
-    BOOL matchingChannel = [[dict objectForKey:@"channel"] isEqualToString:[self name]];
-    BOOL matchingHostname = [[dict objectForKey:@"server"] isEqualToString:[self owner]];
+    BOOL matchingName = [[dict objectForKey:@"name"] isEqualToString:[self name]];
+    BOOL matchingOwner = [[dict objectForKey:@"owner"] isEqualTo:[self owner]];
 
-    if (matchingChannel && matchingHostname && !_selected) {
+    if (matchingName && matchingOwner && !_selected) {
         NSRange boldRange = NSMakeRange(0, self.name.length);
         NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:11]};
         NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];

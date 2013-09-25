@@ -29,6 +29,7 @@
     GLGTabView *tabView;
     NSString *currentNick;
     NSString *currentChannel;
+    GLGIRCBroker *currentBroker;
     NSMutableDictionary *chatlogs;
 }
 

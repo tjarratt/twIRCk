@@ -64,7 +64,7 @@ const CGFloat tab_padding = -15;
     [the_tab setSelected:YES];
     [self setNeedsDisplay:YES];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:the_tab];
 }
 
 - (void) setSelectedChannelNamed:(NSString *) name {
@@ -84,9 +84,9 @@ const CGFloat tab_padding = -15;
 
 }
 
-- (void) removeTabNamed:(NSString *) name {
+- (void) removeTabNamed:(NSString *) name fromOwner:(id) owner {
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
-        if ([[tab name] isEqualToString:name]) {
+        if ([[tab name] isEqualToString:name] && [[tab owner] isEqualTo:owner]) {
             [self removeTab:tab];
             *stop = YES;
         }
@@ -98,7 +98,8 @@ const CGFloat tab_padding = -15;
     [the_tab removeFromSuperview];
     [tabs removeObjectAtIndex:index];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"chatview_closed_tab" object:[the_tab name]];
+    NSDictionary *notificationObject = @{@"name" : the_tab.name, @"owner" : the_tab.owner};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"chatview_closed_tab" object:notificationObject];
 
     if ([tabs count] == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"removed_last_tab" object:nil];
@@ -114,7 +115,7 @@ const CGFloat tab_padding = -15;
 
             if (index == selected_tab_index) {
                 [tab setSelected:YES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[tab name]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:tab];
             }
             else {
                 [tab setSelected:NO];
@@ -136,11 +137,11 @@ const CGFloat tab_padding = -15;
 }
 
 #pragma mark - adding / removing tabs
-- (void) addItem:(NSString *) title forOwner:(NSString *) theOwner {
+- (void) addItem:(NSString *) title forOwner:(id) theOwner {
     [self addItem:title selected:NO forOwner:theOwner];
 }
 
-- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(NSString *) theOwner {
+- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(id) theOwner {
     CGFloat count = [tabs count];
     CGFloat a_width = width_of_tab + tab_padding;
     CGFloat x_offset = a_width * count;
@@ -183,7 +184,7 @@ const CGFloat tab_padding = -15;
     [the_tab setNeedsDisplay:YES];
 
     [self setNeedsDisplay:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:the_tab];
 }
 
 - (void) tabBackward {
@@ -204,7 +205,7 @@ const CGFloat tab_padding = -15;
     [the_tab setNeedsDisplay:YES];
 
     [self setNeedsDisplay:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:[the_tab name]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"did_switch_tabs" object:the_tab];
 }
 
 #pragma mark - drawing code

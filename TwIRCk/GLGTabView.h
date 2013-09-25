@@ -16,12 +16,13 @@
 }
 
 - (NSUInteger) count;
-- (void) addItem:(NSString *) title forOwner:(NSString *) theOwner;
-- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(NSString *) theOwner;
+- (void) addItem:(NSString *) title forOwner:(id) theOwner;
+- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(id) theOwner;
+
 - (void) tabForward;
 - (void) tabBackward;
 
-- (void) removeTabNamed:(NSString *) name;
+- (void) removeTabNamed:(NSString *) name fromOwner:(id) owner;
 - (void) setSelectedChannelNamed:(NSString *) name;
 
 @end

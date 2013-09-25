@@ -8,12 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+@class GLGIRCBroker;
+
 @protocol GLGBrokerDelegate <NSObject>
 @required
--(void) connectedToServer:(NSString *)hostname;
--(void) joinChannel:(NSString *)channel onServer:(NSString *)hostname userInitiated:(BOOL)initiatedByUser;
--(void) receivedString:(NSString *) string inChannel:(NSString *) channel fromHost:(NSString *) host;
--(void) didPartChannel:(NSString *) channel;
--(void) willPartChannel:(NSString *) channel;
+-(void) connectedToServer:(NSString *)hostname
+               fromBroker:(GLGIRCBroker *) broker;
+
+-(void) joinChannel:(NSString *) channel
+           onServer:(NSString *) hostname
+      userInitiated:(BOOL) initiatedByUser
+         fromBroker:(GLGIRCBroker *) broker;
+
+-(void) receivedString:(NSString *) string
+             inChannel:(NSString *) channel
+              fromHost:(NSString *) host
+            fromBroker:(GLGIRCBroker *) broker;
+
+-(void) didPartChannel:(NSString *) channel
+              onBroker:(GLGIRCBroker *) broker;
+
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel;
 @end
