@@ -15,4 +15,13 @@
 @dynamic server;
 @dynamic autojoin;
 
+- (NSString *) properName {
+    if (![[self.name substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
+        return [@"#" stringByAppendingString:self.name];
+    }
+    else {
+        return self.name;
+    }
+}
+
 @end

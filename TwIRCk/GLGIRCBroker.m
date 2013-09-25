@@ -88,10 +88,10 @@
 
     NSMutableArray *theChannels = [[NSMutableArray alloc] init];
     [[server.channels allObjects] enumerateObjectsUsingBlock:^(IRCChannel *chan, NSUInteger index, BOOL *stop) {
-        [theChannels addObject:[chan name]];
+        [theChannels addObject:[chan properName]];
 
         NSMutableArray *occupants = [[NSMutableArray alloc] init];
-        [[self channelOccupants] setValue:occupants forKey:[chan name]];
+        [[self channelOccupants] setValue:occupants forKey:[chan properName]];
     }];
 
     [self connectToServer:server.hostname
@@ -146,7 +146,7 @@
 
         NSTextCheckingResult *result = [matches objectAtIndex:0];
         NSRange channelRange = [result rangeAtIndex:1];
-        theChannel = [theMessage substringWithRange:channelRange];
+        theChannel = [@"#" stringByAppendingString:[theMessage substringWithRange:channelRange]];
 
         NSUInteger start = channelRange.location + channelRange.length + 2;
         NSUInteger remaining = theMessage.length - start;
@@ -194,8 +194,8 @@
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
         NSString *shortName = [nameComponents objectAtIndex:0];
         NSString *fullName = theSender;
-        theChannel = [theMessage stringByReplacingOccurrencesOfString:@"#" withString:@""];
-        string = [NSString stringWithFormat:@"%@ (%@) has joined channel #%@\n", shortName, fullName, theChannel];
+        theChannel = theMessage;
+        string = [NSString stringWithFormat:@"%@ (%@) has joined channel %@\n", shortName, fullName, theChannel];
 
         [self userJoinedChannel:(NSString *)theChannel withNick:(NSString *)shortName];
     }
@@ -205,8 +205,8 @@
         NSString *fullName = theSender;
 
         NSArray *partComponents = [theMessage componentsSeparatedByString:@" "];
-        theChannel = [[partComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"#" withString:@""];
-        string = [NSString stringWithFormat:@"%@ (%@) has quit channel #%@\n", shortName, fullName, theChannel];
+        theChannel = [partComponents objectAtIndex:0];
+        string = [NSString stringWithFormat:@"%@ (%@) has quit channel %@\n", shortName, fullName, theChannel];
 
         [self userLeftChannel:theChannel withNick:shortName];
         NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
@@ -226,7 +226,7 @@
         NSString *whom = [nameComponents objectAtIndex:0];
 
         NSRange firstSpace = [theMessage rangeOfString:@" "];
-        theChannel = [[theMessage substringWithRange:NSMakeRange(0, firstSpace.location)] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        theChannel = [theMessage substringWithRange:NSMakeRange(0, firstSpace.location)];
         theMessage = [theMessage substringWithRange:NSMakeRange(firstSpace.location + 2, theMessage.length - (firstSpace.location + 2))];
         string = [NSString stringWithFormat:@"<%@> %@\n", whom, theMessage];
 
@@ -262,13 +262,13 @@
     [delegate connectedToServer:hostname];
     
     [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-        [writer addCommand:[@"JOIN #" stringByAppendingString:chan]];
+        [writer addCommand:[@"JOIN " stringByAppendingString:chan]];
         [delegate joinChannel:chan onServer:hostname userInitiated:NO];
     }];
 }
 
 - (void) joinChannel:(NSString *) channelName {
-    [writer addCommand:[@"JOIN #" stringByAppendingString:channelName]];
+    [writer addCommand:[@"JOIN " stringByAppendingString:channelName]];
     [delegate joinChannel:channelName onServer:hostname userInitiated:YES];
     [server addChannelNamed:channelName];
 
@@ -287,7 +287,7 @@
 
     __block IRCChannel *theChannel;
     [[server channels] enumerateObjectsUsingBlock:^(IRCChannel *channel, BOOL *stop) {
-        if ([[channel name] isEqualToString:name]) {
+        if ([[channel properName] isEqualToString:name]) {
             theChannel = channel;
             // *stop = YES;
         }
@@ -306,7 +306,7 @@
     }
 
     if (byUser) {
-        [writer addCommand:[NSString stringWithFormat:@"PART #%@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channelName]];
+        [writer addCommand:[NSString stringWithFormat:@"PART %@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channelName]];
     }
 }
 
@@ -355,7 +355,17 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
 
-            [ircMessage setRaw:[NSString stringWithFormat:@"JOIN #%@ %@", channel, remainder]];
+            NSString *channelToJoin;
+            // if the user says /join foo, we should rewrite this as /join #foo
+            if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
+                channelToJoin = [@"#" stringByAppendingString:channel];
+                channel = [@"#" stringByAppendingString:channel];
+            }
+            else {
+                channelToJoin = channel;
+            }
+
+            [ircMessage setRaw:[NSString stringWithFormat:@"JOIN %@ %@", channelToJoin, remainder]];
             [ircMessage setMessage:[NSString stringWithFormat:@"/join %@ %@", channel, remainder]];
             [ircMessage setTarget:channel];
 
@@ -366,7 +376,7 @@
             if ([parts count] < 2 && channel) {
                 theChannel = channel;
                 NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
-                [ircMessage setRaw:[NSString stringWithFormat:@"PART #%@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channel]];
+                [ircMessage setRaw:[NSString stringWithFormat:@"PART %@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channel]];
                 [ircMessage setMessage:[NSString stringWithFormat:@"/part %@ %@", channel, defaultMessage]];
                 [ircMessage setTarget:channel];
             }
@@ -375,7 +385,7 @@
                 NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
                 parts = [parts objectsAtIndexes:indices];
                 NSString *remainder = [parts componentsJoinedByString:@" "];
-                [ircMessage setRaw:[NSString stringWithFormat:@"PART #%@ %@", channel, remainder]];
+                [ircMessage setRaw:[NSString stringWithFormat:@"PART %@ %@", channel, remainder]];
                 [ircMessage setMessage:[NSString stringWithFormat:@"/part %@ %@", channel, remainder]];
                 [ircMessage setTarget:channel];
             }
@@ -429,11 +439,6 @@
         }
     }
     else {
-        // xxx would be better if we didn't have to look this up every time
-        if ([server hasChannel:channel]) {
-            channel = [@"#" stringByAppendingString:channel];
-        }
-
         [ircMessage setRaw:[NSString stringWithFormat:@"PRIVMSG %@ :%@", channel, string]];
         [ircMessage setMessage:[NSString stringWithFormat:@"<%@> %@", currentNick, string]];
     }

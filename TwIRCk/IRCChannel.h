@@ -17,4 +17,6 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic) BOOL autojoin;
 
+- (NSString *) properName;
+
 @end
