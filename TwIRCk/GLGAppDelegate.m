@@ -44,11 +44,11 @@
         NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
         NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
+        NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+        self.chatView = [[GLGChatView alloc] initWithWindow:window];
+
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             IRCServer *server = (IRCServer *)obj;
-
-            NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
-            self.chatView = [[GLGChatView alloc] initWithWindow:window];
 
             [self.chatView connectToServer:server];
             [[window contentView] addSubview:self.chatView];
