@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A388F358-DBFD-4E9A-8329-9FF425AC8B1D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TwIRCk</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EDE4254F-320C-4B30-B1E3-0680901553E4</key>
+		<string>ssh://github.com/tjarratt/twIRC.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TwIRCk.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EDE4254F-320C-4B30-B1E3-0680901553E4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/tjarratt/twIRC.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EDE4254F-320C-4B30-B1E3-0680901553E4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EDE4254F-320C-4B30-B1E3-0680901553E4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TwIRCk</string>
+		</dict>
+	</array>
+</dict>
+</plist>
