@@ -25,8 +25,5 @@
               fromHost:(NSString *) host
             fromBroker:(GLGIRCBroker *) broker;
 
--(void) didPartChannel:(NSString *) channel
-              onBroker:(GLGIRCBroker *) broker;
-
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel;
 @end

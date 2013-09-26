@@ -254,10 +254,6 @@ const CGFloat inputHeight = 50;
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dict];
 }
 
-- (void) didPartChannel:(NSString *) channel {
-    [chatlogs removeObjectForKey:channel];
-}
-
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel {
     if ([channel isEqualToString:currentChannel]) {
         [sidebar showChannelOccupants:occupants];
