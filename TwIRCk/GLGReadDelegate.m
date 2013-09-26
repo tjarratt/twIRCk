@@ -41,7 +41,7 @@
                 }
 
                 [data appendBytes:(const void *)buffer length:length];
-                bytesRead = [NSNumber numberWithInteger:[bytesRead intValue] + length ];
+                [NSNumber numberWithInteger:[bytesRead intValue] + length ];
 
                 if (delegate) {
                     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
