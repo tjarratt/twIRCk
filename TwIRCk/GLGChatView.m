@@ -121,16 +121,7 @@ const CGFloat inputHeight = 50;
 
 - (void) tabCloseButtonClicked:(NSNotification *) notification {
     NSDictionary *obj = [notification object];
-    NSString *hostname = [obj valueForKey:@"owner"];
-
-    __block GLGIRCBroker *theBroker;
-    [brokers enumerateObjectsUsingBlock:^(GLGIRCBroker *b, NSUInteger index, BOOL *stop) {
-        if ([b.hostname isEqualToString:hostname]) {
-            theBroker = b;
-            *stop = YES;
-        }
-    }];
-
+    GLGIRCBroker *theBroker = [obj valueForKey:@"owner"];
     [self closedTabNamed:[obj valueForKey:@"name"] forBroker:theBroker];
 }
 
