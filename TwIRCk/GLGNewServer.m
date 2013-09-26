@@ -183,13 +183,13 @@
     NSMutableCharacterSet *delimiters = [NSMutableCharacterSet characterSetWithCharactersInString:@","];
     [delimiters formUnionWithCharacterSet:whitespace];
 
-    NSArray *chans = [[channels stringValue] componentsSeparatedByString:@", "];
-    [chans enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-        chan = [chan stringByTrimmingCharactersInSet:whitespace];
-    }];
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@", "];
+    NSArray *chans = [[channels stringValue] componentsSeparatedByCharactersInSet:characterSet];
+    NSMutableArray *mutableChannels = [[NSMutableArray alloc] init];
 
-    NSMutableArray *mutableChannels = [chans mutableCopy];
-    [mutableChannels removeObject:@""];
+    [chans enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
+        [mutableChannels addObject:[chan stringByTrimmingCharactersInSet:whitespace]];
+    }];
 
     NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
 
