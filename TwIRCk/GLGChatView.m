@@ -109,7 +109,8 @@ const CGFloat inputHeight = 50;
 }
 
 - (GLGChatLogView *) currentChatlogTextView {
-    return [chatlogs objectForKey:currentChannel];
+    NSString *key = [currentBroker.hostname stringByAppendingString:currentChannel];
+    return [chatlogs objectForKey:key];
 }
 
 
@@ -134,13 +135,13 @@ const CGFloat inputHeight = 50;
 }
 
 - (void) handleTabSelection:(NSNotification *) notification {
-    NSString *newChannel = [[notification object] name];
-    GLGChatLogView *chat = [chatlogs objectForKey:newChannel];
+    currentChannel = [[notification object] name];
+    currentBroker = [[notification object] owner];
+    NSString *key = [currentBroker.hostname stringByAppendingString:currentChannel];
+    GLGChatLogView *chat = [chatlogs objectForKey:key];
 
     assert( chat != nil );
 
-    currentBroker = [[notification object] owner];
-    currentChannel = newChannel;
     [scrollview setDocumentView:chat];
     NSPoint newOrigin = NSMakePoint(0, NSMaxY([[scrollview documentView] frame]) -
                                     [[scrollview contentView] bounds].size.height);
@@ -195,14 +196,15 @@ const CGFloat inputHeight = 50;
 #pragma mark - IRC Broker Delegate methods
 - (void) connectedToServer:(NSString *)hostname fromBroker:(GLGIRCBroker *) broker {
     [self didConnectToHost:hostname];
+    NSString *key = [hostname stringByAppendingString:hostname];
 
-    if ([chatlogs objectForKey:hostname] != nil) {
+    if ([chatlogs objectForKey:key] != nil) {
         return;
     }
     
     [tabView addItem:hostname forOwner:broker];
     GLGChatLogView *newLog = [self newChatlog];
-    [chatlogs setValue:newLog forKey:hostname];
+    [chatlogs setValue:newLog forKey:key];
     if ([tabView count] == 1) {
         currentBroker = broker;
         currentChannel = hostname;
@@ -214,10 +216,13 @@ const CGFloat inputHeight = 50;
             onServer:(NSString *) hostname
        userInitiated:(BOOL)initiatedByUser
           fromBroker:(GLGIRCBroker *) broker {
-    GLGChatLogView *theChatLog = [chatlogs objectForKey:channel];
+    NSString *key = [broker.hostname stringByAppendingString:channel];
+    GLGChatLogView *theChatLog = [chatlogs objectForKey:key];
     if (theChatLog == nil) {
         theChatLog = [self newChatlog];
-        [chatlogs setValue:theChatLog forKey:channel];
+
+        NSString *key = [broker.hostname stringByAppendingString:channel];
+        [chatlogs setValue:theChatLog forKey:key];
         [tabView addItem:channel selected:initiatedByUser forOwner:broker];
     }
 
@@ -237,11 +242,13 @@ const CGFloat inputHeight = 50;
                fromHost:(NSString *)host
              fromBroker:(GLGIRCBroker *)broker
 {
-    GLGChatLogView *log = [chatlogs objectForKey:channel];
+    NSString *key = [broker.hostname stringByAppendingString:channel];
+    GLGChatLogView *log = [chatlogs objectForKey:key];
+
     if (log == nil) {
         [tabView addItem:channel selected:NO forOwner:broker];
         log = [self newChatlog];
-        [chatlogs setValue:log forKey:channel];
+        [chatlogs setValue:log forKey:key];
      }
 
     [log setEditable:YES];
@@ -279,8 +286,10 @@ const CGFloat inputHeight = 50;
 
 - (void) closedTabNamed:(NSString *) channel forBroker:(GLGIRCBroker *) broker {
     [tabView removeTabNamed:channel fromOwner:broker];
-    [currentBroker partChannel:channel userInitiated:YES];
-    [chatlogs removeObjectForKey:channel];
+    [broker partChannel:channel userInitiated:YES];
+
+    NSString *key = [broker.hostname stringByAppendingString:channel];
+    [chatlogs removeObjectForKey:key];
 }
 
 #pragma mark - IBActions
