@@ -39,10 +39,6 @@ const CGFloat tab_padding = -15;
     [super setFrame:frameRect];
     [self setNeedsDisplay:YES];
 
-    [self positionSubviews];
-}
-
-- (void) positionSubviews {
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
         CGFloat x_offset = (width_of_tab + tab_padding) * index;
         NSRect frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
@@ -82,6 +78,42 @@ const CGFloat tab_padding = -15;
 
     [self setNeedsDisplay:YES];
 
+}
+
+- (void) handleTabClosure:(NSNotification *) notification {
+    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
+    [self removeTab:the_tab];
+}
+
+#pragma mark - adding / removing tabs
+- (void) addItem:(NSString *) title forOwner:(id) theOwner {
+    [self addItem:title selected:NO forOwner:theOwner];
+}
+
+- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(id) theOwner {
+    CGFloat count = [tabs count];
+    CGFloat a_width = width_of_tab + tab_padding;
+    CGFloat x_offset = a_width * count;
+    NSRect tab_frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
+
+    GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
+    [item setOwner:theOwner];
+    [self addSubview:item];
+    [self setNeedsDisplay:YES];
+    [tabs addObject:item];
+
+    if (isSelected) {
+        [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+            [tab setSelected:NO];
+            [tab setNeedsDisplay:YES];
+        }];
+        [item setSelected:YES];
+        selected_tab_index = [tabs count] - 1;
+    }
+    else if ([tabs count] == 1) {
+        [item setSelected:YES];
+        selected_tab_index = 0;
+    }
 }
 
 - (void) removeTabNamed:(NSString *) name fromOwner:(id) owner {
@@ -129,42 +161,6 @@ const CGFloat tab_padding = -15;
         [tab setFrame:frame];
         [tab setNeedsDisplay:YES];
     }];
-}
-
-- (void) handleTabClosure:(NSNotification *) notification {
-    GLGTabItem *the_tab = (GLGTabItem *)[notification object];
-    [self removeTab:the_tab];
-}
-
-#pragma mark - adding / removing tabs
-- (void) addItem:(NSString *) title forOwner:(id) theOwner {
-    [self addItem:title selected:NO forOwner:theOwner];
-}
-
-- (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(id) theOwner {
-    CGFloat count = [tabs count];
-    CGFloat a_width = width_of_tab + tab_padding;
-    CGFloat x_offset = a_width * count;
-    NSRect tab_frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
-
-    GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
-    [item setOwner:theOwner];
-    [self addSubview:item];
-    [self setNeedsDisplay:YES];
-    [tabs addObject:item];
-
-    if (isSelected) {
-        [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
-            [tab setSelected:NO];
-            [tab setNeedsDisplay:YES];
-        }];
-        [item setSelected:YES];
-        selected_tab_index = [tabs count] - 1;
-    }
-    else if ([tabs count] == 1) {
-        [item setSelected:YES];
-        selected_tab_index = 0;
-    }
 }
 
 #pragma mark - moving between tabs
