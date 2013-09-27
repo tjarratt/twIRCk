@@ -170,8 +170,13 @@
 }
 
 - (IBAction) closeActiveWindow:(id)sender {
-    if (_chatView) {
+    NSWindow *keyWindow = [NSApp keyWindow];
+
+    if (_chatView && _chatView.window == keyWindow) {
         [_chatView closeActiveTabOrWindow];
+    }
+    else {
+        [keyWindow close];
     }
 }
 
