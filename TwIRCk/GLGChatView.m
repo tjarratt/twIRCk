@@ -233,6 +233,7 @@ const CGFloat inputHeight = 50;
                fromHost:(NSString *)host
              fromBroker:(GLGIRCBroker *)broker
 {
+    assert( broker != nil );
     NSString *key = [broker.hostname stringByAppendingString:channel];
     GLGChatLogView *log = [chatlogs objectForKey:key];
 
