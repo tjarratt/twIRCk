@@ -226,7 +226,7 @@
         theChannel = server.hostname;
         string = [NSString stringWithFormat:@"%@ has quit %@\n", nick, theMessage];
 
-        [self removeNickFromAllChannels:nick];
+        [self removeNickFromAllChannels:nick withMessage:theMessage];
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -511,20 +511,27 @@
     [delegate updateOccupants:occupants forChannel:channel];
 }
 
-- (void) userLeftChannel:channel withNick:nick {
+- (BOOL) userLeftChannel:channel withNick:nick {
     NSMutableArray *occupants = [[self.channelOccupants valueForKey:channel] mutableCopy];
     if (![occupants containsObject:nick]) {
-        return;
+        return NO;
     }
 
     [occupants removeObject:nick];
     [self.channelOccupants setValue:occupants forKey:channel];
     [delegate updateOccupants:occupants forChannel:channel];
+
+    return YES;
 }
 
-- (void) removeNickFromAllChannels:(NSString *) nick {
+- (void) removeNickFromAllChannels:(NSString *) nick withMessage:(NSString *) message {
     [[self channelOccupants] enumerateKeysAndObjectsUsingBlock:^(NSString *channel, NSArray *occupants, BOOL *stop) {
-        [self userLeftChannel:channel withNick:nick];
+        BOOL wasInChannel = [self userLeftChannel:channel withNick:nick];
+
+        if (wasInChannel) {
+            NSString *quitMessage = [NSString stringWithFormat:@"%@ has quit: %@\n", nick, message];
+            [delegate receivedString:quitMessage inChannel:channel fromHost:hostname fromBroker:self];
+        }
     }];
 }
 
