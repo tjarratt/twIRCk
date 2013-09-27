@@ -85,7 +85,7 @@ const CGFloat tab_padding = -15;
     [self removeTab:the_tab];
 }
 
-#pragma mark - adding / removing tabs
+#pragma mark - adding tabs
 - (void) addItem:(NSString *) title forOwner:(id) theOwner {
     [self addItem:title selected:NO forOwner:theOwner];
 }
@@ -116,6 +116,7 @@ const CGFloat tab_padding = -15;
     }
 }
 
+#pragma mark - removing tabs
 - (void) removeTabNamed:(NSString *) name fromOwner:(id) owner {
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
         if ([[tab name] isEqualToString:name] && [[tab owner] isEqualTo:owner]) {
