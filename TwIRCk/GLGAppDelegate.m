@@ -40,7 +40,7 @@
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
         CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
 
-        NSPoint origin = NSMakePoint((size.width - screenwidth) / 2, (size.height - screenheight) / 2);
+        NSPoint origin = NSMakePoint((screenwidth - size.width) / 2, (screenheight - size.height) / 2);
         NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
         NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
@@ -145,15 +145,21 @@
         return;
     }
 
-    NSRect windowRect = NSMakeRect(0, 0, 800, 600);
+    NSSize size = NSMakeSize(400, 80);
+    CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
+    CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
+    NSPoint origin = NSMakePoint((screenwidth - size.width) / 2, (screenheight - size.height) / 2);
+
+    NSRect windowRect = NSMakeRect(origin.x, origin.y, size.width, size.height);
     NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
 
     __strong NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    [newWindow setMinSize:windowRect.size];
+    [newWindow makeKeyAndOrderFront:NSApp];
+
     NSView *contentView = [newWindow contentView];
     GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
     [contentView addSubview:newServerView];
-
-    [newWindow makeKeyAndOrderFront:NSApp];
 
     [[self windowController] setWindow:newWindow];
     serverWindowIsVisible = YES;
