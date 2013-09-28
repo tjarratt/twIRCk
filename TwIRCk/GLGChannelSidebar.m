@@ -32,15 +32,15 @@
 }
 
 - (void) showChannelOccupants:(NSArray *) occupants {
+    __block int i = 0;
+    NSSet *uniqueOccupants = [NSSet setWithArray:occupants];
+
     [innerView setSubviews:@[]];
     NSRect frame = [innerView frame];
     CGFloat height = frame.size.height;
-    CGFloat fullHeight = MAX(height, 35 * 2 + 25 * occupants.count);
+    CGFloat fullHeight = MAX(height, 35 * 2 + 25 * uniqueOccupants.count);
     frame = NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width, fullHeight);
     [innerView setFrame:frame];
-
-    __block int i = 0;
-    NSSet *uniqueOccupants = [NSSet setWithArray:occupants];
 
     [uniqueOccupants enumerateObjectsUsingBlock:^(NSString *name, BOOL *stop) {
         NSRect rect = NSMakeRect(15, frame.size.height - (35 + 25 * i), 120, 20);
