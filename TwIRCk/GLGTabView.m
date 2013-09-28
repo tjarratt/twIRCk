@@ -8,7 +8,7 @@
 
 #import "GLGTabView.h"
 
-const CGFloat width_of_tab = 130;
+const CGFloat max_width_of_tab = 130;
 const CGFloat height_of_tab = 25;
 const CGFloat tab_padding = -15;
 
@@ -39,9 +39,13 @@ const CGFloat tab_padding = -15;
     [super setFrame:frameRect];
     [self setNeedsDisplay:YES];
 
+    NSUInteger count = tabs.count;
+    CGFloat frameWidthWithPadding = frameRect.size.width - (tab_padding * (count - 1));
+    CGFloat tabWidth = MIN(max_width_of_tab, frameWidthWithPadding / count);
+
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
-        CGFloat x_offset = (width_of_tab + tab_padding) * index;
-        NSRect frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
+        CGFloat x_offset = (tabWidth + tab_padding) * index;
+        NSRect frame = NSMakeRect(x_offset, 0, tabWidth, height_of_tab);
         [tab setFrame:frame];
         [tab setNeedsDisplay:YES];
     }];
@@ -92,9 +96,20 @@ const CGFloat tab_padding = -15;
 
 - (void) addItem:(NSString *) title selected:(BOOL) isSelected forOwner:(id) theOwner {
     CGFloat count = [tabs count];
-    CGFloat a_width = width_of_tab + tab_padding;
-    CGFloat x_offset = a_width * count;
-    NSRect tab_frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
+    CGFloat frameWidthWithPadding = self.frame.size.width - (tab_padding * (count));
+    CGFloat tabWidth = MIN(max_width_of_tab, frameWidthWithPadding / (count + 1));
+
+    if (tabWidth < max_width_of_tab) {
+        [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
+            CGFloat x_offset = (tabWidth + tab_padding) * index;
+            NSRect frame = NSMakeRect(x_offset, 0, tabWidth, height_of_tab);
+            [tab setFrame:frame];
+            [tab setNeedsDisplay:YES];
+        }];
+    }
+
+    CGFloat x_offset = (tabWidth + tab_padding) * count;
+    NSRect tab_frame = NSMakeRect(x_offset, 0, tabWidth, height_of_tab);
 
     GLGTabItem *item = [[GLGTabItem alloc] initWithFrame:tab_frame andLabel:title];
     [item setOwner:theOwner];
@@ -156,9 +171,11 @@ const CGFloat tab_padding = -15;
         }];
     }
 
+    CGFloat frameWidthWithPadding = self.frame.size.width - (tab_padding * (tabs.count - 1));
+    CGFloat tabWidth = MIN(max_width_of_tab, frameWidthWithPadding / tabs.count);
     [tabs enumerateObjectsUsingBlock:^(GLGTabItem *tab, NSUInteger index, BOOL *stop) {
-        CGFloat x_offset = (width_of_tab + tab_padding) * index;
-        NSRect frame = NSMakeRect(x_offset, 0, width_of_tab, height_of_tab);
+        CGFloat x_offset = (tabWidth + tab_padding) * index;
+        NSRect frame = NSMakeRect(x_offset, 0, tabWidth, height_of_tab);
         [tab setFrame:frame];
         [tab setNeedsDisplay:YES];
     }];
