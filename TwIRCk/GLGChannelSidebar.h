@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "GLGChannelContent.h"
 #import "GLGGradientSidebar.h"
+#import "GLGSidebarOccupant.h"
 
 @interface GLGChannelSidebar : NSView {
     GLGChannelContent *innerView;

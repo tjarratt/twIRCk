@@ -317,4 +317,25 @@ const CGFloat inputHeight = 50;
     }
 }
 
+
+#pragma mark - Occupant Delegate methods
+- (void) clickedOnNick:(NSString *) nick {
+    NSString *key = [currentBroker.hostname stringByAppendingString:nick];
+    GLGChatLogView *theChatLog = [chatlogs objectForKey:key];
+    if (theChatLog == nil) {
+        theChatLog = [self newChatlog];
+
+        NSString *key = [currentBroker.hostname stringByAppendingString:nick];
+        [chatlogs setValue:theChatLog forKey:key];
+        [tabView addItem:nick selected:YES forOwner:currentBroker];
+    }
+
+    currentChannel = nick;
+    [scrollview setDocumentView:theChatLog];
+    [tabView setSelectedChannelNamed:nick];
+
+    NSArray *occupants = [currentBroker occupantsInChannel:currentChannel];
+    [self updateOccupants:occupants forChannel:currentChannel];
+}
+
 @end

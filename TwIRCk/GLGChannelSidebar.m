@@ -44,7 +44,9 @@
 
     [uniqueOccupants enumerateObjectsUsingBlock:^(NSString *name, BOOL *stop) {
         NSRect rect = NSMakeRect(15, frame.size.height - (35 + 25 * i), 120, 20);
-        NSTextField *label = [[NSTextField alloc] initWithFrame:rect];
+        GLGSidebarOccupant *label = [[GLGSidebarOccupant alloc] initWithFrame:rect];
+
+        [label setDelegate:self.superview];
         [[label cell] setControlSize:NSSmallControlSize];
         [label setAlignment:NSLeftTextAlignment];
         [label setBordered:NO];

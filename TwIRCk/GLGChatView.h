@@ -15,8 +15,9 @@
 #import "GLGChannelSidebar.h"
 #import "GLGChatLogView.h"
 #import "IRCServer.h"
+#import "GLGOccupantDelegate.h"
 
-@interface GLGChatView : NSView <GLGBrokerDelegate, NSWindowDelegate> {
+@interface GLGChatView : NSView <GLGBrokerDelegate, NSWindowDelegate, GLGOccupantDelegate> {
     GLGResponseCodes *responseTable;
     NSWindow *window;
 

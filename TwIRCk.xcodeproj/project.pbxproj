@@ -38,6 +38,7 @@
 		F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6717F0E073005B522B /* GLGChannelContent.m */; };
 		F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */; };
 		F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6D17F12155005B522B /* GLGChatLogView.m */; };
+		F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
 		F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */; };
 		F7E5E77817F2320F00A85FFB /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
@@ -130,6 +131,9 @@
 		F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGGradientSidebar.m; sourceTree = "<group>"; };
 		F7C5FF6C17F12155005B522B /* GLGChatLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatLogView.h; sourceTree = "<group>"; };
 		F7C5FF6D17F12155005B522B /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatLogView.m; sourceTree = "<group>"; };
+		F7D0D95D17FA775B00F7B258 /* GLGSidebarOccupant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGSidebarOccupant.h; sourceTree = "<group>"; };
+		F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGSidebarOccupant.m; sourceTree = "<group>"; };
+		F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGOccupantDelegate.h; sourceTree = "<group>"; };
 		F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_no_rollover.tif; sourceTree = "<group>"; };
 		F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = close_rollover.tif; sourceTree = "<group>"; };
 		F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCMessage.h; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 				F786C93517E6AE01004F64DF /* GLGConnectionView.h */,
 				F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */,
 				F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */,
+				F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -331,6 +336,8 @@
 				F7C5FF6717F0E073005B522B /* GLGChannelContent.m */,
 				F7C5FF6917F1155C005B522B /* GLGGradientSidebar.h */,
 				F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */,
+				F7D0D95D17FA775B00F7B258 /* GLGSidebarOccupant.h */,
+				F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */,
 			);
 			name = Sidebar;
 			sourceTree = "<group>";
@@ -497,6 +504,7 @@
 				F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */,
 				F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */,
 				F7E5E77817F2320F00A85FFB /* GLGIRCMessage.m in Sources */,
+				F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
