@@ -10,14 +10,6 @@
 
 @implementation GLGChannelContent
 
-- (id)initWithFrame:(NSRect)frame {
-    if (self = [super initWithFrame:frame]) {
-
-    }
-    
-    return self;
-}
-
 - (void) drawRect:(NSRect) dirtyRect {
     [super drawRect:dirtyRect];
 
