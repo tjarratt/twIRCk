@@ -43,7 +43,7 @@
     [innerView setFrame:frame];
 
     [uniqueOccupants enumerateObjectsUsingBlock:^(NSString *name, BOOL *stop) {
-        NSRect rect = NSMakeRect(15, frame.size.height - (35 + 25 * i), 120, 20);
+        NSRect rect = NSMakeRect(15, frame.size.height - (35 + 25 * i), 120, 15);
         GLGSidebarOccupant *label = [[GLGSidebarOccupant alloc] initWithFrame:rect];
 
         [label setDelegate:self.superview];
@@ -56,6 +56,8 @@
         [label setFont:[NSFont systemFontOfSize:11.0]];
         [label setStringValue:name];
         [label setBackgroundColor:[NSColor clearColor]];
+        [label setFrame:NSMakeRect(rect.origin.x, rect.origin.y, label.intrinsicContentSize.width + 6, rect.size.height)];
+        [label setAlignment:NSCenterTextAlignment];
 
         [innerView addSubview:label];
         ++i;
