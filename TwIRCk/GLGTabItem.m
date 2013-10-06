@@ -79,16 +79,11 @@
 
 - (void) setFrame:(NSRect) frame {
     [super setFrame:frame];
+    [self removeTrackingArea:trackingArea];
+    [self removeTrackingArea:trackingAreaSelected];
 
     selectedRect = NSMakeRect(13, 8, frame.size.width - 38, frame.size.height);
     unselectedRect = NSMakeRect(13, 8, frame.size.width - 23, frame.size.height);
-
-    if (_selected) {
-        [textfield setFrame:selectedRect];
-    }
-    else {
-        [textfield setFrame:unselectedRect];
-    }
 
     NSRect imageFrame = NSMakeRect(frame.size.width - 30, 6, 15, 15);
     [imageView setFrame:imageFrame];
@@ -96,17 +91,16 @@
     NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
     NSRect trackingRectSelected = NSMakeRect(0, 0, frame.size.width - 20, frame.size.height);
 
-    [self removeTrackingArea:trackingArea];
-    [self removeTrackingArea:trackingAreaSelected];
-
     NSTrackingAreaOptions opts = NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow | NSTrackingInVisibleRect;
     trackingArea = [[NSTrackingArea alloc] initWithRect:trackingRect options:opts owner:self userInfo:nil];
     trackingAreaSelected = [[NSTrackingArea alloc] initWithRect:trackingRectSelected options:opts owner:self userInfo:nil];
 
     if (_selected) {
+        [textfield setFrame:selectedRect];
         [self addTrackingArea:trackingAreaSelected];
     }
     else {
+        [textfield setFrame:unselectedRect];
         [self addTrackingArea:trackingArea];
     }
 }
@@ -137,6 +131,7 @@
     if (_selected) {
         [self removeTrackingArea:trackingArea];
         [self addTrackingArea:trackingAreaSelected];
+
         NSRange range = NSMakeRange(0, self.name.length);
         NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont systemFontOfSize:11]};
         NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];
