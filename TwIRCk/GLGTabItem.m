@@ -52,10 +52,6 @@
         NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
         NSRect trackingRectSelected = NSMakeRect(0, 0, frame.size.width - 20, frame.size.height);
 
-        // toggle tracking rects when hovering
-        // or we could just check to see if you were clicking on the freaking
-        // imageview when we handle mouse up / mouse down ourselves
-
         NSTrackingAreaOptions opts = NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow | NSTrackingInVisibleRect;
         
         trackingArea = [[NSTrackingArea alloc] initWithRect:trackingRect options:opts owner:self userInfo:nil];
