@@ -325,10 +325,15 @@
     [inputStream close];
     [outputStream close];
     hasReadHostname = NO;
-    // at this point, we MIGHT need to close our tabs because
+
+    // TODO: at this point, we MIGHT need to close our tabs because
     // they might "belong" to the wrong hostname, right?
     // maybe the broker should know what the internal name is, and the
     // chatview and tabs will only know about the hostname the user entered?
+
+    // clear out occupants from every channel we are in
+    // otherwise we end up leaking memory because this list keeps growing
+    [self clearOccupantsInChannels];
 
     NSUInteger waitInterval = pow(2, reconnectAttempts);
     ++reconnectAttempts;
@@ -486,6 +491,13 @@
 #pragma mark - channel occupants methods
 - (NSArray *) occupantsInChannel:(NSString *) channel {
     return [[self channelOccupants] valueForKey:channel];
+}
+
+- (void) clearOccupantsInChannels {
+    NSString *key;
+    while (key = [[[self channelOccupants] keyEnumerator] nextObject]) {
+        [[self channelOccupants] setObject:@[] forKey:key];
+    }
 }
 
 - (void) nickChangedFrom:(NSString *) oldNick to:(NSString *) newNick {
