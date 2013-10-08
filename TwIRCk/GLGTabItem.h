@@ -16,6 +16,8 @@
 
     BOOL _selected;
     BOOL _hover;
+    BOOL _emphasis;
+    BOOL _highlighted;
 
     NSRect selectedRect;
     NSRect unselectedRect;
@@ -27,7 +29,7 @@
 @property id owner;
 
 - (id)initWithFrame:(NSRect)frame andLabel:(NSString *) label;
-- (void)setSelected:(BOOL)flag;
-- (void)setHover:(BOOL)flag;
+- (void)setSelected:(BOOL) flag;
+- (void)setHover:(BOOL) flag;
 
 @end

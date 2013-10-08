@@ -58,8 +58,11 @@
         trackingAreaSelected = [[NSTrackingArea alloc] initWithRect:trackingRectSelected options:opts owner:self userInfo:nil];
 
         [self addTrackingArea:trackingArea];
+
         NSString *notification_name = [@"message_received_" stringByAppendingString:theLabel];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabMessageReceived:) name:notification_name object:nil];
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(tabMessageReceived:) name:notification_name object:nil];
+        [center addObserver:self selector:@selector(tabHighlightReceived:) name:@"highlight_tab" object:nil];
     }
 
     return self;
@@ -108,12 +111,36 @@
     BOOL matchingOwner = [[dict objectForKey:@"owner"] isEqualTo:[self owner]];
 
     if (matchingName && matchingOwner && !_selected) {
-        NSRange boldRange = NSMakeRange(0, self.name.length);
-        NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:11]};
-        NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];
-        [value setAttributes:labelAttrs range:boldRange];
-        [textfield setAttributedStringValue:value];
+        _emphasis = YES;
+        [self updateHighlights];
     }
+}
+
+- (void) tabHighlightReceived:(NSNotification *) notification {
+    NSDictionary *dict = [notification userInfo];
+    BOOL matchingName = [[dict objectForKey:@"name"] isEqualToString:[self name]];
+    BOOL matchingOwner = [[dict objectForKey:@"owner"] isEqualTo:[self owner]];
+
+    if (matchingName && matchingOwner && !_selected) {
+        _highlighted = YES;
+    }
+}
+
+#pragma mark - highlighting
+- (void) updateHighlights {
+    NSRange range = NSMakeRange(0, self.name.length);
+    NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];
+
+    if (_emphasis) {
+        NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize:11]};
+        [value setAttributes:labelAttrs range:range];
+    }
+    if (_highlighted) {
+        NSColor *theColor = [NSColor colorWithDeviceRed:0.14 green:0.52 blue:0.93 alpha:1.0];
+        [value addAttribute:NSForegroundColorAttributeName value:theColor range:range];
+    }
+
+    [textfield setAttributedStringValue:value];
 }
 
 #pragma mark - accessors
@@ -125,19 +152,17 @@
     _selected = selected;
 
     if (_selected) {
+        _emphasis = NO;
+        _highlighted = NO;
         [self removeTrackingArea:trackingArea];
         [self addTrackingArea:trackingAreaSelected];
-
-        NSRange range = NSMakeRange(0, self.name.length);
-        NSDictionary *labelAttrs = @{NSFontAttributeName: [NSFont systemFontOfSize:11]};
-        NSMutableAttributedString *value = [[NSMutableAttributedString alloc] initWithString:self.name];
-        [value setAttributes:labelAttrs range:range];
-        [textfield setAttributedStringValue:value];
     }
     else {
         [self removeTrackingArea:trackingAreaSelected];
         [self addTrackingArea:trackingArea];
     }
+
+    [self updateHighlights];
 }
 
 - (BOOL) hover {

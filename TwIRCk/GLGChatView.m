@@ -259,6 +259,12 @@ const CGFloat inputHeight = 50;
     }
 }
 
+- (void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *)broker {
+    NSDictionary *dict = @{@"name": channel, @"owner" :broker};
+    NSString *notificationName = @"highlight_tab";
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dict];
+}
+
 #pragma mark - NSResponder methods
 - (void) keyUp:(NSEvent *) theEvent {
     unsigned short keycode = [theEvent keyCode];
