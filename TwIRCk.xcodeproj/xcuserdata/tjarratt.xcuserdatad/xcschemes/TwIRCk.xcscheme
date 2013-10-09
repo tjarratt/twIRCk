@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F70F128F179F2D8C00DBB74F"
-               BuildableName = "TwIRCkTests.octest"
-               BlueprintName = "TwIRCkTests"
+               BlueprintIdentifier = "F7C9A6BF18050EDF00796200"
+               BuildableName = "twIRCk Specs.octest"
+               BlueprintName = "twIRCk Specs"
                ReferencedContainer = "container:TwIRCk.xcodeproj">
             </BuildableReference>
          </TestableReference>

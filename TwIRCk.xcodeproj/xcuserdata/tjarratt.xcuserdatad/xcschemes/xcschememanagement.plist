@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>twIRCk Specs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>F70F128F179F2D8C00DBB74F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7C9A6BF18050EDF00796200</key>
 		<dict>
 			<key>primary</key>
 			<true/>

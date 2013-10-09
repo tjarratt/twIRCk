@@ -1,0 +1,73 @@
+require 'pathname'
+
+module twIRCk Specs
+  SPECS_TARGET_NAME = "twIRCk Specs"
+  CONFIGURATION = "Release"
+
+  PROJECT_ROOT = Pathname.new(File.dirname(__FILE__)).parent.to_s
+  BUILD_DIR = File.join(PROJECT_ROOT, "build")
+
+  FileUtils.mkdir_p(File.join(BUILD_DIR, CONFIGURATION))
+
+  class << self
+    def in_project_dir
+      original_dir = Dir.pwd
+      Dir.chdir(PROJECT_ROOT)
+
+      yield
+
+      ensure
+      Dir.chdir(original_dir)
+    end
+
+    def build_dir
+      File.join(BUILD_DIR, CONFIGURATION)
+    end
+
+    def system_or_exit(cmd, stdout = nil)
+      puts "Executing #{cmd}"
+      cmd += " >#{stdout}" if stdout
+      system(cmd) or raise "******** Build failed ********"
+    end
+
+    def with_env_vars(env_vars)
+      old_values = {}
+      env_vars.each do |key,new_value|
+        old_values[key] = ENV[key]
+        ENV[key] = new_value
+      end
+
+      yield
+
+      env_vars.each_key do |key|
+        ENV[key] = old_values[key]
+      end
+    end
+
+    def output_file(target)
+      output_dir = if ENV['IS_CI_BOX']
+        ENV['CC_BUILD_ARTIFACTS']
+      else
+        Dir.mkdir(BUILD_DIR) unless File.exists?(BUILD_DIR)
+        BUILD_DIR
+      end
+
+      output_file = File.join(output_dir, "#{target}.output")
+      puts "Output: #{output_file}"
+      output_file
+    end
+  end
+end
+
+desc "Clean build directory"
+task :clean_twIRCk Specs do
+  twIRCk Specs.system_or_exit "rm -rf #{twIRCk Specs::BUILD_DIR}/*", twIRCk Specs.output_file("clean")
+end
+
+desc "Build and run twIRCk Specs OCUnit logic specs"
+task :twIRCk Specs => :clean_twIRCk Specs do
+  twIRCk Specs.with_env_vars("CEDAR_REPORTER_CLASS" => "CDRColorizedReporter") do
+    twIRCk Specs.system_or_exit "pushd #{twIRCk Specs::PROJECT_ROOT} ; xcodebuild -target #{twIRCk Specs::SPECS_TARGET_NAME} -configuration #{twIRCk Specs::CONFIGURATION} -arch x86_64 build TEST_AFTER_BUILD=YES SYMROOT='#{twIRCk Specs::BUILD_DIR}' ; popd", twIRCk Specs.output_file("twIRCk Specs")
+  end
+end
+
