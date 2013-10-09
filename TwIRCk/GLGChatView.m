@@ -259,10 +259,16 @@ const CGFloat inputHeight = 50;
     }
 }
 
-- (void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *)broker {
+- (void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *)broker byUser:(NSString *) whom {
     NSDictionary *dict = @{@"name": channel, @"owner" :broker};
-    NSString *notificationName = @"highlight_tab";
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"highlight_tab" object:nil userInfo:dict];
+
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    [notification setTitle:[NSString stringWithFormat:@"You were mentioned in %@ on %@", channel, broker.hostname]];
+    [notification setInformativeText:[NSString stringWithFormat:@"You were pinged in %@ by %@ on %@", channel, whom, broker.hostname]];
+    notification.soundName = NSUserNotificationDefaultSoundName;
+
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 #pragma mark - NSResponder methods

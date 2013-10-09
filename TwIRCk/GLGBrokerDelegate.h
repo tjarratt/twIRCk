@@ -26,5 +26,5 @@
             fromBroker:(GLGIRCBroker *) broker;
 
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel;
--(void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *) broker;
+-(void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *)broker byUser:(NSString *) whom;
 @end

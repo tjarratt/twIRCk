@@ -245,7 +245,7 @@
         // if the message matches currentNick, alert delegate
         NSRange substringRange = [theMessage rangeOfString:currentNick];
         if (substringRange.location != NSNotFound) {
-            [delegate mentionedInChannel:theChannel fromBroker:self];
+            [delegate mentionedInChannel:theChannel fromBroker:self byUser:whom];
         }
     }
     else {
