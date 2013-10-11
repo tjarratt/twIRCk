@@ -226,12 +226,22 @@
     [path curveToPoint:curveToPoint controlPoint1:curveToPoint controlPoint2:curveToPoint];
 
     // draw the remaining left edge of the trapezoidal shape
-    [path lineToPoint:NSMakePoint(15, 1)]; // leave 1 pixel for the border (view is not flipped)
+    [path lineToPoint:NSMakePoint(11, 4)];
+
+    // draw the remaining curve up to the top of the trapezoid
+    curveToPoint = NSMakePoint(17, 1);
+    NSPoint controlPoint = NSMakePoint(13, 2);
+    [path curveToPoint:curveToPoint controlPoint1:controlPoint controlPoint2:controlPoint];
 
     // draw the top
-    [path lineToPoint:NSMakePoint(self.bounds.size.width - 15, 1)];
+    [path lineToPoint:NSMakePoint(self.bounds.size.width - 17, 1)];
 
-    // draw the first part of the right trapezoidal edge
+    // draw the first part of the right edge curve
+    curveToPoint = NSMakePoint(self.bounds.size.width - 11, 4);
+    controlPoint = NSMakePoint(self.bounds.size.width - 13, 2);
+    [path curveToPoint:curveToPoint controlPoint1:controlPoint controlPoint2:controlPoint];
+
+    // draw the straight part of the right trapezoidal edge
     [path lineToPoint:NSMakePoint(self.bounds.size.width - 5, self.bounds.size.height - 2)];
 
     curveToPoint = NSMakePoint(self.bounds.size.width, self.bounds.size.height + 3);
