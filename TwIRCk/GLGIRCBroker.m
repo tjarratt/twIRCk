@@ -449,8 +449,13 @@
             [ircMessage setRaw:[@"PASS " stringByAppendingString:server.password]];
             [ircMessage setMessage:[NSString stringWithFormat:@"/pass %@", server.password]];
         }
+        else if ([command isEqualToString:@"topic"]) {
+            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, parts.count - 1)];
+            NSString *remainder = [[parts objectsAtIndexes:indices] componentsJoinedByString:@" "];
+            [ircMessage setRaw:[NSString stringWithFormat:@"TOPIC %@ %@", channel, remainder]];
+            [ircMessage setMessage:string];
+        }
         else {
-            NSLog(@"unknown command: %@", command);
             [ircMessage setRaw:string];
             [ircMessage setMessage:string];
         }
