@@ -134,7 +134,10 @@
     }
 
     NSString *theChannel;
-    if ([theType isEqualToString:@"353"]) {
+    if ([theType isEqualToString:@"433"]) { // username is not available
+
+    }
+    else if ([theType isEqualToString:@"353"]) {
         // read the channel and all of the occupants
         NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(.*) :" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -331,15 +334,11 @@
     [inputStream close];
     [outputStream close];
     hasReadHostname = NO;
+    [self clearOccupantsInChannels];
 
-    // TODO: at this point, we MIGHT need to close our tabs because
-    // they might "belong" to the wrong hostname, right?
+    // TODO: at this point, we MIGHT need to close our tabs because they might "belong" to the wrong hostname
     // maybe the broker should know what the internal name is, and the
     // chatview and tabs will only know about the hostname the user entered?
-
-    // clear out occupants from every channel we are in
-    // otherwise we end up leaking memory because this list keeps growing
-    [self clearOccupantsInChannels];
 
     NSUInteger waitInterval = pow(2, reconnectAttempts);
     ++reconnectAttempts;
