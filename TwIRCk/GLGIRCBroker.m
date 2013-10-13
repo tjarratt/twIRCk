@@ -456,7 +456,10 @@
             [ircMessage setMessage:string];
         }
         else {
-            [ircMessage setRaw:string];
+            NSString *fullCommand = [NSString stringWithFormat:@"%@ %@", [command uppercaseString], [parts componentsJoinedByString:@" "]];
+            NSLog(@"sending unknown command %@ as: %@", command, fullCommand);
+
+            [ircMessage setRaw:fullCommand];
             [ircMessage setMessage:string];
         }
     }
