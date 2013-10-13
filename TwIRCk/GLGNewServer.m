@@ -179,16 +179,15 @@
     if (useSSL) { [ssl setState:NSOnState]; }
     else { [ssl setState:NSOffState]; }
 
-    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    NSMutableCharacterSet *delimiters = [NSMutableCharacterSet characterSetWithCharactersInString:@","];
-    [delimiters formUnionWithCharacterSet:whitespace];
-
-    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@", "];
-    NSArray *chans = [[channels stringValue] componentsSeparatedByCharactersInSet:characterSet];
+    NSCharacterSet *delimiters = [NSCharacterSet characterSetWithCharactersInString:@", "];
+    NSArray *chans = [[channels stringValue] componentsSeparatedByCharactersInSet:delimiters];
     NSMutableArray *mutableChannels = [[NSMutableArray alloc] init];
 
     [chans enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-        [mutableChannels addObject:[chan stringByTrimmingCharactersInSet:whitespace]];
+        NSString *theChan = [chan stringByTrimmingCharactersInSet:delimiters];
+        if ([theChan length] == 0) { return; }
+        
+        [mutableChannels addObject:theChan];
     }];
 
     NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];

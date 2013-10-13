@@ -88,8 +88,9 @@
 
     NSMutableArray *theChannels = [[NSMutableArray alloc] init];
     [[server.channels allObjects] enumerateObjectsUsingBlock:^(IRCChannel *chan, NSUInteger index, BOOL *stop) {
-        [theChannels addObject:[chan properName]];
+        if ([[chan name] length] == 0) { return; }
 
+        [theChannels addObject:[chan properName]];
         NSMutableArray *occupants = [[NSMutableArray alloc] init];
         [[self channelOccupants] setValue:occupants forKey:[chan properName]];
     }];

@@ -16,6 +16,10 @@
 @dynamic autojoin;
 
 - (NSString *) properName {
+    if (self.name.length == 0) {
+        return @"";
+    }
+
     if (![[self.name substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
         return [@"#" stringByAppendingString:self.name];
     }
