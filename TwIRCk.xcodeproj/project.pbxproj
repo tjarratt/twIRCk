@@ -454,6 +454,11 @@
 				CLASSPREFIX = GLG;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "General Linear Group";
+				TargetAttributes = {
+					F7C9A6BF18050EDF00796200 = {
+						TestTargetID = F70F126F179F2D8B00DBB74F;
+					};
+				};
 			};
 			buildConfigurationList = F70F126B179F2D8B00DBB74F /* Build configuration list for PBXProject "TwIRCk" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -759,6 +764,7 @@
 		F7C9A6CF18050EDF00796200 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/twIRCk.app/Contents/MacOS/twIRCk";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -779,6 +785,7 @@
 				INFOPLIST_FILE = "twIRCk Specs/twIRCk Specs-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -786,6 +793,7 @@
 		F7C9A6D018050EDF00796200 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/twIRCk.app/Contents/MacOS/twIRCk";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -803,6 +811,7 @@
 				INFOPLIST_FILE = "twIRCk Specs/twIRCk Specs-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -844,6 +853,7 @@
 				F7C9A6D018050EDF00796200 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
