@@ -266,7 +266,7 @@ const CGFloat inputHeight = 50;
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     [notification setTitle:[NSString stringWithFormat:@"You were mentioned in %@ on %@", channel, broker.hostname]];
     [notification setInformativeText:[NSString stringWithFormat:@"You were pinged in %@ by %@ on %@", channel, whom, broker.hostname]];
-    notification.soundName = NSUserNotificationDefaultSoundName;
+    [notification setSoundName:@"Ping"];
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
