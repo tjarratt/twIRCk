@@ -508,10 +508,7 @@
 }
 
 - (void) clearOccupantsInChannels {
-    NSString *key;
-    while (key = [[[self channelOccupants] keyEnumerator] nextObject]) {
-        [[self channelOccupants] setObject:@[] forKey:key];
-    }
+    [self setChannelOccupants:[[NSMutableDictionary alloc] init]];
 }
 
 - (void) nickChangedFrom:(NSString *) oldNick to:(NSString *) newNick {
