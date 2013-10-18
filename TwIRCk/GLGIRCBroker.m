@@ -335,6 +335,7 @@
     [inputStream close];
     [outputStream close];
     hasReadHostname = NO;
+    internalHostname = nil;
     [self clearOccupantsInChannels];
 
     // TODO: at this point, we MIGHT need to close our tabs because they might "belong" to the wrong hostname
