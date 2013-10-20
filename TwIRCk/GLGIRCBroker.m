@@ -375,7 +375,7 @@
             NSString *remainder = [parts componentsJoinedByString:@" "];
 
             NSString *channelToJoin;
-            // if the user says /join foo, we should rewrite this as /join #foo
+            // rewrite "/join foo", to "/join #foo"
             if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
                 channelToJoin = [@"#" stringByAppendingString:channel];
                 channel = [@"#" stringByAppendingString:channel];
