@@ -10,6 +10,7 @@
 
 @interface GLGIRCMessage : NSObject
 
+@property NSString *type;
 @property NSString *message;
 @property NSString *target;
 @property NSString *raw;
