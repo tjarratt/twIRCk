@@ -26,18 +26,38 @@ describe(@"MessageParsingSpec", ^{
                     GLGIRCMessage *message = [GLGIRCParser parseString:input];
 
                     [message type] should equal(@"join");
-                    [message raw] should equal(@"JOIN #cheese_lovers");
+                    [message raw] should equal(@"JOIN #cheese_haters");
                     [message message] should equal(@"/join #cheese_haters");
                 });
             });
 
-            it(@"should parse /part messages", ^{
-                input = @"/part losers";
-                GLGIRCMessage *message = [GLGIRCParser parseString:input];
+            describe(@"parsing /part messages", ^{
+                it(@"should parse /part messages", ^{
+                    input = @"/part losers";
+                    GLGIRCMessage *message = [GLGIRCParser parseString:input];
 
-                [message type] should equal(@"part");
-                [message raw] should equal(@"PART #losers");
-                [message message] should equal(@"/part #losers");
+                    [message type] should equal(@"part");
+                    [message raw] should equal(@"PART #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                    [message message] should equal(@"/part #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                });
+
+                it(@"should respect custom /part messages", ^{
+                    input = @"/part haskell Tis a silly place, let us not go there";
+                    GLGIRCMessage *msg = [GLGIRCParser parseString:input];
+
+                    [msg type] should equal(@"part");
+                    [msg raw] should equal(@"PART #haskell Tis a silly place, let us not go there");
+                    [msg message] should equal(@"/part #haskell Tis a silly place, let us not go there");
+                });
+
+                it(@"should use the current channel if none is specified", ^{
+                    input = @"/part";
+                    GLGIRCMessage *msg = [GLGIRCParser parseString:input];
+
+                    [msg type] should equal(@"part");
+                    [msg raw] should equal(@"PART <__channel__> http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                    [msg message] should equal(@"/part <__channel__> http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                });
             });
 
             describe(@"parsing /msg private messages", ^{
@@ -47,7 +67,7 @@ describe(@"MessageParsingSpec", ^{
 
                     [msg type] should equal(@"msg");
                     [msg raw] should equal(@"PRIVMSG god :hey man I got some good ideas for the new NEW testament");
-                    [msg message] should equal(@"<%nick%> hey man I got some good ideas for the new NEW testament");
+                    [msg message] should equal(@"<<__nick__>> hey man I got some good ideas for the new NEW testament");
                 });
 
                 it(@"should parse private messages with /whisper", ^{
@@ -56,7 +76,7 @@ describe(@"MessageParsingSpec", ^{
 
                     [msg type] should equal(@"msg");
                     [msg raw] should equal(@"PRIVMSG devil :WTS soul. LF primordial saronite");
-                    [msg message] should equal(@"<%nick%> WTS soul. LF primordial saronite");
+                    [msg message] should equal(@"<<__nick__>> WTS soul. LF primordial saronite");
                 });
             });
 
@@ -97,7 +117,7 @@ describe(@"MessageParsingSpec", ^{
                 GLGIRCMessage *msg = [GLGIRCParser parseString:input];
 
                 [msg type] should equal(@"topic");
-                [msg raw] should equal(@"TOPIC %channel% a new version of twIRCk.app is available! Please update now and report any bugs");
+                [msg raw] should equal(@"TOPIC <__channel__> a new version of twIRCk.app is available! Please update now and report any bugs");
                 [msg message] should equal(@"/topic a new version of twIRCk.app is available! Please update now and report any bugs");
             });
             
@@ -116,8 +136,8 @@ describe(@"MessageParsingSpec", ^{
             GLGIRCMessage *msg = [GLGIRCParser parseString:input];
 
             [msg type] should equal(@"msg");
-            [msg raw] should equal(@"PRIVMSG %channel% :Good Morning Vietnam!");
-            [msg message] should equal(@"<%nick%> Good Morning Vietnam!");
+            [msg raw] should equal(@"PRIVMSG <__channel__> :Good morning Vietnam!");
+            [msg message] should equal(@"<<__nick__>> Good morning Vietnam!");
         });
     });
 });
