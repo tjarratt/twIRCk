@@ -14,5 +14,8 @@
 @property NSString *message;
 @property NSString *target;
 @property NSString *raw;
+@property NSString *payload;
+
+-(void) interpolateChannel:(NSString *) channel andNick:(NSString *) nick;
 
 @end

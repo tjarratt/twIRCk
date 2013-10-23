@@ -14,31 +14,34 @@ describe(@"MessageParsingSpec", ^{
             describe(@"joining channels", ^{
                 it(@"should parse /join messages without an octothorpe", ^{
                     input = @"/join cheese_lovers";
-                    GLGIRCMessage *message = [GLGIRCParser parseString:input];
+                    GLGIRCMessage *msg = [GLGIRCParser parseString:input];
 
-                    [message type] should equal(@"join");
-                    [message raw] should equal(@"JOIN #cheese_lovers");
-                    [message message] should equal(@"/join #cheese_lovers");
+                    [msg type] should equal(@"join");
+                    [msg raw] should equal(@"JOIN #cheese_lovers");
+                    [msg message] should equal(@"/join #cheese_lovers");
+                    [msg payload] should equal(@"#cheese_lovers");
                 });
 
                 it(@"should parse /join messages with an octothorpe", ^{
                     input = @"/join #cheese_haters";
-                    GLGIRCMessage *message = [GLGIRCParser parseString:input];
+                    GLGIRCMessage *msg = [GLGIRCParser parseString:input];
 
-                    [message type] should equal(@"join");
-                    [message raw] should equal(@"JOIN #cheese_haters");
-                    [message message] should equal(@"/join #cheese_haters");
+                    [msg type] should equal(@"join");
+                    [msg raw] should equal(@"JOIN #cheese_haters");
+                    [msg message] should equal(@"/join #cheese_haters");
+                    [msg payload] should equal(@"#cheese_haters");
                 });
             });
 
             describe(@"parsing /part messages", ^{
                 it(@"should parse /part messages", ^{
                     input = @"/part losers";
-                    GLGIRCMessage *message = [GLGIRCParser parseString:input];
+                    GLGIRCMessage *msg = [GLGIRCParser parseString:input];
 
-                    [message type] should equal(@"part");
-                    [message raw] should equal(@"PART #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
-                    [message message] should equal(@"/part #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                    [msg type] should equal(@"part");
+                    [msg raw] should equal(@"PART #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                    [msg message] should equal(@"/part #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                    [msg payload] should equal(@"#losers");
                 });
 
                 it(@"should respect custom /part messages", ^{
@@ -48,6 +51,7 @@ describe(@"MessageParsingSpec", ^{
                     [msg type] should equal(@"part");
                     [msg raw] should equal(@"PART #haskell Tis a silly place, let us not go there");
                     [msg message] should equal(@"/part #haskell Tis a silly place, let us not go there");
+                    [msg payload] should equal(@"#haskell");
                 });
 
                 it(@"should use the current channel if none is specified", ^{
@@ -57,6 +61,7 @@ describe(@"MessageParsingSpec", ^{
                     [msg type] should equal(@"part");
                     [msg raw] should equal(@"PART <__channel__> http://twIRCk.com (sometimes you just gotta twIRCk it!)");
                     [msg message] should equal(@"/part <__channel__> http://twIRCk.com (sometimes you just gotta twIRCk it!)");
+                    [msg payload] should equal(@"<__channel__>");
                 });
             });
 
@@ -101,6 +106,7 @@ describe(@"MessageParsingSpec", ^{
                 [msg type] should equal(@"nick");
                 [msg raw] should equal(@"NICK bruceWayne");
                 [msg message] should equal(@"/nick bruceWayne");
+                [msg payload] should equal(@"bruceWayne");
             });
 
             it(@"should parse /pass messages", ^{
@@ -110,6 +116,7 @@ describe(@"MessageParsingSpec", ^{
                 [msg type] should equal(@"pass");
                 [msg raw] should equal(@"PASS ILoveMyDeadGaySon");
                 [msg message] should equal(@"/pass ILoveMyDeadGaySon");
+                [msg payload] should equal(@"ILoveMyDeadGaySon");
             });
             
             it(@"should parse /topic messages", ^{

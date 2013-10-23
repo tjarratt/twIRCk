@@ -10,4 +10,10 @@
 
 @implementation GLGIRCMessage
 
+-(void) interpolateChannel:(NSString *) channel andNick:(NSString *) nick {
+    [self setRaw:[[self.raw stringByReplacingOccurrencesOfString:@"<__channel__>" withString:channel] stringByReplacingOccurrencesOfString:@"<__nick__>" withString:nick]];
+    [self setMessage:[[self.message stringByReplacingOccurrencesOfString:@"<__channel__>" withString:channel] stringByReplacingOccurrencesOfString:@"<__nick__>" withString:nick]];
+    [self setTarget:[self.target stringByReplacingOccurrencesOfString:@"<__channel__>" withString:channel]];
+}
+
 @end
