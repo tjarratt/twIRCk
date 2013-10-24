@@ -73,6 +73,7 @@ describe(@"MessageParsingSpec", ^{
                     [msg type] should equal(@"msg");
                     [msg raw] should equal(@"PRIVMSG god :hey man I got some good ideas for the new NEW testament");
                     [msg message] should equal(@"<<__nick__>> hey man I got some good ideas for the new NEW testament");
+                    [msg payload] should equal(@"god");
                 });
 
                 it(@"should parse private messages with /whisper", ^{
@@ -82,6 +83,7 @@ describe(@"MessageParsingSpec", ^{
                     [msg type] should equal(@"msg");
                     [msg raw] should equal(@"PRIVMSG devil :WTS soul. LF primordial saronite");
                     [msg message] should equal(@"<<__nick__>> WTS soul. LF primordial saronite");
+                    [msg payload] should equal(@"devil");
                 });
             });
 
