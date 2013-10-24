@@ -22,8 +22,6 @@
 
         if ([command isEqualToString:@"join"]) {
             NSString *channel = [[parts objectAtIndex:1] lowercaseString];
-            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-            parts = [parts objectsAtIndexes:indices];
 
             if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
                 channel = [@"#" stringByAppendingString:channel];
