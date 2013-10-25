@@ -357,122 +357,24 @@
 
 #pragma mark - Response Parsing (needs to be refactored out of this class)
 - (GLGIRCMessage *) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
+    GLGIRCMessage *msg = [GLGIRCParser parseString:string];
+    [msg interpolateChannel:channel andNick:currentNick];
+    [writer addCommand:[msg raw]];
 
-    NSString *command;
-    GLGIRCMessage *ircMessage = [[GLGIRCMessage alloc] init];
-    [ircMessage setTarget:channel];
-
-    if ([[string substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"] ) {
-        NSUInteger length = [string length];
-        NSString *substring = [string substringWithRange:NSMakeRange(1, length - 1)];
-        NSArray *parts = [substring componentsSeparatedByString:@" "];
-        command = [[parts objectAtIndex:0] lowercaseString];
-
-        if ([command isEqualToString:@"join"]) {
-            NSString *channel = [[parts objectAtIndex:1] lowercaseString];
-            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-            parts = [parts objectsAtIndexes:indices];
-            NSString *remainder = [parts componentsJoinedByString:@" "];
-
-            NSString *channelToJoin;
-            // rewrite "/join foo", to "/join #foo"
-            if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
-                channelToJoin = [@"#" stringByAppendingString:channel];
-                channel = [@"#" stringByAppendingString:channel];
-            }
-            else {
-                channelToJoin = channel;
-            }
-
-            [ircMessage setRaw:[NSString stringWithFormat:@"JOIN %@ %@", channelToJoin, remainder]];
-            [ircMessage setMessage:[NSString stringWithFormat:@"/join %@ %@", channel, remainder]];
-            [ircMessage setTarget:channel];
-
-            [self joinChannel:channel];
-        }
-        else if ([command isEqualToString:@"part"]) {
-            NSString *theChannel;
-            if ([parts count] < 2 && channel) {
-                theChannel = channel;
-                NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
-                [ircMessage setRaw:[NSString stringWithFormat:@"PART %@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channel]];
-                [ircMessage setMessage:[NSString stringWithFormat:@"/part %@ %@", channel, defaultMessage]];
-                [ircMessage setTarget:channel];
-            }
-            else {
-                theChannel = [[parts objectAtIndex:1] lowercaseString];
-                NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-                parts = [parts objectsAtIndexes:indices];
-                NSString *remainder = [parts componentsJoinedByString:@" "];
-                [ircMessage setRaw:[NSString stringWithFormat:@"PART %@ %@", channel, remainder]];
-                [ircMessage setMessage:[NSString stringWithFormat:@"/part %@ %@", channel, remainder]];
-                [ircMessage setTarget:channel];
-            }
-            
-            [self partChannel:theChannel];
-        }
-        else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
-            NSString *whom = [parts objectAtIndex:1];
-            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-            parts = [parts objectsAtIndexes:indices];
-            NSString *remainder = [parts componentsJoinedByString:@" "];
-
-            [ircMessage setRaw:[NSString stringWithFormat:@"PRIVMSG %@ :%@", whom, remainder]];
-            [ircMessage setMessage:[NSString stringWithFormat:@"<%@> %@", currentNick, remainder]];
-            [ircMessage setTarget:whom];
-        }
-        else if ([command isEqualToString:@"who"]) {
-            if ([parts count] < 2) {
-                [ircMessage setRaw:@""];
-                [ircMessage setMessage:@"/who\nWHO: not enough parameters\nusage: /who {channel}"];
-            }
-            else {
-                NSString *whom = [parts objectAtIndex:1];
-                [ircMessage setRaw:[@"WHO " stringByAppendingString:whom]];
-                [ircMessage setMessage:[NSString stringWithFormat:@"/who %@", whom]];
-                [ircMessage setTarget:whom];
-            }
-        }
-        else if ([command isEqualToString:@"me"]) {
-            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-            parts = [parts objectsAtIndexes:indices];
-            NSString *remainder = [parts componentsJoinedByString:@" "];
-            [ircMessage setRaw:[@"ACTION " stringByAppendingString:remainder]];
-            [ircMessage setMessage:[NSString stringWithFormat:@"/me %@", remainder]];
-        }
-        else if ([command isEqualToString:@"nick"]) {
-            currentNick = [parts objectAtIndex:1];
-            [server setUsername:currentNick];
-            [ircMessage setRaw:[@"NICK " stringByAppendingString:currentNick]];
-            [ircMessage setMessage:[NSString stringWithFormat:@"/nick %@", currentNick]];
-        }
-        else if ([command isEqualToString:@"pass"]) {
-            [server setPassword:[parts objectAtIndex:1]];
-            [ircMessage setRaw:[@"PASS " stringByAppendingString:server.password]];
-            [ircMessage setMessage:[NSString stringWithFormat:@"/pass %@", server.password]];
-        }
-        else if ([command isEqualToString:@"topic"]) {
-            NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, parts.count - 1)];
-            NSString *remainder = [[parts objectsAtIndexes:indices] componentsJoinedByString:@" "];
-            [ircMessage setRaw:[NSString stringWithFormat:@"TOPIC %@ %@", channel, remainder]];
-            [ircMessage setMessage:string];
-        }
-        else {
-            NSString *fullCommand = [NSString stringWithFormat:@"%@ %@", [command uppercaseString], [parts componentsJoinedByString:@" "]];
-            NSLog(@"sending unknown command %@ as: %@", command, fullCommand);
-
-            [ircMessage setRaw:fullCommand];
-            [ircMessage setMessage:string];
-        }
+    if ([[msg type] isEqualToString:@"join"]) {
+        [self joinChannel:[msg payload]];
     }
-    else {
-        [ircMessage setRaw:[NSString stringWithFormat:@"PRIVMSG %@ :%@", channel, string]];
-        [ircMessage setMessage:[NSString stringWithFormat:@"<%@> %@", currentNick, string]];
+    else if ([[msg type] isEqualToString:@"part"]) {
+        [self partChannel:[msg payload] userInitiated:YES];
+    }
+    else if ([[msg type] isEqualToString:@"nick"]) {
+        [server setUsername:[msg payload]];
+    }
+    else if ([[msg type] isEqualToString:@"pass"]) {
+        [server setPassword:[msg payload]];
     }
 
-    [writer addCommand:[ircMessage raw]];
-
-    return ircMessage;
+    return msg;
 }
 
 - (BOOL) handledPing:(NSString *) maybePing {
