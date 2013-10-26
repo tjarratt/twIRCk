@@ -6,7 +6,7 @@ using namespace Cedar::Doubles;
 
 SPEC_BEGIN(MessageParsingSpecSpec)
 
-describe(@"MessageParsingSpec", ^{
+describe(@"User input parsing", ^{
     __block NSString *input;
 
     describe(@"#parseString", ^{
@@ -98,7 +98,12 @@ describe(@"MessageParsingSpec", ^{
 
             xit(@"should parse /me messages", ^{
                 // TODO needs to be able to support binary in strings
-                NO should equal(YES);
+                input = @"/me twircks it!";
+                GLGIRCMessage *msg = [GLGIRCParser parseString:input];
+
+                [msg type] should equal(@"me");
+                [msg raw] should equal(@"PRIVMSG <__channel__> \u0001ACTION twirkcs it!\u0001");
+                [msg message] should equal(@"<__nick__> twicks it!");
             });
 
             it(@"should parse /nick messages", ^{
