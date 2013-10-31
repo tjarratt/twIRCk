@@ -32,7 +32,7 @@
 		F7B23164181B785800B20400 /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
 		F7B23165181B785800B20400 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F7B8B54318121792003003BC /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
-		F7B8B545181219A7003003BC /* MessageParsingSpecSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpecSpec.mm */; };
+		F7B8B545181219A7003003BC /* MessageParsingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpec.mm */; };
 		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
 		F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */; };
 		F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6717F0E073005B522B /* GLGChannelContent.m */; };
@@ -123,7 +123,7 @@
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
 		F7B8B54118121792003003BC /* GLGIRCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCParser.h; sourceTree = "<group>"; };
 		F7B8B54218121792003003BC /* GLGIRCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGIRCParser.m; sourceTree = "<group>"; };
-		F7B8B544181219A7003003BC /* MessageParsingSpecSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageParsingSpecSpec.mm; sourceTree = "<group>"; };
+		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageParsingSpec.mm; sourceTree = "<group>"; };
 		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
 		F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = twIRCk.iconset; sourceTree = "<group>"; };
 		F7C5FF6217F0D24C005B522B /* GLGChannelSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChannelSidebar.h; sourceTree = "<group>"; };
@@ -340,7 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				F7C9A6C918050EDF00796200 /* ExampleSpec.mm */,
-				F7B8B544181219A7003003BC /* MessageParsingSpecSpec.mm */,
+				F7B8B544181219A7003003BC /* MessageParsingSpec.mm */,
 				F7C9A6CB18050EDF00796200 /* Rakefile */,
 				F7C9A6CD18050EDF00796200 /* Cedar.framework */,
 				F7C9A6C418050EDF00796200 /* Supporting Files */,
@@ -545,7 +545,7 @@
 			files = (
 				F7B23164181B785800B20400 /* GLGIRCParser.m in Sources */,
 				F7B23165181B785800B20400 /* GLGIRCMessage.m in Sources */,
-				F7B8B545181219A7003003BC /* MessageParsingSpecSpec.mm in Sources */,
+				F7B8B545181219A7003003BC /* MessageParsingSpec.mm in Sources */,
 				F7C9A6CA18050EDF00796200 /* ExampleSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
