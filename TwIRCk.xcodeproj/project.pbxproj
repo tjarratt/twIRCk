@@ -29,8 +29,6 @@
 		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
-		F7B23162181B784B00B20400 /* GLGIRCParser.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54118121792003003BC /* GLGIRCParser.h */; };
-		F7B23163181B784B00B20400 /* GLGIRCMessage.h in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */; };
 		F7B23164181B785800B20400 /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
 		F7B23165181B785800B20400 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F7B8B54318121792003003BC /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
@@ -547,8 +545,6 @@
 			files = (
 				F7B23164181B785800B20400 /* GLGIRCParser.m in Sources */,
 				F7B23165181B785800B20400 /* GLGIRCMessage.m in Sources */,
-				F7B23162181B784B00B20400 /* GLGIRCParser.h in Sources */,
-				F7B23163181B784B00B20400 /* GLGIRCMessage.h in Sources */,
 				F7B8B545181219A7003003BC /* MessageParsingSpecSpec.mm in Sources */,
 				F7C9A6CA18050EDF00796200 /* ExampleSpec.mm in Sources */,
 			);
