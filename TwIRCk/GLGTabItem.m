@@ -151,9 +151,21 @@
 - (void) setSelected:(BOOL)selected {
     _selected = selected;
 
+    NSRect frame = [self frame];
+    selectedRect = NSMakeRect(13, 8, frame.size.width - 38, frame.size.height);
+    unselectedRect = NSMakeRect(13, 8, frame.size.width - 23, frame.size.height);
+
+    NSRect trackingRect = NSMakeRect(0, 0, frame.size.width, frame.size.height);
+    NSRect trackingRectSelected = NSMakeRect(0, 0, frame.size.width - 20, frame.size.height);
+
+    NSTrackingAreaOptions opts = NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow | NSTrackingInVisibleRect;
+    trackingArea = [[NSTrackingArea alloc] initWithRect:trackingRect options:opts owner:self userInfo:nil];
+    trackingAreaSelected = [[NSTrackingArea alloc] initWithRect:trackingRectSelected options:opts owner:self userInfo:nil];
+
     if (_selected) {
         _emphasis = NO;
         _highlighted = NO;
+
         [self removeTrackingArea:trackingArea];
         [self addTrackingArea:trackingAreaSelected];
     }
