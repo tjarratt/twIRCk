@@ -9,11 +9,11 @@ SPEC_BEGIN(MessageParsingSpec)
 describe(@"User input parsing", ^{
     __block GLGIRCMessage *msg;
 
-    describe(@"#parseString", ^{
+    describe(@"#parseUserInput", ^{
         describe(@"parsing command messages", ^{
             describe(@"joining channels", ^{
                 it(@"should parse /join messages without an octothorpe", ^{
-                    msg = [GLGIRCParser parseString:@"/join cheese_lovers"];
+                    msg = [GLGIRCParser parseUserInput:@"/join cheese_lovers"];
 
                     [msg type] should equal(@"join");
                     [msg raw] should equal(@"JOIN #cheese_lovers");
@@ -22,7 +22,7 @@ describe(@"User input parsing", ^{
                 });
 
                 it(@"should parse /join messages with an octothorpe", ^{
-                    msg = [GLGIRCParser parseString:@"/join #cheese_haters"];
+                    msg = [GLGIRCParser parseUserInput:@"/join #cheese_haters"];
 
                     [msg type] should equal(@"join");
                     [msg raw] should equal(@"JOIN #cheese_haters");
@@ -33,7 +33,7 @@ describe(@"User input parsing", ^{
 
             describe(@"parsing /part messages", ^{
                 it(@"should parse /part messages", ^{
-                    msg = [GLGIRCParser parseString:@"/part losers"];
+                    msg = [GLGIRCParser parseUserInput:@"/part losers"];
 
                     [msg type] should equal(@"part");
                     [msg raw] should equal(@"PART #losers http://twIRCk.com (sometimes you just gotta twIRCk it!)");
@@ -42,7 +42,7 @@ describe(@"User input parsing", ^{
                 });
 
                 it(@"should respect custom /part messages", ^{
-                    msg = [GLGIRCParser parseString:@"/part haskell Tis a silly place, let us not go there"];
+                    msg = [GLGIRCParser parseUserInput:@"/part haskell Tis a silly place, let us not go there"];
 
                     [msg type] should equal(@"part");
                     [msg raw] should equal(@"PART #haskell Tis a silly place, let us not go there");
@@ -51,7 +51,7 @@ describe(@"User input parsing", ^{
                 });
 
                 it(@"should use the current channel if none is specified", ^{
-                    msg = [GLGIRCParser parseString:@"/part"];
+                    msg = [GLGIRCParser parseUserInput:@"/part"];
 
                     [msg type] should equal(@"part");
                     [msg raw] should equal(@"PART <__channel__> http://twIRCk.com (sometimes you just gotta twIRCk it!)");
@@ -62,7 +62,7 @@ describe(@"User input parsing", ^{
 
             describe(@"parsing /msg private messages", ^{
                 it(@"should parse private messages as /msg", ^{
-                    msg = [GLGIRCParser parseString:@"/msg god hey man I got some good ideas for the new NEW testament"];
+                    msg = [GLGIRCParser parseUserInput:@"/msg god hey man I got some good ideas for the new NEW testament"];
 
                     [msg type] should equal(@"msg");
                     [msg raw] should equal(@"PRIVMSG god :hey man I got some good ideas for the new NEW testament");
@@ -71,7 +71,7 @@ describe(@"User input parsing", ^{
                 });
 
                 it(@"should parse private messages with /whisper", ^{
-                    msg = [GLGIRCParser parseString:@"/whisper devil WTS soul. LF primordial saronite"];
+                    msg = [GLGIRCParser parseUserInput:@"/whisper devil WTS soul. LF primordial saronite"];
 
                     [msg type] should equal(@"msg");
                     [msg raw] should equal(@"PRIVMSG devil :WTS soul. LF primordial saronite");
@@ -81,7 +81,7 @@ describe(@"User input parsing", ^{
             });
 
             it(@"should parse /who messages", ^{
-                msg = [GLGIRCParser parseString:@"/who batman"];
+                msg = [GLGIRCParser parseUserInput:@"/who batman"];
 
                 [msg type] should equal(@"who");
                 [msg raw] should equal(@"WHO batman");
@@ -90,7 +90,7 @@ describe(@"User input parsing", ^{
 
             // TODO needs to be able to support binary in strings
             xit(@"should parse /me messages", ^{
-                msg = [GLGIRCParser parseString:@"/me twircks it!"];
+                msg = [GLGIRCParser parseUserInput:@"/me twircks it!"];
 
                 [msg type] should equal(@"me");
                 [msg raw] should equal(@"PRIVMSG <__channel__> \u0001ACTION twirkcs it!\u0001");
@@ -98,7 +98,7 @@ describe(@"User input parsing", ^{
             });
 
             it(@"should parse /nick messages", ^{
-                msg = [GLGIRCParser parseString:@"/nick bruceWayne"];
+                msg = [GLGIRCParser parseUserInput:@"/nick bruceWayne"];
 
                 [msg type] should equal(@"nick");
                 [msg raw] should equal(@"NICK bruceWayne");
@@ -107,7 +107,7 @@ describe(@"User input parsing", ^{
             });
 
             it(@"should parse /pass messages", ^{
-                msg = [GLGIRCParser parseString:@"/pass ILoveMyDeadGaySon"];
+                msg = [GLGIRCParser parseUserInput:@"/pass ILoveMyDeadGaySon"];
 
                 [msg type] should equal(@"pass");
                 [msg raw] should equal(@"PASS ILoveMyDeadGaySon");
@@ -116,7 +116,7 @@ describe(@"User input parsing", ^{
             });
             
             it(@"should parse /topic messages", ^{
-                msg = [GLGIRCParser parseString:@"/topic a new version of twIRCk.app is available! Please update now and report any bugs"];
+                msg = [GLGIRCParser parseUserInput:@"/topic a new version of twIRCk.app is available! Please update now and report any bugs"];
 
                 [msg type] should equal(@"topic");
                 [msg raw] should equal(@"TOPIC <__channel__> a new version of twIRCk.app is available! Please update now and report any bugs");
@@ -124,7 +124,7 @@ describe(@"User input parsing", ^{
             });
             
             it(@"should treat other /cmd messages as having no target", ^{
-                msg = [GLGIRCParser parseString:@"/foo bar baz buz"];
+                msg = [GLGIRCParser parseUserInput:@"/foo bar baz buz"];
 
                 [msg type] should equal(@"foo");
                 [msg raw] should equal(@"FOO bar baz buz");
@@ -133,12 +133,38 @@ describe(@"User input parsing", ^{
         });
 
         it(@"should treat all other messages as a message in the current channel", ^{
-            msg = [GLGIRCParser parseString:@"Good morning Vietnam!"];
+            msg = [GLGIRCParser parseUserInput:@"Good morning Vietnam!"];
 
             [msg type] should equal(@"msg");
             [msg raw] should equal(@"PRIVMSG <__channel__> :Good morning Vietnam!");
             [msg message] should equal(@"<<__nick__>> Good morning Vietnam!");
         });
+    });
+});
+
+describe(@"parsing messages from the wire", ^{
+    __block NSString *readValue;
+    __block GLGIRCMessage *msg;
+
+    it(@"should understand Nick Not Available messages", ^{
+        readValue = @":pratchett.freenode.net 433 brucewayne batman :Nickname is already in use.";
+        msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"NickInUse");
+        [msg raw] should equal(readValue);
+        [msg message] should equal(@"The nick 'batman' is already in use. Attempting to use 'batman_'");
+        [msg payload] should equal(@"batman_");
+    });
+
+    it(@"should parse channel occupant messages", ^{
+        readValue = @":hobbledehoy.freenode.net 353 #cheezburger :bruce @alfred batman robin";
+        msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"ChannelOccupants");
+        [msg payload] should equal(@{
+                                     @"channel": @"#cheezburger",
+                                     @"occupants": @[@"bruce", @"alfred", @"batman", @"robin"]
+                                     });
     });
 });
 

@@ -135,10 +135,7 @@
     }
 
     NSString *theChannel;
-    if ([theType isEqualToString:@"433"]) { // username is not available
-
-    }
-    else if ([theType isEqualToString:@"353"]) {
+    if ([theType isEqualToString:@"353"]) {
         // read the channel and all of the occupants
         NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(.*) :" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -357,7 +354,7 @@
 
 #pragma mark - Response Parsing (needs to be refactored out of this class)
 - (GLGIRCMessage *) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
-    GLGIRCMessage *msg = [GLGIRCParser parseString:string];
+    GLGIRCMessage *msg = [GLGIRCParser parseUserInput:string];
     [msg interpolateChannel:channel andNick:currentNick];
     [writer addCommand:[msg raw]];
 

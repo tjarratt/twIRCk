@@ -10,5 +10,6 @@
 #import "GLGIRCMessage.h"
 
 @interface GLGIRCParser : NSObject
-+(GLGIRCMessage *) parseString:(NSString *) string;
++(GLGIRCMessage *) parseUserInput:(NSString *) string;
++(GLGIRCMessage *) parseRawIRCString:(NSString *) string;
 @end
