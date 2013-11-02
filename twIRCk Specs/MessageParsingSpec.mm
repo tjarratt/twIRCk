@@ -146,6 +146,11 @@ describe(@"parsing messages from the wire", ^{
     __block NSString *readValue;
     __block GLGIRCMessage *msg;
 
+    it(@"should parse hostnames from messages", ^{
+        readValue = @":jarmusch.freenode.net 372 :- zzz";
+        [[GLGIRCParser parseRawIRCString:readValue] fromHost] should equal(@"jarmusch.freenode.net");
+    });
+
     it(@"should understand Nick Not Available messages", ^{
         readValue = @":pratchett.freenode.net 433 brucewayne batman :Nickname is already in use.";
         msg = [GLGIRCParser parseRawIRCString:readValue];
@@ -165,6 +170,80 @@ describe(@"parsing messages from the wire", ^{
                                      @"channel": @"#cheezburger",
                                      @"occupants": @[@"bruce", @"alfred", @"batman", @"robin"]
                                      });
+    });
+
+    it(@"should parse ping messages", ^{
+        readValue = @"PING :foo.bar.com";
+        GLGIRCMessage *msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"ping");
+    });
+
+    it(@"should read channel occupants", ^{
+        readValue = @":gotham.freenode.net 353 #superheros :@superman batman justice_league_bot";
+        GLGIRCMessage *msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"ChannelOccupants");
+
+        NSDictionary * dict = [msg payload];
+        [dict valueForKey:@"channel"] should equal(@"#superheros");
+        [dict valueForKey:@"occupants"] should equal(@[@"superman", @"batman", @"justice_league_bot"]);
+    });
+
+    it(@"should pass MOTD messages to the tab for the entire server", ^{
+        readValue = @":nowhere.freenode.net 372 yourNick :- HEY THIS IS THE MOTD";
+        GLGIRCMessage *msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"MOTD");
+        [msg message] should equal(@"HEY THIS IS THE MOTD\n");
+    });
+
+    it(@"should parse nick change messages", ^{
+        readValue = @":robin!~boywonder@justice.org NICK :nightwing";
+        GLGIRCMessage *msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"NickChange");
+
+        NSDictionary *dict = (NSDictionary *) msg.payload;
+        [dict valueForKey:@"newNick"] should equal(@"nightwing");
+        [dict valueForKey:@"oldNick"] should equal(@"robin");
+    });
+
+    it(@"should parse NOTICE messages as though they came 'from' the server", ^{
+        readValue = @":rajaniemi.freenode.net NOTICE #twirck :*** Notice -- TS for #twirck changed from 1383287673 to 1380312869";
+        GLGIRCMessage *msg = [GLGIRCParser parseRawIRCString:readValue];
+
+        [msg type] should equal(@"NOTICE");
+        [msg fromHost] should equal(@"rajaniemi.freenode.net");
+        [msg message] should equal(@"*** Notice -- TS for #twirck changed from 1383287673 to 1380312869");
+    });
+
+    it(@"should parse JOIN messages", ^{
+        readValue = @":ChanServ!ChanServ@services. JOIN #twirck";
+    });
+
+    it(@"should parse PART messages", ^{
+        readValue = @":et!~extraterrestrial@earth.gov ";
+    });
+
+    it(@"should parse QUIT messages", ^{
+
+    });
+
+    it(@"should parse PRIVMSG messages", ^{
+
+    });
+
+    describe(@"ignoring some message types", ^{
+        it(@"should ignore 'end of MOTD' messages", ^{
+            readValue = @":chat.freenode.net 376 :NO_MORE_MOTD";
+            [GLGIRCParser parseRawIRCString:readValue] should_not be_truthy;
+        });
+
+        it(@"should ignore 'end of names' messages", ^{
+            readValue = @":foo.freenode.net 366 #fuzzbat :WHATEVER";
+            [GLGIRCParser parseRawIRCString:readValue] should_not be_truthy;
+        });
     });
 });
 

@@ -172,8 +172,6 @@
         [msg setType:@"ping"];
     }
     else {
-        NSLog(@"%@", string);
-
         NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z0-9!~`_/|@:\\[\.\-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
         NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
@@ -206,12 +204,38 @@
         else if ([theType isEqualToString:@"353"]) {
             [self readChannelOccupantsFromString:theMessage intoMessage:&msg];
         }
+        else if ([theType isEqualToString:@"372"]) {
+            [self readMOTDFromString:theMessage intoMessage:&msg];
+        }
+        else if ([theType isEqualToString:@"NICK"]) {
+            msg.type = @"NickChange";
+
+            NSString *newNick = [theMessage substringWithRange:NSMakeRange(1, theMessage.length - 1)];
+            NSString *oldNick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
+
+            msg.payload = @{@"oldNick": oldNick, @"newNick": newNick};
+        }
+        else {
+            return nil;
+        }
     }
 
     return msg;
 }
 
 #pragma mark - Private
++(void) readMOTDFromString:(NSString *)string intoMessage:(GLGIRCMessage **)msg {
+    (*msg).type = @"MOTD";
+    (*msg).message = [[string substringFromIndex:[string rangeOfString:@":"].location + 3] stringByAppendingString:@"\n"];
+}
+
++(void) readNOTICEFromString:(NSString *)string intoMessage:(GLGIRCMessage **)msg {
+    (*msg).type = @"NOTICE";
+
+    NSUInteger startIndex = [string rangeOfString:@":"].location;
+    (*msg).message = [[string substringFromIndex:startIndex + 3] stringByAppendingString:@"\n"];
+}
+
 +(BOOL) isPing:(NSString *) maybePing {
     NSError *error;
     NSRegularExpression *pingRegex = [NSRegularExpression regularExpressionWithPattern:@"^PING :([a-zA-Z.-]+)" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -245,7 +269,6 @@
     NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
 
     if ([matches count] == 0) {
-        NSLog(@"SNAP. Could not read internal hostname from message : %@", string);
         return nil;
     }
 
@@ -260,7 +283,8 @@
     NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
 
     if (matches.count == 0) {
-        return NSLog(@"could not parse occupants for channel in message : %@", string);
+        NSLog(@"no matches for occupants");
+        return;
     }
 
     NSTextCheckingResult *result = [matches objectAtIndex:0];
