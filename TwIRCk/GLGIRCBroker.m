@@ -135,7 +135,18 @@
     }
 
     NSString *theChannel;
-    if ([theType isEqualToString:@"353"]) {
+    if ([theType isEqualToString:@"433"]) {
+        NSArray *components = [theMessage componentsSeparatedByString:@" "];
+        NSString *unavailableNick = [components objectAtIndex:1];
+
+        string = [NSString stringWithFormat:@"The nick '%@' is already in use. Attempting to use '%@_'", unavailableNick, unavailableNick];
+        theChannel = theSender;
+        currentNick = [unavailableNick stringByAppendingString:@"_"];
+
+        [server setUsername:currentNick];
+        [writer addCommand:[@"NICK " stringByAppendingString:currentNick]];
+    }
+    else if ([theType isEqualToString:@"353"]) {
         // read the channel and all of the occupants
         NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(.*) :" options:NSRegularExpressionCaseInsensitive error:&error];
