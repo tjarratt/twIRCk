@@ -186,8 +186,8 @@
     }
     else if ([theType isEqualToString:@"NOTICE"]) {
         theChannel = theSender;
-        NSUInteger startIndex = [string rangeOfString:@":"].location;
-        string = [[theMessage substringFromIndex:startIndex + 3] stringByAppendingString:@"\n"];
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
     }
     else if ([theType isEqualToString:@"372"]) {
         theChannel = theSender;
