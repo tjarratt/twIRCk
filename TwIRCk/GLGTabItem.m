@@ -136,8 +136,7 @@
         [value setAttributes:labelAttrs range:range];
     }
     if (_highlighted) {
-        NSColor *theColor = [NSColor colorWithDeviceRed:0.14 green:0.52 blue:0.93 alpha:1.0];
-        [value addAttribute:NSForegroundColorAttributeName value:theColor range:range];
+        [value addAttribute:NSForegroundColorAttributeName value:[NSColor twirckBlue] range:range];
     }
 
     [textfield setAttributedStringValue:value];

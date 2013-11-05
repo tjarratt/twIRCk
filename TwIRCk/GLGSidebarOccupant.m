@@ -38,7 +38,7 @@
 }
 
 - (void) mouseEntered:(NSEvent *) theEvent {
-    [[self layer] setBorderColor:[[NSColor colorWithDeviceRed:0.14 green:0.52 blue:0.93 alpha:1.0] CGColor]];
+    [[self layer] setBorderColor:[[NSColor twirckBlue] CGColor]];
 }
 
 - (void) mouseExited:(NSEvent *) theEvent {

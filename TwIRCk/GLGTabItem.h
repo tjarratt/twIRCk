@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "NSColor+GLG.h"
 
 @interface GLGTabItem : NSView {
     NSTextField *textfield;

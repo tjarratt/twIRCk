@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "GLGOccupantDelegate.h"
+#import "NSColor+GLG.h"
 
 @interface GLGSidebarOccupant : NSTextField
 
