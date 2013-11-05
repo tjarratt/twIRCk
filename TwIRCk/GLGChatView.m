@@ -173,11 +173,8 @@ const CGFloat inputHeight = 50;
     NSString *activeHost = [currentBroker hostname];
 
     if (currentChannel != channelToDisplay) {
-        [self joinChannel:channelToDisplay onServer:activeHost userInitiated:YES fromBroker:currentBroker];
-
-        // currentBroke stays the same before this was channel
-        // is actually on the same server on the same broker
         currentChannel = channelToDisplay;
+        [self joinChannel:currentChannel onServer:activeHost userInitiated:YES fromBroker:currentBroker];
     }
 
     [input clearTextField];
