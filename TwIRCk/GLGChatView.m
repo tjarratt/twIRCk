@@ -10,6 +10,7 @@
 
 const CGFloat tabHeight = 30;
 const CGFloat inputHeight = 50;
+const CGFloat occupantsSidebarWidth = 150;
 
 @implementation GLGChatView
 
@@ -33,7 +34,7 @@ const CGFloat inputHeight = 50;
         [tabView setNextKeyView:input];
         [self addSubview:tabView];
 
-        NSRect chatRect = NSMakeRect(0, inputHeight, frame.size.width - 150, frame.size.height - 80);
+        NSRect chatRect = NSMakeRect(0, inputHeight, frame.size.width - occupantsSidebarWidth, frame.size.height - tabHeight - inputHeight);
         scrollview = [[NSScrollView alloc] initWithFrame:chatRect];
         [scrollview setBorderType:NSNoBorder];
         [scrollview setHasVerticalScroller:YES];
@@ -43,7 +44,7 @@ const CGFloat inputHeight = 50;
         [scrollview setNextKeyView:input];
         [self addSubview:scrollview];
 
-        NSRect channelRect = NSMakeRect(frame.size.width - 150, inputHeight, 150, frame.size.height - 80);
+        NSRect channelRect = NSMakeRect(frame.size.width - occupantsSidebarWidth, inputHeight, occupantsSidebarWidth, frame.size.height - tabHeight - inputHeight);
         sidebar = [[GLGChannelSidebar alloc] initWithFrame:channelRect];
         [self addSubview:sidebar];
 
@@ -76,10 +77,10 @@ const CGFloat inputHeight = 50;
     NSRect tabFrame = NSMakeRect(0, frame.size.height - tabHeight, frame.size.width, tabHeight);
     [tabView setFrame:tabFrame];
 
-    NSRect scrollFrame = NSMakeRect(0, inputHeight, frame.size.width - 150, frame.size.height - 80);
+    NSRect scrollFrame = NSMakeRect(0, inputHeight, frame.size.width - occupantsSidebarWidth, frame.size.height - tabHeight - inputHeight);
     [scrollview setFrame:scrollFrame];
 
-    NSRect sidebarFrame = NSMakeRect(frame.size.width - 150, inputHeight, 150, frame.size.height - 80);
+    NSRect sidebarFrame = NSMakeRect(frame.size.width - occupantsSidebarWidth, inputHeight, occupantsSidebarWidth, frame.size.height - tabHeight - inputHeight);
     [sidebar setFrame:sidebarFrame];
 
     NSRect inputFrame = NSMakeRect(0, 0, frame.size.width, inputHeight);
