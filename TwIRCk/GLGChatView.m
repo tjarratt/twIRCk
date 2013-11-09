@@ -231,7 +231,10 @@ const CGFloat occupantsSidebarWidth = 150;
                fromHost:(NSString *)host
              fromBroker:(GLGIRCBroker *)broker
 {
-    assert( broker != nil );
+    if (broker == nil) {
+        return NSLog(@"nil broker trying to send message to channel %@ to host %@", channel, host);
+    }
+
     NSString *key = [broker.hostname stringByAppendingString:channel];
     GLGChatLogView *log = [chatlogs objectForKey:key];
 
