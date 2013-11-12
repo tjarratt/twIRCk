@@ -21,6 +21,12 @@
 		F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
 		F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D017A9962200DBB74F /* GLGNewServer.m */; };
 		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
+		F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F717720A1831DA0B00BD6EB4 /* Foundation.framework */; };
+		F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71772101831DA0B00BD6EB4 /* Cedar.framework */; };
+		F71772131831DA0B00BD6EB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71772121831DA0B00BD6EB4 /* main.m */; };
+		F717721A1831DA3D00BD6EB4 /* MessageParsingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpec.mm */; };
+		F717721B1831DA7400BD6EB4 /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
+		F717721C1831DA7E00BD6EB4 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
 		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
 		F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97817E7967B00D5B0D0 /* IRCChannel.m */; };
@@ -29,19 +35,12 @@
 		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
-		F7B23164181B785800B20400 /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
-		F7B23165181B785800B20400 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F7B8B54318121792003003BC /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
-		F7B8B545181219A7003003BC /* MessageParsingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpec.mm */; };
 		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
 		F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */; };
 		F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6717F0E073005B522B /* GLGChannelContent.m */; };
 		F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */; };
 		F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6D17F12155005B522B /* GLGChatLogView.m */; };
-		F7C9A6C118050EDF00796200 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */; };
-		F7C9A6C218050EDF00796200 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
-		F7C9A6C818050EDF00796200 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F7C9A6C618050EDF00796200 /* InfoPlist.strings */; };
-		F7C9A6CE18050EDF00796200 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C9A6CD18050EDF00796200 /* Cedar.framework */; };
 		F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
 		F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */; };
@@ -62,16 +61,6 @@
 			script = "# momc\n";
 		};
 /* End PBXBuildRule section */
-
-/* Begin PBXContainerItemProxy section */
-		F7B7295E18132DC600280A1C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F70F1268179F2D8B00DBB74F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F70F126F179F2D8B00DBB74F;
-			remoteInfo = twIRCk;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F70F1270179F2D8B00DBB74F /* twIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +93,12 @@
 		F70F12D017A9962200DBB74F /* GLGNewServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGNewServer.m; sourceTree = "<group>"; };
 		F70F12D217A9980800DBB74F /* GLGChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatView.h; sourceTree = "<group>"; };
 		F70F12D317A9980800DBB74F /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatView.m; sourceTree = "<group>"; };
+		F71772091831DA0B00BD6EB4 /* Specs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Specs; sourceTree = BUILT_PRODUCTS_DIR; };
+		F717720A1831DA0B00BD6EB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F717720D1831DA0B00BD6EB4 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		F717720F1831DA0B00BD6EB4 /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
+		F71772101831DA0B00BD6EB4 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
+		F71772121831DA0B00BD6EB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F7193169182356280077A326 /* GLGIRCMessageParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCMessageParserDelegate.h; sourceTree = "<group>"; };
 		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
@@ -123,7 +118,7 @@
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
 		F7B8B54118121792003003BC /* GLGIRCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GLGIRCParser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7B8B54218121792003003BC /* GLGIRCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGIRCParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MessageParsingSpec.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = MessageParsingSpec.mm; path = "../twIRCk Specs/MessageParsingSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
 		F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = twIRCk.iconset; sourceTree = "<group>"; };
 		F7C5FF6217F0D24C005B522B /* GLGChannelSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChannelSidebar.h; sourceTree = "<group>"; };
@@ -134,12 +129,6 @@
 		F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGGradientSidebar.m; sourceTree = "<group>"; };
 		F7C5FF6C17F12155005B522B /* GLGChatLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatLogView.h; sourceTree = "<group>"; };
 		F7C5FF6D17F12155005B522B /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatLogView.m; sourceTree = "<group>"; };
-		F7C9A6C018050EDF00796200 /* twIRCk Specs.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "twIRCk Specs.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7C9A6C518050EDF00796200 /* twIRCk Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "twIRCk Specs-Info.plist"; sourceTree = "<group>"; };
-		F7C9A6C718050EDF00796200 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F7C9A6CB18050EDF00796200 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
-		F7C9A6CC18050EDF00796200 /* twIRCk Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "twIRCk Specs-Prefix.pch"; sourceTree = "<group>"; };
-		F7C9A6CD18050EDF00796200 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
 		F7D0D95D17FA775B00F7B258 /* GLGSidebarOccupant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGSidebarOccupant.h; sourceTree = "<group>"; };
 		F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGSidebarOccupant.m; sourceTree = "<group>"; };
 		F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGOccupantDelegate.h; sourceTree = "<group>"; };
@@ -165,13 +154,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7C9A6BB18050EDF00796200 /* Frameworks */ = {
+		F71772071831DA0B00BD6EB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7C9A6C218050EDF00796200 /* Cocoa.framework in Frameworks */,
-				F7C9A6C118050EDF00796200 /* SenTestingKit.framework in Frameworks */,
-				F7C9A6CE18050EDF00796200 /* Cedar.framework in Frameworks */,
+				F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */,
+				F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +185,7 @@
 			children = (
 				F7C5FF4617F0229C005B522B /* twIRCk.entitlements */,
 				F70F1279179F2D8B00DBB74F /* TwIRCk */,
-				F7C9A6C318050EDF00796200 /* twIRCk Specs */,
+				F717720C1831DA0B00BD6EB4 /* Specs */,
 				F70F1272179F2D8B00DBB74F /* Frameworks */,
 				F70F1271179F2D8B00DBB74F /* Products */,
 			);
@@ -207,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				F70F1270179F2D8B00DBB74F /* twIRCk.app */,
-				F7C9A6C018050EDF00796200 /* twIRCk Specs.octest */,
+				F71772091831DA0B00BD6EB4 /* Specs */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +206,7 @@
 				F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */,
 				F70F1273179F2D8B00DBB74F /* Cocoa.framework */,
 				F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */,
+				F717720A1831DA0B00BD6EB4 /* Foundation.framework */,
 				F70F1275179F2D8B00DBB74F /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -300,6 +289,26 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		F717720C1831DA0B00BD6EB4 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				F717720D1831DA0B00BD6EB4 /* Rakefile */,
+				F71772101831DA0B00BD6EB4 /* Cedar.framework */,
+				F71772121831DA0B00BD6EB4 /* main.m */,
+				F7B8B544181219A7003003BC /* MessageParsingSpec.mm */,
+				F717720E1831DA0B00BD6EB4 /* Supporting Files */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		F717720E1831DA0B00BD6EB4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F717720F1831DA0B00BD6EB4 /* Specs-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F76AA97317E789A300D5B0D0 /* DefaultValueControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,27 +343,6 @@
 				F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */,
 			);
 			name = Sidebar;
-			sourceTree = "<group>";
-		};
-		F7C9A6C318050EDF00796200 /* twIRCk Specs */ = {
-			isa = PBXGroup;
-			children = (
-				F7B8B544181219A7003003BC /* MessageParsingSpec.mm */,
-				F7C9A6CB18050EDF00796200 /* Rakefile */,
-				F7C9A6CD18050EDF00796200 /* Cedar.framework */,
-				F7C9A6C418050EDF00796200 /* Supporting Files */,
-			);
-			path = "twIRCk Specs";
-			sourceTree = "<group>";
-		};
-		F7C9A6C418050EDF00796200 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F7C9A6C518050EDF00796200 /* twIRCk Specs-Info.plist */,
-				F7C9A6C618050EDF00796200 /* InfoPlist.strings */,
-				F7C9A6CC18050EDF00796200 /* twIRCk Specs-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		F7E9A8AB17E79BB6000AD4BB /* Tabs */ = {
@@ -403,25 +391,22 @@
 			productReference = F70F1270179F2D8B00DBB74F /* twIRCk.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F7C9A6BF18050EDF00796200 /* twIRCk Specs */ = {
+		F71772081831DA0B00BD6EB4 /* Specs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7C9A6D118050EDF00796200 /* Build configuration list for PBXNativeTarget "twIRCk Specs" */;
+			buildConfigurationList = F71772161831DA0B00BD6EB4 /* Build configuration list for PBXNativeTarget "Specs" */;
 			buildPhases = (
-				F7C9A6BA18050EDF00796200 /* Sources */,
-				F7C9A6BB18050EDF00796200 /* Frameworks */,
-				F7C9A6BC18050EDF00796200 /* Resources */,
-				F7C9A6BD18050EDF00796200 /* ShellScript */,
-				F7C9A6BE18050EDF00796200 /* ShellScript */,
+				F71772051831DA0B00BD6EB4 /* ShellScript */,
+				F71772061831DA0B00BD6EB4 /* Sources */,
+				F71772071831DA0B00BD6EB4 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F7B7295F18132DC600280A1C /* PBXTargetDependency */,
 			);
-			name = "twIRCk Specs";
-			productName = "twIRCk Specs";
-			productReference = F7C9A6C018050EDF00796200 /* twIRCk Specs.octest */;
-			productType = "com.apple.product-type.bundle";
+			name = Specs;
+			productName = Specs;
+			productReference = F71772091831DA0B00BD6EB4 /* Specs */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -446,7 +431,7 @@
 			projectRoot = "";
 			targets = (
 				F70F126F179F2D8B00DBB74F /* twIRCk */,
-				F7C9A6BF18050EDF00796200 /* twIRCk Specs */,
+				F71772081831DA0B00BD6EB4 /* Specs */,
 			);
 		};
 /* End PBXProject section */
@@ -465,18 +450,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7C9A6BC18050EDF00796200 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7C9A6C818050EDF00796200 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F7C9A6BD18050EDF00796200 /* ShellScript */ = {
+		F71772051831DA0B00BD6EB4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -488,19 +465,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cp -R \"${TARGET_NAME}\"/Frameworks/Cedar.framework \"${BUILT_PRODUCTS_DIR}\"";
-		};
-		F7C9A6BE18050EDF00796200 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -538,25 +502,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7C9A6BA18050EDF00796200 /* Sources */ = {
+		F71772061831DA0B00BD6EB4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7B23164181B785800B20400 /* GLGIRCParser.m in Sources */,
-				F7B23165181B785800B20400 /* GLGIRCMessage.m in Sources */,
-				F7B8B545181219A7003003BC /* MessageParsingSpec.mm in Sources */,
+				F717721B1831DA7400BD6EB4 /* GLGIRCParser.m in Sources */,
+				F717721A1831DA3D00BD6EB4 /* MessageParsingSpec.mm in Sources */,
+				F71772131831DA0B00BD6EB4 /* main.m in Sources */,
+				F717721C1831DA7E00BD6EB4 /* GLGIRCMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F7B7295F18132DC600280A1C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F70F126F179F2D8B00DBB74F /* twIRCk */;
-			targetProxy = F7B7295E18132DC600280A1C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F70F127C179F2D8B00DBB74F /* InfoPlist.strings */ = {
@@ -581,14 +538,6 @@
 				F70F1289179F2D8B00DBB74F /* en */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		F7C9A6C618050EDF00796200 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F7C9A6C718050EDF00796200 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -685,6 +634,74 @@
 			};
 			name = Release;
 		};
+		F71772171831DA0B00BD6EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F71772181831DA0B00BD6EB4 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Test;
+		};
+		F71772191831DA0B00BD6EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F7B7295B18132CEC00280A1C /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -734,84 +751,6 @@
 			};
 			name = Test;
 		};
-		F7B7295D18132CEC00280A1C /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"/Users/tjarratt/git/TwIRCk/twIRCk\\ Specs/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "twIRCk Specs/twIRCk Specs-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "twIRCk Specs/twIRCk Specs-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Test;
-		};
-		F7C9A6CF18050EDF00796200 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"/Users/tjarratt/git/TwIRCk/twIRCk\\ Specs/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "twIRCk Specs/twIRCk Specs-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "twIRCk Specs/twIRCk Specs-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		F7C9A6D018050EDF00796200 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"/Users/tjarratt/git/TwIRCk/twIRCk\\ Specs/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "twIRCk Specs/twIRCk Specs-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "twIRCk Specs/twIRCk Specs-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -835,15 +774,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7C9A6D118050EDF00796200 /* Build configuration list for PBXNativeTarget "twIRCk Specs" */ = {
+		F71772161831DA0B00BD6EB4 /* Build configuration list for PBXNativeTarget "Specs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F7C9A6CF18050EDF00796200 /* Debug */,
-				F7B7295D18132CEC00280A1C /* Test */,
-				F7C9A6D018050EDF00796200 /* Release */,
+				F71772171831DA0B00BD6EB4 /* Debug */,
+				F71772181831DA0B00BD6EB4 /* Test */,
+				F71772191831DA0B00BD6EB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -1,7 +1,7 @@
 require 'pathname'
 
-module TwIRCkSpecs
-  SPECS_TARGET_NAME = "twIRCk Specs"
+module Specs
+  SPECS_TARGET_NAME = "Specs"
   CONFIGURATION = "Release"
 
   PROJECT_ROOT = Pathname.new(File.dirname(__FILE__)).parent.to_s
@@ -60,14 +60,19 @@ module TwIRCkSpecs
 end
 
 desc "Clean build directory"
-task :clean_TwIRCkSpecs do
-  TwIRCkSpecs.system_or_exit "rm -rf #{TwIRCkSpecs::BUILD_DIR}/*", TwIRCkSpecs.output_file("clean")
+task :clean_Specs do
+  Specs.system_or_exit "rm -rf #{Specs::BUILD_DIR}/*", Specs.output_file("clean")
 end
 
-desc "Build and run twIRCk Specs OCUnit logic specs"
-task :TwIRCkSpecs => :clean_TwIRCkSpecs do
-  TwIRCkSpecs.with_env_vars("CEDAR_REPORTER_CLASS" => "CDRColorizedReporter") do
-    TwIRCkSpecs.system_or_exit "pushd #{TwIRCkSpecs::PROJECT_ROOT} ; xcodebuild -target '#{TwIRCkSpecs::SPECS_TARGET_NAME}' -configuration #{TwIRCkSpecs::CONFIGURATION} -arch x86_64 build TEST_AFTER_BUILD=YES SYMROOT='#{TwIRCkSpecs::BUILD_DIR}' ; popd", TwIRCkSpecs.output_file("twIRCk Specs")
+desc "Build Specs Specs"
+task :build_Specs do
+  Specs.system_or_exit(%Q[pushd #{Specs::PROJECT_ROOT} ; xcodebuild -target #{Specs::SPECS_TARGET_NAME} -configuration #{Specs::CONFIGURATION} build SYMROOT=#{Specs::BUILD_DIR} ; popd ], Specs.output_file("Specs"))
+end
+
+desc "Run Specs Specs"
+task :Specs => :build_Specs do
+  Specs.with_env_vars("DYLD_FRAMEWORK_PATH" => Specs.build_dir, "CEDAR_REPORTER_CLASS" => "CDRColorizedReporter") do
+    Specs.system_or_exit(File.join(Specs.build_dir, Specs::SPECS_TARGET_NAME))
   end
 end
 
