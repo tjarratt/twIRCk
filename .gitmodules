@@ -1,0 +1,3 @@
+[submodule "PivotalCoreKit"]
+	path = PivotalCoreKit
+	url = https://github.com/pivotal/PivotalCoreKit.git
