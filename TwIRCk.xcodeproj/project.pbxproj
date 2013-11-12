@@ -35,6 +35,8 @@
 		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
+		F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
+		F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
 		F7B8B54318121792003003BC /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
 		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
 		F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */; };
@@ -99,6 +101,7 @@
 		F717720F1831DA0B00BD6EB4 /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
 		F71772101831DA0B00BD6EB4 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
 		F71772121831DA0B00BD6EB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F717721D1831DB3900BD6EB4 /* PivotalCoreKit.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = PivotalCoreKit.xcworkspace; path = PivotalCoreKit/PivotalCoreKit.xcworkspace; sourceTree = "<group>"; };
 		F7193169182356280077A326 /* GLGIRCMessageParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCMessageParserDelegate.h; sourceTree = "<group>"; };
 		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 		F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
+		F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalCore.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalCore.framework"; sourceTree = "<group>"; };
+		F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalSpecHelper.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalSpecHelper.framework"; sourceTree = "<group>"; };
 		F7B8B54118121792003003BC /* GLGIRCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GLGIRCParser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7B8B54218121792003003BC /* GLGIRCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGIRCParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = MessageParsingSpec.mm; path = "../twIRCk Specs/MessageParsingSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -158,6 +163,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */,
+				F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */,
 				F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */,
 				F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */,
 			);
@@ -203,6 +210,9 @@
 		F70F1272179F2D8B00DBB74F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */,
+				F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */,
+				F717721D1831DB3900BD6EB4 /* PivotalCoreKit.xcworkspace */,
 				F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */,
 				F70F1273179F2D8B00DBB74F /* Cocoa.framework */,
 				F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */,
@@ -643,6 +653,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -655,6 +666,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/PivotalCoreKit/**";
 			};
 			name = Debug;
 		};
@@ -669,6 +681,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -691,6 +704,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -782,6 +796,7 @@
 				F71772191831DA0B00BD6EB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

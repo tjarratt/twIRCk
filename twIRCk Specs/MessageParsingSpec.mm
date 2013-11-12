@@ -1,5 +1,6 @@
 #import "GLGIRCParser.h"
 #import "GLGIRCMessage.h"
+#import "Cedar/SpecHelper.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -227,11 +228,11 @@ describe(@"parsing messages from the wire", ^{
     });
 
     it(@"should parse QUIT messages", ^{
-
+        fail(@"not implemented");
     });
 
     it(@"should parse PRIVMSG messages", ^{
-
+        fail(@"not implemented");
     });
 
     describe(@"ignoring some message types", ^{
