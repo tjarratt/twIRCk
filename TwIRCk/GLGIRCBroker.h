@@ -17,9 +17,11 @@
 
 @protocol GLGBrokerDelegate;
 
-@interface GLGIRCBroker : NSObject <GLGStreamReaderDelegate> {
+@interface GLGIRCBroker : NSObject <GLGStreamReaderDelegate, GLGInputParserDelegate> {
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
+
+    GLGInputParser *inputParser;
 
     IRCServer *server;
     
@@ -59,8 +61,7 @@
             withChannels:(NSArray *) channels;
 
 - (void) receivedString:(NSString *) string;
-- (void) partChannel:(NSString *) channelName;
-- (void) partChannel:(NSString *) channelName userInitiated:(BOOL) byUser;
-- (GLGIRCMessage *) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
+- (void) willPartChannel:(NSString *) channelName;
+- (void ) didSubmitText:(NSString *) string inChannel:(NSString *) channel;
 - (NSArray *) occupantsInChannel:(NSString *) channel;
 @end
