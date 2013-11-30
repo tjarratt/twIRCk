@@ -365,7 +365,7 @@
 
 #pragma mark - Response Parsing (needs to be refactored out of this class)
 - (GLGIRCMessage *) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
-    GLGIRCMessage *msg = [GLGIRCParser parseUserInput:string];
+    GLGIRCMessage *msg = [GLGInputParser parseUserInput:string];
     [msg interpolateChannel:channel andNick:currentNick];
     [writer addCommand:[msg raw]];
 
