@@ -40,6 +40,8 @@
 		F798A70C184953D10092A93E /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70B184953D10092A93E /* GLGResponseParser.m */; };
 		F798A70D184953D10092A93E /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70B184953D10092A93E /* GLGResponseParser.m */; };
 		F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */; };
+		F79BE5F8184AB0AA00F8F649 /* Foundation+PivotalCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
+		F79BE5F9184AB0AA00F8F649 /* Foundation+PivotalSpecHelper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
 		F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
 		F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
 		F7B8B54318121792003003BC /* GLGInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGInputParser.m */; };
@@ -68,6 +70,20 @@
 			script = "# momc\n";
 		};
 /* End PBXBuildRule section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F79BE5F7184AB09B00F8F649 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F79BE5F8184AB0AA00F8F649 /* Foundation+PivotalCore.framework in CopyFiles */,
+				F79BE5F9184AB0AA00F8F649 /* Foundation+PivotalSpecHelper.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F70F1270179F2D8B00DBB74F /* twIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -437,6 +453,7 @@
 				F71772051831DA0B00BD6EB4 /* ShellScript */,
 				F71772061831DA0B00BD6EB4 /* Sources */,
 				F71772071831DA0B00BD6EB4 /* Frameworks */,
+				F79BE5F7184AB09B00F8F649 /* CopyFiles */,
 			);
 			buildRules = (
 			);
