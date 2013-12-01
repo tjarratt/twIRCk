@@ -15,10 +15,6 @@
 }
 
 -(void) parseRawIRCString:(NSString *) string {
-//    GLGIRCMessage *msg = [[GLGIRCMessage alloc] init];
-//    [msg setFromHost:[self readHostnameFromString:string]];
-//
-
     if ([self isPing:string]) {
         return [delegate shouldRespondToPingRequest];
     }
@@ -28,10 +24,7 @@
         NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
 
         if ([matches count] == 0) {
-            NSLog(@"_______FAILED to parse message with regex: %@", string);
-//            [msg setType:@"error"];
-//            [msg setRaw:string];
-//            return msg;
+            return NSLog(@"_______FAILED to parse message with regex: %@", string);
         }
 
         NSTextCheckingResult *channelMatch = [matches objectAtIndex:0];
@@ -39,72 +32,120 @@
         NSString *theType = [string substringWithRange:[channelMatch rangeAtIndex:2]];
         NSString *theMessage = [string substringWithRange:[channelMatch rangeAtIndex:3]];
 
-        // when you connect to some servers eg: chat.freenode.net, your requests will actually
-        // be handled by what is effectively a mirror, or a shard eg: hitchcock.
-//        [msg setFromHost:theSender];
-
         if ([theType isEqualToString:@"433"]) {
-            return [delegate receivedNickInUse];
+            NSArray *components = [theMessage componentsSeparatedByString:@" "];
+            NSString *unavailableNick = [components objectAtIndex:1];
+            NSString *display = [NSString stringWithFormat:@"The nick '%@' is already in use. Attempting to use '%@_'", unavailableNick, unavailableNick];
+
+            return [delegate receivedNickInUseWithDisplayMessage:display];
         }
         else if ([theType isEqualToString:@"353"]) {
             [self readChannelOccupantsFromString:theMessage];
         }
         else if ([theType isEqualToString:@"372"]) {
-            [self readMOTDFromString:theMessage];
+            [self readMOTDFromString:theMessage fromSender:theSender];
         }
         else if ([theType isEqualToString:@"NOTICE"]) {
-            [self readNOTICEFromString:theMessage];
+            [self readNOTICEFromString:theMessage fromSender:theSender];
         }
         else if ([theType isEqualToString:@"QUIT"]) {
-            [self readQuitFromString:theMessage];
+            [self readQuitFromString:theMessage fromUser:(NSString *)theSender];
         }
         else if ([theType isEqualToString:@"JOIN"]) {
-            [self readJOINFromString:theMessage];
+            [self readJOINFromString:theMessage fromUser:(NSString *)theSender];
         }
         else if ([theType isEqualToString:@"PART"]) {
-            [self readPARTFromString:theMessage];
+            [self readPARTFromString:theMessage fromUser:(NSString *)theSender];
         }
         else if ([theType isEqualToString:@"PRIVMSG"]) {
-            [self readPRIVMSGFromString:theMessage];
+            [self readPRIVMSGFromString:theMessage fromUser:(NSString *)theSender];
         }
         else if ([theType isEqualToString:@"NICK"]) {
             NSString *newNick = [theMessage substringWithRange:NSMakeRange(1, theMessage.length - 1)];
             NSString *oldNick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
 
-            [delegate user:oldNick didChangeNickTo:newNick];
+            NSString *display = [NSString stringWithFormat:@"'%@' is now known as '%@'", oldNick, newNick];
+            [delegate userWithNick:oldNick didChangeNickTo:newNick withDisplayMessage:display];
         }
         else {
-            NSLog(@"unhandled response: %@", theMessage);
-            [delegate receivedUncategorizedMessage:theMessage];
+            NSLog(@"unhandled response: %@", string);
+            [delegate receivedUncategorizedMessage:string];
         }
     }
 }
 
 #pragma mark - Private
--(void) readQuitFromString:(NSString *)string {
-    [delegate userDidQuit:nil withMessage:nil];
+-(void) readQuitFromString:(NSString *)string fromUser:(NSString *) userInfo {
+    NSArray *nameComponents = [userInfo componentsSeparatedByString:@"!"];
+    NSString *shortName = [nameComponents objectAtIndex:0];
+    NSString *fullName = [nameComponents objectAtIndex:1];
+
+    NSUInteger indexOfColon = [string rangeOfString:@":"].location;
+    NSString *reasonForQuit = [string substringWithRange:NSMakeRange(indexOfColon + 1, string.length - indexOfColon - 1)];
+    NSString *displayMessage = [NSString stringWithFormat:@"%@ (%@) has quit (%@).", shortName, fullName, reasonForQuit];
+
+    [delegate userDidQuit:shortName withMessage:displayMessage];
 }
 
--(void) readPARTFromString:(NSString *)string {
-    [delegate user:nil didPartChannel:nil withFullNick:nil];
+-(void) readPARTFromString:(NSString *)string fromUser:(NSString *)userInfo {
+    NSUInteger indexOfColon = [string rangeOfString:@":"].location;
+    NSString *channel;
+    NSString *partMessage;
+
+    if (indexOfColon > 0 && indexOfColon < string.length) {
+        channel = [string substringWithRange:NSMakeRange(0, indexOfColon -1)];
+        partMessage = [string substringWithRange:NSMakeRange(indexOfColon + 1, string.length - indexOfColon - 1)];
+        if (partMessage.length > 0) {
+            partMessage = [NSString stringWithFormat:@" (%@)", partMessage];
+        }
+    }
+    else {
+        channel = string;
+        partMessage = @"";
+    }
+
+    NSArray *nameComponents = [userInfo componentsSeparatedByString:@"!"];
+    NSString *shortName = [nameComponents objectAtIndex:0];
+    NSString *fullName = [nameComponents objectAtIndex:1];
+    NSString *displayMessage = [NSString stringWithFormat:@"%@ (%@) has left%@.", shortName, fullName, partMessage];
+
+    [delegate userWithNick:shortName didPartChannel:channel withFullNick:fullName andPartMessage:displayMessage];
 }
 
--(void) readJOINFromString:(NSString *)string {
-    [delegate user:nil didJoinChannel:nil withFullName:nil];
+-(void) readJOINFromString:(NSString *)string  fromUser:(NSString *)userInfo {
+    NSArray *nameComponents = [userInfo componentsSeparatedByString:@"!"];
+    NSString *shortName = [nameComponents objectAtIndex:0];
+    NSString *longName = [nameComponents objectAtIndex:1];
+    NSString *displayMessage = [NSString stringWithFormat:@"%@ (%@) has joined.", shortName, longName];
+
+    [delegate userWithNick:shortName
+    didJoinChannel:string
+      withFullName:[nameComponents objectAtIndex:1]
+withDisplayMessage:displayMessage];
 }
 
--(void) readPRIVMSGFromString:(NSString *)string {
-    [delegate receivedPrivateMessage:nil fromNick:nil];
+-(void) readPRIVMSGFromString:(NSString *)string fromUser:(NSString *)userInfo {
+    NSArray *nameComponents = [userInfo componentsSeparatedByString:@"!"];
+    NSString *shortName = [nameComponents objectAtIndex:0];
+
+    NSUInteger firstSpace = [string rangeOfString:@" "].location;
+    NSString *channelName = [string substringWithRange:NSMakeRange(0, firstSpace)];
+    NSString *theMessage = [string substringWithRange:NSMakeRange(firstSpace + 2, string.length - firstSpace - 2)];
+
+    NSString *displayMessage = [NSString stringWithFormat:@"<%@> %@", shortName, theMessage];
+
+    [delegate receivedPrivateMessage:displayMessage
+                            fromNick:shortName
+                           inChannel:channelName];
 }
 
--(void) readMOTDFromString:(NSString *)string {
+-(void) readMOTDFromString:(NSString *)string fromSender:(NSString *) sender {
     [delegate receivedMOTDMessage:[[string substringFromIndex:[string rangeOfString:@":"].location + 3] stringByAppendingString:@"\n"]];
 }
 
--(void) readNOTICEFromString:(NSString *)string {
+-(void) readNOTICEFromString:(NSString *)string fromSender:(NSString *) sender {
     NSUInteger startIndex = [string rangeOfString:@":"].location;
-    // TODO: in channel?
-    [delegate receivedNoticeMessage:[[string substringFromIndex:startIndex + 1] stringByAppendingString:@"\n"] inChannel:nil];
+    [delegate receivedNoticeMessage:[[string substringFromIndex:startIndex + 1] stringByAppendingString:@"\n"] inChannel:sender];
 }
 
 -(BOOL) isPing:(NSString *) maybePing {

@@ -15,13 +15,7 @@
 }
 
 -(void) parseUserInput:(NSString *) string {
-    // GLGIRCMessage *ircMessage = [[GLGIRCMessage alloc] init];
-    // [ircMessage setTarget:@"<__channel__>"];
-
-    NSString *raw;
-    NSString *type;
-    NSString *message;
-    NSString *payload;
+    NSString *raw, *message;
 
     if ([[string substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"] ) {
         NSUInteger length = [string length];
@@ -35,23 +29,23 @@
             if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
                 channel = [@"#" stringByAppendingString:channel];
             }
-
-            type = @"join";
             raw = [NSString stringWithFormat:@"JOIN %@", channel];
-            message = [NSString stringWithFormat:@"/join %@", channel];
-            payload = channel;
+            message = [@"/join " stringByAppendingString:channel];
 
+            return [delegate didJoinChannel:channel
+                                 rawCommand:raw
+                             displayMessage:message];
         }
         else if ([command isEqualToString:@"part"]) {
             NSString *theChannel;
 
             if (parts.count == 1) {
-                theChannel = @"<__channel__>";
                 NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
-
-                type = @"part";
                 raw = [NSString stringWithFormat:@"PART <__channel__> %@", defaultMessage];
                 message = [NSString stringWithFormat:@"/part <__channel__> %@", defaultMessage];
+
+                return [delegate didPartCurrentChannelWithRawCommand:raw
+                                                      displayMessage:message];
             }
             else if (parts.count == 2) {
                 theChannel = [parts objectAtIndex:1];
@@ -60,10 +54,12 @@
                 }
 
                 NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
-
-                type = @"part";
                 raw = [NSString stringWithFormat:@"PART %@ %@", theChannel, defaultMessage];
                 message = [NSString stringWithFormat:@"/part %@ %@", theChannel, defaultMessage];
+
+                return [delegate didPartChannel:theChannel
+                                     rawCommand:raw
+                                 displayMessage:message];
             }
             else {
                 theChannel = [[parts objectAtIndex:1] lowercaseString];
@@ -75,11 +71,13 @@
                 parts = [parts objectsAtIndexes:indices];
                 NSString *remainder = [parts componentsJoinedByString:@" "];
 
-                type = @"part";
                 raw = [NSString stringWithFormat:@"PART %@ %@", theChannel, remainder];
                 message = [NSString stringWithFormat:@"/part %@ %@", theChannel, remainder];
+
+                return [delegate didPartChannel:theChannel
+                                     rawCommand:raw
+                                 displayMessage:message];
             }
-            payload = theChannel;
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
             NSString *whom = [parts objectAtIndex:1];
@@ -87,23 +85,28 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
 
-            type = @"msg";
             raw = [NSString stringWithFormat:@"PRIVMSG %@ :%@", whom, remainder];
             message = [NSString stringWithFormat:@"<<__nick__>> %@", remainder];
-            payload = whom;
+
+            return [delegate didSendMessageToTarget:whom
+                                         rawCommand:raw
+                                     displayMessage:message];
         }
         else if ([command isEqualToString:@"who"]) {
             if ([parts count] < 2) {
-                type = @"who";
-                raw = @"";
-                message = @"/who\nWHO: not enough parameters\nusage: /who {channel}";
+                return [self displayUsageForSlashWho];
             }
             else {
                 NSString *whom = [parts objectAtIndex:1];
-                type = @"who";
+                if (whom.length == 0) {
+                    return [self displayUsageForSlashWho];
+                }
+
                 raw = [@"WHO " stringByAppendingString:whom];
                 message = [NSString stringWithFormat:@"/who %@", whom];
-                payload = whom;
+
+                return [delegate didSendMessageToCurrentTargetWithRawCommand:raw
+                                                              displayMessage:message];
             }
         }
         else if ([command isEqualToString:@"me"]) {
@@ -111,33 +114,41 @@
             parts = [parts objectsAtIndexes:indices];
             NSString *remainder = [parts componentsJoinedByString:@" "];
 
-            type = @"me";
+            // should have 0x01 at the beginning and end (before ACTION and after remainder)
             raw = [@"ACTION " stringByAppendingString:remainder];
             message = [NSString stringWithFormat:@"/me %@", remainder];
+
+            return [delegate didSendMessageToTarget:@"<__channel__>"
+                                         rawCommand:raw
+                                     displayMessage:message];
         }
         else if ([command isEqualToString:@"nick"]) {
             NSString *newNick = [parts objectAtIndex:1];
 
-            type = @"nick";
             raw = [@"NICK " stringByAppendingString:newNick];
             message = [NSString stringWithFormat:@"/nick %@", newNick];
-            payload = newNick;
+
+            return [delegate didChangeNick:newNick
+                                rawCommand:raw
+                            displayMessage:message];
         }
         else if ([command isEqualToString:@"pass"]) {
             NSString *newPassword = [parts objectAtIndex:1];
-
-            type = @"pass";
             raw = [@"PASS " stringByAppendingString:newPassword];
-            message = [NSString stringWithFormat:@"/pass %@", newPassword];
-            payload = newPassword;
+
+            return [delegate didChangePassword:newPassword
+                                    rawCommand:raw
+                                displayMessage:@"/pass ********"];
         }
         else if ([command isEqualToString:@"topic"]) {
             NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, parts.count - 1)];
             NSString *remainder = [[parts objectsAtIndexes:indices] componentsJoinedByString:@" "];
 
-            type = @"topic";
             raw = [NSString stringWithFormat:@"TOPIC <__channel__> %@", remainder];
             message = string;
+
+            return [delegate didSendMessageToCurrentTargetWithRawCommand:raw
+                                                          displayMessage:message];
         }
         else {
             NSString *fullCommand = [command uppercaseString];
@@ -146,25 +157,30 @@
                 NSArray *mutableParts = [parts objectsAtIndexes:indices];
                 fullCommand = [[fullCommand stringByAppendingString:@" "] stringByAppendingString: [mutableParts componentsJoinedByString:@" "]];
 
-                type = command;
                 raw = fullCommand;
                 message = string;
 
+                return [delegate didSendUnknownMessageToCurrentTargetWithRawCommand:raw
+                                                                     displayMessage:message];
             }
         }
     }
     else {
-        type = @"msg";
         raw = [NSString stringWithFormat:@"PRIVMSG <__channel__> :%@", string];
         message = [NSString stringWithFormat:@"<<__nick__>> %@", string];
-    }
 
-//    [ircMessage setType:type];
-//    [ircMessage setMessage:message];
-//    [ircMessage setRaw:raw];
-//    [ircMessage setPayload:payload];
-//
-//    return ircMessage;
+        return [delegate didSendMessageToCurrentTargetWithRawCommand:raw
+                                                      displayMessage:message];
+    }
+}
+
+#pragma mark - Private
+- (void) displayUsageForSlashWho {
+    NSString *message = @"/who\nWHO: not enough parameters (usage: /who {channel})";
+
+    return [delegate didSendMessageToCurrentTargetWithRawCommand:@""
+                                                  displayMessage:message];
+
 }
 
 @end
