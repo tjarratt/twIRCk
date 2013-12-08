@@ -19,13 +19,6 @@ describe(@"parsing messages from the wire", ^{
         [parser setDelegate:delegate];
     });
 
-    it(@"should parse hostnames from messages", ^{
-        readValue = @":jarmusch.freenode.net 372 :- zzz";
-        fail(@"is this test still valid? (ie: is this behavior necessary?)");
-
-        //        [[parser parseRawIRCString:readValue] fromHost] should equal(@"jarmusch.freenode.net");
-    });
-
     it(@"should understand Nick Not Available messages", ^{
         readValue = @":pratchett.freenode.net 433 brucewayne batman :Nickname is already in use.";
         [parser parseRawIRCString:readValue];
@@ -144,8 +137,6 @@ describe(@"parsing messages from the wire", ^{
         .with(@"<palpatine> 'together we can rule the universe' ? that's some whack shit")
         .with(@"palpatine")
         .with(@"vader");
-
-        fail(@"ensure this test is valid");
     });
 
     it(@"should parse all other messages as regular messages", ^{
