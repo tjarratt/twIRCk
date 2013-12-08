@@ -10,5 +10,5 @@
 #import "GLGMessage.h"
 
 @interface GLGErrorMessage : GLGMessage
--(id) initWithName:(NSString *) _name;
+-(id) initWithName:(NSString *) aName;
 @end
