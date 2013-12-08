@@ -9,9 +9,9 @@
 #import "GLGErrorMessage.h"
 
 @implementation GLGErrorMessage
--(id) initWithName:(NSString *) _name {
+-(id) initWithName:(NSString *) aName {
     if (self = [super init]) {
-        self.name = _name;
+        self.name = aName;
         self.type = @"error";
     }
 
