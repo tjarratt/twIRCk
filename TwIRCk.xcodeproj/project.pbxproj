@@ -24,20 +24,15 @@
 		F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71772101831DA0B00BD6EB4 /* Cedar.framework */; };
 		F71772131831DA0B00BD6EB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71772121831DA0B00BD6EB4 /* main.m */; };
 		F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* GLGResponseParserSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F717721B1831DA7400BD6EB4 /* GLGInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGInputParser.m */; };
-		F717721C1831DA7E00BD6EB4 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
 		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
 		F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97817E7967B00D5B0D0 /* IRCChannel.m */; };
 		F76AA97D17E798E000D5B0D0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */; };
 		F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */; };
 		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
-		F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */; };
 		F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F798A7081849534B0092A93E /* GLGInputParserSpec.mm */; };
-		F798A70C184953D10092A93E /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70B184953D10092A93E /* GLGResponseParser.m */; };
-		F798A70D184953D10092A93E /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70B184953D10092A93E /* GLGResponseParser.m */; };
 		F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */; };
 		F79BE5F8184AB0AA00F8F649 /* Foundation+PivotalCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
 		F79BE5F9184AB0AA00F8F649 /* Foundation+PivotalSpecHelper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
@@ -47,15 +42,26 @@
 		F79BE60C18551C9500F8F649 /* TwIRCk-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60518551C9500F8F649 /* TwIRCk-Info.plist */; };
 		F79BE60D18551C9500F8F649 /* twIRCk.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60718551C9500F8F649 /* twIRCk.entitlements */; };
 		F79BE60E18551C9500F8F649 /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60818551C9500F8F649 /* twIRCk.iconset */; };
+		F79EDA2B18552260000A1D84 /* GLGInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2418552260000A1D84 /* GLGInputParser.m */; };
+		F79EDA2C18552260000A1D84 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2618552260000A1D84 /* GLGIRCBroker.m */; };
+		F79EDA2D18552260000A1D84 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2818552260000A1D84 /* GLGIRCMessage.m */; };
+		F79EDA2E18552260000A1D84 /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2A18552260000A1D84 /* GLGResponseParser.m */; };
+		F79EDA2F18552286000A1D84 /* GLGInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2418552260000A1D84 /* GLGInputParser.m */; };
+		F79EDA3018552286000A1D84 /* GLGIRCBroker.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2618552260000A1D84 /* GLGIRCBroker.m */; };
+		F79EDA3118552286000A1D84 /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2818552260000A1D84 /* GLGIRCMessage.m */; };
+		F79EDA3218552286000A1D84 /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2A18552260000A1D84 /* GLGResponseParser.m */; };
+		F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */; };
+		F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
+		F79EDA35185523CD000A1D84 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
+		F79EDA361855240E000A1D84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
+		F79EDA3718552416000A1D84 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
 		F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
-		F7B8B54318121792003003BC /* GLGInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGInputParser.m */; };
 		F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */; };
 		F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6717F0E073005B522B /* GLGChannelContent.m */; };
 		F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */; };
 		F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6D17F12155005B522B /* GLGChatLogView.m */; };
 		F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */; };
-		F7E5E77817F2320F00A85FFB /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
 		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
 		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
@@ -122,7 +128,6 @@
 		F71772101831DA0B00BD6EB4 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
 		F71772121831DA0B00BD6EB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F717721D1831DB3900BD6EB4 /* PivotalCoreKit.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = PivotalCoreKit.xcworkspace; path = PivotalCoreKit/PivotalCoreKit.xcworkspace; sourceTree = "<group>"; };
-		F7193169182356280077A326 /* GLGResponseParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGResponseParserDelegate.h; sourceTree = "<group>"; };
 		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
 		F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGDefaultValueTextField.h; sourceTree = "<group>"; };
@@ -134,19 +139,17 @@
 		F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabView.m; sourceTree = "<group>"; };
 		F7819BA117EA5FCC004DB741 /* GLGManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGManagedObjectContext.h; sourceTree = "<group>"; };
 		F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGManagedObjectContext.m; sourceTree = "<group>"; };
-		F7819BA417EB6A48004DB741 /* GLGIRCBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCBroker.h; sourceTree = "<group>"; };
-		F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGIRCBroker.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGBrokerDelegate.h; sourceTree = "<group>"; };
-		F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
-		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
+		F786410F185521FA007EC307 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGBrokerDelegate.h; path = Protocols/GLGBrokerDelegate.h; sourceTree = "<group>"; };
+		F7864110185521FA007EC307 /* GLGConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGConnectionView.h; path = Protocols/GLGConnectionView.h; sourceTree = "<group>"; };
+		F7864111185521FA007EC307 /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGInputParserDelegate.h; path = Protocols/GLGInputParserDelegate.h; sourceTree = "<group>"; };
+		F7864112185521FA007EC307 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGOccupantDelegate.h; path = Protocols/GLGOccupantDelegate.h; sourceTree = "<group>"; };
+		F7864113185521FA007EC307 /* GLGResponseParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGResponseParserDelegate.h; path = Protocols/GLGResponseParserDelegate.h; sourceTree = "<group>"; };
+		F7864114185521FA007EC307 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGStreamReaderDelegate.h; path = Protocols/GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
 		F798A7051849526E0092A93E /* GLGFakeResponseParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGFakeResponseParserDelegate.h; sourceTree = "<group>"; };
 		F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGFakeResponseParserDelegate.m; sourceTree = "<group>"; };
 		F798A7081849534B0092A93E /* GLGInputParserSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLGInputParserSpec.mm; sourceTree = "<group>"; };
-		F798A70A184953D10092A93E /* GLGResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGResponseParser.h; sourceTree = "<group>"; };
-		F798A70B184953D10092A93E /* GLGResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGResponseParser.m; sourceTree = "<group>"; };
 		F798A70E184989E00092A93E /* GLGFakeInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGFakeInputParserDelegate.h; sourceTree = "<group>"; };
 		F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGFakeInputParserDelegate.m; sourceTree = "<group>"; };
-		F798A71118498AFB0092A93E /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGInputParserDelegate.h; sourceTree = "<group>"; };
 		F79BE5FE18541C8500F8F649 /* GLGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGLogger.h; sourceTree = "<group>"; };
 		F79BE60218551C9500F8F649 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_no_rollover.tif; path = "Supporting Files/close_no_rollover.tif"; sourceTree = "<group>"; };
 		F79BE60318551C9500F8F649 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_rollover.tif; path = "Supporting Files/close_rollover.tif"; sourceTree = "<group>"; };
@@ -155,10 +158,16 @@
 		F79BE60618551C9500F8F649 /* TwIRCk-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TwIRCk-Prefix.pch"; path = "Supporting Files/TwIRCk-Prefix.pch"; sourceTree = "<group>"; };
 		F79BE60718551C9500F8F649 /* twIRCk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = "Supporting Files/twIRCk.entitlements"; sourceTree = "<group>"; };
 		F79BE60818551C9500F8F649 /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = twIRCk.iconset; path = "Supporting Files/twIRCk.iconset"; sourceTree = "<group>"; };
+		F79EDA2318552260000A1D84 /* GLGInputParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGInputParser.h; path = Domain/GLGInputParser.h; sourceTree = "<group>"; };
+		F79EDA2418552260000A1D84 /* GLGInputParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGInputParser.m; path = Domain/GLGInputParser.m; sourceTree = "<group>"; };
+		F79EDA2518552260000A1D84 /* GLGIRCBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGIRCBroker.h; path = Domain/GLGIRCBroker.h; sourceTree = "<group>"; };
+		F79EDA2618552260000A1D84 /* GLGIRCBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGIRCBroker.m; path = Domain/GLGIRCBroker.m; sourceTree = "<group>"; };
+		F79EDA2718552260000A1D84 /* GLGIRCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGIRCMessage.h; path = Domain/GLGIRCMessage.h; sourceTree = "<group>"; };
+		F79EDA2818552260000A1D84 /* GLGIRCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGIRCMessage.m; path = Domain/GLGIRCMessage.m; sourceTree = "<group>"; };
+		F79EDA2918552260000A1D84 /* GLGResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGResponseParser.h; path = Domain/GLGResponseParser.h; sourceTree = "<group>"; };
+		F79EDA2A18552260000A1D84 /* GLGResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGResponseParser.m; path = Domain/GLGResponseParser.m; sourceTree = "<group>"; };
 		F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalCore.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalCore.framework"; sourceTree = "<group>"; };
 		F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalSpecHelper.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalSpecHelper.framework"; sourceTree = "<group>"; };
-		F7B8B54118121792003003BC /* GLGInputParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GLGInputParser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F7B8B54218121792003003BC /* GLGInputParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGInputParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F7B8B544181219A7003003BC /* GLGResponseParserSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = GLGResponseParserSpec.mm; path = "../twIRCk Specs/GLGResponseParserSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7C5FF6217F0D24C005B522B /* GLGChannelSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChannelSidebar.h; sourceTree = "<group>"; };
 		F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChannelSidebar.m; sourceTree = "<group>"; };
@@ -170,9 +179,6 @@
 		F7C5FF6D17F12155005B522B /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatLogView.m; sourceTree = "<group>"; };
 		F7D0D95D17FA775B00F7B258 /* GLGSidebarOccupant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGSidebarOccupant.h; sourceTree = "<group>"; };
 		F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGSidebarOccupant.m; sourceTree = "<group>"; };
-		F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGOccupantDelegate.h; sourceTree = "<group>"; };
-		F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCMessage.h; sourceTree = "<group>"; };
-		F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGIRCMessage.m; sourceTree = "<group>"; };
 		F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
 		F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabItem.m; sourceTree = "<group>"; };
@@ -195,6 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F79EDA3718552416000A1D84 /* CoreData.framework in Frameworks */,
+				F79EDA361855240E000A1D84 /* Cocoa.framework in Frameworks */,
 				F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */,
 				F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */,
 				F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */,
@@ -357,12 +365,12 @@
 		F786C93417E6ADEB004F64DF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				F786C93517E6AE01004F64DF /* GLGConnectionView.h */,
-				F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */,
-				F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */,
-				F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */,
-				F7193169182356280077A326 /* GLGResponseParserDelegate.h */,
-				F798A71118498AFB0092A93E /* GLGInputParserDelegate.h */,
+				F786410F185521FA007EC307 /* GLGBrokerDelegate.h */,
+				F7864110185521FA007EC307 /* GLGConnectionView.h */,
+				F7864111185521FA007EC307 /* GLGInputParserDelegate.h */,
+				F7864112185521FA007EC307 /* GLGOccupantDelegate.h */,
+				F7864113185521FA007EC307 /* GLGResponseParserDelegate.h */,
+				F7864114185521FA007EC307 /* GLGStreamReaderDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -381,15 +389,15 @@
 		F79BE5FF1855186C00F8F649 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				F79EDA2318552260000A1D84 /* GLGInputParser.h */,
+				F79EDA2418552260000A1D84 /* GLGInputParser.m */,
+				F79EDA2518552260000A1D84 /* GLGIRCBroker.h */,
+				F79EDA2618552260000A1D84 /* GLGIRCBroker.m */,
+				F79EDA2718552260000A1D84 /* GLGIRCMessage.h */,
+				F79EDA2818552260000A1D84 /* GLGIRCMessage.m */,
+				F79EDA2918552260000A1D84 /* GLGResponseParser.h */,
+				F79EDA2A18552260000A1D84 /* GLGResponseParser.m */,
 				F79BE601185518D700F8F649 /* StreamDelegates */,
-				F7819BA417EB6A48004DB741 /* GLGIRCBroker.h */,
-				F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */,
-				F7B8B54118121792003003BC /* GLGInputParser.h */,
-				F7B8B54218121792003003BC /* GLGInputParser.m */,
-				F798A70A184953D10092A93E /* GLGResponseParser.h */,
-				F798A70B184953D10092A93E /* GLGResponseParser.m */,
-				F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */,
-				F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */,
 				F70F12AE179F53DA00DBB74F /* ResponseCodes */,
 			);
 			name = Domain;
@@ -559,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F79EDA2C18552260000A1D84 /* GLGIRCBroker.m in Sources */,
 				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
 				F70F12AA179F4E7F00DBB74F /* GLGResponseCodes.m in Sources */,
 				F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */,
@@ -569,22 +578,21 @@
 				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
 				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
 				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
-				F798A70C184953D10092A93E /* GLGResponseParser.m in Sources */,
+				F79EDA2E18552260000A1D84 /* GLGResponseParser.m in Sources */,
+				F79EDA2B18552260000A1D84 /* GLGInputParser.m in Sources */,
 				F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */,
 				F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */,
 				F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */,
+				F79EDA2D18552260000A1D84 /* GLGIRCMessage.m in Sources */,
 				F76AA97D17E798E000D5B0D0 /* Model.xcdatamodeld in Sources */,
 				F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */,
 				F79BE60B18551C9500F8F649 /* main.m in Sources */,
 				F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */,
 				F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */,
-				F7819BA617EB6A48004DB741 /* GLGIRCBroker.m in Sources */,
 				F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */,
 				F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */,
 				F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */,
-				F7B8B54318121792003003BC /* GLGInputParser.m in Sources */,
 				F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */,
-				F7E5E77817F2320F00A85FFB /* GLGIRCMessage.m in Sources */,
 				F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,13 +601,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F79EDA35185523CD000A1D84 /* GLGManagedObjectContext.m in Sources */,
 				F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */,
 				F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */,
-				F798A70D184953D10092A93E /* GLGResponseParser.m in Sources */,
-				F717721B1831DA7400BD6EB4 /* GLGInputParser.m in Sources */,
 				F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */,
-				F717721C1831DA7E00BD6EB4 /* GLGIRCMessage.m in Sources */,
 				F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */,
+				F79EDA2F18552286000A1D84 /* GLGInputParser.m in Sources */,
+				F79EDA3018552286000A1D84 /* GLGIRCBroker.m in Sources */,
+				F79EDA3118552286000A1D84 /* GLGIRCMessage.m in Sources */,
+				F79EDA3218552286000A1D84 /* GLGResponseParser.m in Sources */,
+				F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */,
+				F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */,
 				F71772131831DA0B00BD6EB4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
