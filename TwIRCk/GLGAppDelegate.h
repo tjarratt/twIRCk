@@ -11,6 +11,7 @@
 #import "GLGManagedObjectContext.h"
 #import "GLGResponseCodes.h"
 #import "GLGNewServer.h"
+#import "GLGLogger.h"
 #import "IRCServer.h"
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
