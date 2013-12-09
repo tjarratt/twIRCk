@@ -26,10 +26,7 @@
 		F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* GLGResponseParserSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
 		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
-		F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97817E7967B00D5B0D0 /* IRCChannel.m */; };
-		F76AA97D17E798E000D5B0D0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */; };
 		F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */; };
-		F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */; };
 		F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F798A7081849534B0092A93E /* GLGInputParserSpec.mm */; };
@@ -39,7 +36,6 @@
 		F79BE60918551C9500F8F649 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60218551C9500F8F649 /* close_no_rollover.tif */; };
 		F79BE60A18551C9500F8F649 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60318551C9500F8F649 /* close_rollover.tif */; };
 		F79BE60B18551C9500F8F649 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F79BE60418551C9500F8F649 /* main.m */; };
-		F79BE60C18551C9500F8F649 /* TwIRCk-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60518551C9500F8F649 /* TwIRCk-Info.plist */; };
 		F79BE60D18551C9500F8F649 /* twIRCk.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60718551C9500F8F649 /* twIRCk.entitlements */; };
 		F79BE60E18551C9500F8F649 /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60818551C9500F8F649 /* twIRCk.iconset */; };
 		F79EDA2B18552260000A1D84 /* GLGInputParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2418552260000A1D84 /* GLGInputParser.m */; };
@@ -52,7 +48,6 @@
 		F79EDA3218552286000A1D84 /* GLGResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F79EDA2A18552260000A1D84 /* GLGResponseParser.m */; };
 		F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */; };
 		F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
-		F79EDA35185523CD000A1D84 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */; };
 		F79EDA361855240E000A1D84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1273179F2D8B00DBB74F /* Cocoa.framework */; };
 		F79EDA3718552416000A1D84 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
@@ -64,14 +59,22 @@
 		F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */; };
 		F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
 		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
-		F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F29FAD17E67E8B00032FF5 /* IRCServer.m */; };
+		F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
+		F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
+		F7F45AE818558C850059DC65 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE118558C850059DC65 /* IRCChannel.m */; };
+		F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE118558C850059DC65 /* IRCChannel.m */; };
+		F7F45AEA18558C850059DC65 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
+		F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
+		F7F45AEC18558C850059DC65 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
+		F7F45AED18558C850059DC65 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
 		F786C8E917E686C8004F64DF /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.model.coredataversion;
-			fileType = wrapper.xcdatamodel;
+			filePatterns = "*.xcdatamodeld";
+			fileType = pattern.proxy;
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -132,13 +135,8 @@
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
 		F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGDefaultValueTextField.h; sourceTree = "<group>"; };
 		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
-		F76AA97717E7967B00D5B0D0 /* IRCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCChannel.h; sourceTree = "<group>"; };
-		F76AA97817E7967B00D5B0D0 /* IRCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCChannel.m; sourceTree = "<group>"; };
-		F76AA97C17E798E000D5B0D0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F76AA97E17E79B0E00D5B0D0 /* GLGTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabView.h; sourceTree = "<group>"; };
 		F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabView.m; sourceTree = "<group>"; };
-		F7819BA117EA5FCC004DB741 /* GLGManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGManagedObjectContext.h; sourceTree = "<group>"; };
-		F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGManagedObjectContext.m; sourceTree = "<group>"; };
 		F786410F185521FA007EC307 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGBrokerDelegate.h; path = Protocols/GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7864110185521FA007EC307 /* GLGConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGConnectionView.h; path = Protocols/GLGConnectionView.h; sourceTree = "<group>"; };
 		F7864111185521FA007EC307 /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGInputParserDelegate.h; path = Protocols/GLGInputParserDelegate.h; sourceTree = "<group>"; };
@@ -182,8 +180,13 @@
 		F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
 		F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabItem.m; sourceTree = "<group>"; };
-		F7F29FAC17E67E8B00032FF5 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCServer.h; sourceTree = "<group>"; };
-		F7F29FAD17E67E8B00032FF5 /* IRCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCServer.m; sourceTree = "<group>"; };
+		F7F45ADE18558C850059DC65 /* GLGManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGManagedObjectContext.h; path = Models/GLGManagedObjectContext.h; sourceTree = "<group>"; };
+		F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGManagedObjectContext.m; path = Models/GLGManagedObjectContext.m; sourceTree = "<group>"; };
+		F7F45AE018558C850059DC65 /* IRCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRCChannel.h; path = Models/IRCChannel.h; sourceTree = "<group>"; };
+		F7F45AE118558C850059DC65 /* IRCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IRCChannel.m; path = Models/IRCChannel.m; sourceTree = "<group>"; };
+		F7F45AE218558C850059DC65 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRCServer.h; path = Models/IRCServer.h; sourceTree = "<group>"; };
+		F7F45AE318558C850059DC65 /* IRCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IRCServer.m; path = Models/IRCServer.m; sourceTree = "<group>"; };
+		F7F45AE518558C850059DC65 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,13 +219,13 @@
 		F704C06D17C9181600CE279D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */,
-				F7F29FAC17E67E8B00032FF5 /* IRCServer.h */,
-				F7F29FAD17E67E8B00032FF5 /* IRCServer.m */,
-				F76AA97717E7967B00D5B0D0 /* IRCChannel.h */,
-				F76AA97817E7967B00D5B0D0 /* IRCChannel.m */,
-				F7819BA117EA5FCC004DB741 /* GLGManagedObjectContext.h */,
-				F7819BA217EA5FCC004DB741 /* GLGManagedObjectContext.m */,
+				F7F45ADE18558C850059DC65 /* GLGManagedObjectContext.h */,
+				F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */,
+				F7F45AE018558C850059DC65 /* IRCChannel.h */,
+				F7F45AE118558C850059DC65 /* IRCChannel.m */,
+				F7F45AE218558C850059DC65 /* IRCServer.h */,
+				F7F45AE318558C850059DC65 /* IRCServer.m */,
+				F7F45AE418558C850059DC65 /* Model.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -536,7 +539,6 @@
 				F79BE60D18551C9500F8F649 /* twIRCk.entitlements in Resources */,
 				F79BE60918551C9500F8F649 /* close_no_rollover.tif in Resources */,
 				F70F127E179F2D8B00DBB74F /* InfoPlist.strings in Resources */,
-				F79BE60C18551C9500F8F649 /* TwIRCk-Info.plist in Resources */,
 				F70F1284179F2D8B00DBB74F /* Credits.rtf in Resources */,
 				F79BE60E18551C9500F8F649 /* twIRCk.iconset in Resources */,
 				F79BE60A18551C9500F8F649 /* close_rollover.tif in Resources */,
@@ -570,25 +572,25 @@
 				F79EDA2C18552260000A1D84 /* GLGIRCBroker.m in Sources */,
 				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
 				F70F12AA179F4E7F00DBB74F /* GLGResponseCodes.m in Sources */,
+				F7F45AEC18558C850059DC65 /* Model.xcdatamodeld in Sources */,
 				F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */,
 				F70F12B1179F53EE00DBB74F /* GLGErrorMessage.m in Sources */,
 				F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */,
 				F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */,
 				F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */,
 				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
+				F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
 				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
 				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
 				F79EDA2E18552260000A1D84 /* GLGResponseParser.m in Sources */,
 				F79EDA2B18552260000A1D84 /* GLGInputParser.m in Sources */,
-				F7F29FAE17E67E8B00032FF5 /* IRCServer.m in Sources */,
 				F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */,
-				F76AA97917E7967B00D5B0D0 /* IRCChannel.m in Sources */,
 				F79EDA2D18552260000A1D84 /* GLGIRCMessage.m in Sources */,
-				F76AA97D17E798E000D5B0D0 /* Model.xcdatamodeld in Sources */,
 				F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */,
+				F7F45AE818558C850059DC65 /* IRCChannel.m in Sources */,
+				F7F45AEA18558C850059DC65 /* IRCServer.m in Sources */,
 				F79BE60B18551C9500F8F649 /* main.m in Sources */,
 				F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */,
-				F7819BA317EA5FCC004DB741 /* GLGManagedObjectContext.m in Sources */,
 				F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */,
 				F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */,
 				F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */,
@@ -601,18 +603,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F79EDA35185523CD000A1D84 /* GLGManagedObjectContext.m in Sources */,
 				F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */,
 				F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */,
+				F7F45AED18558C850059DC65 /* Model.xcdatamodeld in Sources */,
 				F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */,
 				F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */,
 				F79EDA2F18552286000A1D84 /* GLGInputParser.m in Sources */,
+				F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */,
 				F79EDA3018552286000A1D84 /* GLGIRCBroker.m in Sources */,
 				F79EDA3118552286000A1D84 /* GLGIRCMessage.m in Sources */,
 				F79EDA3218552286000A1D84 /* GLGResponseParser.m in Sources */,
+				F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */,
 				F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */,
 				F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */,
 				F71772131831DA0B00BD6EB4 /* main.m in Sources */,
+				F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,13 +902,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F76AA97B17E798E000D5B0D0 /* Model.xcdatamodeld */ = {
+		F7F45AE418558C850059DC65 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F76AA97C17E798E000D5B0D0 /* Model.xcdatamodel */,
+				F7F45AE518558C850059DC65 /* Model.xcdatamodel */,
 			);
-			currentVersion = F76AA97C17E798E000D5B0D0 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = F7F45AE518558C850059DC65 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = Models/Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
