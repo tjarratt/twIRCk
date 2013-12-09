@@ -245,6 +245,10 @@ const CGFloat occupantsSidebarWidth = 150;
         [chatlogs setValue:log forKey:key];
      }
 
+    if (channel == nil) {
+        channel = currentChannel;
+    }
+
     [log setEditable:YES];
     [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
     [log insertText:string];

@@ -319,14 +319,15 @@
     [self connectToServer:server.hostname onPort:port withUsername:server.username withPassword:server.password useSSL:server.useSSL];
 }
 
-#pragma mark - Input Parsing (could be factored out of this class)
-- (void) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
+#pragma mark - Input Parsing
+- (void) didSubmitText:(NSString *) string inChannel:(NSString *) channel {
     [inputParser parseUserInput:string];
 }
 
-- (void) didJoinChannel:(NSString *)channelName rawCommand:(NSString *)rawCommand{
+- (void) didJoinChannel:(NSString *) channelName rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
     [writer addCommand:[@"JOIN " stringByAppendingString:channelName]];
     [delegate joinChannel:channelName onServer:hostname userInitiated:YES fromBroker:self];
+    [delegate receivedString:display inChannel:channelName fromHost:self.hostname fromBroker:self];
     [server addChannelNamed:channelName];
 
     NSMutableArray *occupants = [self.channelOccupants valueForKey:channelName];
@@ -336,16 +337,40 @@
     }
 }
 
-- (void) didPartChannel:(NSString *)channel rawCommand:(NSString *)rawCommand {
+- (void) didPartCurrentChannelWithRawCommand:(NSString *) raw displayMessage:(NSString *) display {
+    [self partChannel:nil userInitiated:NO]; // TODO:NOPE (currentChannel should be here, not on chatView)
+    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+}
+
+- (void) didPartChannel:(NSString *)channel rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
     [self partChannel:channel userInitiated:NO];
+    [delegate receivedString:display inChannel:channel fromHost:self.hostname fromBroker:self];
 }
 
-- (void) didChangeNick:(NSString *)newNick rawCommand:(NSString *)rawCommand {
+- (void) didChangeNick:(NSString *) newNick rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
     [server setUsername:newNick];
+    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
-- (void) didChangePassword:(NSString *)newPassword rawCommand:(NSString *)rawCommand {
+- (void) didChangePassword:(NSString *)newPassword rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
     [server setPassword:newPassword];
+    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+}
+
+- (void) didSendMessageToTarget:(NSString *) channelOrUser rawCommand:(NSString *) rawCommand displayMessage:(NSString *)
+display {
+    [writer addCommand:rawCommand];
+    [delegate receivedString:display inChannel:channelOrUser fromHost:self.hostname fromBroker:self];
+}
+
+- (void) didSendMessageToCurrentTargetWithRawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
+    [writer addCommand:rawCommand];
+    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+}
+
+- (void) didSendUnknownMessageToCurrentTargetWithRawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
+    [writer addCommand:rawCommand];
+    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
 - (void) willPartChannel:(NSString *)channelName {
