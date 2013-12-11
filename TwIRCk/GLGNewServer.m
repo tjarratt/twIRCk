@@ -49,6 +49,7 @@
         [connect setAction:@selector(connectToService)];
         [connect setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [connect setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [connect setBezelStyle:NSRoundedBezelStyle];
         [superview addSubview:connect];
 
         NSDictionary *views = NSDictionaryOfVariableBindings(hostname, hostnameLabel, port, portLabel, ssl, sslLabel,
