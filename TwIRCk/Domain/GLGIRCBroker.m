@@ -348,6 +348,7 @@
 }
 
 - (void) didChangeNick:(NSString *) newNick rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
+    currentNick = newNick;
     [server setUsername:newNick];
     [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
