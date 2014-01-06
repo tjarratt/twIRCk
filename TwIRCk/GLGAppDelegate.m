@@ -8,12 +8,14 @@
 
 #import "GLGAppDelegate.h"
 
+@interface GLGAppDelegate ()
+@property (retain, strong, readwrite) GLGChatViewController *controller;
+@end
+
 @implementation GLGAppDelegate
 
 #pragma mark - Application Lifecycle
 - (void) applicationDidFinishLaunching:(NSNotification *) aNotification {
-    responseLookup = [[GLGResponseCodes alloc] init];
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowClosing:)
                                                  name:NSWindowWillCloseNotification
@@ -45,14 +47,15 @@
         NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
         NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
-        self.chatView = [[GLGChatView alloc] initWithWindow:window];
+        self.controller = [[GLGChatViewController alloc] initWithWindow:window];
+        [self setWindow:window];
 
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             IRCServer *server = (IRCServer *)obj;
 
-            [self.chatView connectToServer:server];
-            [[window contentView] addSubview:self.chatView];
-            [window setTitle:@"twIRCk"];
+            [self.controller connectToServer:server];
+            [[self.window contentView] addSubview:self.controller.view];
+            [self.window setTitle:@"twIRCk"];
         }];
     }
     else {
@@ -72,6 +75,12 @@
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
     return YES;
+}
+
+- (void) didCreateChatViewController:(GLGChatViewController *) controller {
+    if (!self.controller) {
+        self.controller = controller;
+    }
 }
 
 #pragma mark - CoreData support
@@ -171,9 +180,10 @@
 
 - (IBAction) closeActiveWindow:(id)sender {
     NSWindow *keyWindow = [NSApp keyWindow];
+    GLGChatView *view = self.controller.view;
 
-    if (_chatView && _chatView.window == keyWindow) {
-        [_chatView closeActiveTabOrWindow];
+    if (view && view.window == keyWindow) {
+        [view closeActiveTabOrWindow];
     }
     else {
         [keyWindow close];
@@ -181,7 +191,7 @@
 }
 
 - (IBAction) copy:(id) sender {
-    [_chatView copy:sender];
+    [self.controller.view copy:sender];
 }
 
 @end

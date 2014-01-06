@@ -8,24 +8,37 @@
 
 #import "GLGIRCBroker.h"
 
+@interface GLGIRCBroker ()
+@property (weak, readwrite) id <GLGBrokerDelegate> delegate;
+@property (retain, strong, readwrite) NSTimer *reconnectTimer;
+@property (retain, strong, readwrite) NSString *hostname;
+@property (retain, strong, readwrite) NSString *currentNick;
+@property (retain, strong, readwrite) NSString *internalHostname;
+@property (retain, strong, readwrite) NSMutableArray *channelsToJoin;
+@property (retain, strong, readwrite) NSMutableDictionary *channelOccupants;
+@property (retain, strong, readwrite) GLGReadDelegate *reader;
+@property (retain, strong, readwrite) GLGWriteDelegate *writer;
+@property (retain, strong, readwrite) IRCServer *server;
+@property (retain, strong, readwrite) NSInputStream *inputStream;
+@property (retain, strong, readwrite) NSOutputStream *outputStream;
+@property (retain, strong, readwrite) GLGInputParser *inputParser;
+@end
+
 @implementation GLGIRCBroker
 
-- (id) initWithDelegate:(id <GLGBrokerDelegate>) aDelegate {
+- (id) initWithDelegate:(id <GLGBrokerDelegate>) delegate {
     if (self = [super init]) {
-        delegate = aDelegate;
-        reconnectAttempts = 0;
+        [self setDelegate:delegate];
         hasReadHostname = NO;
+        reconnectAttempts = 0;
         [self setChannelOccupants:[[NSMutableDictionary alloc] init]];
 
-        inputParser = [[GLGInputParser alloc] init];
+        GLGInputParser *inputParser = [[GLGInputParser alloc] init];
         [inputParser setDelegate:self];
+        [self setInputParser:inputParser];
     }
 
     return self;
-}
-
-- (NSString *) hostname {
-    return hostname;
 }
 
 #pragma mark - connection methods
@@ -35,8 +48,8 @@
             withPassword:(NSString *) password
                   useSSL:(BOOL) useSSL {
 
-    currentNick = username;
-    hostname = theHostname;
+    [self setCurrentNick:username];
+    [self setHostname:theHostname];
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
@@ -47,15 +60,21 @@
         return NSLog(@"big trouble in little IRC client. Could not open write stream to %@ on port %d", theHostname, port);
     }
 
-    inputStream = (__bridge_transfer NSInputStream *) readStream;
-    reader = [[GLGReadDelegate alloc] init];
+    NSInputStream *inputStream = (__bridge_transfer NSInputStream *) readStream;
+    GLGReadDelegate *reader = [[GLGReadDelegate alloc] init];
     [reader setDelegate:self];
-    [inputStream setDelegate:reader];
+    [self setReader:reader];
 
-    outputStream = (__bridge_transfer NSOutputStream *) writeStream;
-    writer = [[GLGWriteDelegate alloc] init];
+    [inputStream setDelegate:reader];
+    [self setInputStream:inputStream];
+
+    NSOutputStream *outputStream = (__bridge_transfer NSOutputStream *) writeStream;
+    GLGWriteDelegate *writer = [[GLGWriteDelegate alloc] init];
     [writer setWriteStream:outputStream];
+    [self setWriter:writer];
+
     [outputStream setDelegate:writer];
+    [self setOutputStream:outputStream];
 
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -81,13 +100,12 @@
                   useSSL:(BOOL) useSSL
             withChannels:(NSArray *) channels
 {
-
     [self connectToServer:theHostname onPort:port withUsername:username withPassword:password useSSL:useSSL];
-    channelsToJoin = channels;
+    [self setChannelsToJoin:channels];
 }
 
-- (void) connectToServer:(IRCServer *) theServer {
-    server = theServer;
+- (void) connectToServer:(IRCServer *) server {
+    [self setServer:server];
 
     NSMutableArray *theChannels = [[NSMutableArray alloc] init];
     [[server.channels allObjects] enumerateObjectsUsingBlock:^(IRCChannel *chan, NSUInteger index, BOOL *stop) {
@@ -116,7 +134,7 @@
         return;
     }
 
-    NSLog(@"%@", string);
+    // NSLog(@"%@", string);
 
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^:([a-z0-9!~`_/|@:\\[\.\-]+) ([a-z0-9]+) (.+)" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -133,8 +151,8 @@
 
     // when you connect to some servers eg: chat.freenode.net, your requests will actually
     // be handled by what is effectively a mirror, or a shard eg: hitchcock.
-    if ([theSender isEqualToString:internalHostname]) {
-        theSender = hostname;
+    if ([theSender isEqualToString:self.internalHostname]) {
+        theSender = self.hostname;
     }
 
     NSString *theChannel;
@@ -144,10 +162,10 @@
 
         string = [NSString stringWithFormat:@"The nick '%@' is already in use. Attempting to use '%@_'", unavailableNick, unavailableNick];
         theChannel = theSender;
-        currentNick = [unavailableNick stringByAppendingString:@"_"];
+        [self setCurrentNick:[unavailableNick stringByAppendingString:@"_"]];
 
-        [server setUsername:currentNick];
-        [writer addCommand:[@"NICK " stringByAppendingString:currentNick]];
+        [self.server setUsername:self.currentNick];
+        [self.writer addCommand:[@"NICK " stringByAppendingString:self.currentNick]];
     }
     else if ([theType isEqualToString:@"353"]) {
         // read the channel and all of the occupants
@@ -181,7 +199,7 @@
         string = @"";
         [occupants addObjectsFromArray:cleanedNames];
         [self.channelOccupants setValue:occupants forKey:theChannel];
-        [delegate updateOccupants:occupants forChannel:theChannel];
+        [self.delegate updateOccupants:occupants forChannel:theChannel];
     }
     else if ([theType isEqualToString:@"366"] || [theType isEqualToString:@"376"]) {
         string = @""; // "end of /NAMES list" or "end of MOTD"
@@ -198,7 +216,7 @@
         string = [[string substringFromIndex:indexOfMessageStart + 2] stringByAppendingString:@"\n"];
     }
     else if ([theType isEqualToString:@"NICK"]) {
-        theChannel = hostname;
+        theChannel = self.hostname;
         NSString *newNick = [theMessage substringWithRange:NSMakeRange(1, theMessage.length - 1)];
         NSString *oldNick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
         string = [NSString stringWithFormat:@"%@ has changed their nick to %@\n", oldNick, newNick];
@@ -224,21 +242,21 @@
         string = [NSString stringWithFormat:@"%@ (%@) has quit channel %@\n", shortName, fullName, theChannel];
 
         // xxx it would be ideal if we could still show this IFF the tab is open
-        if ([shortName isEqualToString:currentNick]) {
+        if ([shortName isEqualToString:self.currentNick]) {
             string = @"";
-            theChannel = server.hostname;
+            theChannel = self.server.hostname;
         }
         else {
             [self userLeftChannel:theChannel withNick:shortName];
             NSMutableArray *occupants = [self.channelOccupants valueForKey:theChannel];
             [occupants removeObject:shortName];
             [self.channelOccupants setValue:occupants forKey:theChannel];
-            [delegate updateOccupants:occupants forChannel:theChannel];
+            [self.delegate updateOccupants:occupants forChannel:theChannel];
         }
     }
     else if ([theType isEqualToString:@"QUIT"]) {
         NSString *nick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
-        theChannel = server.hostname;
+        theChannel = self.server.hostname;
         string = [NSString stringWithFormat:@"%@ has quit %@\n", nick, theMessage];
 
         [self removeNickFromAllChannels:nick withMessage:theMessage];
@@ -253,21 +271,21 @@
         string = [NSString stringWithFormat:@"<%@> %@\n", whom, theMessage];
 
         // private message to use from another user
-        if ([theChannel isEqualToString:currentNick]) {
+        if ([theChannel isEqualToString:self.currentNick]) {
             theChannel = whom;
         }
 
         // if the message matches currentNick, alert delegate
-        NSRange substringRange = [theMessage rangeOfString:currentNick];
+        NSRange substringRange = [theMessage rangeOfString:self.currentNick];
         if (substringRange.location != NSNotFound) {
-            [delegate mentionedInChannel:theChannel fromBroker:self byUser:whom];
+            [self.delegate mentionedInChannel:theChannel fromBroker:self byUser:whom];
         }
     }
     else {
         theChannel = theSender;
     }
 
-    [delegate receivedString:string inChannel:theChannel fromHost:hostname fromBroker:self];
+    [self.delegate receivedString:string inChannel:theChannel fromHost:self.hostname fromBroker:self];
 }
 
 - (void) readActualHostname:(NSString *) message {
@@ -282,24 +300,25 @@
     NSTextCheckingResult *channelMatch = [matches objectAtIndex:0];
 
     hasReadHostname = YES;
-    internalHostname = [message substringWithRange:[channelMatch rangeAtIndex:1]];
+    [self setInternalHostname:[message substringWithRange:[channelMatch rangeAtIndex:1]]];
 }
 
 - (void) didConnectToHost {
     reconnectAttempts = 0;
-    [delegate connectedToServer:hostname fromBroker:self];
-    
-    [channelsToJoin enumerateObjectsUsingBlock:^(NSString *chan, NSUInteger index, BOOL *stop) {
-        [writer addCommand:[@"JOIN " stringByAppendingString:chan]];
-        [delegate joinChannel:chan onServer:hostname userInitiated:NO fromBroker:self];
-    }];
+    [self.delegate connectedToServer:self.hostname fromBroker:self];
+
+    for (int i = 0; i < self.channelsToJoin.count; ++i) {
+        NSString *channel = [self.channelsToJoin objectAtIndex:i];
+        [self.writer addCommand:[@"JOIN " stringByAppendingString:channel]];
+        [self.delegate joinChannel:channel onServer:self.hostname userInitiated:NO fromBroker:self];
+    }
 }
 
 - (void) streamDidClose {
-    [inputStream close];
-    [outputStream close];
+    [self.inputStream close];
+    [self.outputStream close];
     hasReadHostname = NO;
-    internalHostname = nil;
+    [self setInternalHostname:nil];
     [self clearOccupantsInChannels];
 
     // TODO: at this point, we MIGHT need to close our tabs because they might "belong" to the wrong hostname
@@ -310,25 +329,25 @@
     ++reconnectAttempts;
     waitInterval = MIN(waitInterval, 60);
     NSLog(@"going to wait for %lu seconds before firing timer", waitInterval);
-    reconnectTimer = [NSTimer timerWithTimeInterval:waitInterval target:self selector:@selector(attemptReconnect) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:reconnectTimer forMode:NSRunLoopCommonModes];
+    [self setReconnectTimer:[NSTimer timerWithTimeInterval:waitInterval target:self selector:@selector(attemptReconnect) userInfo:nil repeats:NO]];
+    [[NSRunLoop currentRunLoop] addTimer:self.reconnectTimer forMode:NSRunLoopCommonModes];
 }
 
 - (void) attemptReconnect {
-    int port = [server.port intValue];
-    [self connectToServer:server.hostname onPort:port withUsername:server.username withPassword:server.password useSSL:server.useSSL];
+    int port = [self.server.port intValue];
+    [self connectToServer:self.server.hostname onPort:port withUsername:self.server.username withPassword:self.server.password useSSL:self.server.useSSL];
 }
 
 #pragma mark - Input Parsing
 - (void) didSubmitText:(NSString *) string inChannel:(NSString *) channel {
-    [inputParser parseUserInput:string];
+    [self.inputParser parseUserInput:string];
 }
 
 - (void) didJoinChannel:(NSString *) channelName rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
-    [writer addCommand:[@"JOIN " stringByAppendingString:channelName]];
-    [delegate joinChannel:channelName onServer:hostname userInitiated:YES fromBroker:self];
-    [delegate receivedString:display inChannel:channelName fromHost:self.hostname fromBroker:self];
-    [server addChannelNamed:channelName];
+    [self.writer addCommand:[@"JOIN " stringByAppendingString:channelName]];
+    [self.delegate joinChannel:channelName onServer:self.hostname userInitiated:YES fromBroker:self];
+    [self.delegate receivedString:display inChannel:channelName fromHost:self.hostname fromBroker:self];
+    [self.server addChannelNamed:channelName];
 
     NSMutableArray *occupants = [self.channelOccupants valueForKey:channelName];
     if (occupants == nil) {
@@ -339,39 +358,39 @@
 
 - (void) didPartCurrentChannelWithRawCommand:(NSString *) raw displayMessage:(NSString *) display {
     [self partChannel:nil userInitiated:NO]; // TODO:NOPE (currentChannel should be here, not on chatView)
-    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+    [self.delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
 - (void) didPartChannel:(NSString *)channel rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
     [self partChannel:channel userInitiated:NO];
-    [delegate receivedString:display inChannel:channel fromHost:self.hostname fromBroker:self];
+    [self.delegate receivedString:display inChannel:channel fromHost:self.hostname fromBroker:self];
 }
 
 - (void) didChangeNick:(NSString *) newNick rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
-    currentNick = newNick;
-    [server setUsername:newNick];
-    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+    [self setCurrentNick:newNick];
+    [self.server setUsername:newNick];
+    [self.delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
 - (void) didChangePassword:(NSString *)newPassword rawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
-    [server setPassword:newPassword];
-    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+    [self.server setPassword:newPassword];
+    [self.delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
 - (void) didSendMessageToTarget:(NSString *) channelOrUser rawCommand:(NSString *) rawCommand displayMessage:(NSString *)
 display {
-    [writer addCommand:rawCommand];
-    [delegate receivedString:display inChannel:channelOrUser fromHost:self.hostname fromBroker:self];
+    [self.writer addCommand:rawCommand];
+    [self.delegate receivedString:display inChannel:channelOrUser fromHost:self.hostname fromBroker:self];
 }
 
 - (void) didSendMessageToCurrentTargetWithRawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
-    [writer addCommand:rawCommand];
-    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+    [self.writer addCommand:rawCommand];
+    [self.delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
 - (void) didSendUnknownMessageToCurrentTargetWithRawCommand:(NSString *) rawCommand displayMessage:(NSString *) display {
-    [writer addCommand:rawCommand];
-    [delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
+    [self.writer addCommand:rawCommand];
+    [self.delegate receivedString:display inChannel:nil fromHost:self.hostname fromBroker:self];
 }
 
 - (void) willPartChannel:(NSString *)channelName {
@@ -382,10 +401,10 @@ display {
     __block NSString *name = channelName;
     NSManagedObjectContext *context = [GLGManagedObjectContext managedObjectContext];
 
-    NSMutableSet *channels = [[server channels] mutableCopy];
+    NSMutableSet *channels = [self.server.channels mutableCopy];
 
     __block IRCChannel *theChannel;
-    [[server channels] enumerateObjectsUsingBlock:^(IRCChannel *channel, BOOL *stop) {
+    [self.server.channels enumerateObjectsUsingBlock:^(IRCChannel *channel, BOOL *stop) {
         if ([[channel properName] isEqualToString:name]) {
             theChannel = channel;
             // *stop = YES;
@@ -394,18 +413,18 @@ display {
 
     if (theChannel) {
         [channels removeObject:theChannel];
-        [server setChannels:[channels copy]];
+        [self.server setChannels:[channels copy]];
 
         NSError *error;
         [context deleteObject:theChannel];
         [context save:&error];
     }
     else {
-        NSLog(@"couldn't find a channel named %@ belonging to server %@, oh no!", channelName, server.hostname);
+        NSLog(@"couldn't find a channel named %@ belonging to server %@, oh no!", channelName, self.server.hostname);
     }
 
     if (byUser) {
-        [writer addCommand:[NSString stringWithFormat:@"PART %@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channelName]];
+        [self.writer addCommand:[NSString stringWithFormat:@"PART %@ http://twIRCk.com (sometimes you just gotta twIRCk it!)", channelName]];
     }
 }
 
@@ -431,7 +450,7 @@ display {
 
     NSString *theHostname = [maybePing substringWithRange:[result rangeAtIndex:1]];
     if ([theHostname length] > 0) {
-        [writer addCommand:[@"PONG " stringByAppendingString:hostname]];
+        [self.writer addCommand:[@"PONG " stringByAppendingString:self.hostname]];
         return YES;
     }
 
@@ -467,7 +486,7 @@ display {
 
     [occupants addObject:nick];
     [self.channelOccupants setValue:occupants forKey:channel];
-    [delegate updateOccupants:occupants forChannel:channel];
+    [self.delegate updateOccupants:occupants forChannel:channel];
 }
 
 - (BOOL) userLeftChannel:channel withNick:nick {
@@ -478,7 +497,7 @@ display {
 
     [occupants removeObject:nick];
     [self.channelOccupants setValue:occupants forKey:channel];
-    [delegate updateOccupants:occupants forChannel:channel];
+    [self.delegate updateOccupants:occupants forChannel:channel];
 
     return YES;
 }
@@ -489,7 +508,7 @@ display {
 
         if (wasInChannel) {
             NSString *quitMessage = [NSString stringWithFormat:@"%@ has quit: %@\n", nick, message];
-            [delegate receivedString:quitMessage inChannel:channel fromHost:hostname fromBroker:self];
+            [self.delegate receivedString:quitMessage inChannel:channel fromHost:self.hostname fromBroker:self];
         }
     }];
 }

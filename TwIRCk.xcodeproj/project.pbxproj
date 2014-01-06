@@ -76,6 +76,8 @@
 		F7E534A0185592EE0021818F /* GLGResponseCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E53492185592D30021818F /* GLGResponseCodes.m */; };
 		F7E534A1185592F10021818F /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E53498185592DC0021818F /* GLGReadDelegate.m */; };
 		F7E534A2185592F40021818F /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5349A185592DC0021818F /* GLGWriteDelegate.m */; };
+		F7E534A51858319C0021818F /* GLGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E534A41858319C0021818F /* GLGChatViewController.m */; };
+		F7E534A61858319C0021818F /* GLGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E534A41858319C0021818F /* GLGChatViewController.m */; };
 		F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
 		F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
 		F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
@@ -85,6 +87,7 @@
 		F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
 		F7F45AEC18558C850059DC65 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
 		F7F45AED18558C850059DC65 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
+		F7F6770618624CEB00781190 /* GLGChatViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7F6770518624CEB00781190 /* GLGChatViewControllerSpec.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -199,6 +202,8 @@
 		F7E53498185592DC0021818F /* GLGReadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGReadDelegate.m; path = Domain/StreamDelegates/GLGReadDelegate.m; sourceTree = "<group>"; };
 		F7E53499185592DC0021818F /* GLGWriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGWriteDelegate.h; path = Domain/StreamDelegates/GLGWriteDelegate.h; sourceTree = "<group>"; };
 		F7E5349A185592DC0021818F /* GLGWriteDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGWriteDelegate.m; path = Domain/StreamDelegates/GLGWriteDelegate.m; sourceTree = "<group>"; };
+		F7E534A31858319C0021818F /* GLGChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatViewController.h; sourceTree = "<group>"; };
+		F7E534A41858319C0021818F /* GLGChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatViewController.m; sourceTree = "<group>"; };
 		F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F7F45ADE18558C850059DC65 /* GLGManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGManagedObjectContext.h; path = Models/GLGManagedObjectContext.h; sourceTree = "<group>"; };
 		F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGManagedObjectContext.m; path = Models/GLGManagedObjectContext.m; sourceTree = "<group>"; };
@@ -207,6 +212,8 @@
 		F7F45AE218558C850059DC65 /* IRCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRCServer.h; path = Models/IRCServer.h; sourceTree = "<group>"; };
 		F7F45AE318558C850059DC65 /* IRCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IRCServer.m; path = Models/IRCServer.m; sourceTree = "<group>"; };
 		F7F45AE518558C850059DC65 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F7F52B261874D35500150EA5 /* GLGChatViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGChatViewDelegate.h; sourceTree = "<group>"; };
+		F7F6770518624CEB00781190 /* GLGChatViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLGChatViewControllerSpec.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +371,7 @@
 				F7B8B544181219A7003003BC /* GLGResponseParserSpec.mm */,
 				F798A7081849534B0092A93E /* GLGInputParserSpec.mm */,
 				F717720E1831DA0B00BD6EB4 /* Supporting Files */,
+				F7F6770518624CEB00781190 /* GLGChatViewControllerSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -397,6 +405,7 @@
 				F7864112185521FA007EC307 /* GLGOccupantDelegate.h */,
 				F7864113185521FA007EC307 /* GLGResponseParserDelegate.h */,
 				F7864114185521FA007EC307 /* GLGStreamReaderDelegate.h */,
+				F7F52B261874D35500150EA5 /* GLGChatViewDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -432,6 +441,8 @@
 		F79BE6001855187800F8F649 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F7E534A31858319C0021818F /* GLGChatViewController.h */,
+				F7E534A41858319C0021818F /* GLGChatViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -596,6 +607,7 @@
 				F79EDA2C18552260000A1D84 /* GLGIRCBroker.m in Sources */,
 				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
 				F72B9296185590980005C271 /* GLGTabView.m in Sources */,
+				F7E534A51858319C0021818F /* GLGChatViewController.m in Sources */,
 				F7F45AEC18558C850059DC65 /* Model.xcdatamodeld in Sources */,
 				F72B928E185590840005C271 /* GLGSidebarOccupant.m in Sources */,
 				F72B927A1855907C0005C271 /* GLGChatLogView.m in Sources */,
@@ -638,9 +650,11 @@
 				F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */,
 				F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */,
 				F72B9295185590980005C271 /* GLGTabItem.m in Sources */,
+				F7E534A61858319C0021818F /* GLGChatViewController.m in Sources */,
 				F79EDA2F18552286000A1D84 /* GLGInputParser.m in Sources */,
 				F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */,
 				F79EDA3018552286000A1D84 /* GLGIRCBroker.m in Sources */,
+				F7F6770618624CEB00781190 /* GLGChatViewControllerSpec.mm in Sources */,
 				F79EDA3118552286000A1D84 /* GLGIRCMessage.m in Sources */,
 				F7E5349E185592E80021818F /* GLGMessage.m in Sources */,
 				F72B927B1855907C0005C271 /* GLGChatLogView.m in Sources */,

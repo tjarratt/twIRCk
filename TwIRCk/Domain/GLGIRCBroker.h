@@ -18,35 +18,29 @@
 @protocol GLGBrokerDelegate;
 
 @interface GLGIRCBroker : NSObject <GLGStreamReaderDelegate, GLGInputParserDelegate> {
-    NSInputStream *inputStream;
-    NSOutputStream *outputStream;
-
-    GLGInputParser *inputParser;
-
-    IRCServer *server;
-    
-    GLGReadDelegate *reader;
-    GLGWriteDelegate *writer;
-
-    NSString *hostname;
-    NSString *currentNick;
-
-    NSString *internalHostname;
-
-    NSArray *channelsToJoin;
-    NSTimer *reconnectTimer;
-    NSUInteger reconnectAttempts;
     BOOL hasReadHostname;
-
-    id <GLGBrokerDelegate> delegate;
+    NSUInteger reconnectAttempts;
 }
 
-@property NSMutableDictionary *channelOccupants;
+@property (weak, readonly) id <GLGBrokerDelegate> delegate;
+
+@property (retain, strong, readonly) NSTimer *reconnectTimer;
+
+@property (retain, strong, readonly) NSString *hostname;
+@property (retain, strong, readonly) NSString *currentNick;
+@property (retain, strong, readonly) NSString *internalHostname;
+@property (retain, strong, readonly) NSMutableArray *channelsToJoin;
+@property (retain, strong, readonly) NSMutableDictionary *channelOccupants;
+
+@property (retain, strong, readonly) GLGReadDelegate *reader;
+@property (retain, strong, readonly) GLGWriteDelegate *writer;
+
+@property (retain, strong, readonly) IRCServer *server;
+@property (retain, strong, readonly) NSInputStream *inputStream;
+@property (retain, strong, readonly) NSOutputStream *outputStream;
+@property (retain, strong, readonly) GLGInputParser *inputParser;
 
 - (id) initWithDelegate:(id <GLGBrokerDelegate>) aDelegate;
-
-- (NSString *) hostname;
-
 - (void) connectToServer:(IRCServer *) server;
 - (void) connectToServer: (NSString *) theHostname
                   onPort:(UInt32) port

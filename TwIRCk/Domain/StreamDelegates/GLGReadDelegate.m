@@ -25,6 +25,7 @@
             break;
         case NSStreamEventOpenCompleted:
             if (delegate) {
+                NSLog(@"calling did connect to host now");
                 [delegate didConnectToHost];
             }
             break;

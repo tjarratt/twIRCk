@@ -220,8 +220,9 @@
     }
 
     GLGAppDelegate *delegate = [NSApp delegate];
-    GLGChatView *chatView = [delegate chatView];
-    if (!chatView) {
+    GLGChatViewController *controller = delegate.controller;
+
+    if (!controller || !controller.view) {
         NSSize size = NSMakeSize(800, 600);
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
         CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
@@ -234,14 +235,14 @@
                                                           styleMask:style backing:NSBackingStoreBuffered defer:NO];
         [newWindow makeKeyAndOrderFront:NSApp];
 
-        chatView = [[GLGChatView alloc] initWithWindow:newWindow];
-        [chatView setConnectView:self];
-        [delegate setChatView:chatView];
+        controller = [[GLGChatViewController alloc] initWithWindow:newWindow];
+        [controller.view setConnectView:self];
+        [delegate didCreateChatViewController:controller];
 
-        [[newWindow contentView] addSubview:chatView];
+        [[newWindow contentView] addSubview:controller.view];
     }
 
-    [chatView connectToServer:server];
+    [controller connectToServer:server];
 }
 
 - (void) shouldClose {
