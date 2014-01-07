@@ -29,7 +29,6 @@ const CGFloat occupantsSidebarWidth = 150;
     NSRect frame = [content frame];
 
     if (self = [super initWithFrame:frame]) {
-        NSLog(@"init-`d with frame");
         self.controller = delegate;
         [self setSuperWindow:aWindow];
         [aWindow setMinSize:NSMakeSize(300, 200)];

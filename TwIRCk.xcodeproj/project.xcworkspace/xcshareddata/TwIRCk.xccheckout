@@ -10,6 +10,8 @@
 	<string>TwIRCk</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>E9687492-E0D0-4983-950F-C642B50DC7E3</key>
+		<string>https://github.com/jbsf/blindside.git</string>
 		<key>EDE4254F-320C-4B30-B1E3-0680901553E4</key>
 		<string>ssh://github.com/tjarratt/twIRC.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>TwIRCk.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>E9687492-E0D0-4983-950F-C642B50DC7E3</key>
+		<string>../../blindside</string>
 		<key>EDE4254F-320C-4B30-B1E3-0680901553E4</key>
 		<string>../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>EDE4254F-320C-4B30-B1E3-0680901553E4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E9687492-E0D0-4983-950F-C642B50DC7E3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>blindside</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

@@ -41,6 +41,11 @@
 		F72B929E1855913F0005C271 /* NSColor+GLG.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B929D1855913F0005C271 /* NSColor+GLG.m */; };
 		F72B929F1855913F0005C271 /* NSColor+GLG.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B929D1855913F0005C271 /* NSColor+GLG.m */; };
 		F72B92A0185591750005C271 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
+		F761871B187BD83F00A13B91 /* Blindside.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7618714187BCA3000A13B91 /* Blindside.framework */; };
+		F761871F187BD8F000A13B91 /* GLGChatViewControllerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F761871E187BD8F000A13B91 /* GLGChatViewControllerModule.m */; };
+		F7618723187BDA1800A13B91 /* GLGChatViewProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618722187BDA1800A13B91 /* GLGChatViewProvider.m */; };
+		F7618726187BDA2500A13B91 /* GLGIRCBrokerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618725187BDA2500A13B91 /* GLGIRCBrokerProvider.m */; };
+		F7618729187BDB2500A13B91 /* GLGWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618728187BDB2500A13B91 /* GLGWindowProvider.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */; };
 		F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F798A7081849534B0092A93E /* GLGInputParserSpec.mm */; };
@@ -103,6 +108,37 @@
 		};
 /* End PBXBuildRule section */
 
+/* Begin PBXContainerItemProxy section */
+		F7618713187BCA3000A13B91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 29CAC6E4150292AD00731862;
+			remoteInfo = Blindside;
+		};
+		F7618715187BCA3000A13B91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 29CAC7001502932000731862;
+			remoteInfo = Specs;
+		};
+		F7618717187BCA3000A13B91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 29997B471505EC0B00C12110;
+			remoteInfo = "Blindside-StaticLib";
+		};
+		F7618719187BD83500A13B91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 29CAC6E3150292AD00731862;
+			remoteInfo = Blindside;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		F79BE5F7184AB09B00F8F649 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -160,6 +196,15 @@
 		F72B9299185590D00005C271 /* GLGNewServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGNewServer.m; path = Views/GLGNewServer.m; sourceTree = "<group>"; };
 		F72B929C1855913F0005C271 /* NSColor+GLG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+GLG.h"; sourceTree = "<group>"; };
 		F72B929D1855913F0005C271 /* NSColor+GLG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+GLG.m"; sourceTree = "<group>"; };
+		F761870B187BCA3000A13B91 /* Blindside.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Blindside.xcodeproj; path = blindside/Blindside.xcodeproj; sourceTree = "<group>"; };
+		F761871D187BD8F000A13B91 /* GLGChatViewControllerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatViewControllerModule.h; sourceTree = "<group>"; };
+		F761871E187BD8F000A13B91 /* GLGChatViewControllerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatViewControllerModule.m; sourceTree = "<group>"; };
+		F7618721187BDA1800A13B91 /* GLGChatViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatViewProvider.h; sourceTree = "<group>"; };
+		F7618722187BDA1800A13B91 /* GLGChatViewProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatViewProvider.m; sourceTree = "<group>"; };
+		F7618724187BDA2500A13B91 /* GLGIRCBrokerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCBrokerProvider.h; sourceTree = "<group>"; };
+		F7618725187BDA2500A13B91 /* GLGIRCBrokerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGIRCBrokerProvider.m; sourceTree = "<group>"; };
+		F7618727187BDB2500A13B91 /* GLGWindowProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGWindowProvider.h; sourceTree = "<group>"; };
+		F7618728187BDB2500A13B91 /* GLGWindowProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGWindowProvider.m; sourceTree = "<group>"; };
 		F786410F185521FA007EC307 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGBrokerDelegate.h; path = Protocols/GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7864110185521FA007EC307 /* GLGConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGConnectionView.h; path = Protocols/GLGConnectionView.h; sourceTree = "<group>"; };
 		F7864111185521FA007EC307 /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGInputParserDelegate.h; path = Protocols/GLGInputParserDelegate.h; sourceTree = "<group>"; };
@@ -221,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F761871B187BD83F00A13B91 /* Blindside.framework in Frameworks */,
 				F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */,
 				F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */,
 				F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */,
@@ -280,6 +326,7 @@
 		F70F1272179F2D8B00DBB74F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F761870B187BCA3000A13B91 /* Blindside.xcodeproj */,
 				F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */,
 				F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */,
 				F717721D1831DB3900BD6EB4 /* PivotalCoreKit.xcworkspace */,
@@ -305,6 +352,7 @@
 		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
 			isa = PBXGroup;
 			children = (
+				F761871C187BD89000A13B91 /* Providers */,
 				F704C06D17C9181600CE279D /* Models */,
 				F70F12CD17A9960700DBB74F /* Views */,
 				F79BE6001855187800F8F649 /* Controllers */,
@@ -387,6 +435,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F761870C187BCA3000A13B91 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7618714187BCA3000A13B91 /* Blindside.framework */,
+				F7618716187BCA3000A13B91 /* Specs */,
+				F7618718187BCA3000A13B91 /* libBlindside-StaticLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F761871C187BD89000A13B91 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				F761871D187BD8F000A13B91 /* GLGChatViewControllerModule.h */,
+				F761871E187BD8F000A13B91 /* GLGChatViewControllerModule.m */,
+				F7618721187BDA1800A13B91 /* GLGChatViewProvider.h */,
+				F7618722187BDA1800A13B91 /* GLGChatViewProvider.m */,
+				F7618724187BDA2500A13B91 /* GLGIRCBrokerProvider.h */,
+				F7618725187BDA2500A13B91 /* GLGIRCBrokerProvider.m */,
+				F7618727187BDB2500A13B91 /* GLGWindowProvider.h */,
+				F7618728187BDB2500A13B91 /* GLGWindowProvider.m */,
+			);
+			name = Providers;
+			sourceTree = "<group>";
+		};
+		F7618720187BD9A800A13B91 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
 		F76AA97317E789A300D5B0D0 /* DefaultValueControls */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +479,7 @@
 		F786C93417E6ADEB004F64DF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F7618720187BD9A800A13B91 /* Dependencies */,
 				F786410F185521FA007EC307 /* GLGBrokerDelegate.h */,
 				F7864110185521FA007EC307 /* GLGConnectionView.h */,
 				F7864111185521FA007EC307 /* GLGInputParserDelegate.h */,
@@ -513,6 +594,7 @@
 				F786C8E917E686C8004F64DF /* PBXBuildRule */,
 			);
 			dependencies = (
+				F761871A187BD83500A13B91 /* PBXTargetDependency */,
 			);
 			name = twIRCk;
 			productName = TwIRCk;
@@ -557,6 +639,12 @@
 			mainGroup = F70F1267179F2D8B00DBB74F;
 			productRefGroup = F70F1271179F2D8B00DBB74F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F761870C187BCA3000A13B91 /* Products */;
+					ProjectRef = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F70F126F179F2D8B00DBB74F /* twIRCk */,
@@ -564,6 +652,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F7618714187BCA3000A13B91 /* Blindside.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Blindside.framework;
+			remoteRef = F7618713187BCA3000A13B91 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7618716187BCA3000A13B91 /* Specs */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Specs;
+			remoteRef = F7618715187BCA3000A13B91 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7618718187BCA3000A13B91 /* libBlindside-StaticLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libBlindside-StaticLib.a";
+			remoteRef = F7618717187BCA3000A13B91 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F70F126E179F2D8B00DBB74F /* Resources */ = {
@@ -605,6 +717,7 @@
 			files = (
 				F72B927C1855907C0005C271 /* GLGChatTextField.m in Sources */,
 				F79EDA2C18552260000A1D84 /* GLGIRCBroker.m in Sources */,
+				F7618723187BDA1800A13B91 /* GLGChatViewProvider.m in Sources */,
 				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
 				F72B9296185590980005C271 /* GLGTabView.m in Sources */,
 				F7E534A51858319C0021818F /* GLGChatViewController.m in Sources */,
@@ -614,6 +727,7 @@
 				F72B929E1855913F0005C271 /* NSColor+GLG.m in Sources */,
 				F7E53496185592D30021818F /* GLGResponseCodes.m in Sources */,
 				F72B928C185590840005C271 /* GLGGradientSidebar.m in Sources */,
+				F761871F187BD8F000A13B91 /* GLGChatViewControllerModule.m in Sources */,
 				F72B9294185590980005C271 /* GLGTabItem.m in Sources */,
 				F7E53493185592D30021818F /* GLGErrorMessage.m in Sources */,
 				F72B927E1855907C0005C271 /* GLGChatView.m in Sources */,
@@ -621,11 +735,13 @@
 				F72B9272185590700005C271 /* GLGDefaultValueTextField.m in Sources */,
 				F7E53494185592D30021818F /* GLGMessage.m in Sources */,
 				F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
+				F7618729187BDB2500A13B91 /* GLGWindowProvider.m in Sources */,
 				F79EDA2E18552260000A1D84 /* GLGResponseParser.m in Sources */,
 				F79EDA2B18552260000A1D84 /* GLGInputParser.m in Sources */,
 				F79EDA2D18552260000A1D84 /* GLGIRCMessage.m in Sources */,
 				F7F45AE818558C850059DC65 /* IRCChannel.m in Sources */,
 				F72B929A185590D00005C271 /* GLGNewServer.m in Sources */,
+				F7618726187BDA2500A13B91 /* GLGIRCBrokerProvider.m in Sources */,
 				F72B9288185590840005C271 /* GLGChannelContent.m in Sources */,
 				F7E53495185592D30021818F /* GLGReplyMessage.m in Sources */,
 				F7E5349B185592DC0021818F /* GLGReadDelegate.m in Sources */,
@@ -676,6 +792,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F761871A187BD83500A13B91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Blindside;
+			targetProxy = F7618719187BD83500A13B91 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F70F127C179F2D8B00DBB74F /* InfoPlist.strings */ = {
@@ -770,6 +894,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/Supporting Files/TwIRCk-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/blindside/Headers",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TwIRCk/Supporting Files/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
@@ -787,6 +916,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/Supporting Files/TwIRCk-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/blindside/Headers",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TwIRCk/Supporting Files/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
@@ -912,6 +1046,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/Supporting Files/TwIRCk-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/blindside/Headers",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TwIRCk/Supporting Files/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
