@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 General Linear Group. All rights reserved.
 //
 
-#import "GLGWindowProvider.h"
+#import "GLGRealWindowProvider.h"
 
-@implementation GLGWindowProvider
+@implementation GLGRealWindowProvider
 - (NSWindow *) window {
     GLGAppDelegate *delegate = [NSApp delegate];
 

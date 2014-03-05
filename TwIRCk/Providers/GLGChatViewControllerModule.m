@@ -11,7 +11,7 @@
 @implementation GLGChatViewControllerModule
 
 - (void) configure:(id) binder {
-    [binder bind:@"window" toInstance:[[GLGWindowProvider alloc] init]];
+    [binder bind:@"window" toInstance:[[GLGRealWindowProvider alloc] init]];
     [binder bind:@"brokerProvider" toInstance:[[GLGIRCBrokerProvider alloc] init]];
     [binder bind:@"chatViewProvider" toInstance:[[GLGChatViewProvider alloc] init]];
 }
