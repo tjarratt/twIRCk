@@ -961,7 +961,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/PivotalCoreKit/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/PivotalCoreKit/**";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/PivotalCoreKit/** $(PROJECT_DIR)/blindside/Headers";
 			};
 			name = Debug;
 		};
