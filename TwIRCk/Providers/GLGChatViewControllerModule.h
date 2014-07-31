@@ -9,7 +9,7 @@
 #import "Blindside.h"
 #import "GLGChatViewProvider.h"
 #import "GLGIRCBrokerProvider.h"
-#import "GLGRealWindowProvider.h"
+#import "GLGWindowProvider.h"
 
 @interface GLGChatViewControllerModule : NSObject <BSModule>
 @end

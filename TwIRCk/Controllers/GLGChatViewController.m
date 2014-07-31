@@ -25,7 +25,7 @@
                                   argumentKeys:@"window", @"brokerProvider", @"chatViewProvider", nil];
 }
 
-- (instancetype) initWithWindow:(id <GLGWindowProvider>)windowProvider
+- (instancetype) initWithWindow:(GLGWindowProvider *)windowProvider
                  brokerProvider:(GLGIRCBrokerProvider *)brokerProvider
                chatViewProvider:(GLGChatViewProvider *)chatViewProvider {
     if (self = [super init]) {

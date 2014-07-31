@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "GLGAppDelegate.h"
 
-@interface GLGRealWindowProvider : NSObject
+@interface GLGWindowProvider : NSObject
 - (NSWindow *)window;
 @end

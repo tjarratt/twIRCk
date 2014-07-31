@@ -50,14 +50,12 @@
 		F7618739187FCB8900A13B91 /* GLGChatViewProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618731187FCB8900A13B91 /* GLGChatViewProvider.m */; };
 		F761873A187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */; };
 		F761873B187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */; };
-		F761873C187FCB8900A13B91 /* GLGRealWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGRealWindowProvider.m */; };
-		F761873D187FCB8900A13B91 /* GLGRealWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGRealWindowProvider.m */; };
-		F761C54D18C7CC2C005B1D40 /* GLGFakeInputParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F761C54818C7CC2C005B1D40 /* GLGFakeInputParserDelegate.m */; };
-		F761C54E18C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F761C54A18C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.m */; };
-		F761C54F18C7CC2C005B1D40 /* GLGFakeWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F761C54C18C7CC2C005B1D40 /* GLGFakeWindowProvider.m */; };
-		F761C55218C7CD88005B1D40 /* Blindside.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7618714187BCA3000A13B91 /* Blindside.framework */; };
+		F761873C187FCB8900A13B91 /* GLGWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGWindowProvider.m */; };
+		F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGWindowProvider.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
+		F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */; };
 		F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F798A7081849534B0092A93E /* GLGInputParserSpec.mm */; };
+		F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */; };
 		F79BE5F8184AB0AA00F8F649 /* Foundation+PivotalCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
 		F79BE5F9184AB0AA00F8F649 /* Foundation+PivotalSpecHelper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
 		F79BE60918551C9500F8F649 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F79BE60218551C9500F8F649 /* close_no_rollover.tif */; };
@@ -143,13 +141,6 @@
 			remoteGlobalIDString = 29CAC6E3150292AD00731862;
 			remoteInfo = Blindside;
 		};
-		F761C55018C7CD55005B1D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 29CAC6E3150292AD00731862;
-			remoteInfo = Blindside;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -218,23 +209,20 @@
 		F7618731187FCB8900A13B91 /* GLGChatViewProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChatViewProvider.m; path = Providers/GLGChatViewProvider.m; sourceTree = "<group>"; };
 		F7618732187FCB8900A13B91 /* GLGIRCBrokerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGIRCBrokerProvider.h; path = Providers/GLGIRCBrokerProvider.h; sourceTree = "<group>"; };
 		F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGIRCBrokerProvider.m; path = Providers/GLGIRCBrokerProvider.m; sourceTree = "<group>"; };
-		F7618734187FCB8900A13B91 /* GLGRealWindowProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGRealWindowProvider.h; path = Providers/GLGRealWindowProvider.h; sourceTree = "<group>"; };
-		F7618735187FCB8900A13B91 /* GLGRealWindowProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGRealWindowProvider.m; path = Providers/GLGRealWindowProvider.m; sourceTree = "<group>"; };
+		F7618734187FCB8900A13B91 /* GLGWindowProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGWindowProvider.h; path = Providers/GLGWindowProvider.h; sourceTree = "<group>"; };
+		F7618735187FCB8900A13B91 /* GLGWindowProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGWindowProvider.m; path = Providers/GLGWindowProvider.m; sourceTree = "<group>"; };
 		F761873E187FCB9700A13B91 /* GLGChatViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGChatViewDelegate.h; path = Protocols/GLGChatViewDelegate.h; sourceTree = "<group>"; };
-		F761C54718C7CC2C005B1D40 /* GLGFakeInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGFakeInputParserDelegate.h; path = Fakes/GLGFakeInputParserDelegate.h; sourceTree = "<group>"; };
-		F761C54818C7CC2C005B1D40 /* GLGFakeInputParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGFakeInputParserDelegate.m; path = Fakes/GLGFakeInputParserDelegate.m; sourceTree = "<group>"; };
-		F761C54918C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGFakeResponseParserDelegate.h; path = Fakes/GLGFakeResponseParserDelegate.h; sourceTree = "<group>"; };
-		F761C54A18C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGFakeResponseParserDelegate.m; path = Fakes/GLGFakeResponseParserDelegate.m; sourceTree = "<group>"; };
-		F761C54B18C7CC2C005B1D40 /* GLGFakeWindowProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGFakeWindowProvider.h; path = Fakes/GLGFakeWindowProvider.h; sourceTree = "<group>"; };
-		F761C54C18C7CC2C005B1D40 /* GLGFakeWindowProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGFakeWindowProvider.m; path = Fakes/GLGFakeWindowProvider.m; sourceTree = "<group>"; };
-		F761C55318C7CE53005B1D40 /* GLGWindowProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLGWindowProvider.h; path = Protocols/Dependencies/GLGWindowProvider.h; sourceTree = "<group>"; };
 		F786410F185521FA007EC307 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGBrokerDelegate.h; path = Protocols/GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7864110185521FA007EC307 /* GLGConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGConnectionView.h; path = Protocols/GLGConnectionView.h; sourceTree = "<group>"; };
 		F7864111185521FA007EC307 /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGInputParserDelegate.h; path = Protocols/GLGInputParserDelegate.h; sourceTree = "<group>"; };
 		F7864112185521FA007EC307 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGOccupantDelegate.h; path = Protocols/GLGOccupantDelegate.h; sourceTree = "<group>"; };
 		F7864113185521FA007EC307 /* GLGResponseParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGResponseParserDelegate.h; path = Protocols/GLGResponseParserDelegate.h; sourceTree = "<group>"; };
 		F7864114185521FA007EC307 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGStreamReaderDelegate.h; path = Protocols/GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
+		F798A7051849526E0092A93E /* GLGFakeResponseParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGFakeResponseParserDelegate.h; sourceTree = "<group>"; };
+		F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGFakeResponseParserDelegate.m; sourceTree = "<group>"; };
 		F798A7081849534B0092A93E /* GLGInputParserSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLGInputParserSpec.mm; sourceTree = "<group>"; };
+		F798A70E184989E00092A93E /* GLGFakeInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGFakeInputParserDelegate.h; sourceTree = "<group>"; };
+		F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGFakeInputParserDelegate.m; sourceTree = "<group>"; };
 		F79BE5FE18541C8500F8F649 /* GLGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGLogger.h; sourceTree = "<group>"; };
 		F79BE60218551C9500F8F649 /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_no_rollover.tif; path = "Supporting Files/close_no_rollover.tif"; sourceTree = "<group>"; };
 		F79BE60318551C9500F8F649 /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_rollover.tif; path = "Supporting Files/close_rollover.tif"; sourceTree = "<group>"; };
@@ -293,7 +281,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F761C55218C7CD88005B1D40 /* Blindside.framework in Frameworks */,
 				F72B92A0185591750005C271 /* SystemConfiguration.framework in Frameworks */,
 				F79EDA3718552416000A1D84 /* CoreData.framework in Frameworks */,
 				F79EDA361855240E000A1D84 /* Cocoa.framework in Frameworks */,
@@ -471,8 +458,8 @@
 				F7618731187FCB8900A13B91 /* GLGChatViewProvider.m */,
 				F7618732187FCB8900A13B91 /* GLGIRCBrokerProvider.h */,
 				F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */,
-				F7618734187FCB8900A13B91 /* GLGRealWindowProvider.h */,
-				F7618735187FCB8900A13B91 /* GLGRealWindowProvider.m */,
+				F7618734187FCB8900A13B91 /* GLGWindowProvider.h */,
+				F7618735187FCB8900A13B91 /* GLGWindowProvider.m */,
 			);
 			name = Providers;
 			sourceTree = "<group>";
@@ -480,7 +467,6 @@
 		F7618720187BD9A800A13B91 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				F761C55318C7CE53005B1D40 /* GLGWindowProvider.h */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -512,12 +498,10 @@
 		F798A7041849523E0092A93E /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
-				F761C54718C7CC2C005B1D40 /* GLGFakeInputParserDelegate.h */,
-				F761C54818C7CC2C005B1D40 /* GLGFakeInputParserDelegate.m */,
-				F761C54918C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.h */,
-				F761C54A18C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.m */,
-				F761C54B18C7CC2C005B1D40 /* GLGFakeWindowProvider.h */,
-				F761C54C18C7CC2C005B1D40 /* GLGFakeWindowProvider.m */,
+				F798A7051849526E0092A93E /* GLGFakeResponseParserDelegate.h */,
+				F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */,
+				F798A70E184989E00092A93E /* GLGFakeInputParserDelegate.h */,
+				F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -633,7 +617,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F761C55118C7CD55005B1D40 /* PBXTargetDependency */,
 			);
 			name = Specs;
 			productName = Specs;
@@ -748,7 +731,7 @@
 				F72B929E1855913F0005C271 /* NSColor+GLG.m in Sources */,
 				F7E53496185592D30021818F /* GLGResponseCodes.m in Sources */,
 				F72B928C185590840005C271 /* GLGGradientSidebar.m in Sources */,
-				F761873C187FCB8900A13B91 /* GLGRealWindowProvider.m in Sources */,
+				F761873C187FCB8900A13B91 /* GLGWindowProvider.m in Sources */,
 				F72B9294185590980005C271 /* GLGTabItem.m in Sources */,
 				F7E53493185592D30021818F /* GLGErrorMessage.m in Sources */,
 				F72B927E1855907C0005C271 /* GLGChatView.m in Sources */,
@@ -778,20 +761,19 @@
 			files = (
 				F72B9289185590840005C271 /* GLGChannelContent.m in Sources */,
 				F72B929F1855913F0005C271 /* NSColor+GLG.m in Sources */,
+				F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */,
+				F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */,
 				F72B9297185590980005C271 /* GLGTabView.m in Sources */,
 				F761872D187FCB7700A13B91 /* GLGChatViewController.m in Sources */,
 				F7F45AED18558C850059DC65 /* Model.xcdatamodeld in Sources */,
 				F72B927F1855907C0005C271 /* GLGChatView.m in Sources */,
 				F7E5349F185592EB0021818F /* GLGReplyMessage.m in Sources */,
 				F761873B187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */,
-				F761C54D18C7CC2C005B1D40 /* GLGFakeInputParserDelegate.m in Sources */,
 				F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */,
-				F761C54F18C7CC2C005B1D40 /* GLGFakeWindowProvider.m in Sources */,
 				F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */,
 				F72B9295185590980005C271 /* GLGTabItem.m in Sources */,
 				F79EDA2F18552286000A1D84 /* GLGInputParser.m in Sources */,
-				F761C54E18C7CC2C005B1D40 /* GLGFakeResponseParserDelegate.m in Sources */,
-				F761873D187FCB8900A13B91 /* GLGRealWindowProvider.m in Sources */,
+				F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */,
 				F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */,
 				F79EDA3018552286000A1D84 /* GLGIRCBroker.m in Sources */,
 				F7F6770618624CEB00781190 /* GLGChatViewControllerSpec.mm in Sources */,
@@ -824,11 +806,6 @@
 			isa = PBXTargetDependency;
 			name = Blindside;
 			targetProxy = F7618719187BD83500A13B91 /* PBXContainerItemProxy */;
-		};
-		F761C55118C7CD55005B1D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Blindside;
-			targetProxy = F761C55018C7CD55005B1D40 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -969,7 +946,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Specs/Frameworks",
+					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -997,7 +975,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Specs/Frameworks",
+					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -1020,7 +999,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Specs/Frameworks",
+					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";

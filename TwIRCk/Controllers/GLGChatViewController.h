@@ -18,6 +18,8 @@
 #import "GLGChatViewProvider.h"
 #import "GLGIRCBrokerProvider.h"
 
+@class GLGWindowProvider;
+
 @interface GLGChatViewController : NSObject <GLGBrokerDelegate, GLGOccupantDelegate> 
 
 @property (retain, readonly) NSMutableDictionary *chatlogs;
@@ -28,7 +30,7 @@
 @property (retain, readonly) NSString *currentChannel;
 
 + (BSInitializer *) bsInitializer;
-- (instancetype) initWithWindow:(id <GLGWindowProvider>) windowProvider
+- (instancetype) initWithWindow:(GLGWindowProvider *)window
                  brokerProvider:(GLGIRCBrokerProvider *)brokerProvider
                chatViewProvider:(GLGChatViewProvider *)chatViewProvider;
 - (void) connectToServer:(IRCServer *) server;
