@@ -130,20 +130,6 @@
 		};
 /* End PBXBuildRule section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		F79BE5F7184AB09B00F8F649 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F79BE5F8184AB0AA00F8F649 /* Foundation+PivotalCore.framework in CopyFiles */,
-				F79BE5F9184AB0AA00F8F649 /* Foundation+PivotalSpecHelper.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		F70F1270179F2D8B00DBB74F /* twIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F70F1273179F2D8B00DBB74F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -633,7 +619,6 @@
 				F71772051831DA0B00BD6EB4 /* ShellScript */,
 				F71772061831DA0B00BD6EB4 /* Sources */,
 				F71772071831DA0B00BD6EB4 /* Frameworks */,
-				F79BE5F7184AB09B00F8F649 /* CopyFiles */,
 			);
 			buildRules = (
 			);
