@@ -13,21 +13,6 @@
 		F70F128A179F2D8B00DBB74F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70F1288179F2D8B00DBB74F /* MainMenu.xib */; };
 		F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F717720A1831DA0B00BD6EB4 /* Foundation.framework */; };
 		F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71772101831DA0B00BD6EB4 /* Cedar.framework */; };
-		F72B9273185590700005C271 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B9271185590700005C271 /* GLGDefaultValueTextField.m */; };
-		F72B927B1855907C0005C271 /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B92751855907C0005C271 /* GLGChatLogView.m */; };
-		F72B927F1855907C0005C271 /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B92791855907C0005C271 /* GLGChatView.m */; };
-		F72B9297185590980005C271 /* GLGTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = F72B9293185590980005C271 /* GLGTabView.m */; };
-		F761872D187FCB7700A13B91 /* GLGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F761872B187FCB7700A13B91 /* GLGChatViewController.m */; };
-		F7618737187FCB8900A13B91 /* GLGChatViewControllerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F761872F187FCB8900A13B91 /* GLGChatViewControllerModule.m */; };
-		F7618739187FCB8900A13B91 /* GLGChatViewProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618731187FCB8900A13B91 /* GLGChatViewProvider.m */; };
-		F761873B187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */; };
-		F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGWindowProvider.m */; };
-		F76E227A198AD26100F26FCF /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F76E227B198AD26100F26FCF /* MessageParsingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpec.mm */; };
-		F76E227C198AD26100F26FCF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
-		F76E227D198AD26100F26FCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71772121831DA0B00BD6EB4 /* main.m */; };
-		F76E227E198AD26100F26FCF /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
-		F76E227F198AD26100F26FCF /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
 		F76E2280198AD2B900F26FCF /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
 		F76E2281198AD2B900F26FCF /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE118558C850059DC65 /* IRCChannel.m */; };
 		F76E2282198AD2B900F26FCF /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
@@ -53,23 +38,15 @@
 		F76E2296198AD2B900F26FCF /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
 		F76E2297198AD2B900F26FCF /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
 		F76E2298198AD2B900F26FCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F127F179F2D8B00DBB74F /* main.m */; };
+		F76E22B1198AD79F00F26FCF /* GLGIRCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B54218121792003003BC /* GLGIRCParser.m */; };
+		F76E22B2198AD79F00F26FCF /* GLGIRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */; };
+		F76E22B3198AD79F00F26FCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71772121831DA0B00BD6EB4 /* main.m */; };
+		F76E22B4198AD7A400F26FCF /* MessageParsingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpec.mm */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
-		F798A7071849526E0092A93E /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F798A7091849534B0092A93E /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F798A70D184953D10092A93E /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F798A710184989E00092A93E /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F79EDA2F18552286000A1D84 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F79EDA3018552286000A1D84 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F79EDA3118552286000A1D84 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */; };
-		F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
 		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
 		F7DBE3F417EE1AA1007832C7 /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F217EE1AA1007832C7 /* close_rollover.tif */; };
 		F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
-		F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
-		F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE118558C850059DC65 /* IRCChannel.m */; };
-		F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -125,15 +102,6 @@
 		F7193169182356280077A326 /* GLGIRCMessageParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCMessageParserDelegate.h; sourceTree = "<group>"; };
 		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
 		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
-		F72B9271185590700005C271 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGDefaultValueTextField.m; path = Views/DefaultValueControls/GLGDefaultValueTextField.m; sourceTree = "<group>"; };
-		F72B92751855907C0005C271 /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChatLogView.m; path = Views/Chat/GLGChatLogView.m; sourceTree = "<group>"; };
-		F72B92791855907C0005C271 /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChatView.m; path = Views/Chat/GLGChatView.m; sourceTree = "<group>"; };
-		F72B9293185590980005C271 /* GLGTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGTabView.m; path = Views/Tabs/GLGTabView.m; sourceTree = "<group>"; };
-		F761872B187FCB7700A13B91 /* GLGChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChatViewController.m; path = Controllers/GLGChatViewController.m; sourceTree = "<group>"; };
-		F761872F187FCB8900A13B91 /* GLGChatViewControllerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChatViewControllerModule.m; path = Providers/GLGChatViewControllerModule.m; sourceTree = "<group>"; };
-		F7618731187FCB8900A13B91 /* GLGChatViewProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChatViewProvider.m; path = Providers/GLGChatViewProvider.m; sourceTree = "<group>"; };
-		F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGIRCBrokerProvider.m; path = Providers/GLGIRCBrokerProvider.m; sourceTree = "<group>"; };
-		F7618735187FCB8900A13B91 /* GLGWindowProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGWindowProvider.m; path = Providers/GLGWindowProvider.m; sourceTree = "<group>"; };
 		F761873E187FCB9700A13B91 /* GLGChatViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGChatViewDelegate.h; path = Protocols/GLGChatViewDelegate.h; sourceTree = "<group>"; };
 		F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGDefaultValueTextField.h; sourceTree = "<group>"; };
 		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
@@ -553,33 +521,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F798A710184989E00092A93E /* (null) in Sources */,
-				F798A7071849526E0092A93E /* (null) in Sources */,
-				F72B9297185590980005C271 /* GLGTabView.m in Sources */,
-				F761872D187FCB7700A13B91 /* GLGChatViewController.m in Sources */,
-				F76E227C198AD26100F26FCF /* Model.xcdatamodeld in Sources */,
-				F72B927F1855907C0005C271 /* GLGChatView.m in Sources */,
-				F761873B187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */,
-				F798A70D184953D10092A93E /* (null) in Sources */,
-				F76E227F198AD26100F26FCF /* GLGIRCParser.m in Sources */,
-				F798A7091849534B0092A93E /* (null) in Sources */,
-				F76E227E198AD26100F26FCF /* GLGIRCMessage.m in Sources */,
-				F76E227B198AD26100F26FCF /* MessageParsingSpec.mm in Sources */,
-				F79EDA2F18552286000A1D84 /* (null) in Sources */,
-				F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */,
-				F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */,
-				F79EDA3018552286000A1D84 /* (null) in Sources */,
-				F79EDA3118552286000A1D84 /* (null) in Sources */,
-				F72B927B1855907C0005C271 /* GLGChatLogView.m in Sources */,
-				F7618737187FCB8900A13B91 /* GLGChatViewControllerModule.m in Sources */,
-				F76E227A198AD26100F26FCF /* (null) in Sources */,
-				F72B9273185590700005C271 /* GLGDefaultValueTextField.m in Sources */,
-				F7618739187FCB8900A13B91 /* GLGChatViewProvider.m in Sources */,
-				F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */,
-				F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */,
-				F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */,
-				F76E227D198AD26100F26FCF /* main.m in Sources */,
-				F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
+				F76E22B3198AD79F00F26FCF /* main.m in Sources */,
+				F76E22B1198AD79F00F26FCF /* GLGIRCParser.m in Sources */,
+				F76E22B2198AD79F00F26FCF /* GLGIRCMessage.m in Sources */,
+				F76E22B4198AD7A400F26FCF /* MessageParsingSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
