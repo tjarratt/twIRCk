@@ -228,8 +228,6 @@
 		F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGStreamReaderDelegate.h; sourceTree = "<group>"; };
 		F786C93517E6AE01004F64DF /* GLGConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGConnectionView.h; sourceTree = "<group>"; };
-		F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalCore.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalCore.framework"; sourceTree = "<group>"; };
-		F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalSpecHelper.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalSpecHelper.framework"; sourceTree = "<group>"; };
 		F7B8B54118121792003003BC /* GLGIRCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GLGIRCParser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7B8B54218121792003003BC /* GLGIRCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGIRCParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = MessageParsingSpec.mm; path = "../twIRCk Specs/MessageParsingSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -278,8 +276,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */,
-				F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */,
 				F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */,
 				F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */,
 			);
@@ -325,9 +321,6 @@
 		F70F1272179F2D8B00DBB74F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */,
-				F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */,
-				F717721D1831DB3900BD6EB4 /* PivotalCoreKit.xcworkspace */,
 				F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */,
 				F70F1273179F2D8B00DBB74F /* Cocoa.framework */,
 				F70F1291179F2D8C00DBB74F /* SenTestingKit.framework */,
@@ -913,7 +906,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -926,7 +918,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/PivotalCoreKit/**";
 			};
 			name = Debug;
 		};
@@ -941,7 +932,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -964,7 +954,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tjarratt/git/TwIRCk/Specs/Frameworks,
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -1056,7 +1045,6 @@
 				F71772191831DA0B00BD6EB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
