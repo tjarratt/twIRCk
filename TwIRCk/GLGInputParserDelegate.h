@@ -11,11 +11,11 @@
 @protocol GLGInputParserDelegate <NSObject>
 
 - (void) didJoinChannel:(NSString *)channel
-             rawCommand:(NSString *)rawCommand;
+             rawCommand:(NSString *)command;
 - (void) didPartChannel:(NSString *)channel
-             rawCommand:(NSString *)rawCommand;
+             rawCommand:(NSString *)channel;
 - (void) didChangeNick:(NSString *)newNick
-            rawCommand:(NSString *)rawCommand;
+            rawCommand:(NSString *)channel;
 - (void) didChangePassword:(NSString *)newPassword
-                rawCommand:(NSString *)rawCommand;
+                rawCommand:(NSString *)channel;
 @end
