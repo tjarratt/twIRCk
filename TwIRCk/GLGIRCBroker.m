@@ -16,9 +16,6 @@
         reconnectAttempts = 0;
         hasReadHostname = NO;
         [self setChannelOccupants:[[NSMutableDictionary alloc] init]];
-
-        inputParser = [[GLGInputParser alloc] init];
-        [inputParser setDelegate:self];
     }
 
     return self;
@@ -295,36 +292,7 @@
     }];
 }
 
-- (void) streamDidClose {
-    [inputStream close];
-    [outputStream close];
-    hasReadHostname = NO;
-    internalHostname = nil;
-    [self clearOccupantsInChannels];
-
-    // TODO: at this point, we MIGHT need to close our tabs because they might "belong" to the wrong hostname
-    // maybe the broker should know what the internal name is, and the
-    // chatview and tabs will only know about the hostname the user entered?
-
-    NSUInteger waitInterval = pow(2, reconnectAttempts);
-    ++reconnectAttempts;
-    waitInterval = MIN(waitInterval, 60);
-    NSLog(@"going to wait for %lu seconds before firing timer", waitInterval);
-    reconnectTimer = [NSTimer timerWithTimeInterval:waitInterval target:self selector:@selector(attemptReconnect) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:reconnectTimer forMode:NSRunLoopCommonModes];
-}
-
-- (void) attemptReconnect {
-    int port = [server.port intValue];
-    [self connectToServer:server.hostname onPort:port withUsername:server.username withPassword:server.password useSSL:server.useSSL];
-}
-
-#pragma mark - Input Parsing (could be factored out of this class)
-- (void) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
-    [inputParser parseUserInput:string];
-}
-
-- (void) didJoinChannel:(NSString *)channelName rawCommand:(NSString *)rawCommand{
+- (void) joinChannel:(NSString *) channelName {
     [writer addCommand:[@"JOIN " stringByAppendingString:channelName]];
     [delegate joinChannel:channelName onServer:hostname userInitiated:YES fromBroker:self];
     [server addChannelNamed:channelName];
@@ -334,22 +302,6 @@
         occupants = [[NSMutableArray alloc] init];
         [self.channelOccupants setValue:occupants forKey:channelName];
     }
-}
-
-- (void) didPartChannel:(NSString *)channel rawCommand:(NSString *)rawCommand {
-    [self partChannel:channel userInitiated:NO];
-}
-
-- (void) didChangeNick:(NSString *)newNick rawCommand:(NSString *)rawCommand {
-    [server setUsername:newNick];
-}
-
-- (void) didChangePassword:(NSString *)newPassword rawCommand:(NSString *)rawCommand {
-    [server setPassword:newPassword];
-}
-
-- (void) willPartChannel:(NSString *)channelName {
-    [self partChannel:channelName userInitiated:YES];
 }
 
 - (void) partChannel:(NSString *) channelName userInitiated:(BOOL) byUser {
@@ -383,7 +335,56 @@
     }
 }
 
+- (void) partChannel:(NSString *) channelName {
+    [self partChannel:channelName userInitiated:NO];
+}
+
+- (void) streamDidClose {
+    [inputStream close];
+    [outputStream close];
+    hasReadHostname = NO;
+    internalHostname = nil;
+    [self clearOccupantsInChannels];
+
+    // TODO: at this point, we MIGHT need to close our tabs because they might "belong" to the wrong hostname
+    // maybe the broker should know what the internal name is, and the
+    // chatview and tabs will only know about the hostname the user entered?
+
+    NSUInteger waitInterval = pow(2, reconnectAttempts);
+    ++reconnectAttempts;
+    waitInterval = MIN(waitInterval, 60);
+    NSLog(@"going to wait for %lu seconds before firing timer", waitInterval);
+    reconnectTimer = [NSTimer timerWithTimeInterval:waitInterval target:self selector:@selector(attemptReconnect) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:reconnectTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void) attemptReconnect {
+    int port = [server.port intValue];
+    [self connectToServer:server.hostname onPort:port withUsername:server.username withPassword:server.password useSSL:server.useSSL];
+}
+
 #pragma mark - Response Parsing (needs to be refactored out of this class)
+- (GLGIRCMessage *) didSubmitText:(NSString *)string inChannel:(NSString *) channel {
+    GLGIRCMessage *msg = [GLGInputParser parseUserInput:string];
+    [msg interpolateChannel:channel andNick:currentNick];
+    [writer addCommand:[msg raw]];
+
+    if ([[msg type] isEqualToString:@"join"]) {
+        [self joinChannel:[msg payload]];
+    }
+    else if ([[msg type] isEqualToString:@"part"]) {
+        [self partChannel:[msg payload] userInitiated:YES];
+    }
+    else if ([[msg type] isEqualToString:@"nick"]) {
+        [server setUsername:[msg payload]];
+    }
+    else if ([[msg type] isEqualToString:@"pass"]) {
+        [server setPassword:[msg payload]];
+    }
+
+    return msg;
+}
+
 - (BOOL) handledPing:(NSString *) maybePing {
     NSError *error;
     NSRegularExpression *pingRegex = [NSRegularExpression regularExpressionWithPattern:@"^PING :([a-zA-Z.-]+)" options:NSRegularExpressionCaseInsensitive error:&error];

@@ -159,7 +159,6 @@ const CGFloat occupantsSidebarWidth = 150;
     [connectView shouldClose];
 }
 
-# pragma mark - IBActions
 - (void) didSubmitText {
     NSString *string = [input stringValue];
     if ([string isEqualToString:@""]) { return; }
@@ -169,18 +168,18 @@ const CGFloat occupantsSidebarWidth = 150;
         return [self receivedString:@"Error: not in any channel. Probably still waiting for connection" inChannel:@"error" fromHost:[currentBroker hostname] fromBroker:nil];
     }
 
-    [currentBroker didSubmitText:string inChannel:currentChannel];
-//    NSString *messageToDisplay = [msg message];
-//    NSString *channelToDisplay = [msg target];
-//    NSString *activeHost = [currentBroker hostname];
-//
-//    if (currentChannel != channelToDisplay) {
-//        currentChannel = channelToDisplay;
-//        [self joinChannel:currentChannel onServer:activeHost userInitiated:YES fromBroker:currentBroker];
-//    }
+    GLGIRCMessage *msg = [currentBroker didSubmitText:string inChannel:currentChannel];
+    NSString *messageToDisplay = [msg message];
+    NSString *channelToDisplay = [msg target];
+    NSString *activeHost = [currentBroker hostname];
+
+    if (currentChannel != channelToDisplay) {
+        currentChannel = channelToDisplay;
+        [self joinChannel:currentChannel onServer:activeHost userInitiated:YES fromBroker:currentBroker];
+    }
 
     [input clearTextField];
-//    [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel fromHost:activeHost fromBroker:currentBroker];
+    [self receivedString:[messageToDisplay stringByAppendingString:@"\n"] inChannel:currentChannel fromHost:activeHost fromBroker:currentBroker];
 }
 
 #pragma mark - IRC Broker Delegate methods
@@ -292,7 +291,7 @@ const CGFloat occupantsSidebarWidth = 150;
 
 - (void) closedTabNamed:(NSString *) channel forBroker:(GLGIRCBroker *) broker {
     [tabView removeTabNamed:channel fromOwner:broker];
-    [broker willPartChannel:channel];
+    [broker partChannel:channel userInitiated:YES];
 
     NSString *key = [broker.hostname stringByAppendingString:channel];
     [chatlogs removeObjectForKey:key];
