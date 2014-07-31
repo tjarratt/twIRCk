@@ -13,11 +13,11 @@
 
 @interface IRCServer : NSManagedObject
 
-@property (nonatomic, retain) NSSet *channels;
-@property (nonatomic, retain) NSString *hostname;
-@property (nonatomic, retain) NSString *password;
-@property (nonatomic, retain) NSNumber *port;
-@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSSet * channels;
+@property (nonatomic, retain) NSString * hostname;
+@property (nonatomic, retain) NSString * password;
+@property (nonatomic, retain) NSNumber * port;
+@property (nonatomic, retain) NSString * username;
 @property (nonatomic) BOOL useSSL;
 
 - (BOOL) hasChannel:(NSString *) channelName;

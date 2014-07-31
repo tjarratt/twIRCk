@@ -13,8 +13,8 @@
 
 @interface IRCChannel : NSManagedObject
 
-@property (nonatomic, retain) IRCServer *server;
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) IRCServer * server;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic) BOOL autojoin;
 
 - (NSString *) properName;

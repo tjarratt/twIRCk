@@ -20,7 +20,7 @@
 
 @property (retain) GLGChatView *chatView;
 @property (assign) IBOutlet NSWindow *window;
-@property (strong, nonatomic) NSWindowController *windowController;
+@property (strong, nonatomic) NSWindowController * windowController;
 
 - (IBAction)closeActiveWindow:(id)sender;
 - (IBAction)copy:(id)sender;
