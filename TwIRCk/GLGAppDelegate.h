@@ -9,21 +9,21 @@
 #import <Cocoa/Cocoa.h>
 #import <CFNetwork/CFSocketStream.h> 
 #import "GLGManagedObjectContext.h"
+#import "GLGResponseCodes.h"
 #import "GLGNewServer.h"
-#import "GLGChatViewController.h"
-#import "IRCServer.h"
 #import "GLGLogger.h"
+#import "IRCServer.h"
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
+    GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
 }
 
+@property (retain) GLGChatView *chatView;
 @property (assign) IBOutlet NSWindow *window;
-@property (retain, strong, readonly) GLGChatViewController *controller;
 @property (strong, nonatomic) NSWindowController *windowController;
 
 - (IBAction)closeActiveWindow:(id)sender;
 - (IBAction)copy:(id)sender;
-- (void) didCreateChatViewController:(GLGChatViewController *) controller;
 
 @end

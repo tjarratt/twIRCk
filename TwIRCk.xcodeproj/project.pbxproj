@@ -96,7 +96,6 @@
 		F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
 		F7F45AEC18558C850059DC65 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
 		F7F45AED18558C850059DC65 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
-		F7F6770618624CEB00781190 /* GLGChatViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7F6770518624CEB00781190 /* GLGChatViewControllerSpec.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -389,7 +388,6 @@
 				F7B8B544181219A7003003BC /* GLGResponseParserSpec.mm */,
 				F798A7081849534B0092A93E /* GLGInputParserSpec.mm */,
 				F717720E1831DA0B00BD6EB4 /* Supporting Files */,
-				F7F6770518624CEB00781190 /* GLGChatViewControllerSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -710,7 +708,6 @@
 				F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */,
 				F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */,
 				F79EDA3018552286000A1D84 /* GLGIRCBroker.m in Sources */,
-				F7F6770618624CEB00781190 /* GLGChatViewControllerSpec.mm in Sources */,
 				F79EDA3118552286000A1D84 /* GLGIRCMessage.m in Sources */,
 				F7E5349E185592E80021818F /* GLGMessage.m in Sources */,
 				F72B927B1855907C0005C271 /* GLGChatLogView.m in Sources */,
