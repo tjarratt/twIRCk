@@ -12,26 +12,15 @@
 #import "GLGIRCBroker.h"
 #import "IRCServer.h"
 #import "GLGChatView.h"
-#import "Blindside.h"
-
-#import "GLGWindowProvider.h"
-#import "GLGChatViewProvider.h"
-#import "GLGIRCBrokerProvider.h"
-
-@class GLGWindowProvider;
 
 @interface GLGChatViewController : NSObject <GLGBrokerDelegate, GLGOccupantDelegate> 
 
 @property (retain, readonly) NSMutableDictionary *chatlogs;
 @property (retain, strong, readonly) GLGIRCBroker *currentBroker;
 @property (retain, strong, readonly) NSMutableArray *brokers;
-@property (retain, strong, readonly) GLGIRCBrokerProvider *brokerProvider;
 @property (retain, readonly) GLGChatView *view;
 @property (retain, readonly) NSString *currentChannel;
 
-+ (BSInitializer *) bsInitializer;
-- (instancetype) initWithWindow:(GLGWindowProvider *)window
-                 brokerProvider:(GLGIRCBrokerProvider *)brokerProvider
-               chatViewProvider:(GLGChatViewProvider *)chatViewProvider;
+- (instancetype) initWithWindow:(NSWindow *) window;
 - (void) connectToServer:(IRCServer *) server;
 @end

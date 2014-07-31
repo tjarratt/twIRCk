@@ -11,11 +11,8 @@
 #import "GLGManagedObjectContext.h"
 #import "GLGNewServer.h"
 #import "GLGChatViewController.h"
-#import "GLGChatViewControllerModule.h"
 #import "IRCServer.h"
 #import "GLGLogger.h"
-
-@class GLGChatViewController;
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     BOOL serverWindowIsVisible;

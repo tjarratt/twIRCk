@@ -112,37 +112,6 @@
 		};
 /* End PBXBuildRule section */
 
-/* Begin PBXContainerItemProxy section */
-		F7618713187BCA3000A13B91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 29CAC6E4150292AD00731862;
-			remoteInfo = Blindside;
-		};
-		F7618715187BCA3000A13B91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 29CAC7001502932000731862;
-			remoteInfo = Specs;
-		};
-		F7618717187BCA3000A13B91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 29997B471505EC0B00C12110;
-			remoteInfo = "Blindside-StaticLib";
-		};
-		F7618719187BD83500A13B91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 29CAC6E3150292AD00731862;
-			remoteInfo = Blindside;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		F79BE5F7184AB09B00F8F649 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -270,7 +239,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F761871B187BD83F00A13B91 /* Blindside.framework in Frameworks */,
 				F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */,
 				F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */,
 				F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */,
@@ -330,7 +298,6 @@
 		F70F1272179F2D8B00DBB74F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F761870B187BCA3000A13B91 /* Blindside.xcodeproj */,
 				F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */,
 				F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */,
 				F717721D1831DB3900BD6EB4 /* PivotalCoreKit.xcworkspace */,
@@ -356,7 +323,6 @@
 		F70F1279179F2D8B00DBB74F /* TwIRCk */ = {
 			isa = PBXGroup;
 			children = (
-				F761871C187BD89000A13B91 /* Providers */,
 				F704C06D17C9181600CE279D /* Models */,
 				F70F12CD17A9960700DBB74F /* Views */,
 				F79BE6001855187800F8F649 /* Controllers */,
@@ -483,7 +449,6 @@
 		F786C93417E6ADEB004F64DF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				F7618720187BD9A800A13B91 /* Dependencies */,
 				F786410F185521FA007EC307 /* GLGBrokerDelegate.h */,
 				F7864110185521FA007EC307 /* GLGConnectionView.h */,
 				F7864111185521FA007EC307 /* GLGInputParserDelegate.h */,
@@ -598,7 +563,6 @@
 				F786C8E917E686C8004F64DF /* PBXBuildRule */,
 			);
 			dependencies = (
-				F761871A187BD83500A13B91 /* PBXTargetDependency */,
 			);
 			name = twIRCk;
 			productName = TwIRCk;
@@ -643,12 +607,6 @@
 			mainGroup = F70F1267179F2D8B00DBB74F;
 			productRefGroup = F70F1271179F2D8B00DBB74F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F761870C187BCA3000A13B91 /* Products */;
-					ProjectRef = F761870B187BCA3000A13B91 /* Blindside.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F70F126F179F2D8B00DBB74F /* twIRCk */,
@@ -656,30 +614,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F7618714187BCA3000A13B91 /* Blindside.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Blindside.framework;
-			remoteRef = F7618713187BCA3000A13B91 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F7618716187BCA3000A13B91 /* Specs */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = Specs;
-			remoteRef = F7618715187BCA3000A13B91 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F7618718187BCA3000A13B91 /* libBlindside-StaticLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libBlindside-StaticLib.a";
-			remoteRef = F7618717187BCA3000A13B91 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F70F126E179F2D8B00DBB74F /* Resources */ = {
@@ -801,14 +735,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F761871A187BD83500A13B91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Blindside;
-			targetProxy = F7618719187BD83500A13B91 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		F70F127C179F2D8B00DBB74F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -902,11 +828,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/Supporting Files/TwIRCk-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/blindside/Headers",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/TwIRCk/Supporting Files/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
@@ -924,11 +845,6 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/Supporting Files/TwIRCk-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/blindside/Headers",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/TwIRCk/Supporting Files/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
@@ -1054,11 +970,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/Supporting Files/TwIRCk-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(PROJECT_DIR)/blindside/Headers",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/TwIRCk/Supporting Files/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;

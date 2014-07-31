@@ -12,27 +12,15 @@
 @property (retain, readwrite) GLGChatView *view;
 @property (retain, readwrite) NSString *currentChannel;
 @property (retain, readwrite) NSMutableDictionary *chatlogs;
-@property (retain, strong, readwrite) NSMutableArray *brokers;
 @property (retain, strong, readwrite) GLGIRCBroker *currentBroker;
-@property (retain, strong, readwrite) GLGIRCBrokerProvider *brokerProvider;
+@property (retain, strong, readwrite) NSMutableArray *brokers;
 @end
 
 @implementation GLGChatViewController
 
-+ (BSInitializer *) bsInitializer {
-    return [BSInitializer initializerWithClass:self
-                                      selector:@selector(initWithWindow:brokerProvider:chatViewProvider:)
-                                  argumentKeys:@"window", @"brokerProvider", @"chatViewProvider", nil];
-}
-
-- (instancetype) initWithWindow:(GLGWindowProvider *)windowProvider
-                 brokerProvider:(GLGIRCBrokerProvider *)brokerProvider
-               chatViewProvider:(GLGChatViewProvider *)chatViewProvider {
+- (instancetype) initWithWindow:(NSWindow *) aWindow {
     if (self = [super init]) {
-        NSWindow *window = [windowProvider window];
-        self.view = [chatViewProvider viewWithWindow:window delegate:self];
-
-        [self setBrokerProvider:brokerProvider];
+        self.view = [[GLGChatView alloc] initWithWindow:aWindow andDelegate:self];
         [self setBrokers:[[NSMutableArray alloc] init]];
         [self setChatlogs:[[NSMutableDictionary alloc] init]];
 

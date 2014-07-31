@@ -47,12 +47,8 @@
         NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
         NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+        self.controller = [[GLGChatViewController alloc] initWithWindow:window];
         [self setWindow:window];
-
-        GLGChatViewControllerModule *controllerModule = [[GLGChatViewControllerModule alloc] init];
-        id injector = [Blindside injectorWithModule:controllerModule];
-        GLGChatViewController *controller = [injector getInstance:[GLGChatViewController class]];
-        self.controller = controller;
 
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             IRCServer *server = (IRCServer *)obj;

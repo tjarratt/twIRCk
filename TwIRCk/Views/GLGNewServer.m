@@ -235,10 +235,7 @@
                                                           styleMask:style backing:NSBackingStoreBuffered defer:NO];
         [newWindow makeKeyAndOrderFront:NSApp];
 
-        GLGChatViewControllerModule *controllerModule = [[GLGChatViewControllerModule alloc] init];
-        id injector = [Blindside injectorWithModule:controllerModule];
-        controller = [injector getInstance:[GLGChatViewController class]];
-
+        controller = [[GLGChatViewController alloc] initWithWindow:newWindow];
         [controller.view setConnectView:self];
         [delegate didCreateChatViewController:controller];
 
