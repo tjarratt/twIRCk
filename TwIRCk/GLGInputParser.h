@@ -14,6 +14,7 @@
     id<GLGInputParserDelegate> delegate;
 }
 
+
 -(void) setDelegate:(id<GLGInputParserDelegate>) delegate;
 -(void) parseUserInput:(NSString *) string;
 @end

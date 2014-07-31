@@ -10,32 +10,13 @@
 
 @implementation GLGFakeInputParserDelegate
 - (void) didJoinChannel:(NSString *)channel
-             rawCommand:(NSString *)command
-         displayMessage:(NSString *)display { }
+             rawCommand:(NSString *)command { }
 
 - (void) didPartChannel:(NSString *)channel
-             rawCommand:(NSString *)command
-         displayMessage:(NSString *)display { }
-
-- (void) didPartCurrentChannelWithRawCommand:(NSString *)rawCommand
-                              displayMessage:(NSString *)display { }
+             rawCommand:(NSString *)command { }
 
 - (void) didChangeNick:(NSString *)newNick
-            rawCommand:(NSString *)command
-        displayMessage:(NSString *)display { }
-
+            rawCommand:(NSString *)command{ }
 - (void) didChangePassword:(NSString *)newPassword
-                rawCommand:(NSString *)command
-            displayMessage:(NSString *)display { }
-
-- (void) didSendMessageToCurrentTargetWithRawCommand:(NSString *)rawCommand
-                                      displayMessage:(NSString *)display { }
-
-- (void) didSendMessageToTarget:(NSString *)channelOrUser
-                     rawCommand:(NSString *)rawCommand
-                 displayMessage:(NSString *)display { }
-
-- (void) didSendUnknownMessageToCurrentTargetWithRawCommand:(NSString *)raw
-                                             displayMessage:(NSString *)display { }
-
+                rawCommand:(NSString *)command{ }
 @end
