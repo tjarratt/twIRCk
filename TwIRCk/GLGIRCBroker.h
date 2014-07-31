@@ -12,7 +12,7 @@
 #import "GLGReadDelegate.h"
 #import "GLGWriteDelegate.h"
 #import "IRCServer.h"
-#import "GLGInputParser.h"
+#import "GLGIRCParser.h"
 #import "GLGIRCMessage.h"
 
 @protocol GLGBrokerDelegate;

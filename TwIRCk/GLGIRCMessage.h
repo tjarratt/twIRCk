@@ -10,12 +10,12 @@
 
 @interface GLGIRCMessage : NSObject
 
-@property(retain) NSString *type;
-@property(retain) NSString *message;
-@property(retain) NSString *target;
-@property(retain) NSString *raw;
-@property(retain) id payload;
-@property(retain) NSString *fromHost;
+@property NSString *type;
+@property NSString *message;
+@property NSString *target;
+@property NSString *raw;
+@property id payload;
+@property NSString *fromHost;
 
 -(void) interpolateChannel:(NSString *) channel andNick:(NSString *) nick;
 
