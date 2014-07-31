@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
 #import <CoreData/CoreData.h>
 
 @interface GLGManagedObjectContext : NSObject
