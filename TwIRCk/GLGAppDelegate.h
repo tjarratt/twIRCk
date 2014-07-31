@@ -12,6 +12,7 @@
 #import "GLGResponseCodes.h"
 #import "GLGNewServer.h"
 #import "IRCServer.h"
+#import "GLGLogger.h"
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
     GLGResponseCodes *responseLookup;

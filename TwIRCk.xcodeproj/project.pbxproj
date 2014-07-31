@@ -139,6 +139,7 @@
 		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
 		F76AA97E17E79B0E00D5B0D0 /* GLGTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabView.h; sourceTree = "<group>"; };
 		F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabView.m; sourceTree = "<group>"; };
+		F76E229A198AD73400F26FCF /* GLGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGLogger.h; sourceTree = "<group>"; };
 		F7819BA417EB6A48004DB741 /* GLGIRCBroker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGIRCBroker.h; sourceTree = "<group>"; };
 		F7819BA517EB6A48004DB741 /* GLGIRCBroker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGIRCBroker.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGBrokerDelegate.h; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 				F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */,
 				F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */,
 				F70F127A179F2D8B00DBB74F /* Supporting Files */,
+				F76E229A198AD73400F26FCF /* GLGLogger.h */,
 			);
 			path = TwIRCk;
 			sourceTree = "<group>";
