@@ -18,6 +18,8 @@
 		F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B3179F540400DBB74F /* GLGMessage.m */; };
 		F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */; };
 		F70F12BA17A0AAF400DBB74F /* GLGWriteDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */; };
+		F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D017A9962200DBB74F /* GLGNewServer.m */; };
+		F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70F12D317A9980800DBB74F /* GLGChatView.m */; };
 		F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F717720A1831DA0B00BD6EB4 /* Foundation.framework */; };
 		F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71772101831DA0B00BD6EB4 /* Cedar.framework */; };
 		F71772131831DA0B00BD6EB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71772121831DA0B00BD6EB4 /* main.m */; };
@@ -58,6 +60,9 @@
 		F761873B187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618733187FCB8900A13B91 /* GLGIRCBrokerProvider.m */; };
 		F761873C187FCB8900A13B91 /* GLGWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGWindowProvider.m */; };
 		F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F7618735187FCB8900A13B91 /* GLGWindowProvider.m */; };
+		F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */; };
+		F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */; };
+		F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F798A7061849526E0092A93E /* GLGFakeResponseParserDelegate.m */; };
 		F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F798A7081849534B0092A93E /* GLGInputParserSpec.mm */; };
@@ -83,7 +88,13 @@
 		F79EDA3718552416000A1D84 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */; };
 		F7AC00321831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */; };
+		F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */; };
+		F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6717F0E073005B522B /* GLGChannelContent.m */; };
+		F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */; };
+		F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C5FF6D17F12155005B522B /* GLGChatLogView.m */; };
+		F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */; };
 		F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
+		F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */; };
 		F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
 		F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
 		F7F45AE818558C850059DC65 /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE118558C850059DC65 /* IRCChannel.m */; };
@@ -145,6 +156,10 @@
 		F70F12B617A0AAD900DBB74F /* GLGReadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGReadDelegate.m; sourceTree = "<group>"; };
 		F70F12B817A0AAF300DBB74F /* GLGWriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGWriteDelegate.h; sourceTree = "<group>"; };
 		F70F12B917A0AAF400DBB74F /* GLGWriteDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGWriteDelegate.m; sourceTree = "<group>"; };
+		F70F12CF17A9962200DBB74F /* GLGNewServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGNewServer.h; sourceTree = "<group>"; };
+		F70F12D017A9962200DBB74F /* GLGNewServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGNewServer.m; sourceTree = "<group>"; };
+		F70F12D217A9980800DBB74F /* GLGChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatView.h; sourceTree = "<group>"; };
+		F70F12D317A9980800DBB74F /* GLGChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatView.m; sourceTree = "<group>"; };
 		F71772091831DA0B00BD6EB4 /* Specs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Specs; sourceTree = BUILT_PRODUCTS_DIR; };
 		F717720A1831DA0B00BD6EB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F717720D1831DA0B00BD6EB4 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
@@ -188,6 +203,12 @@
 		F7618734187FCB8900A13B91 /* GLGWindowProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGWindowProvider.h; path = Providers/GLGWindowProvider.h; sourceTree = "<group>"; };
 		F7618735187FCB8900A13B91 /* GLGWindowProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGWindowProvider.m; path = Providers/GLGWindowProvider.m; sourceTree = "<group>"; };
 		F761873E187FCB9700A13B91 /* GLGChatViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGChatViewDelegate.h; path = Protocols/GLGChatViewDelegate.h; sourceTree = "<group>"; };
+		F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatTextField.h; sourceTree = "<group>"; };
+		F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatTextField.m; sourceTree = "<group>"; };
+		F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGDefaultValueTextField.h; sourceTree = "<group>"; };
+		F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGDefaultValueTextField.m; sourceTree = "<group>"; };
+		F76AA97E17E79B0E00D5B0D0 /* GLGTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabView.h; sourceTree = "<group>"; };
+		F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabView.m; sourceTree = "<group>"; };
 		F786410F185521FA007EC307 /* GLGBrokerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGBrokerDelegate.h; path = Protocols/GLGBrokerDelegate.h; sourceTree = "<group>"; };
 		F7864110185521FA007EC307 /* GLGConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGConnectionView.h; path = Protocols/GLGConnectionView.h; sourceTree = "<group>"; };
 		F7864111185521FA007EC307 /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGInputParserDelegate.h; path = Protocols/GLGInputParserDelegate.h; sourceTree = "<group>"; };
@@ -218,7 +239,19 @@
 		F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalCore.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalCore.framework"; sourceTree = "<group>"; };
 		F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalSpecHelper.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalSpecHelper.framework"; sourceTree = "<group>"; };
 		F7B8B544181219A7003003BC /* GLGResponseParserSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = GLGResponseParserSpec.mm; path = "../twIRCk Specs/GLGResponseParserSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F7C5FF6217F0D24C005B522B /* GLGChannelSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChannelSidebar.h; sourceTree = "<group>"; };
+		F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChannelSidebar.m; sourceTree = "<group>"; };
+		F7C5FF6617F0E073005B522B /* GLGChannelContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChannelContent.h; sourceTree = "<group>"; };
+		F7C5FF6717F0E073005B522B /* GLGChannelContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChannelContent.m; sourceTree = "<group>"; };
+		F7C5FF6917F1155C005B522B /* GLGGradientSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGGradientSidebar.h; sourceTree = "<group>"; };
+		F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGGradientSidebar.m; sourceTree = "<group>"; };
+		F7C5FF6C17F12155005B522B /* GLGChatLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGChatLogView.h; sourceTree = "<group>"; };
+		F7C5FF6D17F12155005B522B /* GLGChatLogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGChatLogView.m; sourceTree = "<group>"; };
+		F7D0D95D17FA775B00F7B258 /* GLGSidebarOccupant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGSidebarOccupant.h; sourceTree = "<group>"; };
+		F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGSidebarOccupant.m; sourceTree = "<group>"; };
 		F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGTabItem.h; sourceTree = "<group>"; };
+		F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGTabItem.m; sourceTree = "<group>"; };
 		F7F45ADE18558C850059DC65 /* GLGManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGManagedObjectContext.h; path = Models/GLGManagedObjectContext.h; sourceTree = "<group>"; };
 		F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGManagedObjectContext.m; path = Models/GLGManagedObjectContext.m; sourceTree = "<group>"; };
 		F7F45AE018558C850059DC65 /* IRCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRCChannel.h; path = Models/IRCChannel.h; sourceTree = "<group>"; };
@@ -244,7 +277,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72B92A0185591750005C271 /* SystemConfiguration.framework in Frameworks */,
 				F79EDA3718552416000A1D84 /* CoreData.framework in Frameworks */,
 				F79EDA361855240E000A1D84 /* Cocoa.framework in Frameworks */,
 				F7AC00311831DCD100F0ED0F /* Foundation+PivotalCore.framework in Frameworks */,
@@ -326,8 +358,6 @@
 				F70F1285179F2D8B00DBB74F /* GLGAppDelegate.h */,
 				F70F1286179F2D8B00DBB74F /* GLGAppDelegate.m */,
 				F79BE5FE18541C8500F8F649 /* GLGLogger.h */,
-				F72B929C1855913F0005C271 /* NSColor+GLG.h */,
-				F72B929D1855913F0005C271 /* NSColor+GLG.m */,
 				F70F127A179F2D8B00DBB74F /* Supporting Files */,
 			);
 			path = TwIRCk;
@@ -371,8 +401,8 @@
 				F76AA97317E789A300D5B0D0 /* DefaultValueControls */,
 				F7E9A8AC17E79BBF000AD4BB /* Chat */,
 				F7E9A8AB17E79BB6000AD4BB /* Tabs */,
-				F72B9298185590D00005C271 /* GLGNewServer.h */,
-				F72B9299185590D00005C271 /* GLGNewServer.m */,
+				F70F12CF17A9962200DBB74F /* GLGNewServer.h */,
+				F70F12D017A9962200DBB74F /* GLGNewServer.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -434,8 +464,8 @@
 		F76AA97317E789A300D5B0D0 /* DefaultValueControls */ = {
 			isa = PBXGroup;
 			children = (
-				F72B9270185590700005C271 /* GLGDefaultValueTextField.h */,
-				F72B9271185590700005C271 /* GLGDefaultValueTextField.m */,
+				F76AA97417E789E100D5B0D0 /* GLGDefaultValueTextField.h */,
+				F76AA97517E789E100D5B0D0 /* GLGDefaultValueTextField.m */,
 			);
 			name = DefaultValueControls;
 			sourceTree = "<group>";
@@ -505,14 +535,14 @@
 		F7C5FF6517F0E055005B522B /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
-				F72B9280185590840005C271 /* GLGChannelContent.h */,
-				F72B9281185590840005C271 /* GLGChannelContent.m */,
-				F72B9282185590840005C271 /* GLGChannelSidebar.h */,
-				F72B9283185590840005C271 /* GLGChannelSidebar.m */,
-				F72B9284185590840005C271 /* GLGGradientSidebar.h */,
-				F72B9285185590840005C271 /* GLGGradientSidebar.m */,
-				F72B9286185590840005C271 /* GLGSidebarOccupant.h */,
-				F72B9287185590840005C271 /* GLGSidebarOccupant.m */,
+				F7C5FF6217F0D24C005B522B /* GLGChannelSidebar.h */,
+				F7C5FF6317F0D24C005B522B /* GLGChannelSidebar.m */,
+				F7C5FF6617F0E073005B522B /* GLGChannelContent.h */,
+				F7C5FF6717F0E073005B522B /* GLGChannelContent.m */,
+				F7C5FF6917F1155C005B522B /* GLGGradientSidebar.h */,
+				F7C5FF6A17F1155C005B522B /* GLGGradientSidebar.m */,
+				F7D0D95D17FA775B00F7B258 /* GLGSidebarOccupant.h */,
+				F7D0D95E17FA775B00F7B258 /* GLGSidebarOccupant.m */,
 			);
 			name = Sidebar;
 			sourceTree = "<group>";
@@ -520,10 +550,10 @@
 		F7E9A8AB17E79BB6000AD4BB /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				F72B9290185590980005C271 /* GLGTabItem.h */,
-				F72B9291185590980005C271 /* GLGTabItem.m */,
-				F72B9292185590980005C271 /* GLGTabView.h */,
-				F72B9293185590980005C271 /* GLGTabView.m */,
+				F76AA97E17E79B0E00D5B0D0 /* GLGTabView.h */,
+				F76AA97F17E79B0E00D5B0D0 /* GLGTabView.m */,
+				F7E9A8AD17E79BCF000AD4BB /* GLGTabItem.h */,
+				F7E9A8AE17E79BCF000AD4BB /* GLGTabItem.m */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -531,13 +561,13 @@
 		F7E9A8AC17E79BBF000AD4BB /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				F72B92741855907C0005C271 /* GLGChatLogView.h */,
-				F72B92751855907C0005C271 /* GLGChatLogView.m */,
-				F72B92761855907C0005C271 /* GLGChatTextField.h */,
-				F72B92771855907C0005C271 /* GLGChatTextField.m */,
-				F72B92781855907C0005C271 /* GLGChatView.h */,
-				F72B92791855907C0005C271 /* GLGChatView.m */,
 				F7C5FF6517F0E055005B522B /* Sidebar */,
+				F70F12D217A9980800DBB74F /* GLGChatView.h */,
+				F70F12D317A9980800DBB74F /* GLGChatView.m */,
+				F71BEC1117AD9290004CEE84 /* GLGChatTextField.h */,
+				F71BEC1217AD9290004CEE84 /* GLGChatTextField.m */,
+				F7C5FF6C17F12155005B522B /* GLGChatLogView.h */,
+				F7C5FF6D17F12155005B522B /* GLGChatLogView.m */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -647,7 +677,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72B927C1855907C0005C271 /* GLGChatTextField.m in Sources */,
 				F79EDA2C18552260000A1D84 /* GLGIRCBroker.m in Sources */,
 				F70F1287179F2D8B00DBB74F /* GLGAppDelegate.m in Sources */,
 				F72B9296185590980005C271 /* GLGTabView.m in Sources */,
@@ -655,7 +684,6 @@
 				F70F12AA179F4E7F00DBB74F /* GLGResponseCodes.m in Sources */,
 				F7F45AEC18558C850059DC65 /* Model.xcdatamodeld in Sources */,
 				F70F12AD179F4F0000DBB74F /* GLGReplyMessage.m in Sources */,
-				F72B928E185590840005C271 /* GLGSidebarOccupant.m in Sources */,
 				F70F12B1179F53EE00DBB74F /* GLGErrorMessage.m in Sources */,
 				F70F12B4179F540400DBB74F /* GLGMessage.m in Sources */,
 				F70F12B717A0AAD900DBB74F /* GLGReadDelegate.m in Sources */,
@@ -671,15 +699,25 @@
 				F72B9272185590700005C271 /* GLGDefaultValueTextField.m in Sources */,
 				F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
 				F7618736187FCB8900A13B91 /* GLGChatViewControllerModule.m in Sources */,
+				F70F12D117A9962200DBB74F /* GLGNewServer.m in Sources */,
+				F7F45AE618558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
+				F70F12D417A9980800DBB74F /* GLGChatView.m in Sources */,
+				F71BEC1317AD9290004CEE84 /* GLGChatTextField.m in Sources */,
 				F79EDA2E18552260000A1D84 /* GLGResponseParser.m in Sources */,
 				F79EDA2B18552260000A1D84 /* GLGInputParser.m in Sources */,
+				F76AA97617E789E100D5B0D0 /* GLGDefaultValueTextField.m in Sources */,
 				F79EDA2D18552260000A1D84 /* GLGIRCMessage.m in Sources */,
 				F7618738187FCB8900A13B91 /* GLGChatViewProvider.m in Sources */,
+				F76AA98017E79B0E00D5B0D0 /* GLGTabView.m in Sources */,
 				F7F45AE818558C850059DC65 /* IRCChannel.m in Sources */,
-				F72B929A185590D00005C271 /* GLGNewServer.m in Sources */,
-				F72B9288185590840005C271 /* GLGChannelContent.m in Sources */,
 				F7F45AEA18558C850059DC65 /* IRCServer.m in Sources */,
 				F79BE60B18551C9500F8F649 /* main.m in Sources */,
+				F7E9A8AF17E79BCF000AD4BB /* GLGTabItem.m in Sources */,
+				F7C5FF6417F0D24C005B522B /* GLGChannelSidebar.m in Sources */,
+				F7C5FF6817F0E073005B522B /* GLGChannelContent.m in Sources */,
+				F7C5FF6B17F1155C005B522B /* GLGGradientSidebar.m in Sources */,
+				F7C5FF6E17F12155005B522B /* GLGChatLogView.m in Sources */,
+				F7D0D95F17FA775B00F7B258 /* GLGSidebarOccupant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,8 +725,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72B9289185590840005C271 /* GLGChannelContent.m in Sources */,
-				F72B929F1855913F0005C271 /* NSColor+GLG.m in Sources */,
 				F798A710184989E00092A93E /* GLGFakeInputParserDelegate.m in Sources */,
 				F798A7071849526E0092A93E /* GLGFakeResponseParserDelegate.m in Sources */,
 				F72B9297185590980005C271 /* GLGTabView.m in Sources */,
@@ -697,9 +733,9 @@
 				F72B927F1855907C0005C271 /* GLGChatView.m in Sources */,
 				F7E5349F185592EB0021818F /* GLGReplyMessage.m in Sources */,
 				F761873B187FCB8900A13B91 /* GLGIRCBrokerProvider.m in Sources */,
+				F7F45AED18558C850059DC65 /* Model.xcdatamodeld in Sources */,
 				F798A7091849534B0092A93E /* GLGInputParserSpec.mm in Sources */,
 				F717721A1831DA3D00BD6EB4 /* GLGResponseParserSpec.mm in Sources */,
-				F72B9295185590980005C271 /* GLGTabItem.m in Sources */,
 				F79EDA2F18552286000A1D84 /* GLGInputParser.m in Sources */,
 				F761873D187FCB8900A13B91 /* GLGWindowProvider.m in Sources */,
 				F7F45AE918558C850059DC65 /* IRCChannel.m in Sources */,
@@ -715,17 +751,11 @@
 				F7618739187FCB8900A13B91 /* GLGChatViewProvider.m in Sources */,
 				F7E534A1185592F10021818F /* GLGReadDelegate.m in Sources */,
 				F79EDA3218552286000A1D84 /* GLGResponseParser.m in Sources */,
-				F72B9273185590700005C271 /* GLGDefaultValueTextField.m in Sources */,
-				F72B927D1855907C0005C271 /* GLGChatTextField.m in Sources */,
-				F72B928B185590840005C271 /* GLGChannelSidebar.m in Sources */,
 				F7F45AEB18558C850059DC65 /* IRCServer.m in Sources */,
-				F72B928D185590840005C271 /* GLGGradientSidebar.m in Sources */,
 				F79EDA33185522AB000A1D84 /* GLGReadDelegate.m in Sources */,
 				F79EDA34185522AB000A1D84 /* GLGWriteDelegate.m in Sources */,
 				F71772131831DA0B00BD6EB4 /* main.m in Sources */,
 				F7F45AE718558C850059DC65 /* GLGManagedObjectContext.m in Sources */,
-				F72B929B185590D00005C271 /* GLGNewServer.m in Sources */,
-				F72B928F185590840005C271 /* GLGSidebarOccupant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
