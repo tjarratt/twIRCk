@@ -13,6 +13,7 @@
 		F70F128A179F2D8B00DBB74F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70F1288179F2D8B00DBB74F /* MainMenu.xib */; };
 		F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F717720A1831DA0B00BD6EB4 /* Foundation.framework */; };
 		F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71772101831DA0B00BD6EB4 /* Cedar.framework */; };
+		F71C3E54198AF79C005C53AC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
 		F76E2280198AD2B900F26FCF /* GLGManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45ADF18558C850059DC65 /* GLGManagedObjectContext.m */; };
 		F76E2281198AD2B900F26FCF /* IRCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE118558C850059DC65 /* IRCChannel.m */; };
 		F76E2282198AD2B900F26FCF /* IRCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE318558C850059DC65 /* IRCServer.m */; };
@@ -53,7 +54,7 @@
 		F786C8E917E686C8004F64DF /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.model.coredataversion;
-			filePatterns = "*.xcdatamodeld";
+			filePatterns = "TwIRCk/Models/*.xcdatamodeld";
 			fileType = pattern.proxy;
 			isEditable = 1;
 			outputFiles = (
@@ -500,6 +501,7 @@
 				F76E2288198AD2B900F26FCF /* GLGChannelSidebar.m in Sources */,
 				F76E2289198AD2B900F26FCF /* GLGChannelContent.m in Sources */,
 				F76E228A198AD2B900F26FCF /* GLGGradientSidebar.m in Sources */,
+				F71C3E54198AF79C005C53AC /* Model.xcdatamodeld in Sources */,
 				F76E228B198AD2B900F26FCF /* GLGSidebarOccupant.m in Sources */,
 				F76E228C198AD2B900F26FCF /* GLGChatView.m in Sources */,
 				F76E228D198AD2B900F26FCF /* GLGChatTextField.m in Sources */,

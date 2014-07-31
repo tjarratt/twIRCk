@@ -23,6 +23,7 @@
         return _managedObjectModel;
     }
 
+    NSBundle *bundle = [NSBundle mainBundle];
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
