@@ -1,6 +1,3 @@
 [submodule "PivotalCoreKit"]
 	path = PivotalCoreKit
 	url = https://github.com/pivotal/PivotalCoreKit.git
-[submodule "Blindside"]
-	path = blindside
-	url = https://github.com/jbsf/blindside.git
