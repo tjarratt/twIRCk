@@ -246,7 +246,6 @@
 		F798A70E184989E00092A93E /* GLGFakeInputParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGFakeInputParserDelegate.h; sourceTree = "<group>"; };
 		F798A70F184989E00092A93E /* GLGFakeInputParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLGFakeInputParserDelegate.m; sourceTree = "<group>"; };
 		F798A71118498AFB0092A93E /* GLGInputParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGInputParserDelegate.h; sourceTree = "<group>"; };
-		F79BE5FE18541C8500F8F649 /* GLGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGLogger.h; sourceTree = "<group>"; };
 		F7AC002F1831DCD100F0ED0F /* Foundation+PivotalCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalCore.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalCore.framework"; sourceTree = "<group>"; };
 		F7AC00301831DCD100F0ED0F /* Foundation+PivotalSpecHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation+PivotalSpecHelper.framework"; path = "../../Library/Developer/Xcode/DerivedData/PivotalCoreKit-bgdskfjanvnwgzhahlwexpmjrjwh/Build/Products/Debug/Foundation+PivotalSpecHelper.framework"; sourceTree = "<group>"; };
 		F7B8B54118121792003003BC /* GLGInputParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GLGInputParser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -388,7 +387,6 @@
 				F7E5E77617F2320F00A85FFB /* GLGIRCMessage.h */,
 				F7E5E77717F2320F00A85FFB /* GLGIRCMessage.m */,
 				F70F127A179F2D8B00DBB74F /* Supporting Files */,
-				F79BE5FE18541C8500F8F649 /* GLGLogger.h */,
 			);
 			path = TwIRCk;
 			sourceTree = "<group>";
