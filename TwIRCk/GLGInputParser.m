@@ -25,25 +25,58 @@
 
         if ([command isEqualToString:@"join"]) {
             NSString *channel = [[parts objectAtIndex:1] lowercaseString];
-            return [self createJoinCommandForChannel:channel];
+
+            if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
+                channel = [@"#" stringByAppendingString:channel];
+            }
+            raw = [NSString stringWithFormat:@"JOIN %@", channel];
+            message = [@"/join " stringByAppendingString:channel];
+
+            return [delegate didJoinChannel:channel
+                                 rawCommand:raw
+                             displayMessage:message];
         }
         else if ([command isEqualToString:@"part"]) {
             NSString *theChannel;
 
             if (parts.count == 1) {
-                return [self createPartCommandForCurrentChannel];
+                NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
+                raw = [NSString stringWithFormat:@"PART <__channel__> %@", defaultMessage];
+                message = [NSString stringWithFormat:@"/part <__channel__> %@", defaultMessage];
+
+                return [delegate didPartCurrentChannelWithRawCommand:raw
+                                                      displayMessage:message];
             }
             else if (parts.count == 2) {
                 theChannel = [parts objectAtIndex:1];
-                return [self createPartCommandForChannel:theChannel];
+                if (![[theChannel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
+                    theChannel = [@"#" stringByAppendingString:theChannel];
+                }
+
+                NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
+                raw = [NSString stringWithFormat:@"PART %@ %@", theChannel, defaultMessage];
+                message = [NSString stringWithFormat:@"/part %@ %@", theChannel, defaultMessage];
+
+                return [delegate didPartChannel:theChannel
+                                     rawCommand:raw
+                                 displayMessage:message];
             }
             else {
                 theChannel = [[parts objectAtIndex:1] lowercaseString];
+                if (![[theChannel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
+                    theChannel = [@"#" stringByAppendingString:theChannel];
+                }
+
                 NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
                 parts = [parts objectsAtIndexes:indices];
                 NSString *remainder = [parts componentsJoinedByString:@" "];
 
-                return [self createPartCommandForChannel:theChannel withMessage:remainder];
+                raw = [NSString stringWithFormat:@"PART %@ %@", theChannel, remainder];
+                message = [NSString stringWithFormat:@"/part %@ %@", theChannel, remainder];
+
+                return [delegate didPartChannel:theChannel
+                                     rawCommand:raw
+                                 displayMessage:message];
             }
         }
         else if ([command isEqualToString:@"msg"] || [command isEqualToString:@"whisper"]) {
@@ -60,14 +93,44 @@
                                      displayMessage:message];
         }
         else if ([command isEqualToString:@"who"]) {
-            return [self createWhoCommandFromArray:parts];
+            if ([parts count] < 2) {
+                return [self displayUsageForSlashWho];
+            }
+            else {
+                NSString *whom = [parts objectAtIndex:1];
+                if (whom.length == 0) {
+                    return [self displayUsageForSlashWho];
+                }
+
+                raw = [@"WHO " stringByAppendingString:whom];
+                message = [NSString stringWithFormat:@"/who %@", whom];
+
+                return [delegate didSendMessageToCurrentTargetWithRawCommand:raw
+                                                              displayMessage:message];
+            }
         }
         else if ([command isEqualToString:@"me"]) {
             NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(2, [parts count] - 2)];
-            return [self createActionCommandFromArray:[parts objectsAtIndexes:indices]];
+            parts = [parts objectsAtIndexes:indices];
+            NSString *remainder = [parts componentsJoinedByString:@" "];
+
+            // should have 0x01 at the beginning and end (before ACTION and after remainder)
+            raw = [@"ACTION " stringByAppendingString:remainder];
+            message = [NSString stringWithFormat:@"/me %@", remainder];
+
+            return [delegate didSendMessageToTarget:@"<__channel__>"
+                                         rawCommand:raw
+                                     displayMessage:message];
         }
         else if ([command isEqualToString:@"nick"]) {
-            return [self createNickCommandForNewNick:[parts objectAtIndex:1]];
+            NSString *newNick = [parts objectAtIndex:1];
+
+            raw = [@"NICK " stringByAppendingString:newNick];
+            message = [NSString stringWithFormat:@"/nick %@", newNick];
+
+            return [delegate didChangeNick:newNick
+                                rawCommand:raw
+                            displayMessage:message];
         }
         else if ([command isEqualToString:@"pass"]) {
             NSString *newPassword = [parts objectAtIndex:1];
@@ -79,10 +142,27 @@
         }
         else if ([command isEqualToString:@"topic"]) {
             NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, parts.count - 1)];
-            return [self createTopicCommandFromArray:[parts objectsAtIndexes:indices]];
+            NSString *remainder = [[parts objectsAtIndexes:indices] componentsJoinedByString:@" "];
+
+            raw = [NSString stringWithFormat:@"TOPIC <__channel__> %@", remainder];
+            message = string;
+
+            return [delegate didSendMessageToCurrentTargetWithRawCommand:raw
+                                                          displayMessage:message];
         }
         else {
-            [self createUnknownCommandFromCommand:command andParts:parts];
+            NSString *fullCommand = [command uppercaseString];
+            if ([parts count] > 1) {
+                NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, parts.count - 1)];
+                NSArray *mutableParts = [parts objectsAtIndexes:indices];
+                fullCommand = [[fullCommand stringByAppendingString:@" "] stringByAppendingString: [mutableParts componentsJoinedByString:@" "]];
+
+                raw = fullCommand;
+                message = string;
+
+                return [delegate didSendUnknownMessageToCurrentTargetWithRawCommand:raw
+                                                                     displayMessage:message];
+            }
         }
     }
     else {
@@ -95,102 +175,12 @@
 }
 
 #pragma mark - Private
-
 - (void) displayUsageForSlashWho {
     NSString *message = @"/who\nWHO: not enough parameters (usage: /who {channel})";
 
     return [delegate didSendMessageToCurrentTargetWithRawCommand:@""
                                                   displayMessage:message];
 
-}
-
-- (void) createJoinCommandForChannel:(NSString *) channel {
-    if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
-        channel = [@"#" stringByAppendingString:channel];
-    }
-
-    NSString *raw = [NSString stringWithFormat:@"JOIN %@", channel];
-    NSString *message = [@"/join " stringByAppendingString:channel];
-
-    return [delegate didJoinChannel:channel
-                         rawCommand:raw
-                     displayMessage:message];
-}
-
-- (void) createPartCommandForCurrentChannel {
-    NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)";
-    NSString *raw = [NSString stringWithFormat:@"PART <__channel__> %@", defaultMessage];
-    NSString *message = [NSString stringWithFormat:@"/part <__channel__> %@", defaultMessage];
-
-    [delegate didPartCurrentChannelWithRawCommand:raw
-                                   displayMessage:message];
-}
-
-- (void) createPartCommandForChannel:(NSString *) channel {
-    NSString *defaultMessage = @"http://twIRCk.com (sometimes you just gotta twIRCk it!)"; // TODO: static var
-    [self createPartCommandForChannel:channel withMessage:defaultMessage];
-}
-
-- (void) createPartCommandForChannel:(NSString *) channel withMessage:(NSString *) message {
-    if (![[channel substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"#"]) {
-        channel = [@"#" stringByAppendingString:channel];
-    }
-
-    NSString *raw = [NSString stringWithFormat:@"PART %@ %@", channel, message];
-    NSString *displayMessage = [NSString stringWithFormat:@"/part %@ %@", channel, message];
-
-    return [delegate didPartChannel:channel
-                         rawCommand:raw
-                     displayMessage:displayMessage];
-}
-
-- (void) createUnknownCommandFromCommand:(NSString *) command andParts:(NSArray *) parts {
-    NSIndexSet *indices = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(1, parts.count - 1)];
-    NSString *remainder = [[parts objectsAtIndexes:indices] componentsJoinedByString:@" "];
-    NSString *raw = [[[command uppercaseString] stringByAppendingString:@" "] stringByAppendingString: remainder];
-    NSString *display = [NSString stringWithFormat:@"/%@ %@", command, remainder];
-
-    return [delegate didSendUnknownMessageToCurrentTargetWithRawCommand:raw
-                                                         displayMessage:display];
-}
-
-- (void) createActionCommandFromArray:(NSArray *) parts {
-    NSString *remainder = [parts componentsJoinedByString:@" "];
-
-    // TODO: should have 0x01 at the beginning and end (before ACTION and after remainder)
-    NSString *byte = @""; // @"\u0001";
-    NSString *raw = [NSString stringWithFormat:@"%@ACTION %@%@", byte, remainder, byte];
-    NSString *message = [NSString stringWithFormat:@"/me %@", remainder];
-
-    return [delegate didSendMessageToTarget:@"<__channel__>"
-                                 rawCommand:raw
-                             displayMessage:message];
-
-}
-
-- (void) createNickCommandForNewNick:(NSString *) nick {
-    return [delegate didChangeNick:nick
-                        rawCommand:[@"NICK " stringByAppendingString:nick]
-                    displayMessage:[NSString stringWithFormat:@"/nick %@", nick]];
-}
-
-- (void) createTopicCommandFromArray:(NSArray *) parts {
-    NSString *remainder = [parts componentsJoinedByString:@" "];
-    return [delegate didSendMessageToCurrentTargetWithRawCommand:[NSString stringWithFormat:@"TOPIC <__channel__> %@", remainder]
-                                                  displayMessage:[@"/topic " stringByAppendingString:remainder]];
-}
-
-- (void) createWhoCommandFromArray:(NSArray *) parts {
-    if ([parts count] < 2) {
-        return [self displayUsageForSlashWho];
-    }
-    else {
-        NSString *whom = [parts objectAtIndex:1];
-        if (whom.length == 0) { return [self displayUsageForSlashWho]; }
-
-        return [delegate didSendMessageToCurrentTargetWithRawCommand:[@"WHO " stringByAppendingString:whom]
-                                                      displayMessage:[NSString stringWithFormat:@"/who %@", whom]];
-    }
 }
 
 @end
