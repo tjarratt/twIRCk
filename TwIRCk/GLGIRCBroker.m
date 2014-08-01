@@ -189,10 +189,102 @@
         NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
         string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
     }
-    else if ([theType isEqualToString:@"372"]) {
+    else if ([theType isEqualToString:@"001"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"002"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"002"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"003"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"004"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@" "].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"005"]) {
+        /* FIXME: this message includes a lot of helpful information on freenode
+            namely:
+                * channel modes
+                * channel limit
+                * case mapping (rfc1459)
+                * character set
+                * nick length
+                * channel length
+                * topic length
+                * various things supported by the server
+         */
+        return;
+    }
+    else if ([theType isEqualToString:@"250"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"251"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"252"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@" "].location + 1;
+        string = [[[theMessage substringFromIndex:startIndex]
+                  stringByAppendingString:@"\n"]
+                    stringByReplacingOccurrencesOfString:@":" withString:@""];
+    }
+    else if ([theType isEqualToString:@"253"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@" "].location + 1;
+        string = [[[theMessage substringFromIndex:startIndex]
+                  stringByAppendingString:@"\n"]
+                  stringByReplacingOccurrencesOfString:@":" withString:@""];
+    }
+    else if ([theType isEqualToString:@"254"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@" "].location + 1;
+        string = [[[theMessage substringFromIndex:startIndex]
+                  stringByAppendingString:@"\n"]
+                  stringByReplacingOccurrencesOfString:@":" withString:@""];
+    }
+    else if ([theType isEqualToString:@"255"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[[theMessage substringFromIndex:startIndex]
+                  stringByAppendingString:@"\n"]
+                  stringByReplacingOccurrencesOfString:@":" withString:@""];
+    }
+    else if ([theType isEqualToString:@"265"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"266"]) {
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"372"]) { // individual MOTD lines
         theChannel = theSender;
         NSUInteger indexOfMessageStart = [string rangeOfString:@":-"].location;
         string = [[string substringFromIndex:indexOfMessageStart + 2] stringByAppendingString:@"\n"];
+    }
+    else if ([theType isEqualToString:@"375"]) { // start of MOTD
+        theChannel = theSender;
+        NSUInteger startIndex = [theMessage rangeOfString:@":"].location + 1;
+        string = [[theMessage substringFromIndex:startIndex] stringByAppendingString:@"\n"];
     }
     else if ([theType isEqualToString:@"NICK"]) {
         theChannel = hostname;
