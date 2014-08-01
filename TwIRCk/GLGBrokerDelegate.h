@@ -25,6 +25,11 @@
               fromHost:(NSString *) host
             fromBroker:(GLGIRCBroker *) broker;
 
+-(void) receivedSystemString:(NSString *) string
+             inChannel:(NSString *) channel
+              fromHost:(NSString *) host
+            fromBroker:(GLGIRCBroker *) broker;
+
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel;
 -(void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *)broker byUser:(NSString *) whom;
 @end

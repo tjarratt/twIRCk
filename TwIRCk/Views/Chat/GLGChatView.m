@@ -231,6 +231,23 @@ const CGFloat occupantsSidebarWidth = 150;
                fromHost:(NSString *)host
              fromBroker:(GLGIRCBroker *)broker
 {
+    [self receivedString:string inChannel:channel fromHost:host fromBroker:broker withPresenter:[[GLGRegularMessagePresenter alloc] init]];
+}
+
+- (void) receivedSystemString:(NSString *)string
+                  inChannel:(NSString *)channel
+                   fromHost:(NSString *)host
+                 fromBroker:(GLGIRCBroker *)broker
+{
+    [self receivedString:string inChannel:channel fromHost:host fromBroker:broker withPresenter:[[GLGSystemMessagePresenter alloc] init]];
+}
+
+- (void) receivedString:(NSString *)string
+              inChannel:(NSString *)channel
+               fromHost:(NSString *)host
+             fromBroker:(GLGIRCBroker *)broker
+               withPresenter:(id<GLGMessagePresenter>)presenter
+{
     if (broker == nil) {
         return NSLog(@"nil broker trying to send message to channel %@ to host %@", channel, host);
     }
@@ -245,8 +262,18 @@ const CGFloat occupantsSidebarWidth = 150;
      }
 
     [log setEditable:YES];
-    [log setSelectedRange:NSMakeRange([[log textStorage] length], 0)];
+    NSUInteger length = [[log textStorage] length];
+    [log setSelectedRange:NSMakeRange(length, 0)];
     [log insertText:string];
+
+    NSRange theRange = NSMakeRange(length, string.length);
+    [log setSelectedRange:theRange];
+
+    [log.textStorage removeAttribute:NSForegroundColorAttributeName range:theRange];
+    [log.textStorage addAttribute:NSForegroundColorAttributeName value:presenter.color range:theRange];
+
+    [log setSelectedRange:NSMakeRange(0, 0)];
+
     [log setEditable:NO];
 
     NSDictionary *dict = @{@"name" : channel, @"owner" : broker};

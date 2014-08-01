@@ -210,6 +210,8 @@
         string = [NSString stringWithFormat:@"%@ (%@) has joined channel %@\n", shortName, fullName, theChannel];
 
         [self userJoinedChannel:(NSString *)theChannel withNick:(NSString *)shortName];
+        [delegate receivedSystemString:string inChannel:theChannel fromHost:hostname fromBroker:self];
+        return;
     }
     else if ([theType isEqualToString:@"PART"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -232,6 +234,9 @@
             [self.channelOccupants setValue:occupants forKey:theChannel];
             [delegate updateOccupants:occupants forChannel:theChannel];
         }
+
+        [delegate receivedSystemString:string inChannel:theChannel fromHost:hostname fromBroker:self];
+        return;
     }
     else if ([theType isEqualToString:@"QUIT"]) {
         NSString *nick = [[theSender componentsSeparatedByString:@"!"] objectAtIndex:0];
@@ -239,6 +244,8 @@
         string = [NSString stringWithFormat:@"%@ has quit %@\n", nick, theMessage];
 
         [self removeNickFromAllChannels:nick withMessage:theMessage];
+        [delegate receivedSystemString:string inChannel:theChannel fromHost:hostname fromBroker:self];
+        return;
     }
     else if ([theType isEqualToString:@"PRIVMSG"]) {
         NSArray *nameComponents = [theSender componentsSeparatedByString:@"!"];
@@ -464,7 +471,7 @@
 
         if (wasInChannel) {
             NSString *quitMessage = [NSString stringWithFormat:@"%@ has quit: %@\n", nick, message];
-            [delegate receivedString:quitMessage inChannel:channel fromHost:hostname fromBroker:self];
+            [delegate receivedSystemString:quitMessage inChannel:channel fromHost:hostname fromBroker:self];
         }
     }];
 }
