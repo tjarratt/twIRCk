@@ -12,10 +12,10 @@ task :release, [:component] do |t, args|
     puts "You specified #{args[:component].inspect}"
     exit 1
   end
- 
+
   result = Plist::parse_xml('TwIRCk/TwIRCk-Info.plist')
   pieces = result['CFBundleShortVersionString'].split('.').map(&:to_i)
-  
+
   if args[:component] == 'major'
     pieces.first += 1
   elsif args[:component] == 'minor'
@@ -33,7 +33,7 @@ task :release, [:component] do |t, args|
 
   system("git add . --all; git commit -m 'Bump version to #{new_version}'")
   system("git tag v#{new_version}")
-  system("git push --tags") 
+  system("git push --follow-tags")
 end
 
 desc 'bump the version at the patch level'
