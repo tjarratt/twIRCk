@@ -147,7 +147,6 @@
         [writer addCommand:[@"NICK " stringByAppendingString:currentNick]];
     }
     else if ([theType isEqualToString:@"353"]) {
-        // read the channel and all of the occupants
         NSError *error;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(.*) :" options:NSRegularExpressionCaseInsensitive error:&error];
         NSArray *matches = [regex matchesInString:theMessage options:0 range:NSMakeRange(0, theMessage.length)];
