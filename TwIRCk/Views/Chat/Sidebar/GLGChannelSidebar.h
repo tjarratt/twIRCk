@@ -16,6 +16,6 @@
     GLGGradientSidebar *scrollView;
 }
 
-- (void) showChannelOccupants:(NSArray *) occupants;
+- (void) showChannelOccupants:(NSArray *) occupants withColors:(NSArray *)colors;
 
 @end

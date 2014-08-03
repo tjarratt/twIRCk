@@ -31,7 +31,7 @@
     return self;
 }
 
-- (void) showChannelOccupants:(NSArray *) occupants {
+- (void) showChannelOccupants:(NSArray *) occupants withColors:(NSArray *)colors {
     __block int i = 0;
     NSSet *uniqueOccupants = [NSSet setWithArray:occupants];
 
@@ -58,6 +58,7 @@
         [label setBackgroundColor:[NSColor clearColor]];
         [label setFrame:NSMakeRect(rect.origin.x, rect.origin.y, label.intrinsicContentSize.width + 6, rect.size.height)];
         [label setAlignment:NSCenterTextAlignment];
+        [label setTextColor:[colors objectAtIndex:i]];
 
         [innerView addSubview:label];
         ++i;

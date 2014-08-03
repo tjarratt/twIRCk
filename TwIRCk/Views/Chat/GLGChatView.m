@@ -255,14 +255,7 @@ const CGFloat occupantsSidebarWidth = 150;
 
     // http://devmag.org.za/2012/07/29/how-to-choose-colours-procedurally-algorithms/
     NSArray *occupants = [broker occupantsInChannel:channel];
-    NSMutableArray *colors = [[NSMutableArray alloc] init];
-    [occupants enumerateObjectsUsingBlock:^(NSString * occupant, NSUInteger idx, BOOL *stop) {
-        CGFloat hue = fmodf((0.618033988749895f * idx), 1);
-        CGFloat saturation = 0.5;
-        CGFloat brightness = 0.75;
-        NSColor *color = [NSColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
-        [colors addObject:color];
-    }];
+    NSArray *colors = [self colorsForOccupants:occupants];
 
     NSString *key = [broker.hostname stringByAppendingString:channel];
     GLGChatLogView *log = [chatlogs objectForKey:key];
@@ -314,8 +307,9 @@ const CGFloat occupantsSidebarWidth = 150;
 }
 
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel {
+    NSArray *colors = [self colorsForOccupants:occupants];
     if ([channel isEqualToString:currentChannel]) {
-        [sidebar showChannelOccupants:occupants];
+        [sidebar showChannelOccupants:occupants withColors:colors];
     }
 }
 
@@ -408,6 +402,20 @@ const CGFloat occupantsSidebarWidth = 150;
 
     NSArray *occupants = [currentBroker occupantsInChannel:currentChannel];
     [self updateOccupants:occupants forChannel:currentChannel];
+}
+
+#pragma mark - Occupant colorizing
+- (NSArray *) colorsForOccupants:(NSArray *) occupants {
+    NSMutableArray *colors = [[NSMutableArray alloc] init];
+    [occupants enumerateObjectsUsingBlock:^(NSString * occupant, NSUInteger idx, BOOL *stop) {
+        CGFloat hue = fmodf((0.618033988749895f * idx), 1);
+        CGFloat saturation = 0.5;
+        CGFloat brightness = 0.75;
+        NSColor *color = [NSColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+        [colors addObject:color];
+    }];
+
+    return colors;
 }
 
 @end
