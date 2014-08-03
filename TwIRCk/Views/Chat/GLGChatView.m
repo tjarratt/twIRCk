@@ -105,6 +105,7 @@ const CGFloat occupantsSidebarWidth = 150;
     [textview setEditable:NO];
     [textview setRichText:YES];
     [textview setNextKeyView:input];
+    [textview setBackgroundColor:[NSColor colorWithDeviceWhite:0.95 alpha:1.0]];
 
     return textview;
 }
@@ -252,6 +253,17 @@ const CGFloat occupantsSidebarWidth = 150;
         return NSLog(@"nil broker trying to send message to channel %@ to host %@", channel, host);
     }
 
+    // http://devmag.org.za/2012/07/29/how-to-choose-colours-procedurally-algorithms/
+    NSArray *occupants = [broker occupantsInChannel:channel];
+    NSMutableArray *colors = [[NSMutableArray alloc] init];
+    [occupants enumerateObjectsUsingBlock:^(NSString * occupant, NSUInteger idx, BOOL *stop) {
+        CGFloat hue = fmodf((0.618033988749895f * idx), 1);
+        CGFloat saturation = 0.5;
+        CGFloat brightness = 0.75;
+        NSColor *color = [NSColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+        [colors addObject:color];
+    }];
+
     NSString *key = [broker.hostname stringByAppendingString:channel];
     GLGChatLogView *log = [chatlogs objectForKey:key];
 
@@ -271,6 +283,26 @@ const CGFloat occupantsSidebarWidth = 150;
 
     [log.textStorage removeAttribute:NSForegroundColorAttributeName range:theRange];
     [log.textStorage addAttribute:NSForegroundColorAttributeName value:presenter.color range:theRange];
+
+    // walk the occupants and see if we need to colorize any of the string
+    [occupants enumerateObjectsUsingBlock:^(NSString * occupant, NSUInteger idx, BOOL *stop) {
+        NSRange searchRange = NSMakeRange(0, string.length);
+        NSRange foundRange;
+        while (searchRange.location < string.length) {
+            searchRange.length = string.length - searchRange.location;
+            foundRange = [string rangeOfString:occupant options:nil range:searchRange];
+            if (foundRange.location != NSNotFound) {
+                searchRange.location = foundRange.location+foundRange.length;
+
+                NSColor *color = [colors objectAtIndex:idx];
+                NSRange range = NSMakeRange(length + foundRange.location, foundRange.length);
+                [log.textStorage removeAttribute:NSForegroundColorAttributeName range:range];
+                [log.textStorage addAttribute:NSForegroundColorAttributeName value:color range:range];
+            } else {
+                break;
+            }
+        }
+    }];
 
     [log setSelectedRange:NSMakeRange(0, 0)];
 

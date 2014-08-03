@@ -175,7 +175,11 @@
         }
 
         string = @"";
-        [occupants addObjectsFromArray:cleanedNames];
+        [cleanedNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
+            if (![occupants containsObject:name]) {
+                [occupants addObject:name];
+            }
+        }];
         [self.channelOccupants setValue:occupants forKey:theChannel];
         [delegate updateOccupants:occupants forChannel:theChannel];
     }
