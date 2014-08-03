@@ -279,8 +279,9 @@ const CGFloat occupantsSidebarWidth = 150;
 
     // walk the occupants and see if we need to colorize any of the string
     [occupants enumerateObjectsUsingBlock:^(NSString * occupant, NSUInteger idx, BOOL *stop) {
-        NSRange searchRange = NSMakeRange(0, string.length);
         NSRange foundRange;
+        NSRange searchRange = NSMakeRange(0, string.length);
+
         while (searchRange.location < string.length) {
             searchRange.length = string.length - searchRange.location;
             foundRange = [string rangeOfString:occupant options:nil range:searchRange];

@@ -32,17 +32,14 @@
 }
 
 - (void) showChannelOccupants:(NSArray *) occupants withColors:(NSArray *)colors {
-    __block int i = 0;
-    NSSet *uniqueOccupants = [NSSet setWithArray:occupants];
-
     [innerView setSubviews:@[]];
     NSRect frame = [innerView frame];
     CGFloat height = frame.size.height;
-    CGFloat fullHeight = MAX(height, 35 * 2 + 25 * uniqueOccupants.count);
+    CGFloat fullHeight = MAX(height, 35 * 2 + 25 * occupants.count);
     frame = NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width, fullHeight);
     [innerView setFrame:frame];
 
-    [uniqueOccupants enumerateObjectsUsingBlock:^(NSString *name, BOOL *stop) {
+    [occupants enumerateObjectsUsingBlock:^(NSString *name, NSUInteger i, BOOL *stop) {
         NSRect rect = NSMakeRect(15, frame.size.height - (35 + 25 * i), 120, 15);
         GLGSidebarOccupant *label = [[GLGSidebarOccupant alloc] initWithFrame:rect];
 
