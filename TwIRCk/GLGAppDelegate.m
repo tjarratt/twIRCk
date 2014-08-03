@@ -140,6 +140,29 @@
     }
 }
 
+- (IBAction) showPreferences:(id) sender {
+    if ([[self.windowController.window contentView] isKindOfClass:[GLGPreferencesView class]]) {
+        return;
+    }
+
+    NSSize size = NSMakeSize(400, 200);
+    CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
+    CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
+
+    NSPoint origin = NSMakePoint((screenwidth - size.width) / 2, (screenheight - size.height) / 2);
+    NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+    NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
+
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    [window setDelegate:self];
+    GLGPreferencesView *view = [[GLGPreferencesView alloc] initWithFrame:frame];
+
+    [[window contentView] addSubview:view];
+    [window makeKeyAndOrderFront:NSApp];
+
+    [[self windowController] setWindow:window];
+}
+
 - (IBAction) openNewServerWindow:(id) sender {
     if (serverWindowIsVisible) {
         return;
@@ -182,6 +205,15 @@
 
 - (IBAction) copy:(id) sender {
     [_chatView copy:sender];
+}
+
+#pragma mark - NSWindowDelegate
+- (void) windowWillClose:(NSNotification *) notification {
+    NSView *contentView = [[notification object] contentView];
+    NSView *firstSubview = [[contentView subviews] objectAtIndex:0];
+    if ([firstSubview isKindOfClass:[GLGPreferencesView class]]) {
+        [self.windowController setWindow:self.window];
+    }
 }
 
 @end

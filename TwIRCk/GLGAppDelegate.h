@@ -13,8 +13,9 @@
 #import "GLGNewServer.h"
 #import "IRCServer.h"
 #import "GLGLogger.h"
+#import "GLGPreferencesView.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
 }
@@ -25,5 +26,6 @@
 
 - (IBAction)closeActiveWindow:(id)sender;
 - (IBAction)copy:(id)sender;
+- (IBAction)showPreferences:(id)sender;
 
 @end

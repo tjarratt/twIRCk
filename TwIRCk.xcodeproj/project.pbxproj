@@ -45,6 +45,7 @@
 		F76E22B3198AD79F00F26FCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F71772121831DA0B00BD6EB4 /* main.m */; };
 		F76E22B4198AD7A400F26FCF /* MessageParsingSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B8B544181219A7003003BC /* MessageParsingSpec.mm */; };
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
+		F7C4EC30198EE80C00868C3B /* GLGPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C4EC2F198EE80C00868C3B /* GLGPreferencesView.m */; };
 		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
 		F7DB1F70198C3E5500542C75 /* GLGRegularMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */; };
 		F7DB1F71198C3E5500542C75 /* GLGSystemMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6E198C3E5500542C75 /* GLGSystemMessagePresenter.m */; };
@@ -133,6 +134,8 @@
 		F7B8B54118121792003003BC /* GLGIRCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GLGIRCParser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7B8B54218121792003003BC /* GLGIRCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GLGIRCParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = MessageParsingSpec.mm; path = "../twIRCk Specs/MessageParsingSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F7C4EC2E198EE80C00868C3B /* GLGPreferencesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGPreferencesView.h; path = Views/Preferences/GLGPreferencesView.h; sourceTree = "<group>"; };
+		F7C4EC2F198EE80C00868C3B /* GLGPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGPreferencesView.m; path = Views/Preferences/GLGPreferencesView.m; sourceTree = "<group>"; };
 		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
 		F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = twIRCk.iconset; sourceTree = "<group>"; };
 		F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGOccupantDelegate.h; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 		F70F12CD17A9960700DBB74F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F7C4EC2D198EE7DB00868C3B /* Preferences */,
 				F71C3E55198B0EA8005C53AC /* GLGNewServer.h */,
 				F71C3E56198B0EA8005C53AC /* GLGNewServer.m */,
 				F76AA97317E789A300D5B0D0 /* DefaultValueControls */,
@@ -343,6 +347,15 @@
 				F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		F7C4EC2D198EE7DB00868C3B /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				F7C4EC2E198EE80C00868C3B /* GLGPreferencesView.h */,
+				F7C4EC2F198EE80C00868C3B /* GLGPreferencesView.m */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		F7C5FF6517F0E055005B522B /* Sidebar */ = {
@@ -503,6 +516,7 @@
 			files = (
 				F76E2280198AD2B900F26FCF /* GLGManagedObjectContext.m in Sources */,
 				F71C3E78198B16A8005C53AC /* NSColor+GLG.m in Sources */,
+				F7C4EC30198EE80C00868C3B /* GLGPreferencesView.m in Sources */,
 				F76E2281198AD2B900F26FCF /* IRCChannel.m in Sources */,
 				F76E2282198AD2B900F26FCF /* IRCServer.m in Sources */,
 				F71C3E6D198B0EDA005C53AC /* GLGChannelSidebar.m in Sources */,
