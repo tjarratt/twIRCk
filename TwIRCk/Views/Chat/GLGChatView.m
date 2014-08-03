@@ -326,6 +326,10 @@ const CGFloat occupantsSidebarWidth = 150;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
+- (void) willDisconnect:(GLGIRCBroker *) broker {
+    // needs to close all of the channels belonging to this broker
+}
+
 #pragma mark - NSResponder methods
 - (void) keyUp:(NSEvent *) theEvent {
     unsigned short keycode = [theEvent keyCode];

@@ -37,6 +37,11 @@
             message = [NSString stringWithFormat:@"/join %@", channel];
             payload = channel;
 
+        } else if ([command isEqualToString:@"quit"]) {
+            type = @"quit";
+            raw = @"QUIT";
+            message = string;
+            payload = @"";
         }
         else if ([command isEqualToString:@"part"]) {
             NSString *theChannel;

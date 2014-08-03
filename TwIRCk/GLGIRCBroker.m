@@ -482,6 +482,9 @@
     }
     else if ([[msg type] isEqualToString:@"pass"]) {
         [server setPassword:[msg payload]];
+    } else if ([[msg type] isEqualToString:@"quit"]) {
+        // FIXME: need to close down the writer and reader at this point, so we don't reconnect
+        [delegate willDisconnect:self];
     }
 
     return msg;

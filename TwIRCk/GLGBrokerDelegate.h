@@ -32,4 +32,5 @@
 
 -(void) updateOccupants:(NSArray *) occupants forChannel:(NSString *) channel;
 -(void) mentionedInChannel:(NSString *) channel fromBroker:(GLGIRCBroker *)broker byUser:(NSString *) whom;
+-(void) willDisconnect:(GLGIRCBroker *)broker;
 @end
