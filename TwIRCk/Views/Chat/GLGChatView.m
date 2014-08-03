@@ -409,7 +409,7 @@ const CGFloat occupantsSidebarWidth = 150;
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     [occupants enumerateObjectsUsingBlock:^(NSString * occupant, NSUInteger idx, BOOL *stop) {
         CGFloat hue = fmodf((0.618033988749895f * idx), 1);
-        CGFloat saturation = 0.5;
+        CGFloat saturation = 0.8;
         CGFloat brightness = 0.75;
         NSColor *color = [NSColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
         [colors addObject:color];
