@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GLGPreferencesView : NSView
+@interface GLGPreferencesView : NSView {
+    NSTableView *tableview;
+}
+
+- (NSTableView *) tableview;
 
 @end

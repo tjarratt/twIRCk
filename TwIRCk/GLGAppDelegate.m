@@ -29,6 +29,7 @@
     [request setEntity:description];
 
     NSError *error;
+    currentServers = [[NSMutableArray alloc] init];
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
 
     if ([fetchedObjects count] > 0) {
@@ -49,6 +50,7 @@
 
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             IRCServer *server = (IRCServer *)obj;
+            [currentServers addObject:server];
 
             [self.chatView connectToServer:server];
             [[window contentView] addSubview:self.chatView];
@@ -145,19 +147,22 @@
         return;
     }
 
-    NSSize size = NSMakeSize(400, 200);
+    NSSize size = NSMakeSize(600, 200);
     CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
     CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
 
     NSPoint origin = NSMakePoint((screenwidth - size.width) / 2, (screenheight - size.height) / 2);
-    NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
+    NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask;
     NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
-    NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    __strong NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
     [window setDelegate:self];
-    GLGPreferencesView *view = [[GLGPreferencesView alloc] initWithFrame:frame];
+    [window setTitle:NSLocalizedString(@"Preferences", @"Window.Title.Preferences")];
+    GLGPreferencesView *view = [[GLGPreferencesView alloc] initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
+    [view.tableview setDelegate:self];
+    [view.tableview setDataSource:self];
 
-    [[window contentView] addSubview:view];
+    [window setContentView:view];
     [window makeKeyAndOrderFront:NSApp];
 
     [[self windowController] setWindow:window];
@@ -210,10 +215,28 @@
 #pragma mark - NSWindowDelegate
 - (void) windowWillClose:(NSNotification *) notification {
     NSView *contentView = [[notification object] contentView];
-    NSView *firstSubview = [[contentView subviews] objectAtIndex:0];
-    if ([firstSubview isKindOfClass:[GLGPreferencesView class]]) {
+    if ([contentView isKindOfClass:[GLGPreferencesView class]]) {
         [self.windowController setWindow:self.window];
     }
+}
+
+#pragma mark - NSTableViewDelegate
+- (NSInteger) numberOfRowsInTableView:(NSTableView *) tableview {
+    return [currentServers count];
+}
+
+- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSTextField *result = [tableView makeViewWithIdentifier:@"serverRowView" owner:self];
+
+    if (result == nil) {
+        result = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 300, 0)];
+        [result setEditable:NO];
+        result.identifier = @"serverRowView";
+    }
+
+    IRCServer *server = [currentServers objectAtIndex:row];
+    result.stringValue = [server hostname];
+    return result;
 }
 
 @end

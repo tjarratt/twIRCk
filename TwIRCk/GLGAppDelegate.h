@@ -15,9 +15,11 @@
 #import "GLGLogger.h"
 #import "GLGPreferencesView.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource> {
     GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
+
+    NSMutableArray *currentServers;
 }
 
 @property (retain) GLGChatView *chatView;
