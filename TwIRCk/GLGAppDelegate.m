@@ -226,17 +226,78 @@
 }
 
 - (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSTextField *result = [tableView makeViewWithIdentifier:@"serverRowView" owner:self];
+    id result;
+    NSString *identifier = [tableColumn identifier];
+    IRCServer *server = [currentServers objectAtIndex:row];
 
-    if (result == nil) {
-        result = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 300, 0)];
-        [result setEditable:NO];
-        result.identifier = @"serverRowView";
+    if ([identifier isEqualToString:@"hostname"]) {
+        NSTextField *textField = [tableView makeViewWithIdentifier:@"serverNameRowView" owner:self];
+        if (textField == nil) {
+            textField = [[NSTextField alloc] init];
+            textField.identifier = @"serverNameRowView";
+            [textField setBordered:NO];
+        }
+
+        [textField setStringValue: [server hostname]];
+        result = textField;
+    }
+    else if ([identifier isEqualToString:@"port"]) {
+        NSTextField *textField = [tableView makeViewWithIdentifier:@"port" owner:self];
+        if (textField == nil) {
+            textField = [[NSTextField alloc] init];
+            textField.identifier = @"port";
+            [textField setBordered:NO];
+        }
+
+        [textField setStringValue: [server.port stringValue]];
+        result = textField;
+    } else if ([identifier isEqualToString:@"ssl"]) {
+        NSButton *checkbox = [tableView makeViewWithIdentifier:@"useSSLCheckBox" owner:self];
+        if (checkbox == nil ) {
+            checkbox = [[NSButton alloc] init];
+            [checkbox setButtonType:NSSwitchButton];
+            [checkbox setIdentifier:@"useSSLCheckBox"];
+            [checkbox setTitle:@""];
+        }
+
+        if (server.useSSL) {
+            [checkbox setState:NSOnState];
+        } else {
+            [checkbox setState:NSOffState];
+        }
+
+        result = checkbox;
+    }
+    else if ([identifier isEqualToString:@"username"]) {
+        NSTextField *textField = [tableView makeViewWithIdentifier:@"serverUsername" owner:self];
+
+        if (textField == nil) {
+            textField = [[NSTextField alloc] init];
+            textField.identifier = @"serverUsername";
+            [textField setBordered:NO];
+        }
+
+        [textField setStringValue:[server username]];
+        result = textField;
+    } else if ([identifier isEqualToString:@"password"]) {
+        NSSecureTextField *textField = [tableView makeViewWithIdentifier:@"password" owner:self];
+
+        if (textField == nil) {
+            textField = [[NSSecureTextField alloc] init];
+            [textField setIdentifier:@"password"];
+            [textField setBordered:NO];
+        }
+
+        [textField setStringValue:[server password]];
+        result = textField;
     }
 
-    IRCServer *server = [currentServers objectAtIndex:row];
-    result.stringValue = [server hostname];
     return result;
+}
+
+- (NSIndexSet *)tableView:(NSTableView *)tableView
+selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes {
+    return 0;
 }
 
 @end
