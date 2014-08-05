@@ -55,6 +55,18 @@
         [scrollview setFocusRingType:NSFocusRingTypeExterior];
         [self addSubview:scrollview];
 
+        NSTextField *label = [[NSTextField alloc] initWithFrame:NSMakeRect(innerFrame.origin.x, innerFrame.origin.y + innerFrame.size.height, 100, 20)];
+        [label setIdentifier:@"Saved-Servers-Label"];
+        [[label cell] setControlSize:NSSmallControlSize];
+        [label setBordered:NO];
+        [label setBezeled:NO];
+        [label setSelectable:NO];
+        [label setEditable:NO];
+        [label setFont:[NSFont systemFontOfSize:13.0]];
+        [label setBackgroundColor:[NSColor clearColor]];
+        [label setStringValue:@"Saved Servers:"];
+        [self addSubview:label];
+
         NSButton *removeServer = [[NSButton alloc] initWithFrame:NSMakeRect(innerFrame.origin.x + 2, innerFrame.origin.y - 30, 22, 20)];
         [removeServer setTitle:@"-"];
         [removeServer setImage:[NSImage imageNamed:NSImageNameRemoveTemplate]];
