@@ -12,9 +12,20 @@
 
 - (id)initWithFrame:(NSRect) frame {
     if (self = [super initWithFrame:frame]) {
-        NSSize innerSize = NSMakeSize(frame.size.width * 0.8, frame.size.height * 0.6);
-        NSRect innerFrame = NSMakeRect((frame.size.width - innerSize.width) / 2, (frame.size.height - innerSize.height) / 2, innerSize.width, innerSize.height);
-        NSScrollView *scrollview  = [[NSScrollView alloc] initWithFrame:innerFrame];
+        NSSize innerSize = NSMakeSize(frame.size.width * 0.8, frame.size.height * 0.8);
+        NSRect innerFrameTop = NSMakeRect(
+                                          (frame.size.width - innerSize.width) / 2,
+                                          frame.size.height - innerSize.height * 0.4 - 45,
+                                          innerSize.width,
+                                          innerSize.height * 0.4
+                                          );
+        NSRect innerFrameBottom = NSMakeRect(
+                                             innerFrameTop.origin.x,
+                                             innerFrameTop.origin.y - innerFrameTop.size.height - 65,
+                                             innerSize.width,
+                                             innerSize.height * 0.4
+                                             );
+
         NSTableColumn *nameColumn = [[NSTableColumn alloc] initWithIdentifier:@"hostname"];
         [nameColumn.headerCell setTitle:@"Server Hostname"];
         [nameColumn setIdentifier:@"hostname"];
@@ -40,7 +51,7 @@
         [passwordColumn setIdentifier:@"password"];
         [passwordColumn setWidth:100];
 
-        tableview = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 0, innerFrame.size.width, innerFrame.size.height)];
+        tableview = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 0, innerFrameTop.size.width, innerFrameTop.size.height)];
         [tableview setRowHeight:20];
         [tableview setColumnAutoresizingStyle:NSTableViewLastColumnOnlyAutoresizingStyle | NSTableViewUniformColumnAutoresizingStyle];
         [tableview addTableColumn:nameColumn];
@@ -49,25 +60,51 @@
         [tableview addTableColumn:usernameColumn];
         [tableview addTableColumn:passwordColumn];
         [tableview setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleRegular];
-        [scrollview setBorderType:NSBezelBorder];
 
-        [scrollview setDocumentView:tableview];
-        [scrollview setFocusRingType:NSFocusRingTypeExterior];
-        [self addSubview:scrollview];
+        NSTableView *channelTable = [[NSTableView alloc] initWithFrame:innerFrameBottom];
+        NSTableColumn *channelNameColumn = [[NSTableColumn alloc] initWithIdentifier:@"channel-name"];
+        [channelNameColumn.headerCell setTitle:@"Name"];
+        [channelNameColumn setIdentifier:@"channel-name"];
+        [channelNameColumn setWidth:150];
+        [channelTable addTableColumn:channelNameColumn];
 
-        NSTextField *label = [[NSTextField alloc] initWithFrame:NSMakeRect(innerFrame.origin.x, innerFrame.origin.y + innerFrame.size.height, 100, 20)];
-        [label setIdentifier:@"Saved-Servers-Label"];
-        [[label cell] setControlSize:NSSmallControlSize];
-        [label setBordered:NO];
-        [label setBezeled:NO];
-        [label setSelectable:NO];
-        [label setEditable:NO];
-        [label setFont:[NSFont systemFontOfSize:13.0]];
-        [label setBackgroundColor:[NSColor clearColor]];
-        [label setStringValue:@"Saved Servers:"];
-        [self addSubview:label];
+        NSScrollView *channelsListView = [[NSScrollView alloc] initWithFrame:innerFrameBottom];
+        [channelsListView setBorderType:NSBezelBorder];
+        [channelsListView setDocumentView:channelTable];
+        [channelsListView setFocusRingType:NSFocusRingTypeExterior];
+        [self addSubview:channelsListView];
 
-        NSButton *removeServer = [[NSButton alloc] initWithFrame:NSMakeRect(innerFrame.origin.x + 2, innerFrame.origin.y - 30, 22, 20)];
+        NSScrollView *serverListView  = [[NSScrollView alloc] initWithFrame:innerFrameTop];
+        [serverListView setBorderType:NSBezelBorder];
+        [serverListView setDocumentView:tableview];
+        [serverListView setFocusRingType:NSFocusRingTypeExterior];
+        [self addSubview:serverListView];
+
+        NSTextField *serversLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(innerFrameTop.origin.x, innerFrameTop.origin.y + innerFrameTop.size.height, 100, 20)];
+        [serversLabel setIdentifier:@"Saved-Servers-Label"];
+        [[serversLabel cell] setControlSize:NSSmallControlSize];
+        [serversLabel setBordered:NO];
+        [serversLabel setBezeled:NO];
+        [serversLabel setSelectable:NO];
+        [serversLabel setEditable:NO];
+        [serversLabel setFont:[NSFont systemFontOfSize:13.0]];
+        [serversLabel setBackgroundColor:[NSColor clearColor]];
+        [serversLabel setStringValue:NSLocalizedString(@"Saved Servers:", @"Saved-Servers-Label")];
+        [self addSubview:serversLabel];
+
+        NSTextField *channelsLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(innerFrameBottom.origin.x, innerFrameBottom.origin.y + innerFrameBottom.size.height, 150, 20)];
+        [channelsLabel setIdentifier:@"Channels-Label"];
+        [[channelsLabel cell] setControlSize:NSSmallControlSize];
+        [channelsLabel setBordered:NO];
+        [channelsLabel setBezeled:NO];
+        [channelsLabel setSelectable:NO];
+        [channelsLabel setEditable:NO];
+        [channelsLabel setFont:[NSFont systemFontOfSize:13.0]];
+        [channelsLabel setBackgroundColor:[NSColor clearColor]];
+        [channelsLabel setStringValue:NSLocalizedString(@"Saved Channels:", @"Saved-Channels-Label")];
+        [self addSubview:channelsLabel];
+
+        NSButton *removeServer = [[NSButton alloc] initWithFrame:NSMakeRect(innerFrameTop.origin.x + 2, innerFrameTop.origin.y - 30, 22, 20)];
         [removeServer setTitle:@"-"];
         [removeServer setImage:[NSImage imageNamed:NSImageNameRemoveTemplate]];
         [removeServer setBezelStyle:NSShadowlessSquareBezelStyle];

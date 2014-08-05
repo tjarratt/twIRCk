@@ -143,7 +143,7 @@
         return;
     }
 
-    NSSize size = NSMakeSize(600, 200);
+    NSSize size = NSMakeSize(600, 400);
     CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
     CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
 
