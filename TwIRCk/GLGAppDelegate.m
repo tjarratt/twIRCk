@@ -22,7 +22,6 @@
     self.windowController = [[NSWindowController alloc] initWithWindow:[self window]];
     [[self window] setTitle:@"twIRCk"];
 
-    // initialize any servers we might have, try to connect to them
     NSManagedObjectContext *context = [self managedObjectContext];
     NSEntityDescription *description = [NSEntityDescription entityForName:@"IRCServer" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -36,7 +35,6 @@
         serverWindowIsVisible = NO;
         [self.window close];
 
-        // defaults for chat window size
         NSSize size = NSMakeSize(800, 600);
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
         CGFloat screenheight = [[NSScreen mainScreen] frame].size.height;
@@ -97,8 +95,6 @@
 
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
-
-        // Customize this code block to include application-specific recovery steps.
         BOOL result = [sender presentError:error];
         if (result) {
             return NSTerminateCancel;
