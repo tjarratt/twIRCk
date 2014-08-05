@@ -136,6 +136,7 @@
 		F7B8B544181219A7003003BC /* MessageParsingSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = MessageParsingSpec.mm; path = "../twIRCk Specs/MessageParsingSpec.mm"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7C4EC2E198EE80C00868C3B /* GLGPreferencesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGPreferencesView.h; path = Views/Preferences/GLGPreferencesView.h; sourceTree = "<group>"; };
 		F7C4EC2F198EE80C00868C3B /* GLGPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGPreferencesView.m; path = Views/Preferences/GLGPreferencesView.m; sourceTree = "<group>"; };
+		F7C4EC40199057D300868C3B /* GLGFetchedServersController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGFetchedServersController.h; sourceTree = "<group>"; };
 		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
 		F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = twIRCk.iconset; sourceTree = "<group>"; };
 		F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGOccupantDelegate.h; sourceTree = "<group>"; };
@@ -345,6 +346,7 @@
 				F7819BA717EB6EB8004DB741 /* GLGBrokerDelegate.h */,
 				F7819BA817EB714B004DB741 /* GLGStreamReaderDelegate.h */,
 				F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */,
+				F7C4EC40199057D300868C3B /* GLGFetchedServersController.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

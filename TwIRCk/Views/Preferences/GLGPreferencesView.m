@@ -18,31 +18,26 @@
         NSTableColumn *nameColumn = [[NSTableColumn alloc] initWithIdentifier:@"hostname"];
         [nameColumn.headerCell setTitle:@"Server Hostname"];
         [nameColumn setIdentifier:@"hostname"];
-        [nameColumn setEditable:NO];
         [nameColumn setWidth:150];
 
         NSTableColumn *portColumn = [[NSTableColumn alloc] initWithIdentifier:@"port"];
         [portColumn.headerCell setTitle:@"port"];
         [portColumn setIdentifier:@"port"];
-        [portColumn setEditable:NO];
         [portColumn setWidth:50];
 
         NSTableColumn *sslColumn = [[NSTableColumn alloc] initWithIdentifier:@"ssl"];
         [sslColumn.headerCell setTitle:@"Use SSL"];
         [sslColumn setIdentifier:@"ssl"];
-        [sslColumn setEditable:NO];
         [sslColumn setWidth:50];
 
         NSTableColumn *usernameColumn = [[NSTableColumn alloc] initWithIdentifier:@"username"];
         [usernameColumn.headerCell setTitle:@"username"];
         [usernameColumn setIdentifier:@"username"];
-        [usernameColumn setEditable:NO];
         [usernameColumn setWidth:100];
 
         NSTableColumn *passwordColumn = [[NSTableColumn alloc] initWithIdentifier:@"password"];
         [passwordColumn.headerCell setTitle:@"password"];
         [passwordColumn setIdentifier:@"password"];
-        [passwordColumn setEditable:NO];
         [passwordColumn setWidth:100];
 
         tableview = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 0, innerFrame.size.width, innerFrame.size.height)];
@@ -53,10 +48,19 @@
         [tableview addTableColumn:sslColumn];
         [tableview addTableColumn:usernameColumn];
         [tableview addTableColumn:passwordColumn];
+        [tableview setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleRegular];
 
         [scrollview setDocumentView:tableview];
-        [self addSubview:scrollview];
         [scrollview setFocusRingType:NSFocusRingTypeExterior];
+        [self addSubview:scrollview];
+
+        NSButton *removeServer = [[NSButton alloc] initWithFrame:NSMakeRect(innerFrame.origin.x + 2, innerFrame.origin.y - 30, 22, 20)];
+        [removeServer setTitle:@"-"];
+        [removeServer setImage:[NSImage imageNamed:NSImageNameRemoveTemplate]];
+        [removeServer setBezelStyle:NSShadowlessSquareBezelStyle];
+        [removeServer setTarget:self];
+        [removeServer setAction:@selector(removeSelectedRow:)];
+        [self addSubview:removeServer];
     }
 
     return self;
@@ -64,6 +68,27 @@
 
 - (NSTableView *) tableview {
     return tableview;
+}
+
+- (IBAction) removeSelectedRow:(id)sender {
+    NSInteger index = [tableview selectedRow];
+    if (index < 0) {
+        return;
+    }
+
+    IRCServer *server = [fetchedServersController serverAtIndexPath:index];
+    if (server == nil) { return; }
+    
+    NSManagedObjectContext *context = [GLGManagedObjectContext  managedObjectContext];
+    [context deleteObject:server];
+    [context save:nil];
+
+    NSIndexSet *set = [[NSIndexSet alloc] initWithIndex:index];
+    [tableview removeRowsAtIndexes:set withAnimation:NSTableViewAnimationEffectFade];
+}
+
+- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller {
+    fetchedServersController = controller;
 }
 
 @end

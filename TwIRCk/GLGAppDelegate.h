@@ -14,8 +14,9 @@
 #import "IRCServer.h"
 #import "GLGLogger.h"
 #import "GLGPreferencesView.h"
+#import "GLGFetchedServersController.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource, GLGFetchedServersController> {
     GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
 
@@ -29,5 +30,7 @@
 - (IBAction)closeActiveWindow:(id)sender;
 - (IBAction)copy:(id)sender;
 - (IBAction)showPreferences:(id)sender;
+
+- (IRCServer *) serverAtIndexPath:(NSUInteger) index;
 
 @end

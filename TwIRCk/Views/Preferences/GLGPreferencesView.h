@@ -7,11 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "GLGFetchedServersController.h"
+#import "GLGManagedObjectContext.h"
+#import "IRCServer.h"
 
 @interface GLGPreferencesView : NSView {
     NSTableView *tableview;
+    id <GLGFetchedServersController> fetchedServersController;
+
 }
 
 - (NSTableView *) tableview;
+- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller;
 
 @end
