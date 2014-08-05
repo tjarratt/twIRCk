@@ -49,6 +49,7 @@
         [tableview addTableColumn:usernameColumn];
         [tableview addTableColumn:passwordColumn];
         [tableview setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleRegular];
+        [scrollview setBorderType:NSBezelBorder];
 
         [scrollview setDocumentView:tableview];
         [scrollview setFocusRingType:NSFocusRingTypeExterior];
