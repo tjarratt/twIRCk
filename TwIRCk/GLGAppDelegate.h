@@ -14,13 +14,11 @@
 #import "IRCServer.h"
 #import "GLGLogger.h"
 #import "GLGPreferencesView.h"
-#import "GLGFetchedServersController.h"
+#import "GLGPreferencesController.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, GLGFetchedServersController> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
     GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
-
-    NSMutableArray *currentServers;
 }
 
 @property (retain) GLGChatView *chatView;
@@ -30,7 +28,5 @@
 - (IBAction)closeActiveWindow:(id)sender;
 - (IBAction)copy:(id)sender;
 - (IBAction)showPreferences:(id)sender;
-
-- (IRCServer *) serverAtIndexPath:(NSUInteger) index;
 
 @end

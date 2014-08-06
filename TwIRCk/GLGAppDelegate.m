@@ -27,7 +27,6 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:description];
 
-    currentServers = [[NSMutableArray alloc] init];
     NSArray *fetchedObjects = [context executeFetchRequest:request error:nil];
 
     if ([fetchedObjects count] > 0) {
@@ -47,7 +46,6 @@
 
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             IRCServer *server = (IRCServer *)obj;
-            [currentServers addObject:server];
 
             [self.chatView connectToServer:server];
             [[window contentView] addSubview:self.chatView];
@@ -154,7 +152,7 @@
     [window setDelegate:self];
     [window setTitle:NSLocalizedString(@"Preferences", @"Window.Title.Preferences")];
     GLGPreferencesView *view = [[GLGPreferencesView alloc] initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
-    [view setFetchedServersController:self];
+    [view setFetchedServersController:[[GLGPreferencesController alloc] init]];
 
     [window setContentView:view];
     [window makeKeyAndOrderFront:NSApp];
@@ -212,11 +210,6 @@
     if ([contentView isKindOfClass:[GLGPreferencesView class]]) {
         [self.windowController setWindow:self.window];
     }
-}
-
-#pragma mark - GLGFetchedServersController
-- (IRCServer *) serverAtIndexPath:(NSUInteger) index {
-    return [currentServers objectAtIndex:index];
 }
 
 @end

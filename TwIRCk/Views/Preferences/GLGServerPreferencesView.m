@@ -38,7 +38,7 @@
         [passwordColumn setIdentifier:@"password"];
         [passwordColumn setWidth:100];
 
-        NSRect innerFrame = NSMakeRect(0, -25, frame.size.width, frame.size.height);
+        NSRect innerFrame = NSMakeRect(0, 25, frame.size.width, frame.size.height - 55);
         tableview = [[NSTableView alloc] initWithFrame:innerFrame];
         [tableview setDelegate:self];
         [tableview setDataSource:self];
