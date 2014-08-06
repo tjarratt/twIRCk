@@ -18,8 +18,11 @@ task :release, [:component] do |t, args|
 
   if args[:component] == 'major'
     pieces.first += 1
+    picees[1] = 0
+    pieces[2] = 0
   elsif args[:component] == 'minor'
     pieces[1] += 1
+    pieces[2] = 0
   elsif args[:component] == 'patch'
     pieces[2] += 1
   end
