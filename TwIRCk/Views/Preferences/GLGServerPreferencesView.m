@@ -73,6 +73,7 @@
         [removeServer setBezelStyle:NSShadowlessSquareBezelStyle];
         [removeServer setTarget:self];
         [removeServer setAction:@selector(removeSelectedRow:)];
+        [[removeServer cell] accessibilitySetOverrideValue:NSLocalizedString(@"Remove selected server", @"Remove-Selected-Server-Label") forAttribute:NSAccessibilityDescriptionAttribute];
         [self addSubview:removeServer];
     }
     return self;
