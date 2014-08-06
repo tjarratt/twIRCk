@@ -135,6 +135,7 @@
 
 - (IBAction) showPreferences:(id) sender {
     if ([[self.windowController.window contentView] isKindOfClass:[GLGPreferencesView class]]) {
+        [[[self windowController] window] makeKeyAndOrderFront:NSApp];
         return;
     }
 
