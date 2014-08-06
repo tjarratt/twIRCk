@@ -8,9 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "IRCServer.h"
+#import "GLGFetchedServersController.h"
 
 @interface GLGServerPreferencesView : NSView <NSTableViewDataSource, NSTableViewDelegate> {
     NSArray *currentServers;
+    NSTableView *tableview;
+    id <GLGFetchedServersController> serversController;
 }
+
+- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller;
 
 @end

@@ -14,8 +14,8 @@
 #import "GLGChannelPreferencesView.h"
 
 @interface GLGPreferencesView : NSView {
-    NSTableView *tableview;
     id <GLGFetchedServersController> fetchedServersController;
+    GLGServerPreferencesView *serverView;
 
 }
 

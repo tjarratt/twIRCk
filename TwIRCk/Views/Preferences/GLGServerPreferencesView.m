@@ -39,7 +39,7 @@
         [passwordColumn setWidth:100];
 
         NSRect innerFrame = NSMakeRect(0, -25, frame.size.width, frame.size.height);
-        NSTableView *tableview = [[NSTableView alloc] initWithFrame:innerFrame];
+        tableview = [[NSTableView alloc] initWithFrame:innerFrame];
         [tableview setDelegate:self];
         [tableview setDataSource:self];
 
@@ -69,8 +69,37 @@
         [serversLabel setBackgroundColor:[NSColor clearColor]];
         [serversLabel setStringValue:NSLocalizedString(@"Saved Servers:", @"Saved-Servers-Label")];
         [self addSubview:serversLabel];
+
+        NSButton *removeServer = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 22, 20)];
+        [removeServer setTitle:@"-"];
+        [removeServer setImage:[NSImage imageNamed:NSImageNameRemoveTemplate]];
+        [removeServer setBezelStyle:NSShadowlessSquareBezelStyle];
+        [removeServer setTarget:self];
+        [removeServer setAction:@selector(removeSelectedRow:)];
+        [self addSubview:removeServer];
     }
     return self;
+}
+
+- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller {
+    serversController = controller;
+}
+
+- (IBAction) removeSelectedRow:(id)sender {
+    NSInteger index = [tableview selectedRow];
+    if (index < 0) {
+        return;
+    }
+
+    IRCServer *server = [serversController serverAtIndexPath:index];
+    if (server == nil) { return; }
+
+    NSManagedObjectContext *context = [GLGManagedObjectContext  managedObjectContext];
+    [context deleteObject:server];
+    [context save:nil];
+
+    NSIndexSet *set = [[NSIndexSet alloc] initWithIndex:index];
+    [tableview removeRowsAtIndexes:set withAnimation:NSTableViewAnimationEffectFade];
 }
 
 #pragma mark - NSTableViewDelegate
