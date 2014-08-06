@@ -12,8 +12,6 @@
 
 #pragma mark - Application Lifecycle
 - (void) applicationDidFinishLaunching:(NSNotification *) aNotification {
-    responseLookup = [[GLGResponseCodes alloc] init];
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowClosing:)
                                                  name:NSWindowWillCloseNotification

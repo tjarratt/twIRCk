@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <CFNetwork/CFSocketStream.h> 
 #import "GLGManagedObjectContext.h"
-#import "GLGResponseCodes.h"
 #import "GLGNewServer.h"
 #import "IRCServer.h"
 #import "GLGLogger.h"
@@ -17,7 +16,6 @@
 #import "GLGPreferencesController.h"
 
 @interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
-    GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
 }
 

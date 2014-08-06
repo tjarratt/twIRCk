@@ -284,7 +284,7 @@ const CGFloat occupantsSidebarWidth = 150;
 
         while (searchRange.location < string.length) {
             searchRange.length = string.length - searchRange.location;
-            foundRange = [string rangeOfString:occupant options:nil range:searchRange];
+            foundRange = [string rangeOfString:occupant options:0 range:searchRange];
             if (foundRange.location != NSNotFound) {
                 searchRange.location = foundRange.location+foundRange.length;
 

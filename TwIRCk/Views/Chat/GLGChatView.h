@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "GLGChatTextField.h"
 #import "GLGConnectionView.h"
-#import "GLGResponseCodes.h"
 #import "GLGIRCBroker.h"
 #import "GLGTabView.h"
 #import "GLGChannelSidebar.h"
@@ -20,7 +19,6 @@
 #import "GLGSystemMessagePresenter.h"
 
 @interface GLGChatView : NSView <GLGBrokerDelegate, NSWindowDelegate, GLGOccupantDelegate> {
-    GLGResponseCodes *responseTable;
     NSWindow *window;
 
     NSMutableArray *brokers;
