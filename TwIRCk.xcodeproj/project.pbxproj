@@ -49,6 +49,8 @@
 		F7D54B2E1992E86800CFE39A /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7D54B2B1992E86800CFE39A /* close_no_rollover.tif */; };
 		F7D54B2F1992E86800CFE39A /* close_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7D54B2C1992E86800CFE39A /* close_rollover.tif */; };
 		F7D54B301992E86800CFE39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54B2D1992E86800CFE39A /* main.m */; };
+		F7D54B341992EA6800CFE39A /* NSView+GLGDebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54B331992EA6800CFE39A /* NSView+GLGDebugView.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		F7D54B4F1992EC5F00CFE39A /* Foundation+PivotalCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D54B421992EC3900CFE39A /* Foundation+PivotalCore.framework */; };
 		F7DB1F70198C3E5500542C75 /* GLGRegularMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */; };
 		F7DB1F71198C3E5500542C75 /* GLGSystemMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6E198C3E5500542C75 /* GLGSystemMessagePresenter.m */; };
 		F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E5E77917F264D000A85FFB /* SystemConfiguration.framework */; };
@@ -66,6 +68,58 @@
 			script = "# momc\n";
 		};
 /* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		F7D54B411992EC3900CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AEA96B49168B506500861DF1;
+			remoteInfo = "Foundation+PivotalCore";
+		};
+		F7D54B431992EC3900CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AEA96C54168B636E00861DF1;
+			remoteInfo = "Foundation+PivotalCore-StaticLib";
+		};
+		F7D54B451992EC3900CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AEA96B9E168B541900861DF1;
+			remoteInfo = "Foundation+PivotalSpecHelper";
+		};
+		F7D54B471992EC3900CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AEA96C64168B63BD00861DF1;
+			remoteInfo = "Foundation+PivotalSpecHelper-StaticLib";
+		};
+		F7D54B491992EC3900CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AEA96BD3168B561500861DF1;
+			remoteInfo = FoundationSpec;
+		};
+		F7D54B4B1992EC3900CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AEA96C74168B640B00861DF1;
+			remoteInfo = "Foundation-StaticLibSpec";
+		};
+		F7D54B4D1992EC5500CFE39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AEA96B48168B506500861DF1;
+			remoteInfo = "Foundation+PivotalCore";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F70F1270179F2D8B00DBB74F /* twIRCk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twIRCk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +200,9 @@
 		F7D54B2B1992E86800CFE39A /* close_no_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_no_rollover.tif; path = "Supporting Files/close_no_rollover.tif"; sourceTree = "<group>"; };
 		F7D54B2C1992E86800CFE39A /* close_rollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = close_rollover.tif; path = "Supporting Files/close_rollover.tif"; sourceTree = "<group>"; };
 		F7D54B2D1992E86800CFE39A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
+		F7D54B321992EA6800CFE39A /* NSView+GLGDebugView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+GLGDebugView.h"; sourceTree = "<group>"; };
+		F7D54B331992EA6800CFE39A /* NSView+GLGDebugView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+GLGDebugView.m"; sourceTree = "<group>"; };
+		F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Foundation.xcodeproj; path = PivotalCoreKit/Foundation/Foundation.xcodeproj; sourceTree = "<group>"; };
 		F7DB1F69198C3E5500542C75 /* GLGMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGMessagePresenter.h; path = Views/Chat/Presenters/GLGMessagePresenter.h; sourceTree = "<group>"; };
 		F7DB1F6B198C3E5500542C75 /* GLGRegularMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGRegularMessagePresenter.h; path = Views/Chat/Presenters/GLGRegularMessagePresenter.h; sourceTree = "<group>"; };
 		F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGRegularMessagePresenter.m; path = Views/Chat/Presenters/GLGRegularMessagePresenter.m; sourceTree = "<group>"; };
@@ -166,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7D54B4F1992EC5F00CFE39A /* Foundation+PivotalCore.framework in Frameworks */,
 				F7E5E77A17F264D000A85FFB /* SystemConfiguration.framework in Frameworks */,
 				F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */,
 				F70F1274179F2D8B00DBB74F /* Cocoa.framework in Frameworks */,
@@ -201,6 +259,7 @@
 		F70F1267179F2D8B00DBB74F = {
 			isa = PBXGroup;
 			children = (
+				F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */,
 				F7C5FF4617F0229C005B522B /* twIRCk.entitlements */,
 				F70F1279179F2D8B00DBB74F /* TwIRCk */,
 				F717720C1831DA0B00BD6EB4 /* Specs */,
@@ -391,8 +450,23 @@
 				F7D54B251992E4F700CFE39A /* GLGLogger.h */,
 				F7D54B1C1992E49800CFE39A /* NSColor+GLG.h */,
 				F7D54B1D1992E49800CFE39A /* NSColor+GLG.m */,
+				F7D54B321992EA6800CFE39A /* NSView+GLGDebugView.h */,
+				F7D54B331992EA6800CFE39A /* NSView+GLGDebugView.m */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F7D54B361992EC3900CFE39A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7D54B421992EC3900CFE39A /* Foundation+PivotalCore.framework */,
+				F7D54B441992EC3900CFE39A /* libFoundation+PivotalCore-StaticLib.a */,
+				F7D54B461992EC3900CFE39A /* Foundation+PivotalSpecHelper.framework */,
+				F7D54B481992EC3900CFE39A /* libFoundation+PivotalSpecHelper-StaticLib.a */,
+				F7D54B4A1992EC3900CFE39A /* FoundationSpec */,
+				F7D54B4C1992EC3900CFE39A /* Foundation-StaticLibSpec.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		F7DB1F5E198C3BC000542C75 /* Presenters */ = {
@@ -448,6 +522,7 @@
 				F786C8E917E686C8004F64DF /* PBXBuildRule */,
 			);
 			dependencies = (
+				F7D54B4E1992EC5500CFE39A /* PBXTargetDependency */,
 			);
 			name = twIRCk;
 			productName = TwIRCk;
@@ -491,6 +566,12 @@
 			mainGroup = F70F1267179F2D8B00DBB74F;
 			productRefGroup = F70F1271179F2D8B00DBB74F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F7D54B361992EC3900CFE39A /* Products */;
+					ProjectRef = F7D54B351992EC3900CFE39A /* Foundation.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F70F126F179F2D8B00DBB74F /* twIRCk */,
@@ -498,6 +579,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F7D54B421992EC3900CFE39A /* Foundation+PivotalCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = "Foundation+PivotalCore.framework";
+			remoteRef = F7D54B411992EC3900CFE39A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7D54B441992EC3900CFE39A /* libFoundation+PivotalCore-StaticLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFoundation+PivotalCore-StaticLib.a";
+			remoteRef = F7D54B431992EC3900CFE39A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7D54B461992EC3900CFE39A /* Foundation+PivotalSpecHelper.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = "Foundation+PivotalSpecHelper.framework";
+			remoteRef = F7D54B451992EC3900CFE39A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7D54B481992EC3900CFE39A /* libFoundation+PivotalSpecHelper-StaticLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFoundation+PivotalSpecHelper-StaticLib.a";
+			remoteRef = F7D54B471992EC3900CFE39A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7D54B4A1992EC3900CFE39A /* FoundationSpec */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = FoundationSpec;
+			remoteRef = F7D54B491992EC3900CFE39A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7D54B4C1992EC3900CFE39A /* Foundation-StaticLibSpec.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Foundation-StaticLibSpec.app";
+			remoteRef = F7D54B4B1992EC3900CFE39A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F70F126E179F2D8B00DBB74F /* Resources */ = {
@@ -555,6 +681,7 @@
 				F71C3E75198B0EE8005C53AC /* GLGTabView.m in Sources */,
 				F7D54AF51991C55400CFE39A /* GLGLabelView.m in Sources */,
 				F71C3E62198B0ECD005C53AC /* GLGChatTextField.m in Sources */,
+				F7D54B341992EA6800CFE39A /* NSView+GLGDebugView.m in Sources */,
 				F7D54AEB1991A9E900CFE39A /* GLGServerPreferencesView.m in Sources */,
 				F76E2292198AD2B900F26FCF /* GLGAppDelegate.m in Sources */,
 				F76E2293198AD2B900F26FCF /* GLGReadDelegate.m in Sources */,
@@ -581,6 +708,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F7D54B4E1992EC5500CFE39A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Foundation+PivotalCore";
+			targetProxy = F7D54B4D1992EC5500CFE39A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F70F127C179F2D8B00DBB74F /* InfoPlist.strings */ = {
@@ -675,6 +810,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"PivotalCoreKit/**",
+				);
 				INFOPLIST_FILE = "TwIRCk/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
@@ -692,6 +832,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"PivotalCoreKit/**",
+				);
 				INFOPLIST_FILE = "TwIRCk/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
@@ -810,6 +955,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwIRCk/TwIRCk-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"PivotalCoreKit/**",
+				);
 				INFOPLIST_FILE = "TwIRCk/TwIRCk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;

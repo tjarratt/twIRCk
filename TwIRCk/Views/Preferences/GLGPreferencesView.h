@@ -13,6 +13,7 @@
 #import "GLGServerPreferencesView.h"
 #import "GLGChannelPreferencesView.h"
 #import "GLGPreferencesController.h"
+#import "NSView+GLGDebugView.h"
 
 @interface GLGPreferencesView : NSView {
     id <GLGFetchedServersController> fetchedServersController;
