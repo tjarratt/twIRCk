@@ -10,6 +10,8 @@
 #import "GLGFetchedServersController.h"
 #import "GLGManagedObjectContext.h"
 #import "IRCServer.h"
+#import "GLGServerPreferencesView.h"
+#import "GLGChannelPreferencesView.h"
 
 @interface GLGPreferencesView : NSView {
     NSTableView *tableview;
@@ -17,7 +19,6 @@
 
 }
 
-- (NSTableView *) tableview;
 - (void) setFetchedServersController:(id <GLGFetchedServersController>) controller;
 
 @end

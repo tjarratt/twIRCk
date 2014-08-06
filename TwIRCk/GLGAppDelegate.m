@@ -27,9 +27,8 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:description];
 
-    NSError *error;
     currentServers = [[NSMutableArray alloc] init];
-    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:nil];
 
     if ([fetchedObjects count] > 0) {
         serverWindowIsVisible = NO;
@@ -156,8 +155,6 @@
     [window setTitle:NSLocalizedString(@"Preferences", @"Window.Title.Preferences")];
     GLGPreferencesView *view = [[GLGPreferencesView alloc] initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
     [view setFetchedServersController:self];
-    [view.tableview setDelegate:self];
-    [view.tableview setDataSource:self];
 
     [window setContentView:view];
     [window makeKeyAndOrderFront:NSApp];
@@ -220,107 +217,6 @@
 #pragma mark - GLGFetchedServersController
 - (IRCServer *) serverAtIndexPath:(NSUInteger) index {
     return [currentServers objectAtIndex:index];
-}
-
-#pragma mark - NSTableViewDelegate
-- (NSInteger) numberOfRowsInTableView:(NSTableView *) tableview {
-    return [currentServers count];
-}
-
-- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    id result;
-    NSString *identifier = [tableColumn identifier];
-    IRCServer *server = [currentServers objectAtIndex:row];
-
-    if ([identifier isEqualToString:@"hostname"]) {
-        NSTextField *textField = [tableView makeViewWithIdentifier:@"serverNameRowView" owner:self];
-        if (textField == nil) {
-            textField = [[NSTextField alloc] init];
-            textField.identifier = @"serverNameRowView";
-            [textField setBordered:NO];
-            [textField setBezeled:NO];
-            [textField setEditable:NO];
-            [textField setBackgroundColor:[NSColor clearColor]];
-        }
-
-        [textField setStringValue: [server hostname]];
-        result = textField;
-    }
-    else if ([identifier isEqualToString:@"port"]) {
-        NSTextField *textField = [tableView makeViewWithIdentifier:@"port" owner:self];
-        if (textField == nil) {
-            textField = [[NSTextField alloc] init];
-            textField.identifier = @"port";
-            [textField setBordered:NO];
-            [textField setBezeled:NO];
-            [textField setSelectable:NO];
-            [textField setEditable:NO];
-            [textField setBackgroundColor:[NSColor clearColor]];
-        }
-
-        [textField setStringValue: [server.port stringValue]];
-        result = textField;
-    } else if ([identifier isEqualToString:@"ssl"]) {
-        NSButton *checkbox = [tableView makeViewWithIdentifier:@"useSSLCheckBox" owner:self];
-        if (checkbox == nil ) {
-            checkbox = [[NSButton alloc] init];
-            [checkbox setButtonType:NSSwitchButton];
-            [checkbox setIdentifier:@"useSSLCheckBox"];
-            [checkbox setTitle:@""];
-            [checkbox setEnabled:NO];
-        }
-
-        if (server.useSSL) {
-            [checkbox setState:NSOnState];
-        } else {
-            [checkbox setState:NSOffState];
-        }
-
-        result = checkbox;
-    }
-    else if ([identifier isEqualToString:@"username"]) {
-        NSTextField *textField = [tableView makeViewWithIdentifier:@"serverUsername" owner:self];
-
-        if (textField == nil) {
-            textField = [[NSTextField alloc] init];
-            textField.identifier = @"serverUsername";
-            [textField setBordered:NO];
-            [textField setBezeled:NO];
-            [textField setSelectable:NO];
-            [textField setEditable:NO];
-            [textField setBackgroundColor:[NSColor clearColor]];
-        }
-
-        [textField setStringValue:[server username]];
-        result = textField;
-    } else if ([identifier isEqualToString:@"password"]) {
-        NSSecureTextField *textField = [tableView makeViewWithIdentifier:@"password" owner:self];
-
-        if (textField == nil) {
-            textField = [[NSSecureTextField alloc] init];
-            [textField setIdentifier:@"password"];
-            [textField setBordered:NO];
-            [textField setBezeled:NO];
-            [textField setSelectable:NO];
-            [textField setEditable:NO];
-            [textField setBackgroundColor:[NSColor clearColor]];
-        }
-
-        [textField setStringValue:[server password]];
-        result = textField;
-    }
-
-    return result;
-}
-
-- (void) tableView:(NSTableView *)tableView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-    if ([tableView selectedRow] == -1) {
-        [tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:row] byExtendingSelection:NO];
-    }
-}
-
-- (BOOL) selectionShouldChangeInTableView:(NSTableView *)aTableView {
-    return [currentServers count] > 1;
 }
 
 @end

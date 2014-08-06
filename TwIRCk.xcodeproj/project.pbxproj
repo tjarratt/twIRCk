@@ -47,6 +47,8 @@
 		F786C8EA17E687CA004F64DF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70F1277179F2D8B00DBB74F /* CoreData.framework */; };
 		F7C4EC30198EE80C00868C3B /* GLGPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C4EC2F198EE80C00868C3B /* GLGPreferencesView.m */; };
 		F7C5FF6117F0B2EC005B522B /* twIRCk.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */; };
+		F7D54AEB1991A9E900CFE39A /* GLGServerPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54AEA1991A9E900CFE39A /* GLGServerPreferencesView.m */; };
+		F7D54AEE1991B6BB00CFE39A /* GLGChannelPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54AED1991B6BB00CFE39A /* GLGChannelPreferencesView.m */; };
 		F7DB1F70198C3E5500542C75 /* GLGRegularMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */; };
 		F7DB1F71198C3E5500542C75 /* GLGSystemMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6E198C3E5500542C75 /* GLGSystemMessagePresenter.m */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
@@ -140,6 +142,10 @@
 		F7C5FF4617F0229C005B522B /* twIRCk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = twIRCk.entitlements; path = twIRCk/twIRCk.entitlements; sourceTree = "<group>"; };
 		F7C5FF6017F0B2EC005B522B /* twIRCk.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = twIRCk.iconset; sourceTree = "<group>"; };
 		F7D0D96017FA792800F7B258 /* GLGOccupantDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLGOccupantDelegate.h; sourceTree = "<group>"; };
+		F7D54AE91991A9E900CFE39A /* GLGServerPreferencesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGServerPreferencesView.h; path = Views/Preferences/GLGServerPreferencesView.h; sourceTree = "<group>"; };
+		F7D54AEA1991A9E900CFE39A /* GLGServerPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGServerPreferencesView.m; path = Views/Preferences/GLGServerPreferencesView.m; sourceTree = "<group>"; };
+		F7D54AEC1991B6BB00CFE39A /* GLGChannelPreferencesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGChannelPreferencesView.h; path = Views/Preferences/GLGChannelPreferencesView.h; sourceTree = "<group>"; };
+		F7D54AED1991B6BB00CFE39A /* GLGChannelPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChannelPreferencesView.m; path = Views/Preferences/GLGChannelPreferencesView.m; sourceTree = "<group>"; };
 		F7DB1F69198C3E5500542C75 /* GLGMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGMessagePresenter.h; path = Views/Chat/Presenters/GLGMessagePresenter.h; sourceTree = "<group>"; };
 		F7DB1F6B198C3E5500542C75 /* GLGRegularMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGRegularMessagePresenter.h; path = Views/Chat/Presenters/GLGRegularMessagePresenter.h; sourceTree = "<group>"; };
 		F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGRegularMessagePresenter.m; path = Views/Chat/Presenters/GLGRegularMessagePresenter.m; sourceTree = "<group>"; };
@@ -356,6 +362,10 @@
 			children = (
 				F7C4EC2E198EE80C00868C3B /* GLGPreferencesView.h */,
 				F7C4EC2F198EE80C00868C3B /* GLGPreferencesView.m */,
+				F7D54AE91991A9E900CFE39A /* GLGServerPreferencesView.h */,
+				F7D54AEA1991A9E900CFE39A /* GLGServerPreferencesView.m */,
+				F7D54AEC1991B6BB00CFE39A /* GLGChannelPreferencesView.h */,
+				F7D54AED1991B6BB00CFE39A /* GLGChannelPreferencesView.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -534,9 +544,11 @@
 				F71C3E54198AF79C005C53AC /* Model.xcdatamodeld in Sources */,
 				F71C3E75198B0EE8005C53AC /* GLGTabView.m in Sources */,
 				F71C3E62198B0ECD005C53AC /* GLGChatTextField.m in Sources */,
+				F7D54AEB1991A9E900CFE39A /* GLGServerPreferencesView.m in Sources */,
 				F76E2292198AD2B900F26FCF /* GLGAppDelegate.m in Sources */,
 				F76E2293198AD2B900F26FCF /* GLGReadDelegate.m in Sources */,
 				F76E2294198AD2B900F26FCF /* GLGWriteDelegate.m in Sources */,
+				F7D54AEE1991B6BB00CFE39A /* GLGChannelPreferencesView.m in Sources */,
 				F7DB1F71198C3E5500542C75 /* GLGSystemMessagePresenter.m in Sources */,
 				F71C3E61198B0ECD005C53AC /* GLGChatLogView.m in Sources */,
 				F76E2295198AD2B900F26FCF /* GLGIRCBroker.m in Sources */,

@@ -103,4 +103,13 @@
     return _managedObjectContext;
 }
 
++ (NSArray *) currentServers {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"IRCServer" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:description];
+
+    return [context executeFetchRequest:request error:nil];
+}
+
 @end

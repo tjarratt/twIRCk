@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "IRCserver.h"
 
 @interface GLGManagedObjectContext : NSObject
 + (NSManagedObjectContext *) managedObjectContext;
++ (NSArray *) currentServers;
 @end

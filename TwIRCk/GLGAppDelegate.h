@@ -16,7 +16,7 @@
 #import "GLGPreferencesView.h"
 #import "GLGFetchedServersController.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource, GLGFetchedServersController> {
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, GLGFetchedServersController> {
     GLGResponseCodes *responseLookup;
     BOOL serverWindowIsVisible;
 
