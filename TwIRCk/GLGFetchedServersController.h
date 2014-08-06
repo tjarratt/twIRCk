@@ -10,5 +10,6 @@
 #import "IRCServer.h"
 
 @protocol GLGFetchedServersController <NSObject>
+- (NSArray *) currentServers;
 - (IRCServer *) serverAtIndexPath:(NSUInteger) index;
 @end

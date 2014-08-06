@@ -12,13 +12,15 @@
 #import "IRCServer.h"
 #import "GLGServerPreferencesView.h"
 #import "GLGChannelPreferencesView.h"
+#import "GLGPreferencesController.h"
 
 @interface GLGPreferencesView : NSView {
     id <GLGFetchedServersController> fetchedServersController;
     GLGServerPreferencesView *serverView;
+    GLGChannelPreferencesView *channelView;
 
 }
 
-- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller;
+- (void) setFetchedServersController:(GLGPreferencesController *) controller;
 
 @end

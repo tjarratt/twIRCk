@@ -7,7 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "GLGLabelView.h"
+#import "IRCServer.h"
+#import "GLGPreferencesController.h"
 
-@interface GLGChannelPreferencesView : NSView
+@interface GLGChannelPreferencesView : NSView <NSTableViewDelegate, NSTableViewDataSource> {
+    NSTableView *tableView;
+    GLGPreferencesController *controller;
+}
+
+- (void) setChannelsBinding:(id) source;
 
 @end

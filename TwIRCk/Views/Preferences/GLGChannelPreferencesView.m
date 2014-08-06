@@ -14,16 +14,18 @@
     if (self = [super initWithFrame:frame]) {
         NSRect innerFrame = NSMakeRect(0, 0, frame.size.width, frame.size.height - 25);
 
-        NSTableView *channelTable = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 0, innerFrame.size.width, innerFrame.size.height)];
+        tableView = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 0, innerFrame.size.width, innerFrame.size.height)];
         NSTableColumn *channelNameColumn = [[NSTableColumn alloc] initWithIdentifier:@"channel-name"];
         [channelNameColumn.headerCell setTitle:@"Name"];
         [channelNameColumn setIdentifier:@"channel-name"];
         [channelNameColumn setWidth:150];
-        [channelTable addTableColumn:channelNameColumn];
+        [tableView addTableColumn:channelNameColumn];
+        [tableView setDelegate:self];
+        [tableView setDataSource:self];
 
         NSScrollView *channelsListView = [[NSScrollView alloc] initWithFrame:innerFrame];
         [channelsListView setBorderType:NSBezelBorder];
-        [channelsListView setDocumentView:channelTable];
+        [channelsListView setDocumentView:tableView];
         [channelsListView setFocusRingType:NSFocusRingTypeExterior];
         [self addSubview:channelsListView];
 
@@ -38,8 +40,52 @@
         [channelsLabel setBackgroundColor:[NSColor clearColor]];
         [channelsLabel setStringValue:NSLocalizedString(@"Saved Channels:", @"Saved-Channels-Label")];
         [self addSubview:channelsLabel];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reloadTable:)
+                                                     name:@"preferences.server.selection.changed"
+                                                   object:nil];
     }
     return self;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - NSNotificationCenter selectors
+- (void) reloadTable:(NSNotification *) notification {
+    [tableView reloadData];
+}
+
+- (void) setChannelsBinding:(id) source {
+    controller = source;
+}
+
+#pragma mark - NSTableViewDataSource
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
+    if (controller != nil && controller.selectedServer != nil) {
+        return [[[[controller selectedServer] channels] allObjects] count];
+    } else {
+        return 0;
+    }
+}
+
+#pragma mark - NSTableViewDelegate
+- (NSView *) tableView:(NSTableView *)aTableView viewForTableColumn:(NSTableColumn *) tableColumn row:(NSInteger) row {
+    GLGLabelView *label = [aTableView makeViewWithIdentifier:@"channelNameView" owner:self];
+    if (label  == nil) {
+        label = [[GLGLabelView alloc] init];
+        [label setIdentifier:@"channelNameView"];
+    }
+
+    IRCServer *currentServer = [controller selectedServer];
+    if (currentServer != nil) {
+        NSString *channelName = [[[[currentServer channels] allObjects] objectAtIndex:row] name];
+        [label setStringValue:channelName];
+    }
+
+    return label;
 }
 
 @end

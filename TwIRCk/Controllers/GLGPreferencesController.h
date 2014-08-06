@@ -11,8 +11,11 @@
 #import "GLGManagedObjectContext.h"
 #import "IRCServer.h"
 
-@interface GLGPreferencesController : NSObject <GLGFetchedServersController> {
+@interface GLGPreferencesController : NSArrayController <GLGFetchedServersController> {
     NSArray *servers;
+    IRCServer *selectedServer;
 }
+
+- (IRCServer *) selectedServer;
 
 @end

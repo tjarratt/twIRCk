@@ -25,15 +25,16 @@
         [self addSubview:serverView];
 
         NSRect innerFrameBottom = NSMakeRect(innerFrame.origin.x, innerFrame.origin.y, innerFrame.size.width, innerFrame.size.height * 0.35);
-        GLGChannelPreferencesView *channelView = [[GLGChannelPreferencesView alloc] initWithFrame:innerFrameBottom];
+        channelView = [[GLGChannelPreferencesView alloc] initWithFrame:innerFrameBottom];
         [self addSubview:channelView];
     }
 
     return self;
 }
 
-- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller {
+- (void) setFetchedServersController:(GLGPreferencesController *) controller {
     [serverView setFetchedServersController: controller];
+    [channelView setChannelsBinding:controller];
 }
 
 @end

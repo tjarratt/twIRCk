@@ -50,6 +50,7 @@
 		F7D54AEB1991A9E900CFE39A /* GLGServerPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54AEA1991A9E900CFE39A /* GLGServerPreferencesView.m */; };
 		F7D54AEE1991B6BB00CFE39A /* GLGChannelPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54AED1991B6BB00CFE39A /* GLGChannelPreferencesView.m */; };
 		F7D54AF21991C0FF00CFE39A /* GLGPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54AF11991C0FF00CFE39A /* GLGPreferencesController.m */; };
+		F7D54AF51991C55400CFE39A /* GLGLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D54AF41991C55400CFE39A /* GLGLabelView.m */; };
 		F7DB1F70198C3E5500542C75 /* GLGRegularMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */; };
 		F7DB1F71198C3E5500542C75 /* GLGSystemMessagePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F6E198C3E5500542C75 /* GLGSystemMessagePresenter.m */; };
 		F7DBE3F317EE1AA1007832C7 /* close_no_rollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = F7DBE3F117EE1AA1007832C7 /* close_no_rollover.tif */; };
@@ -149,6 +150,8 @@
 		F7D54AED1991B6BB00CFE39A /* GLGChannelPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGChannelPreferencesView.m; path = Views/Preferences/GLGChannelPreferencesView.m; sourceTree = "<group>"; };
 		F7D54AF01991C0FF00CFE39A /* GLGPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGPreferencesController.h; path = Controllers/GLGPreferencesController.h; sourceTree = "<group>"; };
 		F7D54AF11991C0FF00CFE39A /* GLGPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGPreferencesController.m; path = Controllers/GLGPreferencesController.m; sourceTree = "<group>"; };
+		F7D54AF31991C55400CFE39A /* GLGLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGLabelView.h; path = Views/DefaultValueControls/GLGLabelView.h; sourceTree = "<group>"; };
+		F7D54AF41991C55400CFE39A /* GLGLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGLabelView.m; path = Views/DefaultValueControls/GLGLabelView.m; sourceTree = "<group>"; };
 		F7DB1F69198C3E5500542C75 /* GLGMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGMessagePresenter.h; path = Views/Chat/Presenters/GLGMessagePresenter.h; sourceTree = "<group>"; };
 		F7DB1F6B198C3E5500542C75 /* GLGRegularMessagePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGRegularMessagePresenter.h; path = Views/Chat/Presenters/GLGRegularMessagePresenter.h; sourceTree = "<group>"; };
 		F7DB1F6C198C3E5500542C75 /* GLGRegularMessagePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGRegularMessagePresenter.m; path = Views/Chat/Presenters/GLGRegularMessagePresenter.m; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 			children = (
 				F71C3E58198B0EBA005C53AC /* GLGDefaultValueTextField.h */,
 				F71C3E59198B0EBA005C53AC /* GLGDefaultValueTextField.m */,
+				F7D54AF31991C55400CFE39A /* GLGLabelView.h */,
+				F7D54AF41991C55400CFE39A /* GLGLabelView.m */,
 			);
 			name = DefaultValueControls;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				F71C3E6E198B0EDA005C53AC /* GLGGradientSidebar.m in Sources */,
 				F71C3E54198AF79C005C53AC /* Model.xcdatamodeld in Sources */,
 				F71C3E75198B0EE8005C53AC /* GLGTabView.m in Sources */,
+				F7D54AF51991C55400CFE39A /* GLGLabelView.m in Sources */,
 				F71C3E62198B0ECD005C53AC /* GLGChatTextField.m in Sources */,
 				F7D54AEB1991A9E900CFE39A /* GLGServerPreferencesView.m in Sources */,
 				F76E2292198AD2B900F26FCF /* GLGAppDelegate.m in Sources */,

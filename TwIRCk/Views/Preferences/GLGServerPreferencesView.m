@@ -12,8 +12,6 @@
 
 - (id) initWithFrame:(NSRect) frame {
     if (self = [super initWithFrame:frame]) {
-        currentServers = [GLGManagedObjectContext currentServers];
-
         NSTableColumn *nameColumn = [[NSTableColumn alloc] initWithIdentifier:@"hostname"];
         [nameColumn.headerCell setTitle:@"Server Hostname"];
         [nameColumn setIdentifier:@"hostname"];
@@ -41,7 +39,6 @@
         NSRect innerFrame = NSMakeRect(0, 25, frame.size.width, frame.size.height - 55);
         tableview = [[NSTableView alloc] initWithFrame:innerFrame];
         [tableview setDelegate:self];
-        [tableview setDataSource:self];
 
         [tableview setRowHeight:20];
         [tableview setColumnAutoresizingStyle:NSTableViewLastColumnOnlyAutoresizingStyle | NSTableViewUniformColumnAutoresizingStyle];
@@ -81,8 +78,9 @@
     return self;
 }
 
-- (void) setFetchedServersController:(id <GLGFetchedServersController>) controller {
+- (void) setFetchedServersController:(GLGPreferencesController *) controller {
     serversController = controller;
+    [tableview setDataSource:self];
 }
 
 - (IBAction) removeSelectedRow:(id)sender {
@@ -102,15 +100,16 @@
     [tableview removeRowsAtIndexes:set withAnimation:NSTableViewAnimationEffectFade];
 }
 
-#pragma mark - NSTableViewDelegate
-- (NSInteger) numberOfRowsInTableView:(NSTableView *) tableview {
-    return [currentServers count];
+#pragma mark - NSTableViewSource {
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
+    return [[serversController currentServers] count];
 }
 
+#pragma mark - NSTableViewDelegate
 - (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     id result;
     NSString *identifier = [tableColumn identifier];
-    IRCServer *server = [currentServers objectAtIndex:row];
+    IRCServer *server = [serversController serverAtIndexPath:row];
 
     if ([identifier isEqualToString:@"hostname"]) {
         NSTextField *textField = [tableView makeViewWithIdentifier:@"serverNameRowView" owner:self];
@@ -200,7 +199,12 @@
 }
 
 - (BOOL) selectionShouldChangeInTableView:(NSTableView *)aTableView {
-    return [currentServers count] > 1;
+    return [[serversController currentServers] count] > 1;
+}
+
+- (void) tableViewSelectionDidChange:(NSNotification *)notification {
+    NSTableView *tableView = [notification object];
+    [serversController setSelectionIndex:[tableView selectedRow]];
 }
 
 @end
