@@ -111,6 +111,8 @@
 
         if (answer == NSAlertAlternateReturn) {
             return NSTerminateCancel;
+        } else {
+            return NSTerminateNow;
         }
     }
     
