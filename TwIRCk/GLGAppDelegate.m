@@ -45,9 +45,7 @@
         self.chatView = [[GLGChatView alloc] initWithWindow:window];
 
         [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
-            IRCServer *server = (IRCServer *)obj;
-
-            [self.chatView connectToServer:server];
+            [self.chatView connectToServer:(IRCServer *)obj];
             [[window contentView] addSubview:self.chatView];
             [window setTitle:@"twIRCk"];
         }];
