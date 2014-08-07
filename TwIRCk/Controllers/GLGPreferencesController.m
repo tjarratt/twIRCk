@@ -35,13 +35,13 @@
 #pragma mark - NSArrayController
 - (BOOL) setSelectionIndex:(NSUInteger) index {
     BOOL result = [super setSelectionIndex:index];
-    if (result) {
+    if (result && index < [servers count]) {
         selectedServer = [servers objectAtIndex:index];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"preferences.server.selection.changed" object:nil];
     } else {
         selectedServer = nil;
     }
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"preferences.server.selection.changed" object:nil];
     return result;
 }
 
