@@ -26,20 +26,28 @@
         NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
         NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
+        NSString *autosaveName = @"twirck-chatview";
         NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+        [window setFrameAutosaveName:autosaveName];
+        [window setFrameUsingName:autosaveName];
+        [window setTitle:@"twIRCk"];
+        [[self windowController] setWindow:window];
+
         self.chatView = [[GLGChatView alloc] initWithWindow:window];
+        [window setContentView:self.chatView];
 
         [savedServers enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             [self.chatView connectToServer:(IRCServer *)obj];
-            [window setContentView:self.chatView];
-            [window setTitle:@"twIRCk"];
         }];
     }
     else {
-        [[self window] setTitle:@"Connect to a new server"];
+        NSWindow *window = [self window];
+        [window setTitle:@"Connect to a new server"];
         NSSize minSize = NSMakeSize(400, 80);
-        [[self window] setMinSize:minSize];
-        [[self window] setContentView:[[GLGNewServerView alloc] init]];
+        [window setMinSize:minSize];
+        [window setContentView:[[GLGNewServerView alloc] init]];
+        [window setFrameAutosaveName:@"twirck-new-server"];
+        [window setFrameUsingName:@"twirck-new-server"];
     }
 }
 
@@ -123,6 +131,9 @@
     NSRect frame = NSMakeRect(origin.x, origin.y, size.width, size.height);
 
     __strong NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    NSString *autosaveName = @"twirck-preferences";
+    [window setFrameAutosaveName:autosaveName];
+    [window setFrameUsingName:autosaveName];
     [window setDelegate:self];
     [window setTitle:NSLocalizedString(@"Preferences", @"Window.Title.Preferences")];
     GLGPreferencesView *view = [[GLGPreferencesView alloc] initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
@@ -153,6 +164,8 @@
     __strong NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
     [newWindow setTitle:@"Connect to a new server"];
     [newWindow setMinSize:windowRect.size];
+    [newWindow setFrameAutosaveName:@"twirck-new-server"];
+    [newWindow setFrameUsingName:@"twirck-new-server"];
     [newWindow makeKeyAndOrderFront:NSApp];
 
     [newWindow setContentView:[[GLGNewServerView alloc] init]];
