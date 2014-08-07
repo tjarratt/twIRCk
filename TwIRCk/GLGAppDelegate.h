@@ -15,9 +15,7 @@
 #import "GLGPreferencesView.h"
 #import "GLGPreferencesController.h"
 
-@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> {
-    BOOL serverWindowIsVisible;
-}
+@interface GLGAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 
 @property (retain) GLGChatView *chatView;
 @property (assign) IBOutlet NSWindow *window;

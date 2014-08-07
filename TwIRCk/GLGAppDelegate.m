@@ -12,17 +12,11 @@
 
 #pragma mark - Application Lifecycle
 - (void) applicationDidFinishLaunching:(NSNotification *) aNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(windowClosing:)
-                                                 name:NSWindowWillCloseNotification
-                                               object:nil];
-
     self.windowController = [[NSWindowController alloc] initWithWindow:[self window]];
     NSArray *savedServers = [GLGManagedObjectContext currentServers];
 
     if ([savedServers count] > 0) {
         [self.window close];
-        serverWindowIsVisible = NO;
 
         NSSize size = NSMakeSize(800, 600);
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
@@ -37,24 +31,16 @@
 
         [savedServers enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             [self.chatView connectToServer:(IRCServer *)obj];
-            [[window contentView] addSubview:self.chatView];
+            [window setContentView:self.chatView];
             [window setTitle:@"twIRCk"];
         }];
     }
     else {
         [[self window] setTitle:@"Connect to a new server"];
-        serverWindowIsVisible = YES;
         NSSize minSize = NSMakeSize(400, 80);
         [[self window] setMinSize:minSize];
-
-        NSView *contentView = [[self window] contentView];
-        GLGNewServerView *newServerView = [[GLGNewServerView alloc] initWithSuperView:contentView];
-        [contentView addSubview:newServerView];
+        [[self window] setContentView:[[GLGNewServerView alloc] init]];
     }
-}
-
-- (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
@@ -109,11 +95,6 @@
     return NSTerminateNow;
 }
 
-#pragma mark - Notifications
-- (void) windowClosing:(NSNotification *) aNotification {
-    serverWindowIsVisible = NO;
-}
-
 #pragma mark - IBActions
 - (IBAction) saveAction:(id) sender {
     NSError *error = nil;
@@ -154,7 +135,10 @@
 }
 
 - (IBAction) openNewServerWindow:(id) sender {
-    if (serverWindowIsVisible) {
+    NSWindow *currentWindow = [[self windowController] window];
+    NSView *theContentView = [currentWindow contentView];
+    if ([theContentView isKindOfClass:[GLGNewServerView class]]) {
+        [currentWindow makeKeyAndOrderFront:NSApp];
         return;
     }
 
@@ -171,12 +155,8 @@
     [newWindow setMinSize:windowRect.size];
     [newWindow makeKeyAndOrderFront:NSApp];
 
-    NSView *contentView = [newWindow contentView];
-    GLGNewServerView *newServerView = [[GLGNewServerView alloc] initWithSuperView:contentView];
-    [contentView addSubview:newServerView];
-
+    [newWindow setContentView:[[GLGNewServerView alloc] init]];
     [[self windowController] setWindow:newWindow];
-    serverWindowIsVisible = YES;
 }
 
 - (IBAction) quit:(id) sender {

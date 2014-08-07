@@ -26,7 +26,6 @@
     BOOL useSSL;
 }
 
-- (id) initWithSuperView:(NSView*) superview;
 - (void) shouldClose;
 
 @end

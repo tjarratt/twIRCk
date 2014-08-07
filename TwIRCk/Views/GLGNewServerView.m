@@ -10,36 +10,36 @@
 
 @implementation GLGNewServerView
 
-- (id) initWithSuperView:(NSView *) superview {
+- (id) init {
     if (self = [super init]) {
-        hostname = [self createTextFieldWithIdentifier:@"hostname" superView:superview];
+        hostname = [self createTextFieldWithIdentifier:@"hostname"];
         [hostname setDefaultValue:@"chat.freenode.net"];
-        id hostnameLabel = [self createLabelWithIdentifier:@"hostname" localizedTag:@"hostnameLabel" superView:superview];
+        id hostnameLabel = [self createLabelWithIdentifier:@"hostname" localizedTag:@"hostnameLabel"];
 
-        port = [self createTextFieldWithIdentifier:@"port" superView:superview];
+        port = [self createTextFieldWithIdentifier:@"port"];
         [port setDefaultValue:@"6697"];
-        id portLabel = [self createLabelWithIdentifier:@"port" localizedTag:@"portLabel" superView:superview];
+        id portLabel = [self createLabelWithIdentifier:@"port" localizedTag:@"portLabel"];
 
-        ssl = [self createCheckboxWithIdentifier:@"ssl" superView:superview];
+        ssl = [self createCheckboxWithIdentifier:@"ssl"];
         [ssl setState:NSOnState];
-        id sslLabel = [self createLabelWithIdentifier:@"ssl" localizedTag:@"sslLabel" superView:superview];
+        id sslLabel = [self createLabelWithIdentifier:@"ssl" localizedTag:@"sslLabel"];
         [sslLabel setStringValue:NSLocalizedString(@"Use SSL", "uses-SSL-Label")];
 
-        username = [self createTextFieldWithIdentifier:@"username" superView:superview];
+        username = [self createTextFieldWithIdentifier:@"username"];
         CGFloat scale = (CGFloat) arc4random() / 0x100000000;
         int randomValue = 10000 * scale;
         [username setDefaultValue:[NSString stringWithFormat:@"twirck-user-%d", randomValue]];
 
-        id usernameLabel = [self createLabelWithIdentifier:@"username" localizedTag:@"usernameLabel" superView:superview];
+        id usernameLabel = [self createLabelWithIdentifier:@"username" localizedTag:@"usernameLabel"];
         [[username cell] setPlaceholderString:NSLocalizedString(@"(optional)", @"optionalValue")];
 
-        password = [self createSecureTextFieldWithIdentifier:@"password" superView:superview];
+        password = [self createSecureTextFieldWithIdentifier:@"password"];
         [[password cell] setPlaceholderString:@"***"];
-        id passwordLabel = [self createLabelWithIdentifier:@"password" localizedTag:@"passwordLabel" superView:superview];
+        id passwordLabel = [self createLabelWithIdentifier:@"password" localizedTag:@"passwordLabel"];
 
-        channels = [self createTextFieldWithIdentifier:@"channels" superView:superview];
+        channels = [self createTextFieldWithIdentifier:@"channels"];
         [channels setDefaultValue:@"techendo, twirck, freenode"];
-        id channelsLabel = [self createLabelWithIdentifier:@"channels" localizedTag:@"channelsLabel" superView:superview];
+        id channelsLabel = [self createLabelWithIdentifier:@"channels" localizedTag:@"channelsLabel"];
         [[channels cell] setPlaceholderString:@"techendo, twirck, freenode (optional)"];
 
         NSButton *connect = [[NSButton alloc] init];
@@ -50,7 +50,7 @@
         [connect setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [connect setTranslatesAutoresizingMaskIntoConstraints:NO];
         [connect setBezelStyle:NSRoundedBezelStyle];
-        [superview addSubview:connect];
+        [self addSubview:connect];
 
         NSDictionary *views = NSDictionaryOfVariableBindings(hostname, hostnameLabel, port, portLabel, ssl, sslLabel,
                                                              username, usernameLabel, password, passwordLabel,
@@ -69,15 +69,15 @@
         /*
          View layout, the AutoLayout Secret Sauce™
         */
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[hostnameLabel]-[hostname(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[portLabel]-[port(>=50)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[sslLabel]-[ssl(>=20)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[usernameLabel]-[username(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[passwordLabel]-[password(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[channelsLabel]-[channels(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=80)-[connect]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[hostnameLabel]-[hostname(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[portLabel]-[port(>=50)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[sslLabel]-[ssl(>=20)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[usernameLabel]-[username(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[passwordLabel]-[password(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[channelsLabel]-[channels(>=200)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=80)-[connect]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
 
-        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[hostname]-[port]-[ssl]-(>=30,<=50)-[username]-[password]-[channels]-[connect]-(>=20)-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[hostname]-[port]-[ssl]-(>=30,<=50)-[username]-[password]-[channels]-[connect]-(>=20)-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
         
         for (NSView *view in @[hostname, port, ssl, username, password, channels]) {
             [view setContentHuggingPriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
@@ -88,19 +88,19 @@
 }
 
 #pragma mark - View Helpers
-- (NSButton *) createCheckboxWithIdentifier:(NSString *) identifier superView:superview {
+- (NSButton *) createCheckboxWithIdentifier:(NSString *) identifier {
     NSButton *checkbox = [[NSButton alloc] init];
     [checkbox setButtonType:NSSwitchButton];
     [checkbox setIdentifier:identifier];
     [checkbox setTitle:@""];
     [checkbox setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
     [checkbox setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [superview addSubview:checkbox];
+    [self addSubview:checkbox];
 
     return checkbox;
 }
 
-- (NSTextField *) createLabelWithIdentifier:(NSString *) identifier localizedTag:(NSString *) localeTag superView:(NSView *) superView {
+- (NSTextField *) createLabelWithIdentifier:(NSString *) identifier localizedTag:(NSString *) localeTag {
     NSTextField *label = [[NSTextField alloc] init];
     [label setIdentifier:[identifier stringByAppendingString:@"-label"]];
     [[label cell] setControlSize:NSSmallControlSize];
@@ -113,12 +113,12 @@
     [label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [label setStringValue:NSLocalizedString([identifier capitalizedString], localeTag)];
     [label setBackgroundColor:[NSColor clearColor]];
-    [superView addSubview:label];
+    [self addSubview:label];
 
     return label;
 }
 
-- (GLGDefaultValueTextField *) createTextFieldWithIdentifier:(NSString *) identifier superView:(NSView *) superView {
+- (GLGDefaultValueTextField *) createTextFieldWithIdentifier:(NSString *) identifier {
     GLGDefaultValueTextField *field = [[GLGDefaultValueTextField alloc] init];
     [field setIdentifier:identifier];
     [[field cell] setControlSize:NSSmallControlSize];
@@ -132,12 +132,12 @@
     [field setTarget:self];
     [field setAction:@selector(connectToService)];
 
-    [superView addSubview:field];
+    [self addSubview:field];
 
     return field;
 }
 
-- (NSSecureTextField *) createSecureTextFieldWithIdentifier:(NSString *) identifier superView:(NSView *) superView {
+- (NSSecureTextField *) createSecureTextFieldWithIdentifier:(NSString *) identifier {
     NSSecureTextField *field = [[NSSecureTextField alloc] init];
     [field setIdentifier:@"identifier"];
     [[field cell] setControlSize:NSSmallControlSize];
@@ -150,7 +150,7 @@
     [field setTarget:self];
     [field setAction:@selector(connectToService)];
 
-    [superView addSubview:field];
+    [self addSubview:field];
 
     return field;
 }
