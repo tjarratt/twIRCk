@@ -16,7 +16,7 @@
 
 @class GLGChatView;
 
-@interface GLGNewServer : NSView <GLGConnectionView> {
+@interface GLGNewServerView : NSView <GLGConnectionView> {
     GLGDefaultValueTextField *hostname;
     GLGDefaultValueTextField *port;
     GLGDefaultValueTextField *username;

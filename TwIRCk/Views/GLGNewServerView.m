@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 General Linear Group. All rights reserved.
 //
 
-#import "GLGNewServer.h"
+#import "GLGNewServerView.h"
 
-@implementation GLGNewServer
+@implementation GLGNewServerView
 
 - (id) initWithSuperView:(NSView *) superview {
     if (self = [super init]) {

@@ -54,7 +54,7 @@
         [[self window] setMinSize:minSize];
 
         NSView *contentView = [[self window] contentView];
-        GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
+        GLGNewServerView *newServerView = [[GLGNewServerView alloc] initWithSuperView:contentView];
         [contentView addSubview:newServerView];
     }
 }
@@ -177,7 +177,7 @@
     [newWindow makeKeyAndOrderFront:NSApp];
 
     NSView *contentView = [newWindow contentView];
-    GLGNewServer *newServerView = [[GLGNewServer alloc] initWithSuperView:contentView];
+    GLGNewServerView *newServerView = [[GLGNewServerView alloc] initWithSuperView:contentView];
     [contentView addSubview:newServerView];
 
     [[self windowController] setWindow:newWindow];

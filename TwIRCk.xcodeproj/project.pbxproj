@@ -14,7 +14,7 @@
 		F717720B1831DA0B00BD6EB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F717720A1831DA0B00BD6EB4 /* Foundation.framework */; };
 		F71772111831DA0B00BD6EB4 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71772101831DA0B00BD6EB4 /* Cedar.framework */; };
 		F71C3E54198AF79C005C53AC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7F45AE418558C850059DC65 /* Model.xcdatamodeld */; };
-		F71C3E57198B0EA8005C53AC /* GLGNewServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C3E56198B0EA8005C53AC /* GLGNewServer.m */; };
+		F71C3E57198B0EA8005C53AC /* GLGNewServerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C3E56198B0EA8005C53AC /* GLGNewServerView.m */; };
 		F71C3E5A198B0EBA005C53AC /* GLGDefaultValueTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C3E59198B0EBA005C53AC /* GLGDefaultValueTextField.m */; };
 		F71C3E61198B0ECD005C53AC /* GLGChatLogView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C3E5C198B0ECD005C53AC /* GLGChatLogView.m */; };
 		F71C3E62198B0ECD005C53AC /* GLGChatTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C3E5E198B0ECD005C53AC /* GLGChatTextField.m */; };
@@ -145,8 +145,8 @@
 		F717720F1831DA0B00BD6EB4 /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
 		F71772101831DA0B00BD6EB4 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
 		F71772121831DA0B00BD6EB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F71C3E55198B0EA8005C53AC /* GLGNewServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGNewServer.h; path = Views/GLGNewServer.h; sourceTree = "<group>"; };
-		F71C3E56198B0EA8005C53AC /* GLGNewServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGNewServer.m; path = Views/GLGNewServer.m; sourceTree = "<group>"; };
+		F71C3E55198B0EA8005C53AC /* GLGNewServerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGNewServerView.h; path = Views/GLGNewServerView.h; sourceTree = "<group>"; };
+		F71C3E56198B0EA8005C53AC /* GLGNewServerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGNewServerView.m; path = Views/GLGNewServerView.m; sourceTree = "<group>"; };
 		F71C3E58198B0EBA005C53AC /* GLGDefaultValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGDefaultValueTextField.h; path = Views/DefaultValueControls/GLGDefaultValueTextField.h; sourceTree = "<group>"; };
 		F71C3E59198B0EBA005C53AC /* GLGDefaultValueTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLGDefaultValueTextField.m; path = Views/DefaultValueControls/GLGDefaultValueTextField.m; sourceTree = "<group>"; };
 		F71C3E5B198B0ECD005C53AC /* GLGChatLogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLGChatLogView.h; path = Views/Chat/GLGChatLogView.h; sourceTree = "<group>"; };
@@ -354,8 +354,8 @@
 			isa = PBXGroup;
 			children = (
 				F7C4EC2D198EE7DB00868C3B /* Preferences */,
-				F71C3E55198B0EA8005C53AC /* GLGNewServer.h */,
-				F71C3E56198B0EA8005C53AC /* GLGNewServer.m */,
+				F71C3E55198B0EA8005C53AC /* GLGNewServerView.h */,
+				F71C3E56198B0EA8005C53AC /* GLGNewServerView.m */,
 				F76AA97317E789A300D5B0D0 /* DefaultValueControls */,
 				F7E9A8AC17E79BBF000AD4BB /* Chat */,
 				F7E9A8AB17E79BB6000AD4BB /* Tabs */,
@@ -690,7 +690,7 @@
 				F7DB1F71198C3E5500542C75 /* GLGSystemMessagePresenter.m in Sources */,
 				F71C3E61198B0ECD005C53AC /* GLGChatLogView.m in Sources */,
 				F76E2295198AD2B900F26FCF /* GLGIRCBroker.m in Sources */,
-				F71C3E57198B0EA8005C53AC /* GLGNewServer.m in Sources */,
+				F71C3E57198B0EA8005C53AC /* GLGNewServerView.m in Sources */,
 				F76E2296198AD2B900F26FCF /* GLGIRCParser.m in Sources */,
 				F71C3E6C198B0EDA005C53AC /* GLGChannelContent.m in Sources */,
 				F71C3E74198B0EE8005C53AC /* GLGTabItem.m in Sources */,

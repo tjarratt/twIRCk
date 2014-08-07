@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <CFNetwork/CFSocketStream.h> 
 #import "GLGManagedObjectContext.h"
-#import "GLGNewServer.h"
+#import "GLGNewServerView.h"
 #import "IRCServer.h"
 #import "GLGLogger.h"
 #import "GLGPreferencesView.h"
