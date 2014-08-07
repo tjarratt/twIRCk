@@ -18,18 +18,11 @@
                                                object:nil];
 
     self.windowController = [[NSWindowController alloc] initWithWindow:[self window]];
-    [[self window] setTitle:@"twIRCk"];
+    NSArray *savedServers = [GLGManagedObjectContext currentServers];
 
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *description = [NSEntityDescription entityForName:@"IRCServer" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:description];
-
-    NSArray *fetchedObjects = [context executeFetchRequest:request error:nil];
-
-    if ([fetchedObjects count] > 0) {
-        serverWindowIsVisible = NO;
+    if ([savedServers count] > 0) {
         [self.window close];
+        serverWindowIsVisible = NO;
 
         NSSize size = NSMakeSize(800, 600);
         CGFloat screenwidth = [[NSScreen mainScreen] frame].size.width;
@@ -42,13 +35,14 @@
         NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:style backing:NSBackingStoreBuffered defer:NO];
         self.chatView = [[GLGChatView alloc] initWithWindow:window];
 
-        [fetchedObjects enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
+        [savedServers enumerateObjectsUsingBlock:^(NSManagedObject *obj, NSUInteger index, BOOL *stop) {
             [self.chatView connectToServer:(IRCServer *)obj];
             [[window contentView] addSubview:self.chatView];
             [window setTitle:@"twIRCk"];
         }];
     }
     else {
+        [[self window] setTitle:@"Connect to a new server"];
         serverWindowIsVisible = YES;
         NSSize minSize = NSMakeSize(400, 80);
         [[self window] setMinSize:minSize];
@@ -173,6 +167,7 @@
     NSInteger style = NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask;
 
     __strong NSWindow *newWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:style backing:NSBackingStoreBuffered defer:NO];
+    [newWindow setTitle:@"Connect to a new server"];
     [newWindow setMinSize:windowRect.size];
     [newWindow makeKeyAndOrderFront:NSApp];
 
