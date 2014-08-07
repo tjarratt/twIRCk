@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "NSColor+GLG.h"
+#import "GLGLabelView.h"
 
 @interface GLGTabItem : NSView {
-    NSTextField *textfield;
+    GLGLabelView *textfield;
     NSImageView *imageView;
     NSImage *closeButton;
     NSImage *closeButtonSelected;

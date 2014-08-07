@@ -100,19 +100,14 @@
     return checkbox;
 }
 
-- (NSTextField *) createLabelWithIdentifier:(NSString *) identifier localizedTag:(NSString *) localeTag {
-    NSTextField *label = [[NSTextField alloc] init];
+- (GLGLabelView *) createLabelWithIdentifier:(NSString *) identifier localizedTag:(NSString *) localeTag {
+    GLGLabelView *label = [[GLGLabelView alloc] init];
     [label setIdentifier:[identifier stringByAppendingString:@"-label"]];
     [[label cell] setControlSize:NSSmallControlSize];
-    [label setBordered:NO];
-    [label setBezeled:NO];
-    [label setSelectable:NO];
-    [label setEditable:NO];
     [label setFont:[NSFont systemFontOfSize:11.0]];
     [label setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
     [label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [label setStringValue:NSLocalizedString([identifier capitalizedString], localeTag)];
-    [label setBackgroundColor:[NSColor clearColor]];
     [self addSubview:label];
 
     return label;

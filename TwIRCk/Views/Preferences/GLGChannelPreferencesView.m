@@ -29,15 +29,10 @@
         [channelsListView setFocusRingType:NSFocusRingTypeExterior];
         [self addSubview:channelsListView];
 
-        NSTextField *channelsLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(0, frame.size.height - 20, 150, 20)];
+        GLGLabelView *channelsLabel = [[GLGLabelView alloc] initWithFrame:NSMakeRect(0, frame.size.height - 20, 150, 20)];
         [channelsLabel setIdentifier:@"Channels-Label"];
         [[channelsLabel cell] setControlSize:NSSmallControlSize];
-        [channelsLabel setBordered:NO];
-        [channelsLabel setBezeled:NO];
-        [channelsLabel setSelectable:NO];
-        [channelsLabel setEditable:NO];
         [channelsLabel setFont:[NSFont systemFontOfSize:13.0]];
-        [channelsLabel setBackgroundColor:[NSColor clearColor]];
         [channelsLabel setStringValue:NSLocalizedString(@"Saved Channels:", @"Saved-Channels-Label")];
         [self addSubview:channelsLabel];
 

@@ -55,15 +55,10 @@
         [serverListView setFocusRingType:NSFocusRingTypeExterior];
         [self addSubview:serverListView];
 
-        NSTextField *serversLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(0, frame.size.height - 20, 100, 20)];
+        GLGLabelView *serversLabel = [[GLGLabelView alloc] initWithFrame:NSMakeRect(0, frame.size.height - 20, 100, 20)];
         [serversLabel setIdentifier:@"Saved-Servers-Label"];
         [[serversLabel cell] setControlSize:NSSmallControlSize];
-        [serversLabel setBordered:NO];
-        [serversLabel setBezeled:NO];
-        [serversLabel setSelectable:NO];
-        [serversLabel setEditable:NO];
         [serversLabel setFont:[NSFont systemFontOfSize:13.0]];
-        [serversLabel setBackgroundColor:[NSColor clearColor]];
         [serversLabel setStringValue:NSLocalizedString(@"Saved Servers:", @"Saved-Servers-Label")];
         [self addSubview:serversLabel];
 
@@ -127,19 +122,14 @@
         result = textField;
     }
     else if ([identifier isEqualToString:@"port"]) {
-        NSTextField *textField = [tableView makeViewWithIdentifier:@"port" owner:self];
-        if (textField == nil) {
-            textField = [[NSTextField alloc] init];
-            textField.identifier = @"port";
-            [textField setBordered:NO];
-            [textField setBezeled:NO];
-            [textField setSelectable:NO];
-            [textField setEditable:NO];
-            [textField setBackgroundColor:[NSColor clearColor]];
+        GLGLabelView *label = [tableView makeViewWithIdentifier:@"port" owner:self];
+        if (label == nil) {
+            label = [[GLGLabelView alloc] init];
+            [label setIdentifier:@"port"];
         }
 
-        [textField setStringValue: [server.port stringValue]];
-        result = textField;
+        [label setStringValue: [[server port] stringValue]];
+        result = label;
     } else if ([identifier isEqualToString:@"ssl"]) {
         NSButton *checkbox = [tableView makeViewWithIdentifier:@"useSSLCheckBox" owner:self];
         if (checkbox == nil ) {
@@ -159,20 +149,15 @@
         result = checkbox;
     }
     else if ([identifier isEqualToString:@"username"]) {
-        NSTextField *textField = [tableView makeViewWithIdentifier:@"serverUsername" owner:self];
+        GLGLabelView *label = [tableView makeViewWithIdentifier:@"serverUsername" owner:self];
 
-        if (textField == nil) {
-            textField = [[NSTextField alloc] init];
-            textField.identifier = @"serverUsername";
-            [textField setBordered:NO];
-            [textField setBezeled:NO];
-            [textField setSelectable:NO];
-            [textField setEditable:NO];
-            [textField setBackgroundColor:[NSColor clearColor]];
+        if (label == nil) {
+            label = [[GLGLabelView alloc] init];
+            [label setIdentifier:@"serverUsername"];
         }
 
-        [textField setStringValue:[server username]];
-        result = textField;
+        [label setStringValue:[server username]];
+        result = label;
     } else if ([identifier isEqualToString:@"password"]) {
         NSSecureTextField *textField = [tableView makeViewWithIdentifier:@"password" owner:self];
 

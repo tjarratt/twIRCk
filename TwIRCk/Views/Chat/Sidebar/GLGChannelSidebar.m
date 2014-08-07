@@ -46,13 +46,8 @@
         [label setDelegate:self.superview];
         [[label cell] setControlSize:NSSmallControlSize];
         [label setAlignment:NSLeftTextAlignment];
-        [label setBordered:NO];
-        [label setBezeled:NO];
-        [label setSelectable:NO];
-        [label setEditable:NO];
         [label setFont:[NSFont systemFontOfSize:11.0]];
         [label setStringValue:name];
-        [label setBackgroundColor:[NSColor clearColor]];
         [label setFrame:NSMakeRect(rect.origin.x, rect.origin.y, label.intrinsicContentSize.width + 6, rect.size.height)];
         [label setAlignment:NSCenterTextAlignment];
         [label setTextColor:[colors objectAtIndex:i]];

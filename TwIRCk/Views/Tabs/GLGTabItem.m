@@ -14,7 +14,7 @@
     if (self = [super initWithFrame:frame]) {
         selectedRect = NSMakeRect(13, 8, frame.size.width - 38, frame.size.height);
         unselectedRect = NSMakeRect(13, 8, frame.size.width - 23, frame.size.height);
-        textfield = [[NSTextField alloc] initWithFrame:unselectedRect];
+        textfield = [[GLGLabelView alloc] initWithFrame:unselectedRect];
 
         NSRect imageFrame = NSMakeRect(frame.size.width - 30, 6, 15, 15);
         imageView = [[NSImageView alloc] initWithFrame:imageFrame];
@@ -35,12 +35,7 @@
 
         [textfield setIdentifier:[theLabel stringByAppendingString:@"-tab-item"]];
         [[textfield cell] setControlSize:NSSmallControlSize];
-        [textfield setBackgroundColor:[NSColor clearColor]];
         [textfield setAlignment:NSLeftTextAlignment];
-        [textfield setBordered:NO];
-        [textfield setBezeled:NO];
-        [textfield setSelectable:NO];
-        [textfield setEditable:NO];
         [textfield setFont:[NSFont systemFontOfSize:11.0]];
         [textfield setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [textfield setTranslatesAutoresizingMaskIntoConstraints:NO];

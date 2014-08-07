@@ -10,6 +10,7 @@
 #import "IRCServer.h"
 #import "GLGFetchedServersController.h"
 #import "GLGPreferencesController.h"
+#import "GLGLabelView.h"
 
 @interface GLGServerPreferencesView : NSView <NSTableViewDataSource, NSTableViewDelegate> {
     NSTableView *tableview;

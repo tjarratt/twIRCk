@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "GLGOccupantDelegate.h"
 #import "NSColor+GLG.h"
+#import "GLGLabelView.h"
 
-@interface GLGSidebarOccupant : NSTextField
+@interface GLGSidebarOccupant : GLGLabelView
 
 @property id <GLGOccupantDelegate> delegate;
 

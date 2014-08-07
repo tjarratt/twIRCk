@@ -13,6 +13,7 @@
 #import "GLGDefaultValueTextField.h"
 #import "GLGManagedObjectContext.h"
 #import "GLGAppDelegate.h"
+#import "GLGLabelView.h"
 
 @class GLGChatView;
 

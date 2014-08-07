@@ -12,13 +12,24 @@
 
 - (id) init {
     if (self = [super init]) {
-        [self setBordered:NO];
-        [self setBezeled:NO];
-        [self setSelectable:NO];
-        [self setEditable:NO];
-        [self setBackgroundColor:[NSColor clearColor]];
+        [self configure];
     }
     return self;
+}
+
+- (id) initWithFrame:(NSRect)frameRect {
+    if (self = [super initWithFrame:frameRect]) {
+        [self configure];
+    }
+    return self;
+}
+
+- (void) configure {
+    [self setBordered:NO];
+    [self setBezeled:NO];
+    [self setSelectable:NO];
+    [self setEditable:NO];
+    [self setBackgroundColor:[NSColor clearColor]];
 }
 
 @end
