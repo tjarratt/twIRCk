@@ -70,12 +70,14 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New Server" keyEquivalent="n" id="82">
+                            <menuItem title="New Server" keyEquivalent="n" toolTip="Connect to a New Server" id="82">
+                                <accessibility description="New Server" help="Open a dialog to connect to a new server"/>
                                 <connections>
                                     <action selector="openNewServerWindow:" target="494" id="542"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Close Window" keyEquivalent="w" id="543">
+                                <accessibility description="Close Window" help="Closes the current window that has focus"/>
                                 <connections>
                                     <action selector="closeActiveWindow:" target="494" id="544"/>
                                 </connections>
